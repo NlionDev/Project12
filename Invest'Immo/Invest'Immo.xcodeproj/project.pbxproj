@@ -14,10 +14,14 @@
 		03E4A98E2423BE75002404C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */; };
 		03E4A9992423BE75002404C3 /* Invest_ImmoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9982423BE75002404C3 /* Invest_ImmoTests.swift */; };
 		03E4A9A42423BE75002404C3 /* Invest_ImmoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9A32423BE75002404C3 /* Invest_ImmoUITests.swift */; };
-		03E4A9B52423C44B002404C3 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9B42423C44B002404C3 /* homeViewController.swift */; };
+		03E4A9B52423C44B002404C3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9B42423C44B002404C3 /* HomeViewController.swift */; };
 		03E4A9B72423C5DE002404C3 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A9B62423C5DD002404C3 /* PoetsenOne-Regular.ttf */; };
 		03E4A9B92423CCF1002404C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9B82423CCF1002404C3 /* SceneDelegate.swift */; };
-		03E4A9BB2423DBE1002404C3 /* rentabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9BA2423DBE1002404C3 /* rentabilityViewController.swift */; };
+		03E4A9BE24266845002404C3 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9BD24266845002404C3 /* ButtonsView.swift */; };
+		03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9BF242669EC002404C3 /* TextFieldView.swift */; };
+		03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */; };
+		03E4A9C624267F52002404C3 /* NavigationBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9C524267F52002404C3 /* NavigationBarStyle.swift */; };
+		03E4A9C824268D7D002404C3 /* RentabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,11 +55,15 @@
 		03E4A99F2423BE75002404C3 /* Invest'ImmoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Invest'ImmoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A9A32423BE75002404C3 /* Invest_ImmoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invest_ImmoUITests.swift; sourceTree = "<group>"; };
 		03E4A9A52423BE75002404C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03E4A9B42423C44B002404C3 /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
+		03E4A9B42423C44B002404C3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		03E4A9B62423C5DD002404C3 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
 		03E4A9B82423CCF1002404C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		03E4A9BA2423DBE1002404C3 /* rentabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rentabilityViewController.swift; sourceTree = "<group>"; };
 		03E4A9BC2423EE3C002404C3 /* Antipasto-Pro-Regular-trial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Antipasto-Pro-Regular-trial.ttf"; sourceTree = "<group>"; };
+		03E4A9BD24266845002404C3 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		03E4A9BF242669EC002404C3 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRentabilityViewController.swift; sourceTree = "<group>"; };
+		03E4A9C524267F52002404C3 /* NavigationBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarStyle.swift; sourceTree = "<group>"; };
+		03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +158,9 @@
 			children = (
 				03E4A9842423BE74002404C3 /* Main.storyboard */,
 				03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */,
+				03E4A9BD24266845002404C3 /* ButtonsView.swift */,
+				03E4A9BF242669EC002404C3 /* TextFieldView.swift */,
+				03E4A9C524267F52002404C3 /* NavigationBarStyle.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,8 +168,9 @@
 		03E4A9B32423BEA0002404C3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				03E4A9B42423C44B002404C3 /* homeViewController.swift */,
-				03E4A9BA2423DBE1002404C3 /* rentabilityViewController.swift */,
+				03E4A9B42423C44B002404C3 /* HomeViewController.swift */,
+				03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */,
+				03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -295,10 +307,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E4A9BE24266845002404C3 /* ButtonsView.swift in Sources */,
+				03E4A9C624267F52002404C3 /* NavigationBarStyle.swift in Sources */,
+				03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */,
 				03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */,
-				03E4A9BB2423DBE1002404C3 /* rentabilityViewController.swift in Sources */,
 				03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */,
-				03E4A9B52423C44B002404C3 /* homeViewController.swift in Sources */,
+				03E4A9C824268D7D002404C3 /* RentabilityViewController.swift in Sources */,
+				03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */,
+				03E4A9B52423C44B002404C3 /* HomeViewController.swift in Sources */,
 				03E4A9B92423CCF1002404C3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
