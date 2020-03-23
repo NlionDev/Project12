@@ -63,5 +63,7 @@
 		<string>PoetsenOne-Regular.ttf</string>
 		<string>Antipasto-Pro-Regular-trial.ttf</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 </dict>
 </plist>

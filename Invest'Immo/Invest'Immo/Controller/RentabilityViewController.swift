@@ -14,18 +14,9 @@ class RentabilityViewController: UIViewController {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30)!]
-            self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
-            self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
-            self.navigationController?.navigationBar.backItem?.title = ""
+            setRentabilityNavigationBarStyle()
         }
         
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(true)
-            
-        }
         
         //MARK: - Outlets
         

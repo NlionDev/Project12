@@ -10,18 +10,28 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    //MARK: - Properties
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .lightContent
+        }
+    }
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        setHomeNavigationBarStyle()
     }
+
+    
 
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A024275C2B003F953E /* CreditViewController.swift */; };
+		03A6B2A3242760D4003F953E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A2242760D4003F953E /* Extensions.swift */; };
+		03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A42427B778003F953E /* ResultCreditViewController.swift */; };
+		03A6B2A72427C332003F953E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A62427C332003F953E /* ResultView.swift */; };
 		03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A97E2423BE74002404C3 /* AppDelegate.swift */; };
 		03E4A9862423BE74002404C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A9842423BE74002404C3 /* Main.storyboard */; };
 		03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9872423BE74002404C3 /* Invest_Immo.xcdatamodeld */; };
@@ -20,7 +24,6 @@
 		03E4A9BE24266845002404C3 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9BD24266845002404C3 /* ButtonsView.swift */; };
 		03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9BF242669EC002404C3 /* TextFieldView.swift */; };
 		03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */; };
-		03E4A9C624267F52002404C3 /* NavigationBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9C524267F52002404C3 /* NavigationBarStyle.swift */; };
 		03E4A9C824268D7D002404C3 /* RentabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03A6B2A024275C2B003F953E /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
+		03A6B2A2242760D4003F953E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		03A6B2A42427B778003F953E /* ResultCreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCreditViewController.swift; sourceTree = "<group>"; };
+		03A6B2A62427C332003F953E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		03E4A97B2423BE74002404C3 /* Invest'Immo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Invest'Immo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A97E2423BE74002404C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03E4A9852423BE74002404C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,7 +69,6 @@
 		03E4A9BD24266845002404C3 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		03E4A9BF242669EC002404C3 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRentabilityViewController.swift; sourceTree = "<group>"; };
-		03E4A9C524267F52002404C3 /* NavigationBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarStyle.swift; sourceTree = "<group>"; };
 		03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,8 +165,9 @@
 				03E4A9842423BE74002404C3 /* Main.storyboard */,
 				03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */,
 				03E4A9BD24266845002404C3 /* ButtonsView.swift */,
+				03A6B2A62427C332003F953E /* ResultView.swift */,
 				03E4A9BF242669EC002404C3 /* TextFieldView.swift */,
-				03E4A9C524267F52002404C3 /* NavigationBarStyle.swift */,
+				03A6B2A2242760D4003F953E /* Extensions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -171,6 +178,8 @@
 				03E4A9B42423C44B002404C3 /* HomeViewController.swift */,
 				03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */,
 				03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */,
+				03A6B2A024275C2B003F953E /* CreditViewController.swift */,
+				03A6B2A42427B778003F953E /* ResultCreditViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -308,12 +317,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				03E4A9BE24266845002404C3 /* ButtonsView.swift in Sources */,
-				03E4A9C624267F52002404C3 /* NavigationBarStyle.swift in Sources */,
 				03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */,
 				03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */,
 				03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */,
+				03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */,
+				03A6B2A72427C332003F953E /* ResultView.swift in Sources */,
 				03E4A9C824268D7D002404C3 /* RentabilityViewController.swift in Sources */,
+				03A6B2A3242760D4003F953E /* Extensions.swift in Sources */,
 				03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */,
+				03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */,
 				03E4A9B52423C44B002404C3 /* HomeViewController.swift in Sources */,
 				03E4A9B92423CCF1002404C3 /* SceneDelegate.swift in Sources */,
 			);
