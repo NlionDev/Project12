@@ -8,20 +8,13 @@
 
 import UIKit
 
-protocol UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-}
-
-protocol UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-}
-
 class CreditViewController: UIViewController {
     
     //MARK: - Properties
     
-    var creditDuration = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    private let creditDuration = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    var selectedCreditDuration: Int?
+    
     
     //MARK: - Outlets
     
@@ -33,11 +26,14 @@ class CreditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setCreditNavigationBarStyle()
-        
+        setupPickerView()
     }
-
     
-    
+    private func setupPickerView() {
+        let middleOfPicker = creditDuration.count/2
+        creditDurationPickerView.selectRow(middleOfPicker, inComponent: 0, animated: true)
+        creditDurationPickerView.setValue(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), forKeyPath: "textColor")
+    }
 
 }
 
@@ -54,4 +50,9 @@ extension CreditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(creditDuration[row])
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCreditDuration = creditDuration[row]
+    }
+    
 }
