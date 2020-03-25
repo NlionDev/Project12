@@ -10,12 +10,44 @@ import UIKit
 
 class RentabilityViewController: UIViewController {
 
-        //MARK: - Lifecycle
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setRentabilityNavigationBarStyle()
+    //MARK: - Properties
+    
+    private let calculator = RentabilityCalculator()
+    
+    //MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setRentabilityNavigationBarStyle()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToRentabilityResult" {
+            guard let destination = segue.destination as? ResultRentabilityViewController else {return}
+            if let estatePrice = estatePriceTextField.text,
+                let worksPrice = worksPriceTextField.text,
+                let notaryFees = notaryFeesTextField.text,
+                let monthlyRent = monthlyRentTextField.text,
+                let propertyTax = propertyTaxTextField.text,
+                let maintenanceFees = maintenanceFeesTextField.text,
+                let charges = chargesTextField.text,
+                let managementFees = managementFeesTextField.text,
+                let insurance = insuranceTextField.text,
+                let creditCost = creditCostTextField.text {
+                calculator.estatePrice = estatePrice
+                calculator.worksPrice = worksPrice
+                calculator.notaryFees = notaryFees
+                calculator.monthlyRent = monthlyRent
+                calculator.propertyTax = propertyTax
+                calculator.maintenanceFees = maintenanceFees
+                calculator.charges = charges
+                calculator.managementFees = managementFees
+                calculator.insurance = insurance
+                calculator.creditCost = creditCost
+                destination.calculator = calculator
+            }
         }
+    }
         
         
         //MARK: - Outlets

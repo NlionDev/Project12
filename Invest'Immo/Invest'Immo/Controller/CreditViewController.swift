@@ -19,6 +19,10 @@ class CreditViewController: UIViewController {
     //MARK: - Outlets
     
     @IBOutlet weak var creditDurationPickerView: UIPickerView!
+    @IBOutlet weak var amountToFinanceTextField: UITextField!
+    @IBOutlet weak var rateTextField: UITextField!
+    @IBOutlet weak var insuranceRateTextField: UITextField!
+    @IBOutlet weak var bookingFeesTextField: UITextField!
     
 
     //MARK: - Lifecycle

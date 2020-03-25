@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+//MARK: - ViewController Extension
+
 extension UIViewController {
     
     // Method for customize navigation bar on rentability display
@@ -41,5 +43,18 @@ extension UIViewController {
         let homeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "homeButton"), style: .plain, target: self, action: action)
         self.navigationItem.rightBarButtonItem = homeButton
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
+    
+    // Method for go back to home menu when tapped in
+    @objc func didTapOnHomeButton() {
+        performSegue(withIdentifier: "returnHome", sender: nil)
+    }
+}
+
+//MARK: - Double Extension
+
+extension Double {
+    var clean: String {
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
     }
 }
