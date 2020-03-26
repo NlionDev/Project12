@@ -23,10 +23,25 @@ extension UIViewController {
         self.navigationController?.navigationBar.backItem?.title = ""
     }
     
+    func setRentabilityTabBarStyle() {
+        self.tabBarController?.tabBar.barTintColor = UIColor(red: 91/255.0, green: 102/255.0, blue: 248/255.0, alpha: 1.0)
+        
+    }
+    
     // Method for customize navigation bar on credit display
     func setCreditNavigationBarStyle() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 100/255.0, green: 172/255.0, blue: 217/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30)!]
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
+        self.navigationController?.navigationBar.backItem?.title = ""
+    }
+    
+    // Method for customize navigation bar on checklist display
+    func setChecklistNavigationBarStyle() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 89/255.0, green: 86/255.0, blue: 134/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30)!]
         self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")

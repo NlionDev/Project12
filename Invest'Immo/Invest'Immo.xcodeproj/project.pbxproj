@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0369EFDD242D05EF00430EB1 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0369EFDC242D05EF00430EB1 /* ChecklistViewController.swift */; };
+		0369EFDF242D067B00430EB1 /* MySimulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0369EFDE242D067B00430EB1 /* MySimulationsViewController.swift */; };
 		03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A024275C2B003F953E /* CreditViewController.swift */; };
 		03A6B2A3242760D4003F953E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A2242760D4003F953E /* Extensions.swift */; };
 		03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A42427B778003F953E /* ResultCreditViewController.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0369EFDC242D05EF00430EB1 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
+		0369EFDE242D067B00430EB1 /* MySimulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySimulationsViewController.swift; sourceTree = "<group>"; };
 		03A6B2A024275C2B003F953E /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		03A6B2A2242760D4003F953E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		03A6B2A42427B778003F953E /* ResultCreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCreditViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */,
 				03A6B2A024275C2B003F953E /* CreditViewController.swift */,
 				03A6B2A42427B778003F953E /* ResultCreditViewController.swift */,
+				0369EFDC242D05EF00430EB1 /* ChecklistViewController.swift */,
+				0369EFDE242D067B00430EB1 /* MySimulationsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -333,8 +339,10 @@
 				03A6B2AB242BB34D003F953E /* CreditCalculator.swift in Sources */,
 				03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */,
 				03A6B2A9242A89CF003F953E /* RentabilityCalculator.swift in Sources */,
+				0369EFDF242D067B00430EB1 /* MySimulationsViewController.swift in Sources */,
 				03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */,
 				03E4A9B52423C44B002404C3 /* HomeViewController.swift in Sources */,
+				0369EFDD242D05EF00430EB1 /* ChecklistViewController.swift in Sources */,
 				03E4A9B92423CCF1002404C3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

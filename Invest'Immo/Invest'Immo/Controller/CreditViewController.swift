@@ -13,6 +13,7 @@ class CreditViewController: UIViewController {
     //MARK: - Properties
     
     private let creditDuration = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    private let calculator = CreditCalculator()
     var selectedCreditDuration: Int?
     
     
@@ -33,6 +34,52 @@ class CreditViewController: UIViewController {
         setupPickerView()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToCreditResult" {
+            
+            guard let destination = segue.destination as? ResultCreditViewController else {return}
+            let creditDurationIndex = creditDurationPickerView.selectedRow(inComponent: 0)
+            selectedCreditDuration = creditDuration[creditDurationIndex]
+            if let amountToFinance = amountToFinanceTextField.text,
+                let creditDuration = selectedCreditDuration,
+                let rate = rateTextField.text,
+                let insuranceRate = insuranceRateTextField.text,
+                let bookingFees = bookingFeesTextField.text {
+                calculator.amountToFinance = amountToFinance
+                calculator.creditDuration = String(creditDuration)
+                calculator.rate = rate
+                calculator.insuranceRate = insuranceRate
+                calculator.bookingFees = bookingFees
+                destination.calculator = calculator
+                
+            }
+        }
+    }
+    
+    //MARK: - Actions
+
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        amountToFinanceTextField.resignFirstResponder()
+        rateTextField.resignFirstResponder()
+        insuranceRateTextField.resignFirstResponder()
+        bookingFeesTextField.resignFirstResponder()
+    }
+    @IBAction func didTapOnRatePlusButton(_ sender: Any) {
+        if let rate = Double(calculator.rate) {
+            let newRate = rate + 0.01
+            let stringNewRate = String(newRate)
+            calculator.rate = stringNewRate
+            
+            
+        }
+    }
+    
+    @IBAction func didTapOnRateMinusButton(_ sender: Any) {
+    }
+    
+    //MARK: - Methods
+    
     private func setupPickerView() {
         let middleOfPicker = creditDuration.count/2
         creditDurationPickerView.selectRow(middleOfPicker, inComponent: 0, animated: true)
@@ -40,6 +87,8 @@ class CreditViewController: UIViewController {
     }
 
 }
+
+//MARK: - Extension
 
 extension CreditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -54,9 +103,4 @@ extension CreditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(creditDuration[row])
     }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCreditDuration = creditDuration[row]
-    }
-    
 }
