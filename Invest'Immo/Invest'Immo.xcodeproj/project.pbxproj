@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A024275C2B003F953E /* CreditViewController.swift */; };
+		03A6B2A3242760D4003F953E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A2242760D4003F953E /* Extensions.swift */; };
+		03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A42427B778003F953E /* ResultCreditViewController.swift */; };
+		03A6B2A72427C332003F953E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A62427C332003F953E /* ResultView.swift */; };
 		03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A97E2423BE74002404C3 /* AppDelegate.swift */; };
-		03E4A9812423BE74002404C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9802423BE74002404C3 /* SceneDelegate.swift */; };
-		03E4A9832423BE74002404C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9822423BE74002404C3 /* ViewController.swift */; };
 		03E4A9862423BE74002404C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A9842423BE74002404C3 /* Main.storyboard */; };
 		03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9872423BE74002404C3 /* Invest_Immo.xcdatamodeld */; };
 		03E4A98B2423BE75002404C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A98A2423BE75002404C3 /* Assets.xcassets */; };
 		03E4A98E2423BE75002404C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */; };
 		03E4A9992423BE75002404C3 /* Invest_ImmoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9982423BE75002404C3 /* Invest_ImmoTests.swift */; };
 		03E4A9A42423BE75002404C3 /* Invest_ImmoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9A32423BE75002404C3 /* Invest_ImmoUITests.swift */; };
+		03E4A9B52423C44B002404C3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9B42423C44B002404C3 /* HomeViewController.swift */; };
+		03E4A9B72423C5DE002404C3 /* PoetsenOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A9B62423C5DD002404C3 /* PoetsenOne-Regular.ttf */; };
+		03E4A9B92423CCF1002404C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9B82423CCF1002404C3 /* SceneDelegate.swift */; };
+		03E4A9BE24266845002404C3 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9BD24266845002404C3 /* ButtonsView.swift */; };
+		03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9BF242669EC002404C3 /* TextFieldView.swift */; };
+		03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */; };
+		03E4A9C824268D7D002404C3 /* RentabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03A6B2A024275C2B003F953E /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
+		03A6B2A2242760D4003F953E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		03A6B2A42427B778003F953E /* ResultCreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCreditViewController.swift; sourceTree = "<group>"; };
+		03A6B2A62427C332003F953E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		03E4A97B2423BE74002404C3 /* Invest'Immo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Invest'Immo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A97E2423BE74002404C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		03E4A9802423BE74002404C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		03E4A9822423BE74002404C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		03E4A9852423BE74002404C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03E4A9882423BE74002404C3 /* Invest_Immo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Invest_Immo.xcdatamodel; sourceTree = "<group>"; };
 		03E4A98A2423BE75002404C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +62,14 @@
 		03E4A99F2423BE75002404C3 /* Invest'ImmoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Invest'ImmoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A9A32423BE75002404C3 /* Invest_ImmoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invest_ImmoUITests.swift; sourceTree = "<group>"; };
 		03E4A9A52423BE75002404C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03E4A9B42423C44B002404C3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		03E4A9B62423C5DD002404C3 /* PoetsenOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoetsenOne-Regular.ttf"; sourceTree = "<group>"; };
+		03E4A9B82423CCF1002404C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		03E4A9BC2423EE3C002404C3 /* Antipasto-Pro-Regular-trial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Antipasto-Pro-Regular-trial.ttf"; sourceTree = "<group>"; };
+		03E4A9BD24266845002404C3 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		03E4A9BF242669EC002404C3 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRentabilityViewController.swift; sourceTree = "<group>"; };
+		03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +122,11 @@
 			children = (
 				03E4A98A2423BE75002404C3 /* Assets.xcassets */,
 				03E4A97E2423BE74002404C3 /* AppDelegate.swift */,
-				03E4A9802423BE74002404C3 /* SceneDelegate.swift */,
+				03E4A9B82423CCF1002404C3 /* SceneDelegate.swift */,
 				03E4A98F2423BE75002404C3 /* Info.plist */,
 				03E4A9872423BE74002404C3 /* Invest_Immo.xcdatamodeld */,
+				03E4A9B62423C5DD002404C3 /* PoetsenOne-Regular.ttf */,
+				03E4A9BC2423EE3C002404C3 /* Antipasto-Pro-Regular-trial.ttf */,
 				03E4A9B32423BEA0002404C3 /* Controller */,
 				03E4A9B22423BE97002404C3 /* View */,
 				03E4A9B12423BE8F002404C3 /* Model */,
@@ -143,6 +164,10 @@
 			children = (
 				03E4A9842423BE74002404C3 /* Main.storyboard */,
 				03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */,
+				03E4A9BD24266845002404C3 /* ButtonsView.swift */,
+				03A6B2A62427C332003F953E /* ResultView.swift */,
+				03E4A9BF242669EC002404C3 /* TextFieldView.swift */,
+				03A6B2A2242760D4003F953E /* Extensions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -150,7 +175,11 @@
 		03E4A9B32423BEA0002404C3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				03E4A9822423BE74002404C3 /* ViewController.swift */,
+				03E4A9B42423C44B002404C3 /* HomeViewController.swift */,
+				03E4A9C724268D7D002404C3 /* RentabilityViewController.swift */,
+				03E4A9C124267129002404C3 /* ResultRentabilityViewController.swift */,
+				03A6B2A024275C2B003F953E /* CreditViewController.swift */,
+				03A6B2A42427B778003F953E /* ResultCreditViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -260,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03E4A98E2423BE75002404C3 /* LaunchScreen.storyboard in Resources */,
+				03E4A9B72423C5DE002404C3 /* PoetsenOne-Regular.ttf in Resources */,
 				03E4A98B2423BE75002404C3 /* Assets.xcassets in Resources */,
 				03E4A9862423BE74002404C3 /* Main.storyboard in Resources */,
 			);
@@ -286,10 +316,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03E4A9832423BE74002404C3 /* ViewController.swift in Sources */,
+				03E4A9BE24266845002404C3 /* ButtonsView.swift in Sources */,
+				03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */,
 				03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */,
 				03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */,
-				03E4A9812423BE74002404C3 /* SceneDelegate.swift in Sources */,
+				03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */,
+				03A6B2A72427C332003F953E /* ResultView.swift in Sources */,
+				03E4A9C824268D7D002404C3 /* RentabilityViewController.swift in Sources */,
+				03A6B2A3242760D4003F953E /* Extensions.swift in Sources */,
+				03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */,
+				03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */,
+				03E4A9B52423C44B002404C3 /* HomeViewController.swift in Sources */,
+				03E4A9B92423CCF1002404C3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CRUKPX9CKJ;
 				INFOPLIST_FILE = "Invest'Immo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,7 +511,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.NicolasLion.Invest-Immo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -483,6 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CRUKPX9CKJ;
 				INFOPLIST_FILE = "Invest'Immo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -490,7 +530,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.NicolasLion.Invest-Immo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
