@@ -1,0 +1,22 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'InvestImmo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for InvestImmo
+pod 'RealmSwift'
+
+  target 'InvestImmoTests' do
+    inherit! :search_paths
+    # Pods for testing
+pod 'RealmSwift'
+  end
+
+  target 'InvestImmoUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
