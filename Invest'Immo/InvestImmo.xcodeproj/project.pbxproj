@@ -61,17 +61,17 @@
 		03A6B2AA242BB34D003F953E /* CreditCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCalculator.swift; sourceTree = "<group>"; };
 		03DF517F242E00280040D97D /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		03DF51812431EB9F0040D97D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		03E4A97B2423BE74002404C3 /* Invest'Immo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Invest'Immo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E4A97B2423BE74002404C3 /* InvestImmo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestImmo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A97E2423BE74002404C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03E4A9852423BE74002404C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03E4A9882423BE74002404C3 /* Invest_Immo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Invest_Immo.xcdatamodel; sourceTree = "<group>"; };
 		03E4A98A2423BE75002404C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03E4A98D2423BE75002404C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03E4A98F2423BE75002404C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03E4A9942423BE75002404C3 /* Invest'ImmoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Invest'ImmoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E4A9942423BE75002404C3 /* InvestImmoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestImmoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A9982423BE75002404C3 /* Invest_ImmoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invest_ImmoTests.swift; sourceTree = "<group>"; };
 		03E4A99A2423BE75002404C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03E4A99F2423BE75002404C3 /* Invest'ImmoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Invest'ImmoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E4A99F2423BE75002404C3 /* InvestImmoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestImmoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A9A32423BE75002404C3 /* Invest_ImmoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invest_ImmoUITests.swift; sourceTree = "<group>"; };
 		03E4A9A52423BE75002404C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03E4A9B42423C44B002404C3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -112,9 +112,9 @@
 		03E4A9722423BE74002404C3 = {
 			isa = PBXGroup;
 			children = (
-				03E4A97D2423BE74002404C3 /* Invest'Immo */,
-				03E4A9972423BE75002404C3 /* Invest'ImmoTests */,
-				03E4A9A22423BE75002404C3 /* Invest'ImmoUITests */,
+				03E4A97D2423BE74002404C3 /* InvestImmo */,
+				03E4A9972423BE75002404C3 /* InvestImmoTests */,
+				03E4A9A22423BE75002404C3 /* InvestImmoUITests */,
 				03E4A97C2423BE74002404C3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,14 +122,14 @@
 		03E4A97C2423BE74002404C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				03E4A97B2423BE74002404C3 /* Invest'Immo.app */,
-				03E4A9942423BE75002404C3 /* Invest'ImmoTests.xctest */,
-				03E4A99F2423BE75002404C3 /* Invest'ImmoUITests.xctest */,
+				03E4A97B2423BE74002404C3 /* InvestImmo.app */,
+				03E4A9942423BE75002404C3 /* InvestImmoTests.xctest */,
+				03E4A99F2423BE75002404C3 /* InvestImmoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		03E4A97D2423BE74002404C3 /* Invest'Immo */ = {
+		03E4A97D2423BE74002404C3 /* InvestImmo */ = {
 			isa = PBXGroup;
 			children = (
 				03E4A98A2423BE75002404C3 /* Assets.xcassets */,
@@ -143,25 +143,25 @@
 				03E4A9B22423BE97002404C3 /* View */,
 				03E4A9B12423BE8F002404C3 /* Model */,
 			);
-			path = "Invest'Immo";
+			path = InvestImmo;
 			sourceTree = "<group>";
 		};
-		03E4A9972423BE75002404C3 /* Invest'ImmoTests */ = {
+		03E4A9972423BE75002404C3 /* InvestImmoTests */ = {
 			isa = PBXGroup;
 			children = (
 				03E4A9982423BE75002404C3 /* Invest_ImmoTests.swift */,
 				03E4A99A2423BE75002404C3 /* Info.plist */,
 			);
-			path = "Invest'ImmoTests";
+			path = InvestImmoTests;
 			sourceTree = "<group>";
 		};
-		03E4A9A22423BE75002404C3 /* Invest'ImmoUITests */ = {
+		03E4A9A22423BE75002404C3 /* InvestImmoUITests */ = {
 			isa = PBXGroup;
 			children = (
 				03E4A9A32423BE75002404C3 /* Invest_ImmoUITests.swift */,
 				03E4A9A52423BE75002404C3 /* Info.plist */,
 			);
-			path = "Invest'ImmoUITests";
+			path = InvestImmoUITests;
 			sourceTree = "<group>";
 		};
 		03E4A9B12423BE8F002404C3 /* Model */ = {
@@ -205,9 +205,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		03E4A97A2423BE74002404C3 /* Invest'Immo */ = {
+		03E4A97A2423BE74002404C3 /* InvestImmo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03E4A9A82423BE75002404C3 /* Build configuration list for PBXNativeTarget "Invest'Immo" */;
+			buildConfigurationList = 03E4A9A82423BE75002404C3 /* Build configuration list for PBXNativeTarget "InvestImmo" */;
 			buildPhases = (
 				03E4A9772423BE74002404C3 /* Sources */,
 				03E4A9782423BE74002404C3 /* Frameworks */,
@@ -217,14 +217,14 @@
 			);
 			dependencies = (
 			);
-			name = "Invest'Immo";
+			name = InvestImmo;
 			productName = "Invest'Immo";
-			productReference = 03E4A97B2423BE74002404C3 /* Invest'Immo.app */;
+			productReference = 03E4A97B2423BE74002404C3 /* InvestImmo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		03E4A9932423BE75002404C3 /* Invest'ImmoTests */ = {
+		03E4A9932423BE75002404C3 /* InvestImmoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03E4A9AB2423BE75002404C3 /* Build configuration list for PBXNativeTarget "Invest'ImmoTests" */;
+			buildConfigurationList = 03E4A9AB2423BE75002404C3 /* Build configuration list for PBXNativeTarget "InvestImmoTests" */;
 			buildPhases = (
 				03E4A9902423BE75002404C3 /* Sources */,
 				03E4A9912423BE75002404C3 /* Frameworks */,
@@ -235,14 +235,14 @@
 			dependencies = (
 				03E4A9962423BE75002404C3 /* PBXTargetDependency */,
 			);
-			name = "Invest'ImmoTests";
+			name = InvestImmoTests;
 			productName = "Invest'ImmoTests";
-			productReference = 03E4A9942423BE75002404C3 /* Invest'ImmoTests.xctest */;
+			productReference = 03E4A9942423BE75002404C3 /* InvestImmoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		03E4A99E2423BE75002404C3 /* Invest'ImmoUITests */ = {
+		03E4A99E2423BE75002404C3 /* InvestImmoUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03E4A9AE2423BE75002404C3 /* Build configuration list for PBXNativeTarget "Invest'ImmoUITests" */;
+			buildConfigurationList = 03E4A9AE2423BE75002404C3 /* Build configuration list for PBXNativeTarget "InvestImmoUITests" */;
 			buildPhases = (
 				03E4A99B2423BE75002404C3 /* Sources */,
 				03E4A99C2423BE75002404C3 /* Frameworks */,
@@ -253,9 +253,9 @@
 			dependencies = (
 				03E4A9A12423BE75002404C3 /* PBXTargetDependency */,
 			);
-			name = "Invest'ImmoUITests";
+			name = InvestImmoUITests;
 			productName = "Invest'ImmoUITests";
-			productReference = 03E4A99F2423BE75002404C3 /* Invest'ImmoUITests.xctest */;
+			productReference = 03E4A99F2423BE75002404C3 /* InvestImmoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -281,7 +281,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 03E4A9762423BE74002404C3 /* Build configuration list for PBXProject "Invest'Immo" */;
+			buildConfigurationList = 03E4A9762423BE74002404C3 /* Build configuration list for PBXProject "InvestImmo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -294,9 +294,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				03E4A97A2423BE74002404C3 /* Invest'Immo */,
-				03E4A9932423BE75002404C3 /* Invest'ImmoTests */,
-				03E4A99E2423BE75002404C3 /* Invest'ImmoUITests */,
+				03E4A97A2423BE74002404C3 /* InvestImmo */,
+				03E4A9932423BE75002404C3 /* InvestImmoTests */,
+				03E4A99E2423BE75002404C3 /* InvestImmoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -376,12 +376,12 @@
 /* Begin PBXTargetDependency section */
 		03E4A9962423BE75002404C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 03E4A97A2423BE74002404C3 /* Invest'Immo */;
+			target = 03E4A97A2423BE74002404C3 /* InvestImmo */;
 			targetProxy = 03E4A9952423BE75002404C3 /* PBXContainerItemProxy */;
 		};
 		03E4A9A12423BE75002404C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 03E4A97A2423BE74002404C3 /* Invest'Immo */;
+			target = 03E4A97A2423BE74002404C3 /* InvestImmo */;
 			targetProxy = 03E4A9A02423BE75002404C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -526,13 +526,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CRUKPX9CKJ;
-				INFOPLIST_FILE = "Invest'Immo/Info.plist";
+				INFOPLIST_FILE = InvestImmo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.NicolasLion.Invest-Immo";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.NicolasLion.InvestImmo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -545,13 +545,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CRUKPX9CKJ;
-				INFOPLIST_FILE = "Invest'Immo/Info.plist";
+				INFOPLIST_FILE = InvestImmo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.NicolasLion.Invest-Immo";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.NicolasLion.InvestImmo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -576,7 +576,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Invest'Immo.app/Invest'Immo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvestImmo.app/InvestImmo";
 			};
 			name = Debug;
 		};
@@ -598,7 +598,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Invest'Immo.app/Invest'Immo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvestImmo.app/InvestImmo";
 			};
 			name = Release;
 		};
@@ -645,7 +645,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		03E4A9762423BE74002404C3 /* Build configuration list for PBXProject "Invest'Immo" */ = {
+		03E4A9762423BE74002404C3 /* Build configuration list for PBXProject "InvestImmo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03E4A9A62423BE75002404C3 /* Debug */,
@@ -654,7 +654,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03E4A9A82423BE75002404C3 /* Build configuration list for PBXNativeTarget "Invest'Immo" */ = {
+		03E4A9A82423BE75002404C3 /* Build configuration list for PBXNativeTarget "InvestImmo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03E4A9A92423BE75002404C3 /* Debug */,
@@ -663,7 +663,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03E4A9AB2423BE75002404C3 /* Build configuration list for PBXNativeTarget "Invest'ImmoTests" */ = {
+		03E4A9AB2423BE75002404C3 /* Build configuration list for PBXNativeTarget "InvestImmoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03E4A9AC2423BE75002404C3 /* Debug */,
@@ -672,7 +672,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03E4A9AE2423BE75002404C3 /* Build configuration list for PBXNativeTarget "Invest'ImmoUITests" */ = {
+		03E4A9AE2423BE75002404C3 /* Build configuration list for PBXNativeTarget "InvestImmoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03E4A9AF2423BE75002404C3 /* Debug */,
