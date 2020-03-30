@@ -11,8 +11,7 @@ import UIKit
 class ResultCreditViewController: UIViewController {
 
     //MARK: - Outlets
-    
-    @IBOutlet weak var creditResultStackView: UIStackView!
+
     
     //MARK: - Lifecycle
     
@@ -23,10 +22,8 @@ class ResultCreditViewController: UIViewController {
     
     //MARK: - Actions
     
-    // Method for go back to home menu when tapped in
-    @objc private func didTapOnHomeButton() {
-        performSegue(withIdentifier: "returnHomeFromCreditResult", sender: nil)
-    }
+    
+   
     
 
  
