@@ -14,6 +14,7 @@ class CreditViewController: UIViewController {
     
     private let creditDuration = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
     private let calculator = CreditCalculator()
+    private let customPickerView = CustomPickerView()
     var selectedCreditDuration: Int?
     
     
@@ -31,7 +32,7 @@ class CreditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setCreditNavigationBarStyle()
-        setupPickerView()
+        customPickerView.setupDurationPickerView(picker: creditDurationPickerView, array: creditDuration)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,11 +81,7 @@ class CreditViewController: UIViewController {
     
     //MARK: - Methods
     
-    private func setupPickerView() {
-        let middleOfPicker = creditDuration.count/2
-        creditDurationPickerView.selectRow(middleOfPicker, inComponent: 0, animated: true)
-        creditDurationPickerView.setValue(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), forKeyPath: "textColor")
-    }
+
 
 }
 

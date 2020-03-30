@@ -11,6 +11,8 @@ import UIKit
 class MySimulationsViewController: UIViewController {
 
     
+    //MARK: - Outlets
+    
     
     //MARK: - Lifecycle
     

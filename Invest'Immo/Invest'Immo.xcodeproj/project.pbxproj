@@ -15,6 +15,8 @@
 		03A6B2A72427C332003F953E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A62427C332003F953E /* ResultView.swift */; };
 		03A6B2A9242A89CF003F953E /* RentabilityCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A8242A89CF003F953E /* RentabilityCalculator.swift */; };
 		03A6B2AB242BB34D003F953E /* CreditCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2AA242BB34D003F953E /* CreditCalculator.swift */; };
+		03DF5180242E00280040D97D /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF517F242E00280040D97D /* CustomPickerView.swift */; };
+		03DF51822431EB9F0040D97D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF51812431EB9F0040D97D /* InfoViewController.swift */; };
 		03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A97E2423BE74002404C3 /* AppDelegate.swift */; };
 		03E4A9862423BE74002404C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A9842423BE74002404C3 /* Main.storyboard */; };
 		03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9872423BE74002404C3 /* Invest_Immo.xcdatamodeld */; };
@@ -57,6 +59,8 @@
 		03A6B2A62427C332003F953E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		03A6B2A8242A89CF003F953E /* RentabilityCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityCalculator.swift; sourceTree = "<group>"; };
 		03A6B2AA242BB34D003F953E /* CreditCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCalculator.swift; sourceTree = "<group>"; };
+		03DF517F242E00280040D97D /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
+		03DF51812431EB9F0040D97D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		03E4A97B2423BE74002404C3 /* Invest'Immo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Invest'Immo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A97E2423BE74002404C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03E4A9852423BE74002404C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				03E4A9BD24266845002404C3 /* ButtonsView.swift */,
 				03A6B2A62427C332003F953E /* ResultView.swift */,
 				03E4A9BF242669EC002404C3 /* TextFieldView.swift */,
+				03DF517F242E00280040D97D /* CustomPickerView.swift */,
 				03A6B2A2242760D4003F953E /* Extensions.swift */,
 			);
 			path = View;
@@ -192,6 +197,7 @@
 				03A6B2A42427B778003F953E /* ResultCreditViewController.swift */,
 				0369EFDC242D05EF00430EB1 /* ChecklistViewController.swift */,
 				0369EFDE242D067B00430EB1 /* MySimulationsViewController.swift */,
+				03DF51812431EB9F0040D97D /* InfoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -332,11 +338,13 @@
 				03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */,
 				03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */,
 				03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */,
+				03DF51822431EB9F0040D97D /* InfoViewController.swift in Sources */,
 				03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */,
 				03A6B2A72427C332003F953E /* ResultView.swift in Sources */,
 				03E4A9C824268D7D002404C3 /* RentabilityViewController.swift in Sources */,
 				03A6B2A3242760D4003F953E /* Extensions.swift in Sources */,
 				03A6B2AB242BB34D003F953E /* CreditCalculator.swift in Sources */,
+				03DF5180242E00280040D97D /* CustomPickerView.swift in Sources */,
 				03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */,
 				03A6B2A9242A89CF003F953E /* RentabilityCalculator.swift in Sources */,
 				0369EFDF242D067B00430EB1 /* MySimulationsViewController.swift in Sources */,
