@@ -69,7 +69,7 @@ class ChecklistViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setChecklistNavigationBarStyle()
         
     }
 

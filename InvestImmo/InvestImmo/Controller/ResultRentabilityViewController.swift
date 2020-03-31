@@ -15,6 +15,7 @@ class ResultRentabilityViewController: UIViewController {
     
     var calculator: RentabilityCalculator?
     let realm = try! Realm()
+    var myRentabilitySimulation = RentabilitySimulation()
     
     //MARK: - Outlets
     
@@ -35,7 +36,32 @@ class ResultRentabilityViewController: UIViewController {
     //MARK: - Actions
     
     @objc func didTapOnSaveButton() {
-        
+        let alert = UIAlertController(title: "Nom du Projet", message: "Entrez le nom de votre projet immobilier :", preferredStyle: .alert)
+        alert.addTextField()
+        if let textField = alert.textFields?[0] {
+            textField.placeholder = "Studio Montpellier"
+            alert.addAction(UIAlertAction(title: "Retour", style: .cancel, handler: { (UIAlertAction) in }))
+            alert.addAction(UIAlertAction(title: "Sauvegarder Projet", style: .default, handler: { (UIAlertAction) in
+                if let name = textField.text {
+                    guard let calculator = self.calculator else {return}
+                    self.myRentabilitySimulation.name = name
+                    self.myRentabilitySimulation.estatePrice = calculator.estatePrice
+                    self.myRentabilitySimulation.worksPrice = calculator.worksPrice
+                    self.myRentabilitySimulation.notaryFees = calculator.notaryFees
+                    self.myRentabilitySimulation.monthlyRent = calculator.monthlyRent
+                    self.myRentabilitySimulation.propertyTax = calculator.propertyTax
+                    self.myRentabilitySimulation.maintenanceFees = calculator.maintenanceFees
+                    self.myRentabilitySimulation.charges = calculator.charges
+                    self.myRentabilitySimulation.managementFees = calculator.managementFees
+                    self.myRentabilitySimulation.insurance = calculator.insurance
+                    self.myRentabilitySimulation.creditCost = calculator.creditCost
+                    try! self.realm.write {
+                        self.realm.add(self.myRentabilitySimulation)
+                    }
+                }
+            }))
+        }
+        self.present(alert, animated: true)
     }
     
     //MARK: - Methods

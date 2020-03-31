@@ -9,10 +9,9 @@
 import Foundation
 import RealmSwift
 
-class Simulation: Object {
+class RentabilitySimulation: Object {
     
-    //MARK: - Rentability Simulation
-    
+    @objc dynamic var name: String?
     @objc dynamic var estatePrice: String?
     @objc dynamic var worksPrice: String?
     @objc dynamic var notaryFees: String?
@@ -27,8 +26,4 @@ class Simulation: Object {
     @objc dynamic var netYield: String?
     @objc dynamic var annualCashflow: String?
     @objc dynamic var mensualCashflow: String?
-    
-    //MARK: - Checklist
-    
-    
 }

@@ -9,7 +9,13 @@
 /* Begin PBXBuildFile section */
 		0369EFDD242D05EF00430EB1 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0369EFDC242D05EF00430EB1 /* ChecklistViewController.swift */; };
 		0369EFDF242D067B00430EB1 /* MySimulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0369EFDE242D067B00430EB1 /* MySimulationsViewController.swift */; };
-		039AAE09243343AA009B23DC /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE08243343AA009B23DC /* Simulation.swift */; };
+		039AAE09243343AA009B23DC /* RentabilitySimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE08243343AA009B23DC /* RentabilitySimulation.swift */; };
+		039AAE0B24337109009B23DC /* ChecklistGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE0A24337109009B23DC /* ChecklistGeneral.swift */; };
+		039AAE0D243371C8009B23DC /* ChecklistNeighborhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE0C243371C8009B23DC /* ChecklistNeighborhood.swift */; };
+		039AAE0F243372A5009B23DC /* ChecklistApartmentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE0E243372A5009B23DC /* ChecklistApartmentBlock.swift */; };
+		039AAE11243373B6009B23DC /* ChecklistApartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE10243373B6009B23DC /* ChecklistApartment.swift */; };
+		039AAE132433872F009B23DC /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE122433872F009B23DC /* BackgroundView.swift */; };
+		039AAE1524338D76009B23DC /* SavedSimulationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE1424338D76009B23DC /* SavedSimulationTableViewCell.swift */; };
 		03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A024275C2B003F953E /* CreditViewController.swift */; };
 		03A6B2A3242760D4003F953E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A2242760D4003F953E /* Extensions.swift */; };
 		03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A42427B778003F953E /* ResultCreditViewController.swift */; };
@@ -57,7 +63,13 @@
 /* Begin PBXFileReference section */
 		0369EFDC242D05EF00430EB1 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		0369EFDE242D067B00430EB1 /* MySimulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySimulationsViewController.swift; sourceTree = "<group>"; };
-		039AAE08243343AA009B23DC /* Simulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
+		039AAE08243343AA009B23DC /* RentabilitySimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilitySimulation.swift; sourceTree = "<group>"; };
+		039AAE0A24337109009B23DC /* ChecklistGeneral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistGeneral.swift; sourceTree = "<group>"; };
+		039AAE0C243371C8009B23DC /* ChecklistNeighborhood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistNeighborhood.swift; sourceTree = "<group>"; };
+		039AAE0E243372A5009B23DC /* ChecklistApartmentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistApartmentBlock.swift; sourceTree = "<group>"; };
+		039AAE10243373B6009B23DC /* ChecklistApartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistApartment.swift; sourceTree = "<group>"; };
+		039AAE122433872F009B23DC /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		039AAE1424338D76009B23DC /* SavedSimulationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSimulationTableViewCell.swift; sourceTree = "<group>"; };
 		03A6B2A024275C2B003F953E /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		03A6B2A2242760D4003F953E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		03A6B2A42427B778003F953E /* ResultCreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCreditViewController.swift; sourceTree = "<group>"; };
@@ -188,7 +200,11 @@
 			children = (
 				03A6B2A8242A89CF003F953E /* RentabilityCalculator.swift */,
 				03A6B2AA242BB34D003F953E /* CreditCalculator.swift */,
-				039AAE08243343AA009B23DC /* Simulation.swift */,
+				039AAE08243343AA009B23DC /* RentabilitySimulation.swift */,
+				039AAE0A24337109009B23DC /* ChecklistGeneral.swift */,
+				039AAE0C243371C8009B23DC /* ChecklistNeighborhood.swift */,
+				039AAE0E243372A5009B23DC /* ChecklistApartmentBlock.swift */,
+				039AAE10243373B6009B23DC /* ChecklistApartment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,8 +216,10 @@
 				03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */,
 				03E4A9BD24266845002404C3 /* ButtonsView.swift */,
 				03A6B2A62427C332003F953E /* ResultView.swift */,
+				039AAE122433872F009B23DC /* BackgroundView.swift */,
 				03E4A9BF242669EC002404C3 /* TextFieldView.swift */,
 				03DF517F242E00280040D97D /* CustomPickerView.swift */,
+				039AAE1424338D76009B23DC /* SavedSimulationTableViewCell.swift */,
 				03A6B2A2242760D4003F953E /* Extensions.swift */,
 			);
 			path = View;
@@ -486,19 +504,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				03E4A9BE24266845002404C3 /* ButtonsView.swift in Sources */,
-				039AAE09243343AA009B23DC /* Simulation.swift in Sources */,
+				039AAE09243343AA009B23DC /* RentabilitySimulation.swift in Sources */,
 				03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */,
 				03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */,
+				039AAE0F243372A5009B23DC /* ChecklistApartmentBlock.swift in Sources */,
 				03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */,
 				03DF51822431EB9F0040D97D /* InfoViewController.swift in Sources */,
 				03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */,
 				03A6B2A72427C332003F953E /* ResultView.swift in Sources */,
 				03E4A9C824268D7D002404C3 /* RentabilityViewController.swift in Sources */,
+				039AAE1524338D76009B23DC /* SavedSimulationTableViewCell.swift in Sources */,
 				03A6B2A3242760D4003F953E /* Extensions.swift in Sources */,
 				03A6B2AB242BB34D003F953E /* CreditCalculator.swift in Sources */,
+				039AAE11243373B6009B23DC /* ChecklistApartment.swift in Sources */,
+				039AAE0D243371C8009B23DC /* ChecklistNeighborhood.swift in Sources */,
 				03DF5180242E00280040D97D /* CustomPickerView.swift in Sources */,
 				03E4A9C224267129002404C3 /* ResultRentabilityViewController.swift in Sources */,
+				039AAE0B24337109009B23DC /* ChecklistGeneral.swift in Sources */,
 				03A6B2A9242A89CF003F953E /* RentabilityCalculator.swift in Sources */,
+				039AAE132433872F009B23DC /* BackgroundView.swift in Sources */,
 				0369EFDF242D067B00430EB1 /* MySimulationsViewController.swift in Sources */,
 				03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */,
 				03E4A9B52423C44B002404C3 /* HomeViewController.swift in Sources */,
