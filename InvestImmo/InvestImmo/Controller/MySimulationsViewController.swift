@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MySimulationsViewController: UIViewController {
 
+    //MARK: - Properties
+    
+    let realm = try! Realm()
     
     //MARK: - Outlets
     
@@ -19,6 +23,8 @@ class MySimulationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setChecklistNavigationBarStyle()
+        
+        
 
     }
     

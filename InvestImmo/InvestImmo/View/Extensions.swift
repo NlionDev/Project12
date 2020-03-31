@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 //MARK: - ViewController Extension
 
@@ -54,16 +55,12 @@ extension UIViewController {
     }
     
     // Method for add a home button to navigation bar
-    func setupHomeButtonItem(action: Selector) {
-        let homeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "homeButton"), style: .plain, target: self, action: action)
-        self.navigationItem.rightBarButtonItem = homeButton
+    func setupSaveButtonItem(action: Selector) {
+        let saveButton = UIBarButtonItem(image: #imageLiteral(resourceName: "saveIcon"), style: .plain, target: self, action: action)
+        self.navigationItem.rightBarButtonItem = saveButton
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     
-    // Method for go back to home menu when tapped in
-    @objc func didTapOnHomeButton() {
-        performSegue(withIdentifier: "returnHome", sender: nil)
-    }
 }
 
 //MARK: - Double Extension

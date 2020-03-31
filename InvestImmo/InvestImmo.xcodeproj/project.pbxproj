@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0369EFDD242D05EF00430EB1 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0369EFDC242D05EF00430EB1 /* ChecklistViewController.swift */; };
 		0369EFDF242D067B00430EB1 /* MySimulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0369EFDE242D067B00430EB1 /* MySimulationsViewController.swift */; };
+		039AAE09243343AA009B23DC /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE08243343AA009B23DC /* Simulation.swift */; };
 		03A6B2A124275C2B003F953E /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A024275C2B003F953E /* CreditViewController.swift */; };
 		03A6B2A3242760D4003F953E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A2242760D4003F953E /* Extensions.swift */; };
 		03A6B2A52427B778003F953E /* ResultCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A42427B778003F953E /* ResultCreditViewController.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		0369EFDC242D05EF00430EB1 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		0369EFDE242D067B00430EB1 /* MySimulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySimulationsViewController.swift; sourceTree = "<group>"; };
+		039AAE08243343AA009B23DC /* Simulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		03A6B2A024275C2B003F953E /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		03A6B2A2242760D4003F953E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		03A6B2A42427B778003F953E /* ResultCreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCreditViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				03A6B2A8242A89CF003F953E /* RentabilityCalculator.swift */,
 				03A6B2AA242BB34D003F953E /* CreditCalculator.swift */,
+				039AAE08243343AA009B23DC /* Simulation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,7 +242,6 @@
 				503548EB8B2C0F5B7578AD61 /* Pods-InvestImmoUITests.debug.xcconfig */,
 				C21660D9AA564C6860A90E32 /* Pods-InvestImmoUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -484,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03E4A9BE24266845002404C3 /* ButtonsView.swift in Sources */,
+				039AAE09243343AA009B23DC /* Simulation.swift in Sources */,
 				03E4A9C0242669EC002404C3 /* TextFieldView.swift in Sources */,
 				03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */,
 				03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */,

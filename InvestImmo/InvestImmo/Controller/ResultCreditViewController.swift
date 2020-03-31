@@ -25,7 +25,6 @@ class ResultCreditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHomeButtonItem(action: #selector(didTapOnHomeButton))
         displayResult()
     }
     

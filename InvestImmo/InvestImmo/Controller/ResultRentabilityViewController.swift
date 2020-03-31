@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ResultRentabilityViewController: UIViewController {
     
     //MARK: - Properties
     
     var calculator: RentabilityCalculator?
+    let realm = try! Realm()
     
     //MARK: - Outlets
     
@@ -25,9 +27,15 @@ class ResultRentabilityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHomeButtonItem(action: #selector(didTapOnHomeButton))
+        setupSaveButtonItem(action: #selector(didTapOnSaveButton))
         displayResult()
         setupLabelTextColor()
+    }
+    
+    //MARK: - Actions
+    
+    @objc func didTapOnSaveButton() {
+        
     }
     
     //MARK: - Methods
