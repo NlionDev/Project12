@@ -55,6 +55,10 @@ class ResultRentabilityViewController: UIViewController {
                     self.myRentabilitySimulation.managementFees = calculator.managementFees
                     self.myRentabilitySimulation.insurance = calculator.insurance
                     self.myRentabilitySimulation.creditCost = calculator.creditCost
+                    self.myRentabilitySimulation.grossYield = self.grossYieldLabel.text
+                    self.myRentabilitySimulation.netYield = self.netYieldLabel.text
+                    self.myRentabilitySimulation.annualCashflow = self.annualCashflowLabel.text
+                    self.myRentabilitySimulation.mensualCashflow = self.mensualCashflowLabel.text
                     try! self.realm.write {
                         self.realm.add(self.myRentabilitySimulation)
                     }

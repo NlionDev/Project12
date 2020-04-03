@@ -21,6 +21,6 @@ class SavedSimulationTableViewCell: UITableViewCell {
     
     func configure(projectName: String, projectPrice: String) {
         name.text = projectName
-        price.text = projectPrice
+        price.text = projectPrice + " €"
     }
 }

@@ -37,9 +37,8 @@ class RentabilityCalculator {
     
     private func getAnnualRent() -> Double {
         var annualRent = 0.00
-        if let doubleMonthlyRent = Double(monthlyRent.replacingOccurrences(of: ",", with: ".")) {
-            annualRent = doubleMonthlyRent * 12
-        }
+        let doubleMonthlyRent = monthlyRent.transformInDouble
+        annualRent = doubleMonthlyRent * 12
         return annualRent
     }
     
@@ -48,11 +47,10 @@ class RentabilityCalculator {
         if managementFees == "" {
             annualManagementFeesAmount = 0.00
         } else {
-            if let doubleMonthlyRent = Double(monthlyRent.replacingOccurrences(of: ",", with: ".")),
-                let doubleManagementFees = Double(managementFees.replacingOccurrences(of: ",", with: ".")) {
-                let managementFeesAmount = doubleMonthlyRent * doubleManagementFees / 100
-                annualManagementFeesAmount = managementFeesAmount * 12
-            }
+            let doubleMonthlyRent = monthlyRent.transformInDouble
+            let doubleManagementFees = managementFees.transformInDouble
+            let managementFeesAmount = doubleMonthlyRent * doubleManagementFees / 100
+            annualManagementFeesAmount = managementFeesAmount * 12
         }
         return annualManagementFeesAmount
     }
@@ -62,9 +60,8 @@ class RentabilityCalculator {
         if insurance == "" {
             annualInsuranceCost = 0.00
         } else {
-            if let doubleInsurance = Double(insurance.replacingOccurrences(of: ",", with: ".")) {
-                annualInsuranceCost = doubleInsurance * 12
-            }
+            let doubleInsurance = insurance.transformInDouble
+            annualInsuranceCost = doubleInsurance * 12
         }
         return annualInsuranceCost
     }
@@ -74,9 +71,8 @@ class RentabilityCalculator {
         if creditCost == "" {
             annualCreditCost = 0.00
         } else {
-            if let doubleCreditCost = Double(creditCost.replacingOccurrences(of: ",", with: ".")) {
-                annualCreditCost = doubleCreditCost * 12
-            }
+            let doubleCreditCost = creditCost.transformInDouble
+            annualCreditCost = doubleCreditCost * 12
         }
         return annualCreditCost
     }
@@ -84,16 +80,14 @@ class RentabilityCalculator {
     private func getTotalToFinance() -> Double {
         var totalToFinance = 0.00
         if worksPrice == "" {
-            if let doubleEstatePrice = Double(estatePrice.replacingOccurrences(of: ",", with: ".")),
-                let doubleNotaryFees = Double(notaryFees.replacingOccurrences(of: ",", with: ".")) {
-                totalToFinance = doubleEstatePrice + 0.00 + doubleNotaryFees
-            }
+            let doubleEstatePrice = estatePrice.transformInDouble
+            let doubleNotaryFees = notaryFees.transformInDouble
+            totalToFinance = doubleEstatePrice + 0.00 + doubleNotaryFees
         } else {
-            if let doubleEstatePrice = Double(estatePrice.replacingOccurrences(of: ",", with: ".")),
-                let doubleWorksPrice = Double(worksPrice.replacingOccurrences(of: ",", with: ".")),
-                let doubleNotaryFees = Double(notaryFees.replacingOccurrences(of: ",", with: ".")) {
-                totalToFinance = doubleEstatePrice + doubleWorksPrice + doubleNotaryFees
-            }
+            let doubleEstatePrice = estatePrice.transformInDouble
+            let doubleWorksPrice = worksPrice.transformInDouble
+            let doubleNotaryFees = notaryFees.transformInDouble
+            totalToFinance = doubleEstatePrice + doubleWorksPrice + doubleNotaryFees
         }
         return totalToFinance
     }
@@ -103,16 +97,14 @@ class RentabilityCalculator {
         let annualManagementFeesAmount = getAnnualManagementFeesAmount()
         let annualInsuranceCost = getAnnualInsuranceCost()
         if maintenanceFees == "" {
-            if let doublePropertyTax = Double(propertyTax.replacingOccurrences(of: ",", with: ".")),
-                let doubleCharges = Double(charges.replacingOccurrences(of: ",", with: ".")) {
-                totalCharges = annualManagementFeesAmount + annualInsuranceCost + doublePropertyTax + 0.00 + doubleCharges
-            }
+            let doublePropertyTax = propertyTax.transformInDouble
+            let doubleCharges = charges.transformInDouble
+            totalCharges = annualManagementFeesAmount + annualInsuranceCost + doublePropertyTax + 0.00 + doubleCharges
         } else {
-            if let doublePropertyTax = Double(propertyTax.replacingOccurrences(of: ",", with: ".")),
-                let doubleMaintenanceFees = Double(maintenanceFees.replacingOccurrences(of: ",", with: ".")),
-                let doubleCharges = Double(charges.replacingOccurrences(of: ",", with: ".")) {
-                totalCharges = annualManagementFeesAmount + annualInsuranceCost + doublePropertyTax + doubleMaintenanceFees + doubleCharges
-            }
+            let doublePropertyTax = propertyTax.transformInDouble
+            let doubleMaintenanceFees = maintenanceFees.transformInDouble
+            let doubleCharges = charges.transformInDouble
+            totalCharges = annualManagementFeesAmount + annualInsuranceCost + doublePropertyTax + doubleMaintenanceFees + doubleCharges
         }
         return totalCharges
     }

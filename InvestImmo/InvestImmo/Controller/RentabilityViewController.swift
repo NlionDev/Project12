@@ -96,4 +96,4 @@ class RentabilityViewController: UIViewController {
             textField.resignFirstResponder()
             return true
         }
-    }
+}

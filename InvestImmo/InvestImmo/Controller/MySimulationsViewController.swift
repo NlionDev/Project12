@@ -9,13 +9,17 @@
 import UIKit
 import RealmSwift
 
-class MySimulationsViewController: UIViewController {
+class SavedSimulationsViewController: UIViewController {
 
     //MARK: - Properties
     
     let realm = try! Realm()
-    var mySavedSimulations: [RentabilitySimulation] = []
+    lazy var mySavedSimulations: Results<RentabilitySimulation> = {
+        self.realm.objects(RentabilitySimulation.self)}()
+    lazy var checklistGeneral: Results<ChecklistGeneral> = {
+        self.realm.objects(ChecklistGeneral.self)}()
     private var selectedSimulation: RentabilitySimulation?
+    private var selectedChecklistGeneral: ChecklistGeneral?
     
     //MARK: - Outlets
     
@@ -27,13 +31,28 @@ class MySimulationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setSavedSimulationsNavigationBarStyle()
+        configureBackgroundImageForTableView(tableView: savedSimulationsTableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         savedSimulationsTableView.reloadData()
         showSavedSimulationsLabel()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToChoiceDetails" {
+            guard let destination = segue.destination as? DetailsChoiceViewController,
+                let selectedSimulation = selectedSimulation else {return}
+            for checklist in checklistGeneral {
+                if checklist.name == selectedSimulation.name {
+                    destination.selectedChecklistGeneral = checklist
+                }
+            }
+            destination.selectedSimulation = selectedSimulation
+        }
     }
     
     //MARK: - Methods
@@ -47,12 +66,14 @@ class MySimulationsViewController: UIViewController {
             savedSimulationsTableView.isHidden = false
         }
     }
+    
+
 
 }
 
 //MARK: - Extensions
 
-extension MySimulationsViewController: UITableViewDataSource, UITableViewDelegate {
+extension SavedSimulationsViewController: UITableViewDataSource, UITableViewDelegate {
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,19 +85,33 @@ extension MySimulationsViewController: UITableViewDataSource, UITableViewDelegat
             
             return UITableViewCell()
         }
-        
         if let simulationName = mySavedSimulations[indexPath.row].name,
             let simulationPrice = mySavedSimulations[indexPath.row].estatePrice {
             cell.configure(projectName: simulationName, projectPrice: simulationPrice)
         }
-        
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedSimulation = mySavedSimulations[indexPath.row]
-        performSegue(withIdentifier: "DetailsSegueFromResults", sender: self)
+        performSegue(withIdentifier: "goToChoiceDetails", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let selectedSimulationName = mySavedSimulations[indexPath.row].name {
+                let simulationToDelete = realm.objects(RentabilitySimulation.self).filter("name = '\(selectedSimulationName)'")
+                let checklistGeneralToDelete = realm.objects(ChecklistGeneral.self).filter("name = '\(selectedSimulationName)'")
+                try! realm.write {
+                    realm.delete(simulationToDelete)
+                    realm.delete(checklistGeneralToDelete)
+                }
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.reloadData()
+                showSavedSimulationsLabel()
+            }
+        }
     }
 }
+
 

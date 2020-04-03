@@ -49,6 +49,16 @@ extension UIViewController {
         self.navigationController?.navigationBar.backItem?.title = ""
     }
     
+    // Method for customize navigation bar on savedSimulations display
+    func setSavedSimulationsNavigationBarStyle() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30)!]
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
+        self.navigationController?.navigationBar.backItem?.title = ""
+    }
+    
     // Method for customize navigation bar on home menu display
     func setHomeNavigationBarStyle() {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -61,6 +71,13 @@ extension UIViewController {
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     
+    func configureBackgroundImageForTableView(tableView: UITableView) {
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "building")
+        backgroundImage.contentMode =  UIView.ContentMode.redraw
+        backgroundImage.alpha = 0.2
+        tableView.insertSubview(backgroundImage, at: 0)
+    }
 }
 
 //MARK: - Double Extension
@@ -68,5 +85,44 @@ extension UIViewController {
 extension Double {
     var clean: String {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
+    
+    var formattedWithSeparator: String {
+        return Formatter.withSeparator.string(for: self) ?? ""
+    }
+}
+
+//MARK: - Formatter Extension
+
+extension Formatter {
+    static let withSeparator: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = " "
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+}
+
+//MARK: - String Extension
+
+extension String {
+    var transformInDouble: Double {
+        var number = 0.00
+       let newString = self.replacingOccurrences(of: ",", with: ".")
+        if let doubleString = Double(newString) {
+            number = doubleString
+        }
+        return number
+    }
+}
+
+//MARK: - Date Extension
+
+extension Date {
+    var transformIntoString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MMM-yyyy"
+        let myString = formatter.string(from: self)
+        return myString
     }
 }

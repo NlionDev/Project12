@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ChecklistViewController: UIViewController {
     
     //MARK: - Properties
     
+    let realm = try! Realm()
+    var checklistGeneral = ChecklistGeneral()
+    var checklistNeighborhood = ChecklistNeighborhood()
+    var checklistApartmentBlock = ChecklistApartmentBlock()
+    var checklistApartment = ChecklistApartment()
     let customPickerView = CustomPickerView()
     var estateType = ["Studio", "T2", "T3", "T4", "T5", "Maison de village", "Villa", "Immeuble"]
     var quality = ["Trés mauvais", "Mauvais", "Bon", "Trés bon", "Non concerné"]
@@ -22,6 +28,7 @@ class ChecklistViewController: UIViewController {
     
     //MARK: - Outlets
     
+    @IBOutlet weak var visitDatePicker: UIDatePicker!
     @IBOutlet weak var estateTypePickerView: UIPickerView!
     @IBOutlet weak var surfaceAreaTextField: UITextField!
     @IBOutlet weak var problemTextView: UITextView!
@@ -70,12 +77,47 @@ class ChecklistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setChecklistNavigationBarStyle()
-        
+        setupSaveButtonItem(action: #selector(didTapOnSaveButton))
     }
 
-
-
+    //MARK: - Actions
+    
+    @objc private func didTapOnSaveButton() {
+        let alert = UIAlertController(title: "Nom du Projet", message: "Entrez le nom de votre projet immobilier :", preferredStyle: .alert)
+        alert.addTextField()
+        if let textField = alert.textFields?[0] {
+            textField.placeholder = "Studio Montpellier"
+            alert.addAction(UIAlertAction(title: "Retour", style: .cancel, handler: { (UIAlertAction) in }))
+            alert.addAction(UIAlertAction(title: "Sauvegarder Projet", style: .default, handler: { (UIAlertAction) in
+                if let name = textField.text {
+                    self.checklistGeneral.name = name
+                    self.checklistNeighborhood.name = name
+                    self.checklistApartmentBlock.name = name
+                    self.checklistApartment.name = name
+                    self.checklistGeneral.visitDate = self.visitDatePicker.date.transformIntoString
+                    self.checklistGeneral.estateType = self.getSelectedFromPickerView(picker: self.estateTypePickerView, array: self.estateType)
+                    self.checklistGeneral.surfaceArea = self.surfaceAreaTextField.text
+                    try! self.realm.write {
+                        self.realm.add(self.checklistGeneral)
+                    }
+                }
+            }))
+        }
+        self.present(alert, animated: true)
+    }
+    
+    
+    //MARK: - Methods
+    
+    private func getSelectedFromPickerView(picker: UIPickerView, array: [String]) -> String {
+        let index = picker.selectedRow(inComponent: 0)
+        let selected = array[index]
+        return selected
+    }
 }
+
+
+
 
 //MARK: - Extension
 

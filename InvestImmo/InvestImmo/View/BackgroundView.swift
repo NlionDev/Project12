@@ -23,7 +23,7 @@ class BackgroundView: UIView {
     private func setupBackgroundView() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "building")
-        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFit
         backgroundImage.alpha = 0.2
         self.insertSubview(backgroundImage, at: 0)
     }
