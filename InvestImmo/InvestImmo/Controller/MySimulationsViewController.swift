@@ -14,17 +14,21 @@ class SavedSimulationsViewController: UIViewController {
     //MARK: - Properties
     
     let realm = try! Realm()
+    lazy var myProjects: Results<Project> = {
+        self.realm.objects(Project.self)}()
     lazy var mySavedSimulations: Results<RentabilitySimulation> = {
         self.realm.objects(RentabilitySimulation.self)}()
     lazy var checklistGeneral: Results<ChecklistGeneral> = {
         self.realm.objects(ChecklistGeneral.self)}()
+    private var selectedProject: Project?
     private var selectedSimulation: RentabilitySimulation?
     private var selectedChecklistGeneral: ChecklistGeneral?
     
     //MARK: - Outlets
     
-    @IBOutlet weak var savedSimulationsTableView: UITableView!
-    @IBOutlet weak var savedSimulationsLabel: UILabel!
+    
+    @IBOutlet weak var noProjectSavedLabel: UILabel!
+    @IBOutlet weak var savedProjectsTableView: UITableView!
     @IBOutlet weak var backgroundView: UIView!
     
     //MARK: - Lifecycle
@@ -32,39 +36,56 @@ class SavedSimulationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setSavedSimulationsNavigationBarStyle()
-        configureBackgroundImageForTableView(tableView: savedSimulationsTableView)
+        configureBackgroundImageForTableView(tableView: savedProjectsTableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        savedSimulationsTableView.reloadData()
-        showSavedSimulationsLabel()
+        savedProjectsTableView.reloadData()
+        showNoDataLabel()
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToChoiceDetails" {
             guard let destination = segue.destination as? DetailsChoiceViewController,
-                let selectedSimulation = selectedSimulation else {return}
-            for checklist in checklistGeneral {
-                if checklist.name == selectedSimulation.name {
-                    destination.selectedChecklistGeneral = checklist
-                }
-            }
-            destination.selectedSimulation = selectedSimulation
+                let selectedProject = selectedProject,
+                let selectedProjectName = selectedProject.name else {return}
+            destination.selectedChecklistGeneral = getChecklistGeneralWithProjectName(name: selectedProjectName)
+            destination.selectedSimulation = getSimulationWithProjectName(name: selectedProjectName)
         }
     }
     
     //MARK: - Methods
     
-    private func showSavedSimulationsLabel() {
-        if mySavedSimulations.isEmpty {
-            savedSimulationsTableView.isHidden = true
-            savedSimulationsLabel.isHidden = false
+    private func showNoDataLabel() {
+        if myProjects.isEmpty {
+            savedProjectsTableView.isHidden = true
+            noProjectSavedLabel.isHidden = false
         } else {
-            savedSimulationsLabel.isHidden = true
-            savedSimulationsTableView.isHidden = false
+            noProjectSavedLabel.isHidden = true
+            savedProjectsTableView.isHidden = false
         }
+    }
+    
+    private func getChecklistGeneralWithProjectName(name: String) -> ChecklistGeneral {
+        var checklistToReturn = ChecklistGeneral()
+        for checklist in checklistGeneral {
+            if checklist.name == name {
+                checklistToReturn = checklist
+            }
+        }
+        return checklistToReturn
+    }
+    
+    private func getSimulationWithProjectName(name: String) -> RentabilitySimulation {
+        var simulationToReturn = RentabilitySimulation()
+        for simulation in mySavedSimulations {
+            if simulation.name == name {
+                simulationToReturn = simulation
+            }
+        }
+        return simulationToReturn
     }
     
 
@@ -77,38 +98,39 @@ extension SavedSimulationsViewController: UITableViewDataSource, UITableViewDele
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mySavedSimulations.count
+        return myProjects.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimulationCell", for: indexPath) as? SavedSimulationTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as? savedProjectsTableViewCell else {
             
             return UITableViewCell()
         }
-        if let simulationName = mySavedSimulations[indexPath.row].name,
-            let simulationPrice = mySavedSimulations[indexPath.row].estatePrice {
-            cell.configure(projectName: simulationName, projectPrice: simulationPrice)
+        if let projectName = myProjects[indexPath.row].name {
+            cell.configure(projectName: projectName)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedSimulation = mySavedSimulations[indexPath.row]
+        selectedProject = myProjects[indexPath.row]
         performSegue(withIdentifier: "goToChoiceDetails", sender: self)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if let selectedSimulationName = mySavedSimulations[indexPath.row].name {
-                let simulationToDelete = realm.objects(RentabilitySimulation.self).filter("name = '\(selectedSimulationName)'")
-                let checklistGeneralToDelete = realm.objects(ChecklistGeneral.self).filter("name = '\(selectedSimulationName)'")
+            if let selectedProjectName = myProjects[indexPath.row].name {
+                let simulationToDelete = realm.objects(RentabilitySimulation.self).filter("name = '\(selectedProjectName)'")
+                let checklistGeneralToDelete = realm.objects(ChecklistGeneral.self).filter("name = '\(selectedProjectName)'")
+                let projectToDelete = realm.objects(Project.self).filter("name = '\(selectedProjectName)'")
                 try! realm.write {
+                    realm.delete(projectToDelete)
                     realm.delete(simulationToDelete)
                     realm.delete(checklistGeneralToDelete)
                 }
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()
-                showSavedSimulationsLabel()
+                showNoDataLabel()
             }
         }
     }

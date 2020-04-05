@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pHR-cl-xft">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pHR-cl-xft">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -208,11 +208,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="los-Ss-jjS">
-                                <rect key="frame" x="301" y="282" width="60" height="34"/>
+                                <rect key="frame" x="281" y="282" width="80" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="5WJ-hl-ISr">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="60"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="80"/>
                                     </constraint>
                                 </constraints>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -256,7 +256,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEe-Ph-wwp">
-                                <rect key="frame" x="263" y="276.5" width="30" height="45"/>
+                                <rect key="frame" x="243" y="276.5" width="30" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Md3-yk-p9H"/>
                                 </constraints>
@@ -291,11 +291,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dXI-ka-ikA">
-                                <rect key="frame" x="301" y="372.5" width="60" height="34"/>
+                                <rect key="frame" x="281" y="372.5" width="80" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="4yD-X2-cIA">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="60"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="80"/>
                                     </constraint>
                                 </constraints>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -334,9 +334,12 @@
                                         <include reference="Bjx-dm-ZJ0"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="didTapOnInsuranceRatePlusButton:" destination="Ix5-j7-ZHq" eventType="touchUpInside" id="1fx-5a-l8I"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ulx-gy-btW">
-                                <rect key="frame" x="263" y="367" width="30" height="45"/>
+                                <rect key="frame" x="243" y="367" width="30" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="sks-Mk-emN"/>
                                 </constraints>
@@ -354,6 +357,9 @@
                                         <include reference="sks-Mk-emN"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="didTapOnInsuranceRateMinusButton:" destination="Ix5-j7-ZHq" eventType="touchUpInside" id="MMv-qJ-CzJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frais de dossier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUf-B4-Vt2">
                                 <rect key="frame" x="8" y="459.5" width="153.5" height="20.5"/>
@@ -496,30 +502,30 @@
                                 <exclude reference="r7y-9v-qss"/>
                                 <exclude reference="fFP-jd-dz4"/>
                                 <exclude reference="kCu-hG-aHW"/>
-                                <exclude reference="IMh-2H-RSS"/>
-                                <exclude reference="oAM-cu-cWV"/>
                                 <exclude reference="7G6-Bm-Jnk"/>
                                 <exclude reference="dzh-fD-lMv"/>
                                 <exclude reference="eOI-Ry-gQw"/>
+                                <exclude reference="IMh-2H-RSS"/>
+                                <exclude reference="oAM-cu-cWV"/>
                                 <exclude reference="UUT-As-VBu"/>
                                 <exclude reference="pdc-a0-yEY"/>
                                 <exclude reference="znp-aT-7t8"/>
                                 <exclude reference="7e5-LS-0Nm"/>
                                 <exclude reference="DMB-cp-n7O"/>
-                                <exclude reference="d9B-or-E96"/>
-                                <exclude reference="v1A-pd-zeP"/>
                                 <exclude reference="F3W-rf-VDP"/>
                                 <exclude reference="xpb-hB-STR"/>
                                 <exclude reference="zjD-xO-e8j"/>
-                                <exclude reference="6gJ-Gj-VYr"/>
-                                <exclude reference="opm-Ch-18x"/>
-                                <exclude reference="23c-qn-Vzh"/>
-                                <exclude reference="xLf-8G-VMP"/>
+                                <exclude reference="d9B-or-E96"/>
+                                <exclude reference="v1A-pd-zeP"/>
                                 <exclude reference="3bD-7c-cXm"/>
                                 <exclude reference="86p-xk-fLr"/>
+                                <exclude reference="6gJ-Gj-VYr"/>
+                                <exclude reference="opm-Ch-18x"/>
                                 <exclude reference="SAZ-eJ-FZa"/>
                                 <exclude reference="U3m-aI-572"/>
                                 <exclude reference="tcv-s4-LKu"/>
+                                <exclude reference="23c-qn-Vzh"/>
+                                <exclude reference="xLf-8G-VMP"/>
                                 <exclude reference="h9F-OB-LTQ"/>
                                 <exclude reference="xKH-Oc-3uz"/>
                                 <exclude reference="P6X-sZ-z1D"/>
@@ -570,30 +576,30 @@
                                 <include reference="r7y-9v-qss"/>
                                 <include reference="fFP-jd-dz4"/>
                                 <include reference="kCu-hG-aHW"/>
-                                <include reference="IMh-2H-RSS"/>
-                                <include reference="oAM-cu-cWV"/>
                                 <exclude reference="7G6-Bm-Jnk"/>
                                 <include reference="dzh-fD-lMv"/>
                                 <include reference="eOI-Ry-gQw"/>
+                                <include reference="IMh-2H-RSS"/>
+                                <include reference="oAM-cu-cWV"/>
                                 <include reference="UUT-As-VBu"/>
                                 <include reference="pdc-a0-yEY"/>
                                 <include reference="znp-aT-7t8"/>
                                 <include reference="7e5-LS-0Nm"/>
                                 <include reference="DMB-cp-n7O"/>
-                                <include reference="d9B-or-E96"/>
-                                <include reference="v1A-pd-zeP"/>
                                 <include reference="F3W-rf-VDP"/>
                                 <include reference="xpb-hB-STR"/>
                                 <include reference="zjD-xO-e8j"/>
-                                <include reference="6gJ-Gj-VYr"/>
-                                <include reference="opm-Ch-18x"/>
-                                <include reference="23c-qn-Vzh"/>
-                                <include reference="xLf-8G-VMP"/>
+                                <include reference="d9B-or-E96"/>
+                                <include reference="v1A-pd-zeP"/>
                                 <include reference="3bD-7c-cXm"/>
                                 <include reference="86p-xk-fLr"/>
+                                <include reference="6gJ-Gj-VYr"/>
+                                <include reference="opm-Ch-18x"/>
                                 <include reference="SAZ-eJ-FZa"/>
                                 <include reference="U3m-aI-572"/>
                                 <include reference="tcv-s4-LKu"/>
+                                <include reference="23c-qn-Vzh"/>
+                                <include reference="xLf-8G-VMP"/>
                                 <include reference="h9F-OB-LTQ"/>
                                 <include reference="xKH-Oc-3uz"/>
                                 <include reference="P6X-sZ-z1D"/>
@@ -1006,7 +1012,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vous n'avez pas de projets sauvegardés pour le moment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXQ-Ws-Tl6">
-                                <rect key="frame" x="8" y="419" width="398" height="58.5"/>
+                                <rect key="frame" x="8" y="428" width="398" height="40.5"/>
                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1015,7 +1021,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SimulationCell" rowHeight="200" id="RYr-X4-Kuf" customClass="SavedSimulationTableViewCell" customModule="InvestImmo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="200" id="RYr-X4-Kuf" customClass="savedProjectsTableViewCell" customModule="InvestImmo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RYr-X4-Kuf" id="THf-E5-Dde">
@@ -1026,25 +1032,19 @@
                                                     <rect key="frame" x="30" y="21" width="354" height="158"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4h-ST-AhS">
-                                                            <rect key="frame" x="145" y="8" width="64.5" height="35"/>
+                                                            <rect key="frame" x="8" y="8" width="338" height="142"/>
                                                             <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Montant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YwM-CD-tpZ">
-                                                            <rect key="frame" x="97" y="90" width="160" height="48"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="YwM-CD-tpZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m4h-ST-AhS" secondAttribute="bottom" constant="8" id="EuF-fx-qMq"/>
-                                                        <constraint firstAttribute="bottom" secondItem="YwM-CD-tpZ" secondAttribute="bottom" constant="20" id="NA5-52-kyY"/>
-                                                        <constraint firstItem="m4h-ST-AhS" firstAttribute="top" secondItem="pMS-9h-KzJ" secondAttribute="top" constant="8" id="RXo-C0-v2c"/>
-                                                        <constraint firstItem="m4h-ST-AhS" firstAttribute="centerX" secondItem="pMS-9h-KzJ" secondAttribute="centerX" id="XdH-Qd-7Ac"/>
-                                                        <constraint firstItem="YwM-CD-tpZ" firstAttribute="centerX" secondItem="m4h-ST-AhS" secondAttribute="centerX" id="bD4-xh-bkk"/>
+                                                        <constraint firstAttribute="trailing" secondItem="m4h-ST-AhS" secondAttribute="trailing" constant="8" id="DZg-5j-Brl"/>
+                                                        <constraint firstItem="m4h-ST-AhS" firstAttribute="top" secondItem="pMS-9h-KzJ" secondAttribute="top" constant="8" id="KiT-c9-cVE"/>
+                                                        <constraint firstAttribute="height" constant="100" id="Tui-WV-ZQW"/>
+                                                        <constraint firstItem="m4h-ST-AhS" firstAttribute="leading" secondItem="pMS-9h-KzJ" secondAttribute="leading" constant="8" id="dZg-iM-qTy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="m4h-ST-AhS" secondAttribute="bottom" constant="8" id="jiB-ad-h17"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1059,7 +1059,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="name" destination="m4h-ST-AhS" id="pqb-B1-AwR"/>
-                                            <outlet property="price" destination="YwM-CD-tpZ" id="nYb-zB-AJy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1085,8 +1084,8 @@
                     <tabBarItem key="tabBarItem" title="Mes Simulations" image="folderIcon" selectedImage="folderIcon" id="Psj-g4-0QJ"/>
                     <navigationItem key="navigationItem" title="Invest'Immo" id="GFD-yk-BCp"/>
                     <connections>
-                        <outlet property="savedSimulationsLabel" destination="dXQ-Ws-Tl6" id="fjr-kd-Nph"/>
-                        <outlet property="savedSimulationsTableView" destination="ORe-y9-R8e" id="XCX-Wr-AJn"/>
+                        <outlet property="noProjectSavedLabel" destination="dXQ-Ws-Tl6" id="0Iw-7q-lnN"/>
+                        <outlet property="savedProjectsTableView" destination="ORe-y9-R8e" id="Jg2-Tz-Gvf"/>
                         <segue destination="CNQ-Oi-LRH" kind="show" identifier="goToChoiceDetails" id="H3T-m8-i1Q"/>
                     </connections>
                 </viewController>
@@ -1155,6 +1154,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="3000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune check-list n'est encore enregistrée dans ce projet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7p-sI-DfW">
+                                <rect key="frame" x="53" y="1382" width="308.5" height="40.5"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
+                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRh-hf-XoQ" customClass="ButtonsView" customModule="InvestImmo" customModuleProvider="target">
+                                <rect key="frame" x="50" y="1472.5" width="314" height="55"/>
+                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Check-list">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOnNewChecklistButton:" destination="RHY-Fm-8xw" eventType="touchUpInside" id="qfM-qo-TAB"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ues-2x-Lyc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="2829"/>
                                 <subviews>
@@ -1259,7 +1276,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="mRh-hf-XoQ" firstAttribute="centerX" secondItem="bAh-KP-EEc" secondAttribute="centerX" id="3Zg-WE-n7d"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m7p-sI-DfW" secondAttribute="trailing" constant="8" id="6Da-NC-xOq"/>
+                            <constraint firstItem="mRh-hf-XoQ" firstAttribute="centerY" secondItem="bAh-KP-EEc" secondAttribute="centerY" id="Nq4-PC-Nmi"/>
                             <constraint firstItem="Ues-2x-Lyc" firstAttribute="leading" secondItem="e5T-E9-hhS" secondAttribute="leading" id="P18-qp-f04"/>
+                            <constraint firstItem="m7p-sI-DfW" firstAttribute="centerX" secondItem="bAh-KP-EEc" secondAttribute="centerX" id="PC8-ts-ha4"/>
+                            <constraint firstItem="m7p-sI-DfW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e5T-E9-hhS" secondAttribute="leading" constant="8" id="QfU-Nk-yAS"/>
+                            <constraint firstItem="mRh-hf-XoQ" firstAttribute="leading" secondItem="e5T-E9-hhS" secondAttribute="leading" constant="50" id="X3N-jb-337"/>
+                            <constraint firstItem="mRh-hf-XoQ" firstAttribute="top" secondItem="m7p-sI-DfW" secondAttribute="bottom" constant="50" id="a4o-aX-z9e"/>
+                            <constraint firstItem="e5T-E9-hhS" firstAttribute="trailing" secondItem="mRh-hf-XoQ" secondAttribute="trailing" constant="50" id="bPb-rb-LgN"/>
                             <constraint firstItem="e5T-E9-hhS" firstAttribute="trailing" secondItem="Ues-2x-Lyc" secondAttribute="trailing" id="hA8-O4-NZp"/>
                             <constraint firstItem="Ues-2x-Lyc" firstAttribute="top" secondItem="e5T-E9-hhS" secondAttribute="top" id="mwi-Eo-9Xo"/>
                             <constraint firstItem="e5T-E9-hhS" firstAttribute="bottom" secondItem="Ues-2x-Lyc" secondAttribute="bottom" id="sv8-4T-Th8"/>
@@ -1269,10 +1294,14 @@
                     <navigationItem key="navigationItem" title="Invest'Immo" id="xRc-qw-ct9"/>
                     <size key="freeformSize" width="414" height="3000"/>
                     <connections>
+                        <outlet property="checklistDetailsScrollView" destination="Ues-2x-Lyc" id="RJO-s5-Hfc"/>
                         <outlet property="estateTypeLabel" destination="Vz0-SO-UfK" id="YXc-zc-hH2"/>
                         <outlet property="nameLabel" destination="tIr-6T-88d" id="HNl-mZ-ilv"/>
+                        <outlet property="newChecklistButton" destination="mRh-hf-XoQ" id="GIp-Q6-QSQ"/>
+                        <outlet property="noDataLabel" destination="m7p-sI-DfW" id="RlN-Rh-flc"/>
                         <outlet property="surfaceAreaLabel" destination="yer-Bb-R8O" id="gSq-92-coQ"/>
                         <outlet property="visitDateLabel" destination="LYD-H4-fUs" id="gMU-LR-DLb"/>
+                        <segue destination="WKj-oL-Abs" kind="show" identifier="NewChecklistSegue" id="JIa-Nj-D5k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0U-R7-Qh9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1287,6 +1316,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucune simulation n'est encore enregistré pour ce projet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpk-99-Vpu">
+                                <rect key="frame" x="51" y="632" width="312" height="40.5"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
+                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4D0-t2-dfc" customClass="ButtonsView" customModule="InvestImmo" customModuleProvider="target">
+                                <rect key="frame" x="74.5" y="722.5" width="265" height="55"/>
+                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Faire une simulation">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOnNewSimulationButton:" destination="ao9-oz-aVc" eventType="touchUpInside" id="xuF-p1-g3K"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPC-sk-Lj0">
                                 <rect key="frame" x="0.0" y="88" width="414" height="1329"/>
                                 <subviews>
@@ -1416,7 +1463,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frais d'entretien" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5D-mU-ceD">
-                                                <rect key="frame" x="8" y="468.5" width="150" height="40.5"/>
+                                                <rect key="frame" x="8" y="468.5" width="155.5" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="X4n-2U-eN2"/>
                                                 </constraints>
@@ -1425,19 +1472,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Annuels )" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znn-8Y-vhT">
-                                                <rect key="frame" x="8" y="514" width="76.5" height="15"/>
+                                                <rect key="frame" x="8" y="494" width="76.5" height="15"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prix du bien" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tS-ZW-j1q">
-                                                <rect key="frame" x="280" y="499" width="118" height="20.5"/>
+                                                <rect key="frame" x="280" y="479" width="118" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
                                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Charges de copropriété" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjh-BH-LNC">
-                                                <rect key="frame" x="8" y="559" width="150" height="40.5"/>
+                                                <rect key="frame" x="8" y="539" width="150" height="40.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Ik8-51-Gui"/>
                                                 </constraints>
@@ -1446,19 +1493,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prix du bien" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg4-lG-TuB">
-                                                <rect key="frame" x="280" y="589.5" width="118" height="20.5"/>
+                                                <rect key="frame" x="280" y="569.5" width="118" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
                                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Annuelles )" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kc4-go-Uwh">
-                                                <rect key="frame" x="8" y="604.5" width="88.5" height="15"/>
+                                                <rect key="frame" x="8" y="584.5" width="88.5" height="15"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frais de gérance" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8a-CD-qs1">
-                                                <rect key="frame" x="8" y="649.5" width="167.5" height="20.5"/>
+                                                <rect key="frame" x="8" y="629.5" width="167.5" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="VNT-bY-ZYP"/>
                                                 </constraints>
@@ -1467,13 +1514,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prix du bien" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rv0-to-mZN">
-                                                <rect key="frame" x="280" y="649.5" width="118" height="20.5"/>
+                                                <rect key="frame" x="280" y="629.5" width="118" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
                                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assurance loyers impayés" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54Q-zh-nvQ">
-                                                <rect key="frame" x="8" y="700" width="150" height="40.5"/>
+                                                <rect key="frame" x="8" y="680" width="150" height="40.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="wYR-kO-XXg"/>
                                                 </constraints>
@@ -1482,19 +1529,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prix du bien" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntD-uu-v2x">
-                                                <rect key="frame" x="280" y="730.5" width="118" height="20.5"/>
+                                                <rect key="frame" x="280" y="710.5" width="118" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
                                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Mensuelle )" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3c-GH-B3B">
-                                                <rect key="frame" x="8" y="745.5" width="91" height="15"/>
+                                                <rect key="frame" x="8" y="725.5" width="91" height="15"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coût du crédit" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLS-aV-SGB">
-                                                <rect key="frame" x="8" y="790.5" width="150" height="20.5"/>
+                                                <rect key="frame" x="8" y="770.5" width="150" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="iNq-Cy-U6f"/>
                                                 </constraints>
@@ -1503,7 +1550,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prix du bien" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byx-yd-Yod">
-                                                <rect key="frame" x="280" y="790.5" width="118" height="20.5"/>
+                                                <rect key="frame" x="280" y="770.5" width="118" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
                                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1570,7 +1617,7 @@
                                                 <rect key="frame" x="20" y="1021" width="374" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash-flow Mensuel :" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWg-2T-13K">
-                                                        <rect key="frame" x="8" y="20" width="201.5" height="20.5"/>
+                                                        <rect key="frame" x="8" y="10" width="171" height="40.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="171" id="gcQ-Ac-yTT"/>
                                                         </constraints>
@@ -1595,6 +1642,12 @@
                                                     <constraint firstItem="EO5-Tj-bRW" firstAttribute="centerY" secondItem="D8h-QV-3YI" secondAttribute="centerY" id="w59-so-H7k"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Mensuel )" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yX6-PL-EF6">
+                                                <rect key="frame" x="8" y="796" width="79" height="15"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="18"/>
+                                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -1603,10 +1656,15 @@
                                             <constraint firstItem="eV6-T4-Uee" firstAttribute="leading" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="3f4-Oc-DSu"/>
                                             <constraint firstItem="ntD-uu-v2x" firstAttribute="centerY" secondItem="54Q-zh-nvQ" secondAttribute="bottom" id="3sv-bv-Yah"/>
                                             <constraint firstItem="uzy-z5-WwR" firstAttribute="leading" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="4Vc-8F-wBk"/>
+                                            <constraint firstItem="yX6-PL-EF6" firstAttribute="top" secondItem="CLS-aV-SGB" secondAttribute="bottom" constant="5" id="4md-Qc-adR"/>
                                             <constraint firstItem="byx-yd-Yod" firstAttribute="centerY" secondItem="CLS-aV-SGB" secondAttribute="centerY" id="5Rb-IY-c3l"/>
                                             <constraint firstItem="qg4-lG-TuB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xjh-BH-LNC" secondAttribute="trailing" constant="8" id="5oC-8V-48E"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yX6-PL-EF6" secondAttribute="trailing" constant="8" id="5vM-Cm-5lc"/>
+                                            <constraint firstItem="S6r-2h-Xam" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YNE-7W-7HA" secondAttribute="trailing" constant="8" id="66n-N1-Ckc"/>
                                             <constraint firstItem="u6M-Ow-l39" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="6hr-Cb-6we"/>
                                             <constraint firstItem="Kc4-go-Uwh" firstAttribute="top" secondItem="xjh-BH-LNC" secondAttribute="bottom" constant="5" id="6jR-bP-tBA"/>
+                                            <constraint firstItem="8tS-ZW-j1q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="znn-8Y-vhT" secondAttribute="trailing" constant="8" symbolic="YES" id="7i7-8L-ylH"/>
+                                            <constraint firstItem="wQc-X3-rUO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eV6-T4-Uee" secondAttribute="trailing" constant="8" id="7y7-Yq-t12"/>
                                             <constraint firstItem="znn-8Y-vhT" firstAttribute="leading" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="8sV-XA-Rgl"/>
                                             <constraint firstAttribute="trailing" secondItem="TPp-Up-TJO" secondAttribute="trailing" constant="20" id="9hT-46-mZy"/>
                                             <constraint firstAttribute="trailing" secondItem="S6r-2h-Xam" secondAttribute="trailing" constant="16" id="9j8-VG-Wg8"/>
@@ -1614,6 +1672,7 @@
                                             <constraint firstItem="ntD-uu-v2x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="54Q-zh-nvQ" secondAttribute="trailing" constant="8" id="APz-wk-Kht"/>
                                             <constraint firstItem="M8a-CD-qs1" firstAttribute="leading" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="BVT-nS-1O0"/>
                                             <constraint firstItem="qg4-lG-TuB" firstAttribute="centerY" secondItem="xjh-BH-LNC" secondAttribute="bottom" id="Dj5-2N-QsN"/>
+                                            <constraint firstItem="yX6-PL-EF6" firstAttribute="leading" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="EY1-D1-XYk"/>
                                             <constraint firstItem="afu-Ae-Gjo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="COn-Do-3DC" secondAttribute="trailing" constant="8" id="FoR-Oc-6TZ"/>
                                             <constraint firstItem="Qcu-I5-Czi" firstAttribute="centerY" secondItem="ffY-aY-fC8" secondAttribute="centerY" id="GFp-GY-EEO"/>
                                             <constraint firstItem="VI1-jo-XiB" firstAttribute="top" secondItem="ffY-aY-fC8" secondAttribute="bottom" constant="30" id="Hj1-s6-ahw"/>
@@ -1654,6 +1713,7 @@
                                             <constraint firstItem="ffY-aY-fC8" firstAttribute="leading" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="kj8-dV-hZG"/>
                                             <constraint firstAttribute="trailing" secondItem="afu-Ae-Gjo" secondAttribute="trailing" constant="16" id="kjS-hy-98O"/>
                                             <constraint firstItem="COn-Do-3DC" firstAttribute="top" secondItem="uzy-z5-WwR" secondAttribute="bottom" constant="30" id="lch-Js-ZSR"/>
+                                            <constraint firstItem="NKt-br-sGx" firstAttribute="top" secondItem="yX6-PL-EF6" secondAttribute="bottom" constant="30" id="mLO-O5-vAx"/>
                                             <constraint firstItem="N5D-mU-ceD" firstAttribute="leading" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="mhp-BK-hel"/>
                                             <constraint firstItem="u6M-Ow-l39" firstAttribute="centerX" secondItem="V4D-Cl-EbQ" secondAttribute="centerX" id="mrY-D4-OGS"/>
                                             <constraint firstItem="xjh-BH-LNC" firstAttribute="top" secondItem="znn-8Y-vhT" secondAttribute="bottom" constant="30" id="n7b-ru-zNE"/>
@@ -1663,7 +1723,6 @@
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="u6M-Ow-l39" secondAttribute="trailing" constant="8" id="q1u-EB-0SS"/>
                                             <constraint firstItem="54Q-zh-nvQ" firstAttribute="top" secondItem="M8a-CD-qs1" secondAttribute="bottom" constant="30" id="qze-d0-NZQ"/>
                                             <constraint firstItem="S6r-2h-Xam" firstAttribute="centerY" secondItem="VI1-jo-XiB" secondAttribute="bottom" id="r4Z-Xv-wv2"/>
-                                            <constraint firstItem="NKt-br-sGx" firstAttribute="top" secondItem="CLS-aV-SGB" secondAttribute="bottom" constant="30" id="sLP-rq-4lt"/>
                                             <constraint firstItem="ffY-aY-fC8" firstAttribute="top" secondItem="COn-Do-3DC" secondAttribute="bottom" constant="30" id="sZv-hp-XMI"/>
                                             <constraint firstItem="Qcu-I5-Czi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ffY-aY-fC8" secondAttribute="trailing" constant="8" id="sai-lb-l7v"/>
                                             <constraint firstItem="Dwx-WY-Aim" firstAttribute="leading" secondItem="V4D-Cl-EbQ" secondAttribute="leading" constant="8" id="scG-ge-M1K"/>
@@ -1690,9 +1749,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nPC-sk-Lj0" firstAttribute="top" secondItem="Vw5-8U-WDO" secondAttribute="top" id="1HD-vs-xAe"/>
+                            <constraint firstItem="4D0-t2-dfc" firstAttribute="top" secondItem="jpk-99-Vpu" secondAttribute="bottom" constant="50" id="8cB-IW-heF"/>
                             <constraint firstItem="nPC-sk-Lj0" firstAttribute="trailing" secondItem="Vw5-8U-WDO" secondAttribute="trailing" id="ABr-c2-xw5"/>
+                            <constraint firstItem="jpk-99-Vpu" firstAttribute="centerX" secondItem="kDE-tO-Ug1" secondAttribute="centerX" id="EA0-jK-3z4"/>
+                            <constraint firstItem="jpk-99-Vpu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vw5-8U-WDO" secondAttribute="leading" constant="8" id="L0e-YQ-Cl7"/>
                             <constraint firstItem="nPC-sk-Lj0" firstAttribute="leading" secondItem="Vw5-8U-WDO" secondAttribute="leading" id="L4S-Nl-KK3"/>
+                            <constraint firstItem="4D0-t2-dfc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vw5-8U-WDO" secondAttribute="leading" constant="50" id="Obb-b6-cKP"/>
+                            <constraint firstItem="4D0-t2-dfc" firstAttribute="centerY" secondItem="kDE-tO-Ug1" secondAttribute="centerY" id="VUG-rJ-Fg6"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jpk-99-Vpu" secondAttribute="trailing" constant="8" id="azc-St-Zw4"/>
                             <constraint firstItem="nPC-sk-Lj0" firstAttribute="bottom" secondItem="Vw5-8U-WDO" secondAttribute="bottom" id="fmg-LA-f4i"/>
+                            <constraint firstItem="Vw5-8U-WDO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4D0-t2-dfc" secondAttribute="trailing" constant="50" id="sT8-qF-K4J"/>
+                            <constraint firstItem="4D0-t2-dfc" firstAttribute="centerX" secondItem="kDE-tO-Ug1" secondAttribute="centerX" id="yfQ-iB-5PN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vw5-8U-WDO"/>
                     </view>
@@ -1711,9 +1778,13 @@
                         <outlet property="monthlyRentLabel" destination="S6r-2h-Xam" id="Qmx-0F-zfm"/>
                         <outlet property="nameLabel" destination="u6M-Ow-l39" id="cHG-IE-sDv"/>
                         <outlet property="netYieldLabel" destination="9vK-t4-Cia" id="dby-su-vOi"/>
+                        <outlet property="newSimulationButton" destination="4D0-t2-dfc" id="9dg-jP-Esm"/>
+                        <outlet property="noDataLabel" destination="jpk-99-Vpu" id="i0d-ov-L59"/>
                         <outlet property="notaryFeesLabel" destination="Qcu-I5-Czi" id="tZ9-W5-MLR"/>
                         <outlet property="propertyTaxLabel" destination="wQc-X3-rUO" id="i3c-Ae-eLB"/>
+                        <outlet property="simulationDetailsScrollView" destination="nPC-sk-Lj0" id="Pil-jx-rSf"/>
                         <outlet property="worksPriceLabel" destination="afu-Ae-Gjo" id="GO1-tx-l7E"/>
+                        <segue destination="4Nv-Tb-tUU" kind="show" identifier="NewSimulationSegue" id="baJ-OF-2Cs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q5j-aZ-YUm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2877,7 +2948,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="729"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bo7-qS-tUN" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="790"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="788"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prix du bien" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03Y-To-Oa9">
                                                 <rect key="frame" x="8" y="30" width="118" height="20.5"/>
@@ -3249,7 +3320,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gps-xM-ZsU">
-                                                <rect key="frame" x="223" y="608" width="120" height="34"/>
+                                                <rect key="frame" x="223" y="618" width="120" height="34"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="UEx-cq-n2Z">
@@ -3274,13 +3345,14 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="€" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c29-Ug-0bk">
-                                                <rect key="frame" x="351" y="612.5" width="16" height="24.5"/>
+                                                <rect key="frame" x="351" y="623" width="16" height="24.5"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhR-jr-ZKf" customClass="ButtonsView" customModule="InvestImmo" customModuleProvider="target">
-                                                <rect key="frame" x="50" y="685" width="275" height="55"/>
+                                                <rect key="frame" x="50" y="683" width="275" height="55"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                 <state key="normal" title="Calculer">
@@ -3290,10 +3362,16 @@
                                                     <segue destination="cjL-3k-whW" kind="show" identifier="goToRentabilityResult" id="WOq-l2-hTL"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Mensuel )" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0N-YY-sbI">
+                                                <rect key="frame" x="8" y="640" width="70" height="13"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.35686274509803922" green="0.40000000000000002" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="gps-xM-ZsU" firstAttribute="centerY" secondItem="c2F-uz-wt4" secondAttribute="centerY" id="0Cx-wb-Em5"/>
+                                            <constraint firstItem="gps-xM-ZsU" firstAttribute="centerY" secondItem="c2F-uz-wt4" secondAttribute="bottom" id="0Cx-wb-Em5"/>
                                             <constraint firstItem="fAK-px-HDH" firstAttribute="top" secondItem="lwE-RN-i1n" secondAttribute="bottom" constant="30" id="0gp-Mf-PtK"/>
                                             <constraint firstItem="fAK-px-HDH" firstAttribute="leading" secondItem="Bo7-qS-tUN" secondAttribute="leading" constant="8" id="1XZ-wr-0kv"/>
                                             <constraint firstAttribute="trailing" secondItem="7jX-XH-cJT" secondAttribute="trailing" constant="8" id="2Rr-qJ-9g4"/>
@@ -3321,11 +3399,13 @@
                                             <constraint firstAttribute="trailing" secondItem="ddE-MC-3gs" secondAttribute="trailing" constant="8" id="BII-j7-3np"/>
                                             <constraint firstItem="lwE-RN-i1n" firstAttribute="leading" secondItem="Bo7-qS-tUN" secondAttribute="leading" constant="8" id="Beu-os-98g"/>
                                             <constraint firstItem="Fnu-t4-iOF" firstAttribute="leading" secondItem="Bo7-qS-tUN" secondAttribute="leading" constant="8" id="Coq-fZ-Sje"/>
+                                            <constraint firstItem="P0N-YY-sbI" firstAttribute="top" secondItem="c2F-uz-wt4" secondAttribute="bottom" constant="5" id="D39-So-3o4"/>
                                             <constraint firstItem="s7D-l7-F3l" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="03Y-To-Oa9" secondAttribute="trailing" constant="73.329999999999998" id="DuO-si-UYb">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                             </constraint>
                                             <constraint firstAttribute="trailing" secondItem="rzH-f4-3IJ" secondAttribute="trailing" constant="8" id="EkS-WB-Ahk"/>
                                             <constraint firstItem="8xR-Qz-K1c" firstAttribute="top" secondItem="ngU-DF-ydi" secondAttribute="bottom" constant="30" id="FqQ-Hb-8Kn"/>
+                                            <constraint firstItem="GhR-jr-ZKf" firstAttribute="top" secondItem="P0N-YY-sbI" secondAttribute="bottom" constant="30" id="Gl8-pa-RXr"/>
                                             <constraint firstAttribute="trailing" secondItem="Cfl-YY-zVg" secondAttribute="trailing" constant="8" id="HDa-uh-ZuH"/>
                                             <constraint firstItem="dcc-Mu-YOj" firstAttribute="bottom" secondItem="B70-IZ-pb9" secondAttribute="bottom" id="I99-J5-GtT"/>
                                             <constraint firstItem="Gr8-Mv-Qbt" firstAttribute="centerY" secondItem="8xR-Qz-K1c" secondAttribute="bottom" id="IoO-CJ-d0g"/>
@@ -3375,16 +3455,17 @@
                                             <constraint firstItem="wTD-BL-CHG" firstAttribute="top" secondItem="B70-IZ-pb9" secondAttribute="bottom" constant="5" id="dYf-DN-f0f"/>
                                             <constraint firstItem="Gr8-Mv-Qbt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8xR-Qz-K1c" secondAttribute="trailing" constant="8" id="dxK-Jz-3eG"/>
                                             <constraint firstItem="SC7-LF-C6N" firstAttribute="leading" secondItem="Bo7-qS-tUN" secondAttribute="leading" constant="8" id="eC5-nb-g5Q"/>
-                                            <constraint firstItem="GhR-jr-ZKf" firstAttribute="top" secondItem="c2F-uz-wt4" secondAttribute="bottom" constant="50" id="fXb-pl-YTX"/>
                                             <constraint firstItem="c29-Ug-0bk" firstAttribute="leading" secondItem="gps-xM-ZsU" secondAttribute="trailing" constant="8" id="flo-Gg-m7k"/>
                                             <constraint firstItem="oV3-DJ-8Uu" firstAttribute="top" secondItem="8xR-Qz-K1c" secondAttribute="bottom" constant="5" id="g7Z-ha-QbK"/>
                                             <constraint firstItem="GhR-jr-ZKf" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Bo7-qS-tUN" secondAttribute="leading" constant="50" id="hLA-Kc-RMr"/>
                                             <constraint firstItem="9ru-64-0cK" firstAttribute="centerY" secondItem="cYT-1x-Gkl" secondAttribute="centerY" id="hTF-EU-xo9"/>
                                             <constraint firstItem="B70-IZ-pb9" firstAttribute="top" secondItem="ajF-US-VVn" secondAttribute="bottom" constant="30" id="hsq-tf-GVn"/>
                                             <constraint firstAttribute="trailing" secondItem="9ru-64-0cK" secondAttribute="trailing" constant="8" id="k8k-fJ-G7J"/>
+                                            <constraint firstItem="gps-xM-ZsU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P0N-YY-sbI" secondAttribute="trailing" constant="145" id="kMV-ou-4cn"/>
                                             <constraint firstItem="rzH-f4-3IJ" firstAttribute="centerY" secondItem="QKk-X2-xY4" secondAttribute="centerY" id="km5-LU-te6"/>
                                             <constraint firstItem="G4X-4q-Wzx" firstAttribute="leading" secondItem="Bo7-qS-tUN" secondAttribute="leading" constant="8" id="li6-Ut-man"/>
                                             <constraint firstItem="3Ea-dD-zFw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ajF-US-VVn" secondAttribute="trailing" constant="8" id="lkq-ff-qSG"/>
+                                            <constraint firstItem="P0N-YY-sbI" firstAttribute="leading" secondItem="Bo7-qS-tUN" secondAttribute="leading" constant="8" id="lkz-XF-LpL"/>
                                             <constraint firstItem="gps-xM-ZsU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c2F-uz-wt4" secondAttribute="trailing" constant="73.329999999999998" id="ohl-BS-d4c">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                             </constraint>
@@ -3530,7 +3611,6 @@
                                                 <exclude reference="ohl-BS-d4c"/>
                                                 <exclude reference="AmS-3h-z3P"/>
                                                 <exclude reference="Zdh-rI-ho2"/>
-                                                <exclude reference="fXb-pl-YTX"/>
                                                 <exclude reference="7ej-uv-9lq"/>
                                                 <exclude reference="flo-Gg-m7k"/>
                                                 <exclude reference="pZF-C2-kX4"/>
@@ -3656,7 +3736,6 @@
                                                 <include reference="ohl-BS-d4c"/>
                                                 <include reference="AmS-3h-z3P"/>
                                                 <include reference="Zdh-rI-ho2"/>
-                                                <include reference="fXb-pl-YTX"/>
                                                 <include reference="7ej-uv-9lq"/>
                                                 <include reference="flo-Gg-m7k"/>
                                                 <include reference="pZF-C2-kX4"/>
@@ -3984,6 +4063,11 @@
             <point key="canvasLocation" x="3373.5999999999999" y="-729.31034482758628"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="baJ-OF-2Cs"/>
+        <segue reference="JIa-Nj-D5k"/>
+        <segue reference="np3-oQ-d64"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Check-listButton" width="305" height="202"/>
         <image name="Checklist Card" width="315" height="144"/>
@@ -3995,7 +4079,4 @@
         <image name="infoIcon" width="40" height="40"/>
         <image name="rentaButton" width="305" height="220"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="np3-oQ-d64"/>
-    </inferredMetricsTieBreakers>
 </document>

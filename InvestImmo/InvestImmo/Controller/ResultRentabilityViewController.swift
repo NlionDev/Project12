@@ -14,8 +14,16 @@ class ResultRentabilityViewController: UIViewController {
     //MARK: - Properties
     
     var calculator: RentabilityCalculator?
+    lazy var myProjects: Results<Project> = {
+        self.realm.objects(Project.self)}()
+    lazy var mySavedSimulations: Results<RentabilitySimulation> = {
+        self.realm.objects(RentabilitySimulation.self)}()
     let realm = try! Realm()
     var myRentabilitySimulation = RentabilitySimulation()
+    var myNewProject = Project()
+    var existantProjectAlertService = ExistantProjectAlertService()
+    var newProjectAlertService = NewProjectAlertService()
+    var checklistData = ChecklistData()
     
     //MARK: - Outlets
     
@@ -36,36 +44,20 @@ class ResultRentabilityViewController: UIViewController {
     //MARK: - Actions
     
     @objc func didTapOnSaveButton() {
-        let alert = UIAlertController(title: "Nom du Projet", message: "Entrez le nom de votre projet immobilier :", preferredStyle: .alert)
-        alert.addTextField()
-        if let textField = alert.textFields?[0] {
-            textField.placeholder = "Studio Montpellier"
-            alert.addAction(UIAlertAction(title: "Retour", style: .cancel, handler: { (UIAlertAction) in }))
-            alert.addAction(UIAlertAction(title: "Sauvegarder Projet", style: .default, handler: { (UIAlertAction) in
-                if let name = textField.text {
-                    guard let calculator = self.calculator else {return}
-                    self.myRentabilitySimulation.name = name
-                    self.myRentabilitySimulation.estatePrice = calculator.estatePrice
-                    self.myRentabilitySimulation.worksPrice = calculator.worksPrice
-                    self.myRentabilitySimulation.notaryFees = calculator.notaryFees
-                    self.myRentabilitySimulation.monthlyRent = calculator.monthlyRent
-                    self.myRentabilitySimulation.propertyTax = calculator.propertyTax
-                    self.myRentabilitySimulation.maintenanceFees = calculator.maintenanceFees
-                    self.myRentabilitySimulation.charges = calculator.charges
-                    self.myRentabilitySimulation.managementFees = calculator.managementFees
-                    self.myRentabilitySimulation.insurance = calculator.insurance
-                    self.myRentabilitySimulation.creditCost = calculator.creditCost
-                    self.myRentabilitySimulation.grossYield = self.grossYieldLabel.text
-                    self.myRentabilitySimulation.netYield = self.netYieldLabel.text
-                    self.myRentabilitySimulation.annualCashflow = self.annualCashflowLabel.text
-                    self.myRentabilitySimulation.mensualCashflow = self.mensualCashflowLabel.text
-                    try! self.realm.write {
-                        self.realm.add(self.myRentabilitySimulation)
-                    }
-                }
-            }))
+        saveData()
+        if myProjects.isEmpty {
+            if #available(iOS 13.0, *) {
+                let alertVC = newProjectAlertService.alert(checklist: checklistData, simulation: myRentabilitySimulation)
+                present(alertVC, animated: true)
+            } else {
+            }
+        } else {
+            if #available(iOS 13.0, *) {
+                let alertVC = existantProjectAlertService.alert(checklist: checklistData, simulation: myRentabilitySimulation)
+                present(alertVC, animated: true)
+            } else {
+            }
         }
-        self.present(alert, animated: true)
     }
     
     //MARK: - Methods
@@ -100,6 +92,25 @@ class ResultRentabilityViewController: UIViewController {
         }
     }
     
+    private func saveData() {
+        guard let calculator = self.calculator else {return}
+        self.myRentabilitySimulation.estatePrice = calculator.estatePrice
+        self.myRentabilitySimulation.worksPrice = calculator.worksPrice
+        self.myRentabilitySimulation.notaryFees = calculator.notaryFees
+        self.myRentabilitySimulation.monthlyRent = calculator.monthlyRent
+        self.myRentabilitySimulation.propertyTax = calculator.propertyTax
+        self.myRentabilitySimulation.maintenanceFees = calculator.maintenanceFees
+        self.myRentabilitySimulation.charges = calculator.charges
+        self.myRentabilitySimulation.managementFees = calculator.managementFees
+        self.myRentabilitySimulation.insurance = calculator.insurance
+        self.myRentabilitySimulation.creditCost = calculator.creditCost
+        self.myRentabilitySimulation.grossYield = grossYieldLabel.text
+        self.myRentabilitySimulation.netYield = netYieldLabel.text
+        self.myRentabilitySimulation.annualCashflow = annualCashflowLabel.text
+        self.myRentabilitySimulation.mensualCashflow = mensualCashflowLabel.text
+    }
+    
+
     
 }
 

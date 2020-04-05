@@ -17,7 +17,6 @@ class CreditViewController: UIViewController {
     private let customPickerView = CustomPickerView()
     var selectedCreditDuration: Int?
     
-    
     //MARK: - Outlets
     
     @IBOutlet weak var creditDurationPickerView: UIPickerView!
@@ -25,7 +24,6 @@ class CreditViewController: UIViewController {
     @IBOutlet weak var rateTextField: UITextField!
     @IBOutlet weak var insuranceRateTextField: UITextField!
     @IBOutlet weak var bookingFeesTextField: UITextField!
-    
 
     //MARK: - Lifecycle
     
@@ -36,9 +34,7 @@ class CreditViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "goToCreditResult" {
-            
             guard let destination = segue.destination as? ResultCreditViewController else {return}
             let creditDurationIndex = creditDurationPickerView.selectedRow(inComponent: 0)
             selectedCreditDuration = creditDuration[creditDurationIndex]
@@ -53,7 +49,6 @@ class CreditViewController: UIViewController {
                 calculator.insuranceRate = insuranceRate
                 calculator.bookingFees = bookingFees
                 destination.calculator = calculator
-                
             }
         }
     }
@@ -66,23 +61,48 @@ class CreditViewController: UIViewController {
         insuranceRateTextField.resignFirstResponder()
         bookingFeesTextField.resignFirstResponder()
     }
+    
     @IBAction func didTapOnRatePlusButton(_ sender: Any) {
-        if let rate = Double(calculator.rate) {
+        if let rate = rateTextField.text?.transformInDouble {
             let newRate = rate + 0.01
-            let stringNewRate = String(newRate)
-            calculator.rate = stringNewRate
-            
-            
+            let stringNewRate = newRate.formatIntoStringWithTwoNumbersAfterPoint
+            rateTextField.text = stringNewRate
         }
     }
     
     @IBAction func didTapOnRateMinusButton(_ sender: Any) {
+        if let rate = rateTextField.text?.transformInDouble {
+            let newRate = rate - 0.01
+            if newRate <= 0 {
+                let stringZero = String(0)
+                rateTextField.text = stringZero
+            } else {
+                let stringNewRate = newRate.formatIntoStringWithTwoNumbersAfterPoint
+                rateTextField.text = stringNewRate
+            }
+        }
     }
     
-    //MARK: - Methods
+    @IBAction func didTapOnInsuranceRatePlusButton(_ sender: Any) {
+        if let rate = insuranceRateTextField.text?.transformInDouble {
+            let newRate = rate + 0.01
+            let stringNewRate = newRate.formatIntoStringWithTwoNumbersAfterPoint
+            insuranceRateTextField.text = stringNewRate
+        }
+    }
     
-
-
+    @IBAction func didTapOnInsuranceRateMinusButton(_ sender: Any) {
+        if let rate = insuranceRateTextField.text?.transformInDouble {
+            let newRate = rate - 0.01
+            if newRate <= 0 {
+                let stringZero = String(0)
+                insuranceRateTextField.text = stringZero
+            } else {
+                let stringNewRate = newRate.formatIntoStringWithTwoNumbersAfterPoint
+                insuranceRateTextField.text = stringNewRate
+            }
+        }
+    }
 }
 
 //MARK: - Extension

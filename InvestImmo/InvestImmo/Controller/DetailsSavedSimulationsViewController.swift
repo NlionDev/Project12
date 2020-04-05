@@ -16,6 +16,8 @@ class DetailsSavedSimulationsViewController: UIViewController {
     
     //MARK: - Outlets
     
+    @IBOutlet weak var simulationDetailsScrollView: UIScrollView!
+    @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var estatePriceLabel: UILabel!
     @IBOutlet weak var worksPriceLabel: UILabel!
@@ -31,6 +33,8 @@ class DetailsSavedSimulationsViewController: UIViewController {
     @IBOutlet weak var netYieldLabel: UILabel!
     @IBOutlet weak var annualCashflowLabel: UILabel!
     @IBOutlet weak var mensualCashflowLabel: UILabel!
+    @IBOutlet weak var newSimulationButton: UIButton!
+    
     
     
     //MARK: - Lifecycle
@@ -38,10 +42,30 @@ class DetailsSavedSimulationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setSavedSimulationsNavigationBarStyle()
-        configurePage()
+        showNoDataLabel()
     }
     
+    //MARK: - Actions
+    
+    @IBAction func didTapOnNewSimulationButton(_ sender: Any) {
+        performSegue(withIdentifier: "NewSimulationSegue", sender: self)
+    }
+    
+    
     //MARK: - Methods
+    
+    private func showNoDataLabel() {
+        if selectedSimulation?.mensualCashflow == nil {
+            simulationDetailsScrollView.isHidden = true
+            noDataLabel.isHighlighted = false
+            newSimulationButton.isHidden = false
+        } else {
+            configurePage()
+            simulationDetailsScrollView.isHidden = false
+            noDataLabel.isHidden = true
+            newSimulationButton.isHidden = true
+        }
+    }
     
     private func configurePage() {
         if let simulation = selectedSimulation {

@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+//MARK: - Class ButtonsView
+
 class ButtonsView: UIButton {
     
     //MARK: - LifeCycle
@@ -26,5 +28,23 @@ class ButtonsView: UIButton {
         self.layer.cornerRadius = 30
         self.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.layer.borderWidth = 2
+    }
+}
+
+//MARK: - Class AlertButtonsView
+
+class AlertButtonsView: UIButton {
+    
+    //MARK: - Lifecycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configureButtonStyle()
+    }
+    
+    //MARK: - Methods
+    
+    private func configureButtonStyle() {
+        self.layer.cornerRadius = 10
     }
 }

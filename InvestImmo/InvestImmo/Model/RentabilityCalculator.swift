@@ -36,9 +36,8 @@ class RentabilityCalculator {
     //MARK: - Methods
     
     private func getAnnualRent() -> Double {
-        var annualRent = 0.00
         let doubleMonthlyRent = monthlyRent.transformInDouble
-        annualRent = doubleMonthlyRent * 12
+        let annualRent = doubleMonthlyRent * 12
         return annualRent
     }
     
@@ -110,59 +109,46 @@ class RentabilityCalculator {
     }
     
     func getGrossYield() -> String {
-        var grossYield = 0.00
-        var finalGrossYield = ""
         let annualRent = getAnnualRent()
         let totalToFinance = getTotalToFinance()
-        
-        grossYield = annualRent / totalToFinance * 100
-        let stringGrossYield = String(format: "%.02f", grossYield)
-        if let doubleGrossYield = Double(stringGrossYield) {
-            finalGrossYield = doubleGrossYield.clean
-        }
+        let grossYield = annualRent / totalToFinance * 100
+        let stringGrossYield = grossYield.formatIntoStringWithTwoNumbersAfterPoint
+        let doubleGrossYield = stringGrossYield.transformInDouble
+        let finalGrossYield = doubleGrossYield.clean
         return finalGrossYield
     }
     
     func getNetYield() -> String {
-        var netYield = 0.00
-        var finalNetYield = ""
         let annualRent = getAnnualRent()
         let annualTotalCharges = getAnnualTotalCharges()
         let totalToFinance = getTotalToFinance()
-        netYield = (annualRent - annualTotalCharges) / totalToFinance * 100
-        let stringNetYield = String(format: "%.02f", netYield)
-        if let doubleNetYield = Double(stringNetYield) {
-            finalNetYield = doubleNetYield.clean
-        }
+        let netYield = (annualRent - annualTotalCharges) / totalToFinance * 100
+        let stringNetYield = netYield.formatIntoStringWithTwoNumbersAfterPoint
+        let doubleNetYield = stringNetYield.transformInDouble
+        let finalNetYield = doubleNetYield.clean
         return finalNetYield
     }
     
     func getAnnualCashflow() -> String {
-        var annualCashflow = 0.00
-        var finalAnnualCashflow = ""
-        let annualRent = getAnnualRent()
-        let annualTotalCharges = getAnnualTotalCharges()
-        let annualCreditCost = getAnnualCreditCost()
-        annualCashflow = annualRent - annualTotalCharges - annualCreditCost
-        let stringAnnualCashflow = String(format: "%.02f", annualCashflow)
-        if let cashflow = Double(stringAnnualCashflow) {
-            finalAnnualCashflow = cashflow.clean
-        }
-        return finalAnnualCashflow
-    }
-    
-    func getMensualCashflow() -> String {
-        var mensualCashflow = 0.00
-        var finalMensualCashflow = ""
         let annualRent = getAnnualRent()
         let annualTotalCharges = getAnnualTotalCharges()
         let annualCreditCost = getAnnualCreditCost()
         let annualCashflow = annualRent - annualTotalCharges - annualCreditCost
-        mensualCashflow = annualCashflow / 12
-        let stringMensualCashflow = String(format: "%.02f", mensualCashflow)
-        if let doubleMensualCashflow = Double(stringMensualCashflow) {
-            finalMensualCashflow = doubleMensualCashflow.clean
-        }
+        let stringAnnualCashflow = annualCashflow.formatIntoStringWithTwoNumbersAfterPoint
+        let cashflow = stringAnnualCashflow.transformInDouble
+        let finalAnnualCashflow = cashflow.clean
+        return finalAnnualCashflow
+    }
+    
+    func getMensualCashflow() -> String {
+        let annualRent = getAnnualRent()
+        let annualTotalCharges = getAnnualTotalCharges()
+        let annualCreditCost = getAnnualCreditCost()
+        let annualCashflow = annualRent - annualTotalCharges - annualCreditCost
+        let mensualCashflow = annualCashflow / 12
+        let stringMensualCashflow = mensualCashflow.formatIntoStringWithTwoNumbersAfterPoint
+        let doubleMensualCashflow = stringMensualCashflow.transformInDouble
+        let finalMensualCashflow = doubleMensualCashflow.clean
         return finalMensualCashflow
     }
     
@@ -178,5 +164,4 @@ class RentabilityCalculator {
         }
         return boolResult
     }
-    
 }

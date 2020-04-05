@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hwP-nh-rXU">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Checklist Alert View Controller-->
+        <scene sceneID="jX9-Sg-xxD">
+            <objects>
+                <viewController storyboardIdentifier="ExistantProjectAlertVC" id="hwP-nh-rXU" customClass="ChecklistAlertViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q4V-hC-zOf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0U-L9-HhC" customClass="ResultView" customModule="InvestImmo" customModuleProvider="target">
+                                <rect key="frame" x="40" y="195.5" width="334" height="505"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylN-zb-Lfz" customClass="ResultView" customModule="InvestImmo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A quel projet existant voulez-vous ajouter cette check-list ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zH7-qc-K03">
+                                                <rect key="frame" x="8" y="8" width="318" height="69"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="85" id="2t9-SY-kw3"/>
+                                            <constraint firstItem="zH7-qc-K03" firstAttribute="centerY" secondItem="ylN-zb-Lfz" secondAttribute="centerY" id="79c-VB-OC8"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="zH7-qc-K03" secondAttribute="trailing" id="DOh-gq-241"/>
+                                            <constraint firstItem="zH7-qc-K03" firstAttribute="leading" secondItem="ylN-zb-Lfz" secondAttribute="leadingMargin" id="f62-AD-iMX"/>
+                                            <constraint firstItem="zH7-qc-K03" firstAttribute="top" secondItem="ylN-zb-Lfz" secondAttribute="topMargin" id="uVG-MT-EzR"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="zH7-qc-K03" secondAttribute="bottom" id="y9f-KB-B4H"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vlW-tr-Fs4">
+                                        <rect key="frame" x="0.0" y="93" width="334" height="300"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="KKM-vw-zlu"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChecklistAlertCell" rowHeight="80" id="smc-tD-cvu" customClass="ChecklistAlertTableViewCell" customModule="InvestImmo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="334" height="80"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="smc-tD-cvu" id="PpU-r5-54a">
+                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0f-7S-SRU" customClass="ResultView" customModule="InvestImmo" customModuleProvider="target">
+                                                            <rect key="frame" x="28" y="19" width="278" height="58"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gen-09-G80">
+                                                                    <rect key="frame" x="16" y="16" width="246" height="26"/>
+                                                                    <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstItem="gen-09-G80" firstAttribute="top" secondItem="Z0f-7S-SRU" secondAttribute="topMargin" constant="8" id="KkC-lI-fkS"/>
+                                                                <constraint firstItem="gen-09-G80" firstAttribute="leading" secondItem="Z0f-7S-SRU" secondAttribute="leadingMargin" constant="8" id="Z9D-E7-9WT"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="gen-09-G80" secondAttribute="bottom" constant="8" id="cKU-Pf-3m9"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="gen-09-G80" secondAttribute="trailing" constant="8" id="wrx-70-cQa"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Z0f-7S-SRU" firstAttribute="bottom" secondItem="PpU-r5-54a" secondAttribute="bottomMargin" constant="8" id="4E7-sv-Bfo"/>
+                                                        <constraint firstItem="Z0f-7S-SRU" firstAttribute="leading" secondItem="PpU-r5-54a" secondAttribute="leadingMargin" constant="8" id="Jpx-sd-T6J"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="Z0f-7S-SRU" secondAttribute="trailing" constant="8" id="PF5-K6-gwR"/>
+                                                        <constraint firstItem="Z0f-7S-SRU" firstAttribute="top" secondItem="PpU-r5-54a" secondAttribute="topMargin" constant="8" id="tKb-vK-20E"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="nameLabel" destination="gen-09-G80" id="QnP-DB-JaA"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="hwP-nh-rXU" id="FCU-OK-zOZ"/>
+                                            <outlet property="delegate" destination="hwP-nh-rXU" id="3gp-Em-vtK"/>
+                                        </connections>
+                                    </tableView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qNC-z5-KJW">
+                                        <rect key="frame" x="16" y="409" width="302" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aew-jK-HPe" customClass="AlertButtonsView" customModule="InvestImmo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Créer Nouveau Projet">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapOnCreateNewProject:" destination="hwP-nh-rXU" eventType="touchUpInside" id="0Hz-Iz-XfF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRz-ut-OIG" customClass="AlertButtonsView" customModule="InvestImmo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="45" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Annuler">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapOnCancel:" destination="hwP-nh-rXU" eventType="touchUpInside" id="NtD-af-kgK"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="TuS-uT-aEb"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vlW-tr-Fs4" secondAttribute="trailing" id="6Ay-8w-wYT"/>
+                                    <constraint firstAttribute="bottom" secondItem="qNC-z5-KJW" secondAttribute="bottom" constant="16" id="7yD-mj-omW"/>
+                                    <constraint firstItem="ylN-zb-Lfz" firstAttribute="top" secondItem="I0U-L9-HhC" secondAttribute="top" id="LAb-6d-KcL"/>
+                                    <constraint firstItem="vlW-tr-Fs4" firstAttribute="leading" secondItem="I0U-L9-HhC" secondAttribute="leading" id="Ov5-5H-Txd"/>
+                                    <constraint firstItem="ylN-zb-Lfz" firstAttribute="leading" secondItem="I0U-L9-HhC" secondAttribute="leading" id="Q2O-SX-znM"/>
+                                    <constraint firstItem="vlW-tr-Fs4" firstAttribute="top" secondItem="ylN-zb-Lfz" secondAttribute="bottom" constant="8" id="RWN-2c-rcZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="qNC-z5-KJW" secondAttribute="trailing" constant="16" id="Tfy-cK-7Yb"/>
+                                    <constraint firstItem="qNC-z5-KJW" firstAttribute="leading" secondItem="I0U-L9-HhC" secondAttribute="leading" constant="16" id="bpc-zJ-i8n"/>
+                                    <constraint firstItem="qNC-z5-KJW" firstAttribute="top" secondItem="vlW-tr-Fs4" secondAttribute="bottom" constant="16" id="hTZ-q3-qh7"/>
+                                    <constraint firstAttribute="trailing" secondItem="ylN-zb-Lfz" secondAttribute="trailing" id="sBB-Iw-ldp"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.35260595034246578" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I0U-L9-HhC" firstAttribute="centerX" secondItem="q4V-hC-zOf" secondAttribute="centerX" id="gTZ-iQ-Hfw"/>
+                            <constraint firstItem="26u-Sh-7Ep" firstAttribute="trailing" secondItem="I0U-L9-HhC" secondAttribute="trailing" constant="40" id="gds-nk-32E"/>
+                            <constraint firstItem="I0U-L9-HhC" firstAttribute="leading" secondItem="26u-Sh-7Ep" secondAttribute="leading" constant="40" id="ifc-x2-Ifc"/>
+                            <constraint firstItem="I0U-L9-HhC" firstAttribute="centerY" secondItem="q4V-hC-zOf" secondAttribute="centerY" id="rVP-IE-Yxn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="26u-Sh-7Ep"/>
+                    </view>
+                    <connections>
+                        <outlet property="alertTableView" destination="vlW-tr-Fs4" id="N0M-rB-2c8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pb1-Qg-tls" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="98.550724637681171" y="190.84821428571428"/>
+        </scene>
+        <!--Add New Project Alert View Controller-->
+        <scene sceneID="RNj-CD-j16">
+            <objects>
+                <viewController storyboardIdentifier="NewProjectAlertVC" id="13n-qP-bvx" customClass="AddNewProjectAlertViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6gh-ih-W1e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8T-5L-XvE" customClass="ResultView" customModule="InvestImmo" customModuleProvider="target">
+                                <rect key="frame" x="40" y="324.5" width="334" height="247"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eq4-ce-ShW">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entrez le nom de votre projet :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rff-ic-TU4">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="rff-ic-TU4" secondAttribute="trailing" id="5n6-b6-w66"/>
+                                            <constraint firstAttribute="bottom" secondItem="rff-ic-TU4" secondAttribute="bottom" id="exh-mO-AMn"/>
+                                            <constraint firstItem="rff-ic-TU4" firstAttribute="top" secondItem="eq4-ce-ShW" secondAttribute="top" id="kxg-Tf-Deh"/>
+                                            <constraint firstItem="rff-ic-TU4" firstAttribute="leading" secondItem="eq4-ce-ShW" secondAttribute="leading" id="vd5-Vc-8mc"/>
+                                            <constraint firstAttribute="height" constant="85" id="xn4-nH-NC1"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vAL-3e-xTN">
+                                        <rect key="frame" x="16" y="151" width="302" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z86-fl-eTR" customClass="AlertButtonsView" customModule="InvestImmo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Créer Nouveau Projet">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapOnCreateNewProject:" destination="hwP-nh-rXU" eventType="touchUpInside" id="NKq-HF-alC"/>
+                                                    <action selector="didTapOnNewProjectButton:" destination="13n-qP-bvx" eventType="touchUpInside" id="kxV-8N-vsd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbr-AV-EEn" customClass="AlertButtonsView" customModule="InvestImmo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="45" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Annuler">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapOnCancel:" destination="hwP-nh-rXU" eventType="touchUpInside" id="8R2-MO-GI5"/>
+                                                    <action selector="didTapOnCancelButton:" destination="13n-qP-bvx" eventType="touchUpInside" id="hke-j4-K5y"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="aYp-KT-dvz"/>
+                                        </constraints>
+                                    </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Studio Montpellier" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jle-Uj-k5N">
+                                        <rect key="frame" x="60" y="101" width="214" height="34"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="eq4-ce-ShW" firstAttribute="leading" secondItem="n8T-5L-XvE" secondAttribute="leading" id="GsN-az-4JO"/>
+                                    <constraint firstAttribute="bottom" secondItem="vAL-3e-xTN" secondAttribute="bottom" constant="16" id="Lm4-jg-cvc"/>
+                                    <constraint firstItem="vAL-3e-xTN" firstAttribute="leading" secondItem="n8T-5L-XvE" secondAttribute="leading" constant="16" id="LyC-Lr-rhT"/>
+                                    <constraint firstAttribute="trailing" secondItem="eq4-ce-ShW" secondAttribute="trailing" id="UnD-gp-IwG"/>
+                                    <constraint firstItem="eq4-ce-ShW" firstAttribute="top" secondItem="n8T-5L-XvE" secondAttribute="top" id="XE0-mc-IDe"/>
+                                    <constraint firstItem="vAL-3e-xTN" firstAttribute="top" secondItem="jle-Uj-k5N" secondAttribute="bottom" constant="16" id="eaS-Vt-iQf"/>
+                                    <constraint firstItem="jle-Uj-k5N" firstAttribute="leading" secondItem="n8T-5L-XvE" secondAttribute="leading" constant="60" id="ihw-rd-rVV"/>
+                                    <constraint firstAttribute="trailing" secondItem="vAL-3e-xTN" secondAttribute="trailing" constant="16" id="mNk-Fw-LfE"/>
+                                    <constraint firstAttribute="trailing" secondItem="jle-Uj-k5N" secondAttribute="trailing" constant="60" id="plm-Yd-TIO"/>
+                                    <constraint firstItem="jle-Uj-k5N" firstAttribute="top" secondItem="eq4-ce-ShW" secondAttribute="bottom" constant="16" id="qYK-42-CLw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1Rb-NH-td2" firstAttribute="trailing" secondItem="n8T-5L-XvE" secondAttribute="trailing" constant="40" id="5eq-7L-b0h"/>
+                            <constraint firstItem="n8T-5L-XvE" firstAttribute="leading" secondItem="1Rb-NH-td2" secondAttribute="leading" constant="40" id="B3S-vd-IXG"/>
+                            <constraint firstItem="n8T-5L-XvE" firstAttribute="centerX" secondItem="6gh-ih-W1e" secondAttribute="centerX" id="cxO-Ta-vJp"/>
+                            <constraint firstItem="n8T-5L-XvE" firstAttribute="centerY" secondItem="6gh-ih-W1e" secondAttribute="centerY" id="rqK-aU-tj4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Rb-NH-td2"/>
+                    </view>
+                    <connections>
+                        <outlet property="projectNameLabel" destination="jle-Uj-k5N" id="kTG-Ge-TLj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bMB-MI-ONl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1260.8695652173915" y="190.84821428571428"/>
+        </scene>
+    </scenes>
+</document>

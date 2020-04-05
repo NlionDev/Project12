@@ -14,6 +14,8 @@ import RealmSwift
 
 extension UIViewController {
     
+    // MARK: - Methods for configure Views
+    
     // Method for customize navigation bar on rentability display
     func setRentabilityNavigationBarStyle() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -78,6 +80,14 @@ extension UIViewController {
         backgroundImage.alpha = 0.2
         tableView.insertSubview(backgroundImage, at: 0)
     }
+    
+    //MARK: - Methods for display alert
+    
+    func displayAlertForDuplicateProjectName() {
+        let alert = UIAlertController(title: "Enregistrement Impossible", message: "Un projet existant porte déjà ce nom.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Retour", style: .cancel, handler: { (UIAlertAction) in }))
+        present(alert, animated: true)
+    }
 }
 
 //MARK: - Double Extension
@@ -89,6 +99,11 @@ extension Double {
     
     var formattedWithSeparator: String {
         return Formatter.withSeparator.string(for: self) ?? ""
+    }
+    
+    var formatIntoStringWithTwoNumbersAfterPoint: String {
+        return String(format: "%.02f", self)
+        
     }
 }
 
@@ -121,7 +136,9 @@ extension String {
 extension Date {
     var transformIntoString: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MMM-yyyy"
+        //formatter.locale = Locale(identifier: "fr_FR")
+        formatter.dateStyle = .short
+        //formatter.dateFormat = "dd-MMM-yyyy"
         let myString = formatter.string(from: self)
         return myString
     }

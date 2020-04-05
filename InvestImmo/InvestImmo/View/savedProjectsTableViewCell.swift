@@ -9,18 +9,15 @@
 import Foundation
 import UIKit
 
-class SavedSimulationTableViewCell: UITableViewCell {
+class savedProjectsTableViewCell: UITableViewCell {
     
     //MARK: - Outlets
     
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var price: UILabel!
-    
     
     //MARK: - Methods
     
-    func configure(projectName: String, projectPrice: String) {
+    func configure(projectName: String) {
         name.text = projectName
-        price.text = projectPrice + " €"
     }
 }
