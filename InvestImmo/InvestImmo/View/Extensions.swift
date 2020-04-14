@@ -17,13 +17,15 @@ extension UIViewController {
     // MARK: - Methods for configure Views
     
     // Method for customize navigation bar on rentability display
-    func setRentabilityNavigationBarStyle() {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 91/255.0, green: 102/255.0, blue: 248/255.0, alpha: 1.0)
+    func setSimulationNavigationBarStyle() {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30)!]
-        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
-        self.navigationController?.navigationBar.backItem?.title = ""
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "purpleArrow")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "purpleArrow")
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    func setSimulationResultNavigationBarStyle() {
+        
     }
     
     func setRentabilityTabBarStyle() {
@@ -88,6 +90,34 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "Retour", style: .cancel, handler: { (UIAlertAction) in }))
         present(alert, animated: true)
     }
+    
+    func isMyProjectNameUnique(name: String, projects: Results<Project>) -> Bool {
+        var result = true
+        for project in projects {
+            if name == project.name {
+                result = false
+            } else {
+                result = true
+            }
+        }
+        return result
+    }
+    
+    func isMySavedProjectsNil(projects: Results<Project>) -> Bool {
+        if projects.count == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func isMySimulationDataNil(simulationCashflow: String!) -> Bool {
+        if simulationCashflow == nil {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 //MARK: - Double Extension
@@ -136,10 +166,15 @@ extension String {
 extension Date {
     var transformIntoString: String {
         let formatter = DateFormatter()
-        //formatter.locale = Locale(identifier: "fr_FR")
-        formatter.dateStyle = .short
-        //formatter.dateFormat = "dd-MMM-yyyy"
+        formatter.locale = Locale(identifier: "fr_FR")
+        formatter.dateStyle = .medium
         let myString = formatter.string(from: self)
         return myString
+    }
+}
+
+extension UITextField {
+    func clear() {
+        self.text = ""
     }
 }

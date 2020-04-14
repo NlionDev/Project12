@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="COT-4S-gfD">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+        <array key="PoetsenOne-Regular.ttf">
+            <string>PoetsenOne-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Nng-PC-Zyz">
+            <objects>
+                <navigationController storyboardIdentifier="SavedProjectsNavigation" id="COT-4S-gfD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xPd-wZ-vJY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="D2f-Gh-YDS" kind="relationship" relationship="rootViewController" id="qOb-Am-QXI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CK0-3x-tJg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23" y="1138"/>
+        </scene>
+        <!--Invest'Immo-->
+        <scene sceneID="vXo-Dw-qDc">
+            <objects>
+                <viewController id="D2f-Gh-YDS" customClass="SavedProjectsViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z42-W8-y2P" customClass="BackgroundView" customModule="InvestImmo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vous n'avez pas de projets sauvegardés pour le moment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OF8-kt-rYM">
+                                <rect key="frame" x="8" y="428" width="398" height="40.5"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i0N-lh-pNF">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="200" id="K3o-4C-lPO" customClass="savedProjectsTableViewCell" customModule="InvestImmo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K3o-4C-lPO" id="UT7-NG-SSt">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYX-M8-htI" customClass="ResultView" customModule="InvestImmo" customModuleProvider="target">
+                                                    <rect key="frame" x="30" y="21" width="354" height="158"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIf-ik-337">
+                                                            <rect key="frame" x="8" y="8" width="338" height="142"/>
+                                                            <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="JsS-4A-0ac"/>
+                                                        <constraint firstItem="xIf-ik-337" firstAttribute="top" secondItem="TYX-M8-htI" secondAttribute="top" constant="8" id="NHf-mO-dqa"/>
+                                                        <constraint firstItem="xIf-ik-337" firstAttribute="leading" secondItem="TYX-M8-htI" secondAttribute="leading" constant="8" id="Oud-Bt-CQj"/>
+                                                        <constraint firstAttribute="bottom" secondItem="xIf-ik-337" secondAttribute="bottom" constant="8" id="U94-cW-KRB"/>
+                                                        <constraint firstAttribute="trailing" secondItem="xIf-ik-337" secondAttribute="trailing" constant="8" id="e3c-aL-HDY"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TYX-M8-htI" secondAttribute="trailing" constant="10" id="ItO-vW-Lmv"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="TYX-M8-htI" secondAttribute="bottom" constant="10" id="dwB-jp-6D7"/>
+                                                <constraint firstItem="TYX-M8-htI" firstAttribute="top" secondItem="UT7-NG-SSt" secondAttribute="topMargin" constant="10" id="k7Y-Yp-0td"/>
+                                                <constraint firstItem="TYX-M8-htI" firstAttribute="leading" secondItem="UT7-NG-SSt" secondAttribute="leadingMargin" constant="10" id="zrX-UE-8J7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="name" destination="xIf-ik-337" id="rm5-m4-ef0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="D2f-Gh-YDS" id="htt-Cw-fWU"/>
+                                    <outlet property="delegate" destination="D2f-Gh-YDS" id="6lx-zK-AXc"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="OF8-kt-rYM" firstAttribute="leading" secondItem="BwL-Dw-Z1M" secondAttribute="leading" constant="8" id="7DD-va-IQb"/>
+                            <constraint firstItem="i0N-lh-pNF" firstAttribute="bottom" secondItem="BwL-Dw-Z1M" secondAttribute="bottom" id="HQU-MD-Z6C"/>
+                            <constraint firstItem="BwL-Dw-Z1M" firstAttribute="trailing" secondItem="OF8-kt-rYM" secondAttribute="trailing" constant="8" id="Ia4-xp-yMx"/>
+                            <constraint firstItem="i0N-lh-pNF" firstAttribute="trailing" secondItem="BwL-Dw-Z1M" secondAttribute="trailing" id="KUW-ed-Rfp"/>
+                            <constraint firstItem="i0N-lh-pNF" firstAttribute="top" secondItem="BwL-Dw-Z1M" secondAttribute="top" id="mIH-iQ-REV"/>
+                            <constraint firstItem="i0N-lh-pNF" firstAttribute="leading" secondItem="BwL-Dw-Z1M" secondAttribute="leading" id="q5D-br-UtL"/>
+                            <constraint firstItem="OF8-kt-rYM" firstAttribute="centerX" secondItem="z42-W8-y2P" secondAttribute="centerX" id="sM6-ea-GWq"/>
+                            <constraint firstItem="OF8-kt-rYM" firstAttribute="centerY" secondItem="z42-W8-y2P" secondAttribute="centerY" id="ukY-HR-L87"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BwL-Dw-Z1M"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Mes Simulations" image="folderIcon" selectedImage="folderIcon" id="9HK-UH-Cdd"/>
+                    <navigationItem key="navigationItem" title="Invest'Immo" id="jxk-g3-cvi"/>
+                    <connections>
+                        <outlet property="noProjectSavedLabel" destination="OF8-kt-rYM" id="Xc9-PM-TiO"/>
+                        <outlet property="savedProjectsTableView" destination="i0N-lh-pNF" id="FXp-FK-kZb"/>
+                        <segue destination="Hwf-uB-Xl6" kind="show" id="VMK-lE-Jwg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RCI-VQ-VcO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051" y="1138"/>
+        </scene>
+        <!--Invest'Immo-->
+        <scene sceneID="2pA-4m-qTd">
+            <objects>
+                <viewController id="Hwf-uB-Xl6" customClass="DetailsChoiceViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jb6-95-hCY" customClass="BackgroundView" customModule="InvestImmo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xaw-DD-TTq">
+                                <rect key="frame" x="30" y="190" width="354" height="144"/>
+                                <state key="normal" image="Rentability Card"/>
+                                <connections>
+                                    <action selector="didTapRentabilityButton:" destination="Hwf-uB-Xl6" eventType="touchUpInside" id="4SK-gV-GTq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2x-lh-8x3">
+                                <rect key="frame" x="30" y="364" width="354" height="144"/>
+                                <state key="normal" image="Checklist Card"/>
+                                <connections>
+                                    <action selector="didTapChecklistButton:" destination="Hwf-uB-Xl6" eventType="touchUpInside" id="23j-2p-eur"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIs-bD-ubF">
+                                <rect key="frame" x="164" y="118" width="86" height="42"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="35"/>
+                                <color key="textColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Xaw-DD-TTq" firstAttribute="leading" secondItem="GfR-wn-WN7" secondAttribute="leading" constant="30" id="KA0-2R-sG5"/>
+                            <constraint firstItem="v2x-lh-8x3" firstAttribute="leading" secondItem="GfR-wn-WN7" secondAttribute="leading" constant="30" id="KDR-vy-VVu"/>
+                            <constraint firstItem="v2x-lh-8x3" firstAttribute="top" secondItem="Xaw-DD-TTq" secondAttribute="bottom" constant="30" id="SUq-PU-pDH"/>
+                            <constraint firstItem="tIs-bD-ubF" firstAttribute="centerX" secondItem="Jb6-95-hCY" secondAttribute="centerX" id="XOB-eB-uak"/>
+                            <constraint firstItem="Xaw-DD-TTq" firstAttribute="top" secondItem="tIs-bD-ubF" secondAttribute="bottom" constant="30" id="cu9-RA-zoS"/>
+                            <constraint firstItem="GfR-wn-WN7" firstAttribute="trailing" secondItem="Xaw-DD-TTq" secondAttribute="trailing" constant="30" id="kiT-GG-fmQ"/>
+                            <constraint firstItem="tIs-bD-ubF" firstAttribute="top" secondItem="GfR-wn-WN7" secondAttribute="top" constant="30" id="mIE-7f-oJb"/>
+                            <constraint firstItem="GfR-wn-WN7" firstAttribute="trailing" secondItem="v2x-lh-8x3" secondAttribute="trailing" constant="30" id="qtK-xt-Agf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GfR-wn-WN7"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Invest'Immo" id="2ls-g7-Z7y"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="tIs-bD-ubF" id="44z-2Q-Wtx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sm1-D1-K6a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2119" y="1138"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Checklist Card" width="315" height="144"/>
+        <image name="Rentability Card" width="315" height="144"/>
+        <image name="folderIcon" width="40" height="40"/>
+    </resources>
+</document>

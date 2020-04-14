@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BL6-q5-rdA">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+        <array key="PoetsenOne-Regular.ttf">
+            <string>PoetsenOne-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Checklist View Controller-->
+        <scene sceneID="ZBj-9e-06n">
+            <objects>
+                <viewController storyboardIdentifier="Checklist" id="BL6-q5-rdA" customClass="ChecklistViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ycL-RJ-Iut">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invest'Immo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlL-nS-Wq3">
+                                <rect key="frame" x="119.5" y="60" width="175" height="36"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
+                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xhp-Yn-L3j">
+                                <rect key="frame" x="0.0" y="126" width="414" height="736"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BL6-q5-rdA" id="mNf-Ho-bX0"/>
+                                    <outlet property="delegate" destination="BL6-q5-rdA" id="eB1-e8-gNU"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvT-JF-QJL">
+                                <rect key="frame" x="324.5" y="61.5" width="50" height="33"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOnSaveButton:" destination="BL6-q5-rdA" eventType="touchUpInside" id="sy8-yT-Sdr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rvT-JF-QJL" firstAttribute="centerY" secondItem="WlL-nS-Wq3" secondAttribute="centerY" id="0uf-R6-MLd"/>
+                            <constraint firstItem="WlL-nS-Wq3" firstAttribute="centerX" secondItem="ycL-RJ-Iut" secondAttribute="centerX" id="CPO-oH-f0J"/>
+                            <constraint firstItem="xhp-Yn-L3j" firstAttribute="top" secondItem="WlL-nS-Wq3" secondAttribute="bottom" constant="30" id="LOf-R0-bJT"/>
+                            <constraint firstItem="WlL-nS-Wq3" firstAttribute="top" secondItem="iFy-f8-B6y" secondAttribute="top" constant="16" id="eod-K4-6BD"/>
+                            <constraint firstItem="rvT-JF-QJL" firstAttribute="leading" secondItem="WlL-nS-Wq3" secondAttribute="trailing" constant="30" id="lKJ-9D-JJy"/>
+                            <constraint firstItem="xhp-Yn-L3j" firstAttribute="leading" secondItem="iFy-f8-B6y" secondAttribute="leading" id="pgk-dQ-Y6W"/>
+                            <constraint firstItem="xhp-Yn-L3j" firstAttribute="trailing" secondItem="iFy-f8-B6y" secondAttribute="trailing" id="qsm-Uj-bhp"/>
+                            <constraint firstItem="xhp-Yn-L3j" firstAttribute="bottom" secondItem="iFy-f8-B6y" secondAttribute="bottom" id="zHM-2M-XgN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iFy-f8-B6y"/>
+                    </view>
+                    <connections>
+                        <outlet property="checklistTableView" destination="xhp-Yn-L3j" id="zVY-vW-CJk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCd-7r-P61" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-362.31884057971018" y="104.46428571428571"/>
+        </scene>
+    </scenes>
+</document>
