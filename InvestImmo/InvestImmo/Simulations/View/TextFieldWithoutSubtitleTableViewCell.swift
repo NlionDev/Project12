@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol TextFieldData: class {
-    func getTextFieldData(key: String, value: String)
+protocol TextFieldTableViewCellDelegate: class {
+    func textFieldTableViewCell(key: String, value: String)
 }
 
 class TextFieldWithoutSubtitleTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     //MARK: - Properties
     
-    weak var delegate: TextFieldData?
+    weak var delegate: TextFieldTableViewCellDelegate?
     private var key = String()
 
     //MARK: - Outlets
@@ -43,8 +43,13 @@ class TextFieldWithoutSubtitleTableViewCell: UITableViewCell, UITextFieldDelegat
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let text = cellTextField.text {
-        delegate?.getTextFieldData(key: key, value: text)
+        delegate?.textFieldTableViewCell(key: key, value: text)
         }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        cellTextField.resignFirstResponder()
         return true
     }
 }

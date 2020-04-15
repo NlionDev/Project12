@@ -17,13 +17,15 @@
 		0365E7A5243CCBB400A97F0E /* ChecklistPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0365E7A3243CCBB400A97F0E /* ChecklistPickerTableViewCell.xib */; };
 		0365E7A8243CCD0B00A97F0E /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365E7A6243CCD0B00A97F0E /* DatePickerTableViewCell.swift */; };
 		0365E7A9243CCD0B00A97F0E /* DatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0365E7A7243CCD0B00A97F0E /* DatePickerTableViewCell.xib */; };
-		0365E7B1243F4EEB00A97F0E /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365E7B0243F4EEB00A97F0E /* Checklist.swift */; };
 		0365E7B4243F55FA00A97F0E /* ChecklistTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365E7B2243F55FA00A97F0E /* ChecklistTextFieldTableViewCell.swift */; };
 		0365E7B5243F55FA00A97F0E /* ChecklistTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0365E7B3243F55FA00A97F0E /* ChecklistTextFieldTableViewCell.xib */; };
-		0369EFDD242D05EF00430EB1 /* OldChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0369EFDC242D05EF00430EB1 /* OldChecklistViewController.swift */; };
 		0375F6C72439CE3D00BDD0D8 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375F6C62439CE3D00BDD0D8 /* Project.swift */; };
 		0375F6CB243A17F100BDD0D8 /* AddNewProjectAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375F6CA243A17F100BDD0D8 /* AddNewProjectAlertViewController.swift */; };
 		0381DD8524365323001AB9F5 /* DetailsSavedSimulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0381DD8424365323001AB9F5 /* DetailsSavedSimulationsViewController.swift */; };
+		03827E1E2446EDC200285DF8 /* RentabilityEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03827E1D2446EDC200285DF8 /* RentabilityEnums.swift */; };
+		03827E202446F62D00285DF8 /* CreditEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03827E1F2446F62D00285DF8 /* CreditEnums.swift */; };
+		03827E222446FC3200285DF8 /* ChecklistEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03827E212446FC3200285DF8 /* ChecklistEnums.swift */; };
+		03827E2424473B5200285DF8 /* ChecklistGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03827E2324473B5200285DF8 /* ChecklistGeneral.swift */; };
 		039AAE09243343AA009B23DC /* RentabilitySimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE08243343AA009B23DC /* RentabilitySimulation.swift */; };
 		039AAE1524338D76009B23DC /* savedProjectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE1424338D76009B23DC /* savedProjectsTableViewCell.swift */; };
 		03A6B2A3242760D4003F953E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A2242760D4003F953E /* Extensions.swift */; };
@@ -96,13 +98,15 @@
 		0365E7A3243CCBB400A97F0E /* ChecklistPickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistPickerTableViewCell.xib; sourceTree = "<group>"; };
 		0365E7A6243CCD0B00A97F0E /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		0365E7A7243CCD0B00A97F0E /* DatePickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerTableViewCell.xib; sourceTree = "<group>"; };
-		0365E7B0243F4EEB00A97F0E /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		0365E7B2243F55FA00A97F0E /* ChecklistTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		0365E7B3243F55FA00A97F0E /* ChecklistTextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistTextFieldTableViewCell.xib; sourceTree = "<group>"; };
-		0369EFDC242D05EF00430EB1 /* OldChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldChecklistViewController.swift; sourceTree = "<group>"; };
 		0375F6C62439CE3D00BDD0D8 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		0375F6CA243A17F100BDD0D8 /* AddNewProjectAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProjectAlertViewController.swift; sourceTree = "<group>"; };
 		0381DD8424365323001AB9F5 /* DetailsSavedSimulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSavedSimulationsViewController.swift; sourceTree = "<group>"; };
+		03827E1D2446EDC200285DF8 /* RentabilityEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityEnums.swift; sourceTree = "<group>"; };
+		03827E1F2446F62D00285DF8 /* CreditEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditEnums.swift; sourceTree = "<group>"; };
+		03827E212446FC3200285DF8 /* ChecklistEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistEnums.swift; sourceTree = "<group>"; };
+		03827E2324473B5200285DF8 /* ChecklistGeneral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistGeneral.swift; sourceTree = "<group>"; };
 		039AAE08243343AA009B23DC /* RentabilitySimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilitySimulation.swift; sourceTree = "<group>"; };
 		039AAE1424338D76009B23DC /* savedProjectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedProjectsTableViewCell.swift; sourceTree = "<group>"; };
 		03A6B2A2242760D4003F953E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -276,9 +280,9 @@
 				03E4A9872423BE74002404C3 /* Invest_Immo.xcdatamodeld */,
 				03E4A9B62423C5DD002404C3 /* PoetsenOne-Regular.ttf */,
 				03E4A9BC2423EE3C002404C3 /* Antipasto-Pro-Regular-trial.ttf */,
-				03E4A9B32423BEA0002404C3 /* Controller */,
-				03E4A9B22423BE97002404C3 /* View */,
-				03E4A9B12423BE8F002404C3 /* Model */,
+				03E4A9842423BE74002404C3 /* Main.storyboard */,
+				03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */,
+				03A6B2A2242760D4003F953E /* Extensions.swift */,
 			);
 			path = InvestImmo;
 			sourceTree = "<group>";
@@ -301,31 +305,6 @@
 			path = InvestImmoUITests;
 			sourceTree = "<group>";
 		};
-		03E4A9B12423BE8F002404C3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		03E4A9B22423BE97002404C3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				03E4A9842423BE74002404C3 /* Main.storyboard */,
-				03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */,
-				03A6B2A2242760D4003F953E /* Extensions.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		03E4A9B32423BEA0002404C3 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0369EFDC242D05EF00430EB1 /* OldChecklistViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		03E69886243B6CD2001E6A4C /* SavedProjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,7 +320,7 @@
 			children = (
 				0375F6C62439CE3D00BDD0D8 /* Project.swift */,
 				039AAE08243343AA009B23DC /* RentabilitySimulation.swift */,
-				0365E7B0243F4EEB00A97F0E /* Checklist.swift */,
+				03827E2324473B5200285DF8 /* ChecklistGeneral.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -383,6 +362,8 @@
 				03A6B2AA242BB34D003F953E /* CreditCalculator.swift */,
 				03E69896243B7AD5001E6A4C /* RentabilityRepository.swift */,
 				03E69898243B7BF0001E6A4C /* CreditRepository.swift */,
+				03827E1D2446EDC200285DF8 /* RentabilityEnums.swift */,
+				03827E1F2446F62D00285DF8 /* CreditEnums.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -428,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				03C4F224243880A800479B64 /* ChecklistRepository.swift */,
+				03827E212446FC3200285DF8 /* ChecklistEnums.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -745,6 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0365E7A0243CCA5D00A97F0E /* SegmentTableViewCell.swift in Sources */,
+				03827E202446F62D00285DF8 /* CreditEnums.swift in Sources */,
 				03E6989C243B9532001E6A4C /* TextFieldWithoutSubtitleTableViewCell.swift in Sources */,
 				0365E7A4243CCBB400A97F0E /* ChecklistPickerTableViewCell.swift in Sources */,
 				039AAE09243343AA009B23DC /* RentabilitySimulation.swift in Sources */,
@@ -753,6 +736,7 @@
 				03DF51822431EB9F0040D97D /* InfoViewController.swift in Sources */,
 				03E698AF243C8964001E6A4C /* SimulationResultViewController.swift in Sources */,
 				03E69895243B7A24001E6A4C /* SimulationsViewController.swift in Sources */,
+				03827E222446FC3200285DF8 /* ChecklistEnums.swift in Sources */,
 				039AAE1524338D76009B23DC /* savedProjectsTableViewCell.swift in Sources */,
 				03C4F22324387C1A00479B64 /* ChecklistAlertTableViewCell.swift in Sources */,
 				03A6B2A3242760D4003F953E /* Extensions.swift in Sources */,
@@ -765,6 +749,7 @@
 				03C4F2192437765100479B64 /* DetailsChoiceViewController.swift in Sources */,
 				03A6B2A9242A89CF003F953E /* RentabilityCalculator.swift in Sources */,
 				03E69899243B7BF0001E6A4C /* CreditRepository.swift in Sources */,
+				03827E2424473B5200285DF8 /* ChecklistGeneral.swift in Sources */,
 				03E698A4243C605B001E6A4C /* StepperTableViewCell.swift in Sources */,
 				03E698B3243CA63D001E6A4C /* ResultTableViewCell.swift in Sources */,
 				03E69885243B6BE8001E6A4C /* Alerts.swift in Sources */,
@@ -775,11 +760,10 @@
 				03E698AD243C887C001E6A4C /* SavedProjectsViewController.swift in Sources */,
 				03E69897243B7AD5001E6A4C /* RentabilityRepository.swift in Sources */,
 				03E698A0243C5E95001E6A4C /* PickerViewTableViewCell.swift in Sources */,
-				0369EFDD242D05EF00430EB1 /* OldChecklistViewController.swift in Sources */,
+				03827E1E2446EDC200285DF8 /* RentabilityEnums.swift in Sources */,
 				03E4A9B92423CCF1002404C3 /* SceneDelegate.swift in Sources */,
 				0375F6C72439CE3D00BDD0D8 /* Project.swift in Sources */,
 				0365E79C243CC8B100A97F0E /* TextViewTableViewCell.swift in Sources */,
-				0365E7B1243F4EEB00A97F0E /* Checklist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

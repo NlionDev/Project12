@@ -12,7 +12,7 @@ class TextFieldWithSubtitleTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     //MARK: - Properties
     
-    weak var delegate: TextFieldData?
+    weak var delegate: TextFieldTableViewCellDelegate?
     private var key = String()
     
     //MARK: - Outlets
@@ -41,9 +41,14 @@ class TextFieldWithSubtitleTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let text = cellTextField.text {
-        delegate?.getTextFieldData(key: key, value: text)
+        delegate?.textFieldTableViewCell(key: key, value: text)
         }
         
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        cellTextField.resignFirstResponder()
         return true
     }
 }

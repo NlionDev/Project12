@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol DatePickerData: class {
-    func getDatePickerData(key: String, value: String, sectionKey: Int)
+protocol DatePickerTableViewCellDelegate: class {
+    func datePickerTableViewCell(_ datePickerTableViewCell: DatePickerTableViewCell, key: String, value: String, sectionKey: Int)
 }
 
 class DatePickerTableViewCell: UITableViewCell {
@@ -17,9 +17,9 @@ class DatePickerTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
-    weak var delegate: DatePickerData?
-    var key = String()
-    var section = Int()
+    weak var delegate: DatePickerTableViewCellDelegate?
+    private var key = String()
+    private var section = Int()
     
     //MARK: - Outlets
     
@@ -38,7 +38,7 @@ class DatePickerTableViewCell: UITableViewCell {
     
     @IBAction func didChangeDate(_ sender: Any) {
         let newValue = cellDatePicker.date.transformIntoString
-        delegate?.getDatePickerData(key: key, value: newValue, sectionKey: section)
+        delegate?.datePickerTableViewCell(self, key: key, value: newValue, sectionKey: section)
     }
     
     //MARK: - Methods

@@ -14,25 +14,19 @@ class ChecklistRepository {
     
     //MARK: Properties
     
-    let checklistTwoDimensionnalArray = [
-        ["Date de la visite", "Type de bien", "Superficie"],
-        ["Nuisances", "Atouts", "Transports en commun", "Stationnement facile"],
-        ["Année de construction", "Nombre de lots", "Internet", "Syndicat", "Qualité façades", "Qualité toitures", "Qualité communs"],
-        ["Diagnostic de performances énergétiques", "Lumineux", "Traversant", "VMC", "Présence d'humidité", "Hauteur sous plafond", "Planéité du sol", "Isolation", "Insonorisation", "Orientation", "Vue de la chambre", "Vue de la pièce de vie", "Energie du chauffage", "Type de chauffage", "Electricité au normes", "Compteur individuel", "WC isolé", "Salle de bain moderne", "Etat robinetterie", "Etat des sols", "Etat des murs", "Etat des volets", "Double vitrage", "Reconfiguration possible", "Présence de cave", "Surface cave", "Parking", "Elements différanciants par rapport aux autres biens"]
+    let sections: ChecklistSection = [
+        [ChecklistItem.visitDate, ChecklistItem.estateType, ChecklistItem.surfaceArea],
+        [ChecklistItem.problem, ChecklistItem.advantage, ChecklistItem.transports, ChecklistItem.easyPark],
+        [ChecklistItem.yearOfConstruction, ChecklistItem.numberOfLots, ChecklistItem.internet, ChecklistItem.syndicate, ChecklistItem.facade, ChecklistItem.roof, ChecklistItem.communalAreas],
+        [ChecklistItem.dpe, ChecklistItem.light, ChecklistItem.dualAspect, ChecklistItem.vmc, ChecklistItem.humidity, ChecklistItem.heightUnderCeiling, ChecklistItem.planeness, ChecklistItem.insulation, ChecklistItem.soundInsulation, ChecklistItem.direction, ChecklistItem.bedroomView, ChecklistItem.lifeRoomView, ChecklistItem.heatingSystem, ChecklistItem.heatingType, ChecklistItem.electricity, ChecklistItem.electricityMeters, ChecklistItem.toilet, ChecklistItem.bathroom, ChecklistItem.plumbingQuality, ChecklistItem.groundQuality, ChecklistItem.wallQuality, ChecklistItem.shutters, ChecklistItem.doubleGlazing, ChecklistItem.reconfiguration, ChecklistItem.cave, ChecklistItem.caveSurface, ChecklistItem.parking, ChecklistItem.distinguishElements]
     ]
     
-    let checklistTwoDimensionnalDictionnary = [
-        ["Date de la visite": 1, "Type de bien": 2, "Superficie": 3],
-        ["Nuisances": 4, "Atouts": 4, "Transports en commun": 4, "Stationnement facile": 5],
-        ["Année de construction": 3, "Nombre de lots": 3, "Internet": 5, "Syndicat": 5, "Qualité façades": 2, "Qualité toitures": 2, "Qualité communs": 2],
-        ["Diagnostic de performances énergétiques": 2, "Lumineux": 5, "Traversant": 5, "VMC": 5, "Présence d'humidité": 5, "Hauteur sous plafond": 3, "Planéité du sol": 2, "Isolation": 2, "Insonorisation": 2, "Orientation": 2, "Vue de la chambre": 2, "Vue de la pièce de vie": 2, "Energie du chauffage": 2, "Type de chauffage": 5, "Electricité au normes": 5, "Compteur individuel": 5, "WC isolé": 5, "Salle de bain moderne": 5, "Etat robinetterie": 2, "Etat des sols": 2, "Etat des murs": 2, "Etat des volets": 2, "Double vitrage": 5, "Reconfiguration possible": 5, "Présence de cave": 5, "Surface cave": 3, "Parking": 5, "Elements différanciants par rapport aux autres biens": 4]
-    ]
-    
+
     var checklistData = [
         ["Date de la visite": "", "Type de bien": "", "Superficie": ""],
         ["Nuisances": "", "Atouts": "", "Transports en commun": "", "Stationnement facile": ""],
         ["Année de construction": "", "Nombre de lots": "", "Internet": "", "Syndicat": "", "Qualité façades": "", "Qualité toitures": "", "Qualité communs": ""],
-        ["Diagnostic de performances énergétiques": "", "Lumineux": "", "Traversant": "", "VMC": "", "Présence d'humidité": "", "Hauteur sous plafond": "", "Planéité du sol": "", "Isolation": "", "Insonorisation": "", "Orientation": "", "Vue de la chambre": "", "Vue de la pièce de vie": "", "Energie du chauffage": "", "Type de chauffage": "", "Electricité au normes": "", "Compteur individuel": "", "WC isolé": "", "Salle de bain moderne": "", "Etat robinetterie": "", "Etat des sols": "", "Etat des murs": "", "Etat des volets": "", "Double vitrage": "", "Reconfiguration possible": "", "Présence de cave": "", "Surface cave": "", "Parking": "", "Elements différanciants par rapport aux autres biens": ""]
+        ["Diagnostic de performances énergétiques": "", "Lumineux": "", "Traversant": "", "VMC": "", "Présence d'humidité": "", "Hauteur sous plafond": "", "Planéité des sols": "", "Isolation": "", "Insonorisation": "", "Orientation": "", "Vue de la chambre": "", "Vue de la pièce de vie": "", "Energie du chauffage": "", "Type de chauffage": "", "Electricité au normes": "", "Compteur individuel": "", "WC isolé": "", "Salle de bain moderne": "", "Etat robinetterie": "", "Etat des sols": "", "Etat des murs": "", "Etat des volets": "", "Double vitrage": "", "Reconfiguration possible": "", "Présence de cave": "", "Surface cave": "", "Parking": "", "Elements différenciants par rapport aux autres biens": ""]
     ]
     
     var pickerCells = [ChecklistPickerTableViewCell]()

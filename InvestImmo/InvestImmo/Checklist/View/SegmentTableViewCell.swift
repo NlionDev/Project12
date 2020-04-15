@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol SegmentData: class {
-    func getSegmentData(key: String, value: String, sectionKey: Int)
+protocol SegmentTableViewCellDelegate: class {
+    func segmentTableViewCell(_ segmentTableViewCell: SegmentTableViewCell, key: String, value: String, sectionKey: Int)
 }
 
 class SegmentTableViewCell: UITableViewCell {
@@ -17,7 +17,7 @@ class SegmentTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
-    weak var delegate: SegmentData?
+    weak var delegate: SegmentTableViewCellDelegate?
     private var segmentId = Int()
     private var key = String()
     private var section = Int()
@@ -40,7 +40,7 @@ class SegmentTableViewCell: UITableViewCell {
     @IBAction func didChangeValue(_ sender: Any) {
         let index = cellSegment.selectedSegmentIndex
         if let newValue = index == 0 ? allSegmentData[segmentId][index] : allSegmentData[segmentId][index] {
-            delegate?.getSegmentData(key: key, value: newValue, sectionKey: section)
+            delegate?.segmentTableViewCell(self, key: key, value: newValue, sectionKey: section)
         }
     }
     

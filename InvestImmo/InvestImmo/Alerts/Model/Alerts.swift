@@ -11,22 +11,22 @@ import UIKit
 
 class ExistantProjectAlert {
     
-    func alert(checklist: ChecklistRepository, simulation: RentabilitySimulation) -> ChecklistAlertViewController {
+    func alert(checklist: ChecklistRepository, simulation: RentabilityRepository) -> ChecklistAlertViewController {
         let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: "ExistantProjectAlertVC") as! ChecklistAlertViewController
-        alertVC.mySimulationData = simulation
-        alertVC.checklistData = checklist
+        alertVC.rentaRepo = simulation
+        alertVC.checklistRepo = checklist
         return alertVC
     }
 }
 
 class NewProjectAlert {
     
-    func alert(checklist: ChecklistRepository, simulation: RentabilitySimulation) -> AddNewProjectAlertViewController {
+    func alert(checklist: ChecklistRepository, simulation: RentabilityRepository) -> AddNewProjectAlertViewController {
         let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: "NewProjectAlertVC") as! AddNewProjectAlertViewController
-        alertVC.mySimulationData = simulation
-        alertVC.checklistData = checklist
+        alertVC.rentaRepo = simulation
+        alertVC.checklistRepo = checklist
         return alertVC
     }
 }

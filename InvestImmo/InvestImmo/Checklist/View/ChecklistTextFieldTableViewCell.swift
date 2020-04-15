@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol ChecklistTextFieldData: class {
-    func getChecklistTextFieldData(key: String, value: String, sectionKey: Int)
+protocol ChecklistTextFieldTableViewCellDelegate: class {
+    func checklistTextFieldTableViewCell(_ checklistTextFieldTableViewCell: ChecklistTextFieldTableViewCell, key: String, value: String, sectionKey: Int)
 }
 
 class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
@@ -17,7 +17,7 @@ class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     //MARK: - Properties
     
-    weak var delegate: ChecklistTextFieldData?
+    weak var delegate: ChecklistTextFieldTableViewCellDelegate?
     private var key = String()
     private var section = Int()
     
@@ -31,8 +31,8 @@ class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellTextField.clear()
         cellTextField.delegate = self
+        cellTextField.clear()
     }
     
     //MARK: - Methods
@@ -46,8 +46,13 @@ class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let text = cellTextField.text {
-        delegate?.getChecklistTextFieldData(key: key, value: text, sectionKey: section)
+        delegate?.checklistTextFieldTableViewCell(self, key: key, value: text, sectionKey: section)
         }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        cellTextField.resignFirstResponder()
         return true
     }
 

@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol PickerData: class {
-    func getPickerData(key: String, value: Int)
+protocol PickerViewTableViewCellDelegate: class {
+    func pickerViewTableViewCell(_ pickerViewTableViewCell: PickerViewTableViewCell, key: String, value: Int)
 }
 
 class PickerViewTableViewCell: UITableViewCell {
@@ -20,7 +20,7 @@ class PickerViewTableViewCell: UITableViewCell {
     let creditRepo = CreditRepository()
     var selectedPickerData = Int()
     var key = String()
-    weak var delegate: PickerData?
+    weak var delegate: PickerViewTableViewCellDelegate?
  
     //MARK: - Outlets
     
@@ -77,7 +77,7 @@ extension PickerViewTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource 
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedPickerData = creditRepo.creditDuration[durationPicker.selectedRow(inComponent: component)]
-        delegate?.getPickerData(key: key,value: selectedPickerData)
+        delegate?.pickerViewTableViewCell(self, key: key,value: selectedPickerData)
     }
     
 }

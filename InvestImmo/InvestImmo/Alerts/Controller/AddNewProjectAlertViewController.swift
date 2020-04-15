@@ -16,8 +16,8 @@ class AddNewProjectAlertViewController: UIViewController {
     let realm = try! Realm()
     lazy var myProjects: Results<Project> = {
     self.realm.objects(Project.self)}()
-    var checklistData: ChecklistRepository?
-    var mySimulationData: RentabilitySimulation?
+    var checklistRepo: ChecklistRepository?
+    var rentaRepo: RentabilityRepository?
     var myNewProject = Project()
     var mySimulation = RentabilitySimulation()
     var checklistGeneral = ChecklistGeneral()
@@ -39,9 +39,10 @@ class AddNewProjectAlertViewController: UIViewController {
     
     @IBAction func didTapOnNewProjectButton(_ sender: Any) {
         guard let projectName = projectNameLabel.text else {return}
+        guard let rentaRepo = rentaRepo else {return}
         if self.isMySavedProjectsNil(projects: myProjects) {
             
-            if isMySimulationDataNil(simulationCashflow: mySimulationData!.mensualCashflow) {
+            if isMySimulationDataNil(simulationCashflow: rentaRepo.rentabilityResultData["Cash-Flow Mensuel"]) {
                 self.saveNewProjectData(name: projectName)
                 self.saveChecklistGeneralData(name: projectName)
             } else {
@@ -50,7 +51,7 @@ class AddNewProjectAlertViewController: UIViewController {
             }
         } else {
             if isMyProjectNameUnique(name: projectName, projects: self.myProjects) {
-                if isMySimulationDataNil(simulationCashflow: mySimulationData!.mensualCashflow) {
+                if isMySimulationDataNil(simulationCashflow: rentaRepo.rentabilityResultData["Cash-Flow Mensuel"]) {
                     self.saveNewProjectData(name: projectName)
                     self.saveChecklistGeneralData(name: projectName)
                 } else {
@@ -78,22 +79,22 @@ class AddNewProjectAlertViewController: UIViewController {
     }
     
     private func saveSimulationData(name: String) {
-        guard let mySimulationData = mySimulationData else {return}
+        guard let rentaRepo = rentaRepo else {return}
         mySimulation.name = name
-        mySimulation.estatePrice = mySimulationData.estatePrice
-        mySimulation.worksPrice = mySimulationData.worksPrice
-        mySimulation.notaryFees = mySimulationData.notaryFees
-        mySimulation.monthlyRent = mySimulationData.monthlyRent
-        mySimulation.propertyTax = mySimulationData.propertyTax
-        mySimulation.maintenanceFees = mySimulationData.maintenanceFees
-        mySimulation.charges = mySimulationData.charges
-        mySimulation.managementFees = mySimulationData.managementFees
-        mySimulation.insurance = mySimulationData.insurance
-        mySimulation.creditCost = mySimulationData.creditCost
-        mySimulation.grossYield = mySimulationData.grossYield
-        mySimulation.netYield = mySimulationData.netYield
-        mySimulation.annualCashflow = mySimulationData.annualCashflow
-        mySimulation.mensualCashflow = mySimulationData.mensualCashflow
+        mySimulation.estatePrice = rentaRepo.rentabilityData["Prix du bien"]
+        mySimulation.worksPrice = rentaRepo.rentabilityData["Coût des travaux"]
+        mySimulation.notaryFees = rentaRepo.rentabilityData["Frais de notaire"]
+        mySimulation.monthlyRent = rentaRepo.rentabilityData["Loyer mensuel"]
+        mySimulation.propertyTax = rentaRepo.rentabilityData["Taxe foncière"]
+        mySimulation.maintenanceFees = rentaRepo.rentabilityData["Frais d'entretien"]
+        mySimulation.charges = rentaRepo.rentabilityData["Charges de copropriété"]
+        mySimulation.managementFees = rentaRepo.rentabilityData["Frais de gérance"]
+        mySimulation.insurance = rentaRepo.rentabilityData["Assurance loyers impayés"]
+        mySimulation.creditCost = rentaRepo.rentabilityData["Coût du crédit"]
+        mySimulation.grossYield = rentaRepo.rentabilityResultData["Rendement Brut"]
+        mySimulation.netYield = rentaRepo.rentabilityResultData["Rendement Net"]
+        mySimulation.annualCashflow = rentaRepo.rentabilityResultData["Cash-Flow Annuel"]
+        mySimulation.mensualCashflow = rentaRepo.rentabilityResultData["Cash-Flow Mensuel"]
         try! self.realm.write {
             self.realm.add(mySimulation)
         }
@@ -101,14 +102,14 @@ class AddNewProjectAlertViewController: UIViewController {
     }
     
     private func saveChecklistGeneralData(name: String) {
-//        guard  let checklistData = checklistData else {return}
-//        checklistGeneral.name = name
-//        checklistGeneral.estateType = checklistData.estateType
-//        checklistGeneral.visitDate = checklistData.visitDate
-//        checklistGeneral.surfaceArea = checklistData.surfaceArea
-//        try! self.realm.write {
-//            self.realm.add(checklistGeneral)
-//        }
+        guard  let checklist = checklistRepo else {return}
+        checklistGeneral.name = name
+        checklistGeneral.estateType = checklist.checklistData[0]["Type de bien"]
+        checklistGeneral.visitDate = checklist.checklistData[0]["Date de la visite"]
+        checklistGeneral.surfaceArea = checklist.checklistData[0]["Superficie"]
+        try! self.realm.write {
+            self.realm.add(checklistGeneral)
+        }
     }
     
 }

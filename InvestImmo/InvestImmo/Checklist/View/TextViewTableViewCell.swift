@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol TextViewData: class {
-    func getTextViewData(key: String, value: String, sectionKey: Int)
+protocol TextViewTableViewCellDelegate: class {
+    func textViewTableViewCell(_ textViewTableViewCell: TextViewTableViewCell, key: String, value: String, sectionKey: Int)
 }
 
 class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
@@ -17,7 +17,7 @@ class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     
     //MARK: - Properties
     
-    weak var delegate: TextViewData?
+    weak var delegate: TextViewTableViewCellDelegate?
     private var key = String()
     private var section = Int()
     
@@ -31,6 +31,7 @@ class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         cellTextView.delegate = self
+        cellTextView.clear()
     }
     
     //MARK: - Methods
@@ -43,8 +44,10 @@ class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         if let text = cellTextView.text {
-            delegate?.getTextViewData(key: key, value: text, sectionKey: section)
+            delegate?.textViewTableViewCell(self, key: key, value: text, sectionKey: section)
         }
         return true
     }
+    
+    
 }

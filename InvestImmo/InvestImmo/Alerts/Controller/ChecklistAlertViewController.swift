@@ -20,8 +20,8 @@ class ChecklistAlertViewController: UIViewController {
     private var selectedProject: Project?
     private var mySimulation = RentabilitySimulation()
     private var checklistGeneral = ChecklistGeneral()
-    var checklistData: ChecklistRepository?
-    var mySimulationData: RentabilitySimulation?
+    var checklistRepo: ChecklistRepository?
+    var rentaRepo: RentabilityRepository?
     let newProjectAlert = NewProjectAlert()
     
     
@@ -39,7 +39,7 @@ class ChecklistAlertViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func didTapOnCreateNewProject(_ sender: Any) {
-        let alertVC = newProjectAlert.alert(checklist: checklistData!, simulation: mySimulationData!)
+        let alertVC = newProjectAlert.alert(checklist: checklistRepo!, simulation: rentaRepo!)
         present(alertVC, animated: true)
     }
     
@@ -78,35 +78,35 @@ class ChecklistAlertViewController: UIViewController {
         return result
     }
     
-    private func saveSimulation(project: Project, simulation: RentabilitySimulation) {
+    private func saveSimulation(project: Project, rentaRepo: RentabilityRepository) {
         mySimulation.name = project.name
-        mySimulation.estatePrice = simulation.estatePrice
-        mySimulation.worksPrice = simulation.worksPrice
-        mySimulation.notaryFees = simulation.notaryFees
-        mySimulation.monthlyRent = simulation.monthlyRent
-        mySimulation.propertyTax = simulation.propertyTax
-        mySimulation.maintenanceFees = simulation.maintenanceFees
-        mySimulation.charges = simulation.charges
-        mySimulation.managementFees = simulation.managementFees
-        mySimulation.insurance = simulation.insurance
-        mySimulation.creditCost = simulation.creditCost
-        mySimulation.grossYield = simulation.grossYield
-        mySimulation.netYield = simulation.netYield
-        mySimulation.annualCashflow = simulation.annualCashflow
-        mySimulation.mensualCashflow = simulation.mensualCashflow
+        mySimulation.estatePrice = rentaRepo.rentabilityData["Prix du bien"]
+        mySimulation.worksPrice = rentaRepo.rentabilityData["Coût des travaux"]
+        mySimulation.notaryFees = rentaRepo.rentabilityData["Frais de notaire"]
+        mySimulation.monthlyRent = rentaRepo.rentabilityData["Loyer mensuel"]
+        mySimulation.propertyTax = rentaRepo.rentabilityData["Taxe foncière"]
+        mySimulation.maintenanceFees = rentaRepo.rentabilityData["Frais d'entretien"]
+        mySimulation.charges = rentaRepo.rentabilityData["Charges de copropriété"]
+        mySimulation.managementFees = rentaRepo.rentabilityData["Frais de gérance"]
+        mySimulation.insurance = rentaRepo.rentabilityData["Assurance loyers impayés"]
+        mySimulation.creditCost = rentaRepo.rentabilityData["Coût du crédit"]
+        mySimulation.grossYield = rentaRepo.rentabilityResultData["Rendement Brut"]
+        mySimulation.netYield = rentaRepo.rentabilityResultData["Rendement Net"]
+        mySimulation.annualCashflow = rentaRepo.rentabilityResultData["Cash-Flow Annuel"]
+        mySimulation.mensualCashflow = rentaRepo.rentabilityResultData["Cash-Flow Mensuel"]
         try! self.realm.write {
             self.realm.add(mySimulation)
         }
     }
     
     private func saveChecklistGeneral(project: Project, checklist: ChecklistRepository) {
-//        checklistGeneral.name = project.name
-//        checklistGeneral.estateType = checklist.estateType
-//        checklistGeneral.visitDate = checklist.visitDate
-//        checklistGeneral.surfaceArea = checklist.surfaceArea
-//        try! self.realm.write {
-//            self.realm.add(checklistGeneral)
-//        }
+        checklistGeneral.name = project.name
+        checklistGeneral.estateType = checklist.checklistData[0]["Type de bien"]
+        checklistGeneral.visitDate = checklist.checklistData[0]["Date de la visite"]
+        checklistGeneral.surfaceArea = checklist.checklistData[0]["Superficie"]
+        try! self.realm.write {
+            self.realm.add(checklistGeneral)
+        }
     }
 
 }
@@ -134,20 +134,20 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedProject = myProjects[indexPath.row]
         guard let project = selectedProject else {return}
-        if isMySimulationDataNil(simulationCashflow: mySimulationData?.mensualCashflow) {
-            guard let checklistData = checklistData else {return}
+        guard let rentaRepo = rentaRepo else {return}
+        if isMySimulationDataNil(simulationCashflow: rentaRepo.rentabilityResultData["Cash-Flow Mensuel"]) {
+            guard let checklist = checklistRepo else {return}
             if self.checkIfTheProjectAlreadyHaveSavedChecklist(project: project) {
                 self.displayAlertForDuplicateProjectName()
             } else {
-            saveChecklistGeneral(project: project, checklist: checklistData)
+            saveChecklistGeneral(project: project, checklist: checklist)
                 dismiss(animated: true)
             }
         } else {
-            guard let mySimulationData = mySimulationData else {return}
             if checkIfTheProjectAlreadyHaveSavedSimulation(project: project) {
                 self.displayAlertForDuplicateProjectName()
             } else {
-                saveSimulation(project: project, simulation: mySimulationData)
+                saveSimulation(project: project, rentaRepo: rentaRepo)
                 dismiss(animated: true)
             }
         }

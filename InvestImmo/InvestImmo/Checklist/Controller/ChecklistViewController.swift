@@ -14,21 +14,15 @@ class ChecklistViewController: UIViewController {
     //MARK: - Properties
     
     let realm = try! Realm()
+    lazy var myProjects: Results<Project> = {
+    self.realm.objects(Project.self)}()
+    private let existantProjectAlert = ExistantProjectAlert()
+    private let newProjectAlert = NewProjectAlert()
+    private var simulation = RentabilityRepository()
     private let checklistRepo = ChecklistRepository()
     private var lastCell = TextViewTableViewCell()
-    private var checklist = Checklist()
-    private var checklistGeneral = ChecklistGeneral()
+    private let checklistGeneral = ChecklistGeneral()
     
-    //MARK: - Enum
-    
-    enum CellType {
-        case dateCell
-        case textViewCell
-        case textFieldCell
-        case pickerCell
-        case segmentCell
-    }
-
     //MARK: - Outlets
     
     @IBOutlet weak var checklistTableView: UITableView!
@@ -48,21 +42,22 @@ class ChecklistViewController: UIViewController {
         if let lastTextView = lastCell.cellTextView {
             lastTextView.resignFirstResponder()
         }
-        try! realm.write {
-            for (key, value) in checklistRepo.checklistData[0] {
-            checklistGeneral.key = key
-            checklistGeneral.value = value
-            realm.add(checklistGeneral)
+        if myProjects.isEmpty {
+            let alertVC = newProjectAlert.alert(checklist: checklistRepo, simulation: simulation)
+            present(alertVC, animated: true)
+        } else {
+            let alertVC = existantProjectAlert.alert(checklist: checklistRepo, simulation: simulation)
+            present(alertVC, animated: true)
         }
-        checklist.name = "Studio Montpellier"
-            checklist.checklistGeneral.append(checklistGeneral)
-            realm.add(checklist)
-        }
-        
-        
+
     }
     
     //MARK: - Methods
+    
+    private func saveChecklistGeneralItems() {
+        checklistGeneral.visitDate = checklistRepo.checklistData[0]["Date de la visite"]
+        
+    }
     
     private func nibRegister() {
         let nibNameForDatePickerCell = UINib(nibName: "DatePickerTableViewCell", bundle: nil)
@@ -87,92 +82,39 @@ class ChecklistViewController: UIViewController {
         return sectionTitle
     }
     
-    private func getDateCell(tableView: UITableView, indexPath: IndexPath, title: String) -> UITableViewCell {
-        guard let dateCell = tableView.dequeueReusableCell(withIdentifier: "DatePickerCell", for: indexPath) as? DatePickerTableViewCell else {return UITableViewCell()}
-        dateCell.configure(title: title, sectionKey: indexPath.section)
-        dateCell.delegate = self
-        checklistRepo.checklistData[indexPath.section][title] = dateCell.cellDatePicker.date.transformIntoString
-        return dateCell
-    }
-    
-    private func getPickerCell(tableView: UITableView, indexPath: IndexPath, title: String) -> UITableViewCell {
-        guard let pickerCell = tableView.dequeueReusableCell(withIdentifier: "ChecklistPickerCell", for: indexPath) as? ChecklistPickerTableViewCell else {return UITableViewCell()}
-        pickerCell.configure(title: title, sectionKey: indexPath.section)
-        pickerCell.delegate = self
-        checklistRepo.checklistData[indexPath.section][title] = pickerCell.pickerData[pickerCell.cellPicker.selectedRow(inComponent: 0)]
-        return pickerCell
-    }
-    
-    private func getTextViewCell(tableView: UITableView, indexPath: IndexPath, title: String) -> UITableViewCell {
-        guard let textViewCell = tableView.dequeueReusableCell(withIdentifier: "TextViewCell", for: indexPath) as? TextViewTableViewCell else {return UITableViewCell()}
-        textViewCell.configure(title: title, sectionKey: indexPath.section)
-        textViewCell.delegate = self
-        lastCell = textViewCell
-        return textViewCell
-    }
-    
-    private func getTextFieldCell(tableView: UITableView, indexPath: IndexPath, title: String) -> UITableViewCell {
-        guard let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "ChecklistTextFieldCell", for: indexPath) as? ChecklistTextFieldTableViewCell else {return UITableViewCell()}
-        if title == "Superficie" || title == "Surface cave" {
-            textFieldCell.configure(title: title, unit: " m2", sectionKey: indexPath.section)
-        } else if title == "Hauteur sous plafond" {
-            textFieldCell.configure(title: title, unit: " cm", sectionKey: indexPath.section)
-        } else {
-            textFieldCell.configure(title: title, unit: "", sectionKey: indexPath.section)
-        }
-        textFieldCell.delegate = self
-        return textFieldCell
-    }
-    
-    private func getSegmentCell(tableView: UITableView, indexPath: IndexPath, title: String) -> UITableViewCell {
-        guard let segmentCell = tableView.dequeueReusableCell(withIdentifier: "SegmentCell", for: indexPath) as? SegmentTableViewCell else {return UITableViewCell()}
-        segmentCell.configure(title: title, sectionKey: indexPath.section)
-        segmentCell.delegate = self
-        checklistRepo.checklistData[indexPath.section][title] = segmentCell.segmentValue
-        return segmentCell
-    }
-    
-    private func getCorrectCell(tableView: UITableView, indexPath: IndexPath, cellType: CellType, title: String) -> UITableViewCell {
-        switch cellType {
-        case .dateCell:
-            return getDateCell(tableView: tableView, indexPath: indexPath, title: title)
-        case .pickerCell:
-            return getPickerCell(tableView: tableView, indexPath: indexPath, title: title)
-        case .textViewCell:
-            return getTextViewCell(tableView: tableView, indexPath: indexPath, title: title)
-        case .textFieldCell:
-            return getTextFieldCell(tableView: tableView, indexPath: indexPath, title: title)
-        case .segmentCell:
-            return getSegmentCell(tableView: tableView, indexPath: indexPath, title: title)
-        }
-    }
-    
-    private func getId(tableView: UITableView, indexPath: IndexPath, title: String) -> Int {
-        var goodId = Int()
-        for (newTitle, id) in checklistRepo.checklistTwoDimensionnalDictionnary[indexPath.section] {
-            if title == newTitle {
-                goodId = id
-            }
-        }
-        return goodId
-    }
-    
     private func configureTableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        let title = checklistRepo.checklistTwoDimensionnalArray[indexPath.section][indexPath.row]
-        let id = getId(tableView: tableView, indexPath: indexPath, title: title)
-        if id == 1 {
-            cell = getCorrectCell(tableView: tableView, indexPath: indexPath, cellType: .dateCell, title: title)
-        } else if id == 2 {
-            cell = getCorrectCell(tableView: tableView, indexPath: indexPath, cellType: .pickerCell, title: title)
-        } else if id == 3 {
-            cell = getCorrectCell(tableView: tableView, indexPath: indexPath, cellType: .textFieldCell, title: title)
-        } else if id == 4 {
-            cell = getCorrectCell(tableView: tableView, indexPath: indexPath, cellType: .textViewCell, title: title)
-        } else if id == 5 {
-            cell = getCorrectCell(tableView: tableView, indexPath: indexPath, cellType: .segmentCell, title: title)
+        let item = checklistRepo.sections[indexPath.section][indexPath.row]
+        switch item.cellType {
+        case .datePicker:
+            guard let dateCell = tableView.dequeueReusableCell(withIdentifier: "DatePickerCell", for: indexPath) as? DatePickerTableViewCell else {return UITableViewCell()}
+            dateCell.configure(title: item.titles, sectionKey: indexPath.section)
+            checklistRepo.checklistData[indexPath.section][item.titles] = dateCell.cellDatePicker.date.transformIntoString
+            dateCell.delegate = self
+            return dateCell
+        case .textView:
+            guard let textViewCell = tableView.dequeueReusableCell(withIdentifier: "TextViewCell", for: indexPath) as? TextViewTableViewCell else {return UITableViewCell()}
+            textViewCell.configure(title: item.titles, sectionKey: indexPath.section)
+            textViewCell.delegate = self
+            lastCell = textViewCell
+            return textViewCell
+        case .pickerView:
+            guard let pickerCell = tableView.dequeueReusableCell(withIdentifier: "ChecklistPickerCell", for: indexPath) as? ChecklistPickerTableViewCell else {return UITableViewCell()}
+            pickerCell.configure(title: item.titles, sectionKey: indexPath.section)
+            pickerCell.delegate = self
+            checklistRepo.checklistData[indexPath.section][item.titles] = pickerCell.pickerData[pickerCell.cellPicker.selectedRow(inComponent: 0)]
+            return pickerCell
+        case .textField:
+            guard let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "ChecklistTextFieldCell", for: indexPath) as? ChecklistTextFieldTableViewCell else {return UITableViewCell()}
+            textFieldCell.configure(title: item.titles, unit: item.unit, sectionKey: indexPath.section)
+            textFieldCell.delegate = self
+            return textFieldCell
+        case .segment:
+            guard let segmentCell = tableView.dequeueReusableCell(withIdentifier: "SegmentCell", for: indexPath) as? SegmentTableViewCell else {return UITableViewCell()}
+            segmentCell.configure(title: item.titles, sectionKey: indexPath.section)
+            segmentCell.delegate = self
+            checklistRepo.checklistData[indexPath.section][item.titles] = segmentCell.segmentValue
+            return segmentCell
         }
-       return cell
     }
 }
 
@@ -181,16 +123,15 @@ class ChecklistViewController: UIViewController {
 extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return checklistRepo.checklistTwoDimensionnalArray[section].count
+        return checklistRepo.sections[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         return configureTableView(tableView: tableView, indexPath: indexPath)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return checklistRepo.checklistTwoDimensionnalArray.count
+        return checklistRepo.sections.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -212,25 +153,34 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ChecklistViewController: TextViewData, ChecklistTextFieldData, ChecklistPickerData, DatePickerData, SegmentData {
-    func getTextViewData(key: String, value: String, sectionKey: Int) {
-        checklistRepo.checklistData[sectionKey][key] = value
-    }
+extension ChecklistViewController: TextViewTableViewCellDelegate {
     
-    func getChecklistTextFieldData(key: String, value: String, sectionKey: Int) {
+    func textViewTableViewCell(_ textViewTableViewCell: TextViewTableViewCell, key: String, value: String, sectionKey: Int) {
         checklistRepo.checklistData[sectionKey][key] = value
     }
-    
-    func getChecklistPickerData(key: String, value: String, sectionKey: Int) {
-        checklistRepo.checklistData[sectionKey][key] = value
-    }
-    
-    func getDatePickerData(key: String, value: String, sectionKey: Int) {
-        checklistRepo.checklistData[sectionKey][key] = value
-    }
-    
-    func getSegmentData(key: String, value: String, sectionKey: Int) {
-        checklistRepo.checklistData[sectionKey][key] = value
-    }
+}
 
+extension ChecklistViewController: ChecklistTextFieldTableViewCellDelegate {
+    
+    func checklistTextFieldTableViewCell(_ checklistTextFieldTableViewCell: ChecklistTextFieldTableViewCell, key: String, value: String, sectionKey: Int) {
+        checklistRepo.checklistData[sectionKey][key] = value
+    }
+}
+
+extension ChecklistViewController: ChecklistPickerTableViewCellDelegate {
+    func checklistPickerTableViewCell(_ checklistPickerTableViewCell: ChecklistPickerTableViewCell, key: String, value: String, sectionKey: Int) {
+        checklistRepo.checklistData[sectionKey][key] = value
+    }
+}
+
+extension ChecklistViewController: DatePickerTableViewCellDelegate {
+    func datePickerTableViewCell(_ datePickerTableViewCell: DatePickerTableViewCell, key: String, value: String, sectionKey: Int) {
+        checklistRepo.checklistData[sectionKey][key] = value
+    }
+}
+
+extension ChecklistViewController: SegmentTableViewCellDelegate {
+    func segmentTableViewCell(_ segmentTableViewCell: SegmentTableViewCell, key: String, value: String, sectionKey: Int) {
+        checklistRepo.checklistData[sectionKey][key] = value
+    }
 }

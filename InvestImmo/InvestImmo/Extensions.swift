@@ -178,3 +178,9 @@ extension UITextField {
         self.text = ""
     }
 }
+
+extension UITextView {
+    func clear() {
+        self.text = ""
+    }
+}

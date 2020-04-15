@@ -14,7 +14,7 @@ class StepperTableViewCell: UITableViewCell, UITextFieldDelegate {
     //MARK: - Properties
     
     var key = String()
-    weak var delegate: TextFieldData?
+    weak var delegate: TextFieldTableViewCellDelegate?
     
     //MARK: - Outlets
     
@@ -59,8 +59,13 @@ class StepperTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let text = cellTextField.text {
-            delegate?.getTextFieldData(key: key, value: text)
+            delegate?.textFieldTableViewCell(key: key, value: text)
         }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        cellTextField.resignFirstResponder()
         return true
     }
     

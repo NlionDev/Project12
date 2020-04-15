@@ -61,6 +61,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="2Ev-ac-wlb" id="p33-aP-uru"/>
                                     <outlet property="delegate" destination="2Ev-ac-wlb" id="DHS-ye-c0q"/>
+                                    <outletCollection property="gestureRecognizers" destination="9mc-26-awc" appends="YES" id="MNx-hC-L5t"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc7-m2-bsG">
@@ -105,6 +106,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjb-R9-pR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9mc-26-awc">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="2Ev-ac-wlb" id="l3a-Wo-bfH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-55.072463768115945" y="192.85714285714286"/>
         </scene>

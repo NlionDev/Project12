@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol ChecklistPickerData: class {
-    func getChecklistPickerData(key: String, value: String, sectionKey: Int)
+protocol ChecklistPickerTableViewCellDelegate: class {
+    func checklistPickerTableViewCell(_ checklistPickerTableViewCell: ChecklistPickerTableViewCell, key: String, value: String, sectionKey: Int)
 }
 
 class ChecklistPickerTableViewCell: UITableViewCell {
@@ -18,11 +18,11 @@ class ChecklistPickerTableViewCell: UITableViewCell {
     //MARK: - Properties
     
     private let checklistRepo = ChecklistRepository()
-    weak var delegate: ChecklistPickerData?
+    weak var delegate: ChecklistPickerTableViewCellDelegate?
     private var selectedPickerData = String()
     var pickerData = [String]()
-    var key = String()
-    var section = Int()
+    private var key = String()
+    private var section = Int()
     
     
     //MARK: - Outlets
@@ -91,6 +91,6 @@ extension ChecklistPickerTableViewCell: UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedPickerData = pickerData[cellPicker.selectedRow(inComponent: component)]
-        delegate?.getChecklistPickerData(key: key,value: selectedPickerData, sectionKey: section)
+        delegate?.checklistPickerTableViewCell(self, key: key, value: selectedPickerData, sectionKey: section)
     }
 }
