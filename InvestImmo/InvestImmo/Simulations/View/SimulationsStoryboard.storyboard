@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,8 +20,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RCe-sR-izj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -65,11 +67,8 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc7-m2-bsG">
-                                <rect key="frame" x="107" y="787" width="200" height="55"/>
+                                <rect key="frame" x="40" y="787" width="334" height="55"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="tKk-Ks-bbC"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" title="Calculer">
@@ -91,6 +90,8 @@
                             <constraint firstItem="rc7-m2-bsG" firstAttribute="top" secondItem="azH-Og-0p5" secondAttribute="bottom" constant="16" id="DfV-Fp-dTv"/>
                             <constraint firstItem="azH-Og-0p5" firstAttribute="leading" secondItem="Vsn-bF-NBe" secondAttribute="leading" id="HnY-gD-6Wg"/>
                             <constraint firstItem="azH-Og-0p5" firstAttribute="top" secondItem="xtM-gD-hDN" secondAttribute="bottom" constant="8" id="Oat-HT-uZm"/>
+                            <constraint firstItem="Vsn-bF-NBe" firstAttribute="trailing" secondItem="rc7-m2-bsG" secondAttribute="trailing" constant="40" id="eyO-1X-LXZ"/>
+                            <constraint firstItem="rc7-m2-bsG" firstAttribute="leading" secondItem="Vsn-bF-NBe" secondAttribute="leading" constant="40" id="eya-No-1p1"/>
                             <constraint firstItem="Vsn-bF-NBe" firstAttribute="bottom" secondItem="rc7-m2-bsG" secondAttribute="bottom" constant="20" id="hNV-s9-lyG"/>
                             <constraint firstItem="azH-Og-0p5" firstAttribute="trailing" secondItem="Vsn-bF-NBe" secondAttribute="trailing" id="mFY-Ws-djk"/>
                             <constraint firstItem="xtM-gD-hDN" firstAttribute="centerX" secondItem="cMk-Hx-S7I" secondAttribute="centerX" id="mPY-A3-Rlw"/>
@@ -123,20 +124,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vJg-IN-Ixo">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="683"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="gQr-EB-uNa" id="OlS-sJ-3P4"/>
                                     <outlet property="delegate" destination="gQr-EB-uNa" id="eGK-a9-wn9"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GV3-6i-6bw">
+                                <rect key="frame" x="40" y="787" width="334" height="55"/>
+                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Sauvegarder">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapOnCalculButton:" destination="2Ev-ac-wlb" eventType="touchUpInside" id="AmX-r6-bMe"/>
+                                    <action selector="didTapOnSaveButton:" destination="gQr-EB-uNa" eventType="touchUpInside" id="tLo-Er-gqq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="vJg-IN-Ixo" firstAttribute="bottom" secondItem="Xrf-0L-EmZ" secondAttribute="bottom" id="1Fp-M7-4j5"/>
+                            <constraint firstItem="Xrf-0L-EmZ" firstAttribute="bottom" secondItem="GV3-6i-6bw" secondAttribute="bottom" constant="20" id="A2n-b9-gMz"/>
                             <constraint firstItem="vJg-IN-Ixo" firstAttribute="trailing" secondItem="Xrf-0L-EmZ" secondAttribute="trailing" id="C2w-uj-Jlm"/>
                             <constraint firstItem="vJg-IN-Ixo" firstAttribute="leading" secondItem="Xrf-0L-EmZ" secondAttribute="leading" id="F8B-BR-DjB"/>
+                            <constraint firstItem="GV3-6i-6bw" firstAttribute="top" secondItem="vJg-IN-Ixo" secondAttribute="bottom" constant="16" id="Sn6-WZ-ngn"/>
                             <constraint firstItem="vJg-IN-Ixo" firstAttribute="top" secondItem="Xrf-0L-EmZ" secondAttribute="top" id="dJq-cQ-5mS"/>
+                            <constraint firstItem="Xrf-0L-EmZ" firstAttribute="trailing" secondItem="GV3-6i-6bw" secondAttribute="trailing" constant="40" id="gNW-Rv-pcO"/>
+                            <constraint firstItem="GV3-6i-6bw" firstAttribute="leading" secondItem="Xrf-0L-EmZ" secondAttribute="leading" constant="40" id="x2L-dx-iRS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xrf-0L-EmZ"/>
                     </view>

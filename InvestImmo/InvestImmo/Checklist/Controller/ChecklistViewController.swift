@@ -12,16 +12,12 @@ import RealmSwift
 class ChecklistViewController: UIViewController {
     
     //MARK: - Properties
-    
-    let realm = try! Realm()
-    lazy var myProjects: Results<Project> = {
-    self.realm.objects(Project.self)}()
-    private let existantProjectAlert = ExistantProjectAlert()
-    private let newProjectAlert = NewProjectAlert()
+    private let realmRepo = RealmRepository()
+    private let existantProjectAlert = ChecklistExistantProjectAlert()
+    private let newProjectAlert = ChecklistNewProjectAlert()
     private var simulation = RentabilityRepository()
     private let checklistRepo = ChecklistRepository()
     private var lastCell = TextViewTableViewCell()
-    private let checklistGeneral = ChecklistGeneral()
     
     //MARK: - Outlets
     
@@ -42,22 +38,17 @@ class ChecklistViewController: UIViewController {
         if let lastTextView = lastCell.cellTextView {
             lastTextView.resignFirstResponder()
         }
-        if myProjects.isEmpty {
-            let alertVC = newProjectAlert.alert(checklist: checklistRepo, simulation: simulation)
+        if realmRepo.myProjects.isEmpty {
+            let alertVC = newProjectAlert.alert(checklist: checklistRepo)
             present(alertVC, animated: true)
         } else {
-            let alertVC = existantProjectAlert.alert(checklist: checklistRepo, simulation: simulation)
+            let alertVC = existantProjectAlert.alert(checklist: checklistRepo)
             present(alertVC, animated: true)
         }
 
     }
     
     //MARK: - Methods
-    
-    private func saveChecklistGeneralItems() {
-        checklistGeneral.visitDate = checklistRepo.checklistData[0]["Date de la visite"]
-        
-    }
     
     private func nibRegister() {
         let nibNameForDatePickerCell = UINib(nibName: "DatePickerTableViewCell", bundle: nil)
@@ -73,7 +64,6 @@ class ChecklistViewController: UIViewController {
     }
     
     private func setupTableViewHeader() -> UILabel {
-        
         let sectionTitle = UILabel()
         sectionTitle.backgroundColor = UIColor(red: 91/255.0, green: 102/255.0, blue: 248/255.0, alpha: 1.0)
         sectionTitle.font = UIFont(name: "AntipastoPro", size: 50)

@@ -17,6 +17,7 @@ class SimulationsViewController: UIViewController {
     private let creditCalculator = CreditCalculator()
     private var lastCreditCell = TextFieldWithoutSubtitleTableViewCell()
     private var lastRentaCell = TextFieldWithSubtitleTableViewCell()
+    private let errorAlert = ErrorAlert()
     let rentaRepo = RentabilityRepository()
     let creditRepo = CreditRepository()
     
@@ -31,7 +32,6 @@ class SimulationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(Realm.Configuration.defaultConfiguration.fileURL)
-        setSimulationNavigationBarStyle()
         nibRegister()
         simulationTableView.reloadData()
     }
@@ -39,18 +39,10 @@ class SimulationsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToSimulationResult" {
         guard let destination = segue.destination as? SimulationResultViewController else {return}
-            if creditRepo.creditData["Durée"] == "" {
-                creditRepo.creditData["Durée"] = "20"
-            }
-            if let rentaLastTextField = lastRentaCell.cellTextField,
-                let creditLastTextField = lastCreditCell.cellTextField {
-                rentaLastTextField.resignFirstResponder()
-                creditLastTextField.resignFirstResponder()
-            }
-            rentaCalculator.rentabilityData = rentaRepo.rentabilityData
-            creditCalculator.creditData = creditRepo.creditData
             destination.creditCalculator = creditCalculator
             destination.rentaCalculator = rentaCalculator
+            destination.rentaRepo = rentaRepo
+            destination.creditRepo = creditRepo
         }
     }
     
@@ -68,12 +60,25 @@ class SimulationsViewController: UIViewController {
             for cell in creditRepo.creditTextFieldCells {
                 cell.cellTextField.clear()
             }
+            for cell in creditRepo.creditStepperCells {
+                cell.cellTextField.clear()
+            }
         }
         simulationTableView.reloadData()
     }
     
     @IBAction func didTapOnCalculButton(_ sender: Any) {
-        performSegue(withIdentifier: "goToSimulationResult", sender: self)
+        if choiceSegmentedControl.selectedSegmentIndex == 0 {
+            if let creditLastTextField = lastCreditCell.cellTextField {
+                creditLastTextField.resignFirstResponder()
+                getCreditResults()
+            }
+        } else {
+            if let rentaLastTextField = lastRentaCell.cellTextField {
+                rentaLastTextField.resignFirstResponder()
+                getRentabilityResults()
+            }
+        }
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -95,6 +100,51 @@ class SimulationsViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    private func getRentabilityResults() {
+        rentaCalculator.rentabilityData = rentaRepo.rentabilityData
+        do {
+            let grossYield = try rentaCalculator.getGrossYield()
+            let netYield = try rentaCalculator.getNetYield()
+            let annualCashflow = try rentaCalculator.getAnnualCashflow()
+            let mensualCashflow = try rentaCalculator.getMensualCashflow()
+            rentaRepo.results.append(grossYield + " %")
+            rentaRepo.resultsForPositiveCheck.append(grossYield)
+            rentaRepo.results.append(netYield + " %")
+            rentaRepo.resultsForPositiveCheck.append(netYield)
+            rentaRepo.results.append(annualCashflow + " €")
+            rentaRepo.resultsForPositiveCheck.append(annualCashflow)
+            rentaRepo.results.append(mensualCashflow + " €")
+            rentaRepo.resultsForPositiveCheck.append(mensualCashflow)
+            performSegue(withIdentifier: "goToSimulationResult", sender: self)
+        } catch let error as RentabilityCalculator.RentabilityCalculatorError {
+            displayRentabilityError(error)
+        } catch {
+            let alert = errorAlert.alert(message: "Une erreur inconnue s'est produite")
+            present(alert, animated: true)
+        }
+    }
+    
+    private func getCreditResults() {
+        creditCalculator.creditData = creditRepo.creditData
+        do {
+            let mensuality = try creditCalculator.getStringMensuality() + " €"
+            let interestCost = try creditCalculator.getStringInterestCost() + " €"
+            let insuranceCost = try creditCalculator.getStringInsuranceCost() + " €"
+            let totalCost = try creditCalculator.getTotalCost() + " €"
+            creditRepo.results.append(mensuality)
+            creditRepo.results.append(interestCost)
+            creditRepo.results.append(insuranceCost)
+            creditRepo.results.append(totalCost)
+            performSegue(withIdentifier: "goToSimulationResult", sender: self)
+        } catch let error as CreditCalculator.CreditCalculatorError {
+            displayCreditError(error)
+        } catch {
+            let alert = errorAlert.alert(message: "Une erreur inconnue s'est produite")
+            present(alert, animated: true)
+        }
+        
+    }
     
     private func nibRegister() {
         let nibNameForCellWithSubtitle = UINib(nibName: "TextFieldWithSubtitleTableViewCell", bundle: nil)
@@ -139,6 +189,7 @@ class SimulationsViewController: UIViewController {
         case .pickerView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell", for: indexPath) as? PickerViewTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, subtitle: item.subtitles)
+            creditRepo.creditData["Durée"] = String(creditRepo.creditDuration[cell.selectedPickerData])
             cell.delegate = self
             return cell
         case .stepper:
@@ -149,7 +200,37 @@ class SimulationsViewController: UIViewController {
             return cell
         }
     }
+    
+    private func displayRentabilityError(_ error: RentabilityCalculator.RentabilityCalculatorError) {
+        switch error {
+        case .estatePriceMissing:
+            let alert = errorAlert.alert(message: "Le prix du bien n'est pas renseigné")
+            present(alert, animated: true)
+        case .monthlyRentMissing:
+            let alert = errorAlert.alert(message: "Le loyer mensuel n'est pas renseigné")
+            present(alert, animated: true)
+        case .notaryFeesMissing:
+           let alert = errorAlert.alert(message: "Les frais de notaire ne sont pas renseignés")
+           present(alert, animated: true)
+        case .propertyTaxMissing:
+            let alert = errorAlert.alert(message: "La taxe foncière n'est pas renseignée")
+            present(alert, animated: true)
+        case .chargesMissing:
+            let alert = errorAlert.alert(message: "Les charges de copropriété ne sont pas renseignées")
+            present(alert, animated: true)
+        }
+    }
 
+    private func displayCreditError(_ error: CreditCalculator.CreditCalculatorError) {
+        switch error {
+        case .amountToFinanceMissing:
+            let alert = errorAlert.alert(message: "Le montant à financer n'est pas renseigné")
+            present(alert, animated: true)
+        case .rateMissing:
+            let alert = errorAlert.alert(message: "Le taux n'est pas renseigné")
+            present(alert, animated: true)
+        }
+    }
 
 }
 

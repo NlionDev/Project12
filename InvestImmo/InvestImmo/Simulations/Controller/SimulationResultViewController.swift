@@ -12,8 +12,13 @@ class SimulationResultViewController: UIViewController {
 
     //MARK: - Properties
     
-    private let rentaRepo = RentabilityRepository()
-    private let creditRepo = CreditRepository()
+    private let realmRepo = RealmRepository()
+    private let rentaExistantProjectAlert = RentabilityExistantProjectAlert()
+    private let rentaNewProjectAlert = RentabilityNewProjectAlert()
+    private let creditNewProjectAlert = CreditNewProjectAlert()
+    private let creditExistantProjectAlert = CreditExistantProjectAlert()
+    var rentaRepo: RentabilityRepository?
+    var creditRepo: CreditRepository?
     var rentaCalculator: RentabilityCalculator?
     var creditCalculator: CreditCalculator?
     
@@ -25,39 +30,31 @@ class SimulationResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getRentabilityResults()
-        getCreditResults()
         nibRegister()
-        
     }
+    
+    //MARK: - Actions
+    
+    @IBAction func didTapOnSaveButton(_ sender: UIButton) {
+        guard let rentaRepo = rentaRepo else {return}
+        guard let creditRepo = creditRepo else {return}
+        if isMyRentabilityDataNil(numberToTest: rentaRepo.results.count) {
+            
+            let alert = realmRepo.myProjects.isEmpty ? creditNewProjectAlert.alert(credit: creditRepo) : creditExistantProjectAlert.alert(credit: creditRepo)
+            present(alert, animated: true)
+        } else {
+            
+            let alert =  realmRepo.myProjects.isEmpty ? rentaNewProjectAlert.alert(rentability: rentaRepo) : rentaExistantProjectAlert.alert(rentability: rentaRepo)
+            present(alert, animated: true)
+        }
+    }
+    
     
     //MARK: - Methods
     
     private func nibRegister() {
         let nibName = UINib(nibName: "ResultTableViewCell", bundle: nil)
         resultTableView.register(nibName, forCellReuseIdentifier: "ResultCell")
-    }
-    
-    private func getRentabilityResults() {
-        if let calculator = rentaCalculator {
-            rentaRepo.results.append(calculator.getGrossYield() + " %")
-            rentaRepo.resultsForPositiveCheck.append(calculator.getGrossYield())
-            rentaRepo.results.append(calculator.getNetYield() + " %")
-            rentaRepo.resultsForPositiveCheck.append(calculator.getNetYield())
-            rentaRepo.results.append(calculator.getAnnualCashflow() + " €")
-            rentaRepo.resultsForPositiveCheck.append(calculator.getAnnualCashflow())
-            rentaRepo.results.append(calculator.getMensualCashflow() + " €")
-            rentaRepo.resultsForPositiveCheck.append(calculator.getMensualCashflow())
-        }
-    }
-    
-    private func getCreditResults() {
-        if let calculator = creditCalculator {
-            creditRepo.results.append(calculator.getStringMensuality() + " €")
-            creditRepo.results.append(calculator.getStringInterestCost() + " €")
-            creditRepo.results.append(calculator.getStringInsuranceCost() + " €")
-            creditRepo.results.append(calculator.getTotalCost() + " €")
-        }
     }
 
 }
@@ -76,9 +73,13 @@ extension SimulationResultViewController: UITableViewDataSource, UITableViewDele
             return UITableViewCell()}
         if let calculator = rentaCalculator {
             if calculator.rentabilityData["Prix du bien"] == "" {
-                cell.configureForCredit(title: creditRepo.resultTitles[indexPath.row], result: creditRepo.results[indexPath.row])
+                if let creditRepo = creditRepo {
+                    cell.configureForCredit(title: creditRepo.resultTitles[indexPath.row], result: creditRepo.results[indexPath.row])
+                }
             } else {
-                cell.configureForRenta(title: rentaRepo.resultTitles[indexPath.row], result: rentaRepo.results[indexPath.row], isPositive: calculator.isResultPositive(result: rentaRepo.resultsForPositiveCheck[indexPath.row]))
+                if let rentaRepo = rentaRepo {
+                    cell.configureForRenta(title: rentaRepo.resultTitles[indexPath.row], result: rentaRepo.results[indexPath.row], isPositive: calculator.isResultPositive(result: rentaRepo.resultsForPositiveCheck[indexPath.row]))
+                }
             }
         }
         return cell
