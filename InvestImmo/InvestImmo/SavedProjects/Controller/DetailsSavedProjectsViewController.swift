@@ -14,12 +14,15 @@ class DetailsSavedProjectsViewController: UIViewController {
    
     private var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
     private let menuBarItems = [UIImage(named: "bankIcon"), UIImage(named: "ratioIcon"), UIImage(named: "checklistIcon"), UIImage(named: "galleryIcon"), UIImage(named: "mapIcon")]
+    private var pageViewController: UIPageViewController!
+    private var viewControllers = [UIViewController]()
     private var realmRepo = RealmRepository()
     private let creditRepo = CreditRepository()
     private let rentaRepo = RentabilityRepository()
     private var selectedRentabilitySimulation: RentabilitySimulation?
     private var selectedCreditSimulation: CreditSimulation?
     private var selectedChecklistGeneral: ChecklistGeneral?
+    private var currentIndex = 0
     var selectedProject: Project?
     
     //MARK: - Outlets
@@ -27,8 +30,8 @@ class DetailsSavedProjectsViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var menuBar: UIView!
     @IBOutlet weak var menuBarCollectionView: UICollectionView!
-    @IBOutlet weak var detailsItemCollectionView: UICollectionView!
-    @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var containerView: UIView!
+    
     
     
     //MARK: - Lifecycle
@@ -40,12 +43,20 @@ class DetailsSavedProjectsViewController: UIViewController {
             nameLabel.text = selectedProject.name
             selectedCreditSimulation = realmRepo.getCreditSimulationWithProjectName(name: projectName)
         }
+        self.navigationItem.rightBarButtonItem = nil
         setupMenuBarCollectionView()
-        setupDetailsCollectionView()
         setupHorizontalBar()
-        nibRegister()
     }
-        
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        getViewControllers()
+        if let vc = segue.destination as? UIPageViewController {
+            pageViewController = vc
+            pageViewController.dataSource = self
+            pageViewController.delegate = self
+            pageViewController.setViewControllers([viewControllers[0]], direction: .forward, animated: true, completion: nil)
+        }
+    }
 
     
     //MARK: - Actions
@@ -53,61 +64,26 @@ class DetailsSavedProjectsViewController: UIViewController {
 
     
     //MARK: - Methods
-    
-    private func nibRegister() {
-        let nibNameForTableViewCollectionCell = UINib(nibName: "TableViewCollectionViewCell", bundle: nil)
-        detailsItemCollectionView.register(nibNameForTableViewCollectionCell, forCellWithReuseIdentifier: "TableViewCollectionCell")
-        let nibNameForNoDataCell = UINib(nibName: "NoDataCollectionViewCell", bundle: nil)
-        detailsItemCollectionView.register(nibNameForNoDataCell, forCellWithReuseIdentifier: "NoDataCell")
-        let nibNameForGalleryCell = UINib(nibName: "GalleryCollectionViewCell", bundle: nil)
-        detailsItemCollectionView.register(nibNameForGalleryCell, forCellWithReuseIdentifier: "GalleryCell")
-    }
-    
-    private func getCreditCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = UICollectionViewCell()
-        guard let tableView = collectionView.dequeueReusableCell(withReuseIdentifier: "TableViewCollectionCell", for: indexPath) as? TableViewCollectionViewCell else {return UICollectionViewCell()}
-        guard let noDataCell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoDataCell", for: indexPath) as? NoDataCollectionViewCell else {return UICollectionViewCell()}
-        if selectedCreditSimulation == nil {
-            noDataCell.configure(message: "Aucune simulation de crédit n'est sauvegardé pour le moment.")
-            cell = noDataCell
-        } else {
-            if let creditSimulation = selectedCreditSimulation {
-                let results = realmRepo.getSavedCreditSimulationResultsData(simulation: creditSimulation)
-                let titles = creditRepo.allTitles
-                tableView.configure(titles: titles, results: results)
-                cell = tableView
-            }
-        }
-        return cell
-    }
-    
-    private func getRentabilityCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = UICollectionViewCell()
-        guard let tableView = collectionView.dequeueReusableCell(withReuseIdentifier: "TableViewCollectionCell", for: indexPath) as? TableViewCollectionViewCell else {return UICollectionViewCell()}
-        guard let noDataCell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoDataCell", for: indexPath) as? NoDataCollectionViewCell else {return UICollectionViewCell()}
-        if selectedRentabilitySimulation == nil {
-            
-            noDataCell.configure(message: "Aucune simulation de rentabilité n'est sauvegardé pour le moment.")
-            cell = noDataCell
-            
-        } else {
-            if let rentaSimulation = selectedRentabilitySimulation {
-                let results = realmRepo.getSavedRentabilitySimulationResultsData(simulation: rentaSimulation)
-                let titles = rentaRepo.allTitles
-                tableView.configure(titles: titles, results: results)
-                cell = tableView
-            }
-        }
-        return cell
+ 
+    private func getViewControllers() {
+        let storyboard = UIStoryboard(name: "SavedProjectsDataStoryboard", bundle: nil)
+        let creditDataVC = storyboard.instantiateViewController(withIdentifier: "CreditData") as! CreditDataViewController
+        creditDataVC.selectedProject = selectedProject
+        let rentabilityDataVC = storyboard.instantiateViewController(withIdentifier: "RentabilityData") as! RentabilityDataViewController
+        rentabilityDataVC.selectedProject = selectedProject
+        let checklistDataVC = storyboard.instantiateViewController(withIdentifier: "ChecklistData")
+        let savedPhotosVC = storyboard.instantiateViewController(withIdentifier: "SavedPhotos")
+        let mapVC = storyboard.instantiateViewController(withIdentifier: "Map")
+        viewControllers.append(creditDataVC)
+        viewControllers.append(rentabilityDataVC)
+        viewControllers.append(checklistDataVC)
+        viewControllers.append(savedPhotosVC)
+        viewControllers.append(mapVC)
     }
     
     private func setupMenuBarCollectionView() {
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         menuBarCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
-    }
-    
-    private func setupDetailsCollectionView() {
-        detailsItemCollectionView.isPagingEnabled = true
     }
     
     private func setupHorizontalBar() {
@@ -124,8 +100,9 @@ class DetailsSavedProjectsViewController: UIViewController {
     }
     
     private func scrollToMenuIndex(menuIndex: Int) {
-        let indexPath = IndexPath(item: menuIndex, section: 0)
-        detailsItemCollectionView.scrollToItem(at: indexPath, at: [], animated: true)
+        let nextVC = viewControllers[menuIndex]
+        currentIndex < menuIndex ? pageViewController.setViewControllers([nextVC], direction: .forward, animated: true, completion: nil) : pageViewController.setViewControllers([nextVC], direction: .reverse, animated: true, completion: nil)
+        currentIndex = menuIndex
     }
     
     private func getMenuBarCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -137,9 +114,15 @@ class DetailsSavedProjectsViewController: UIViewController {
         }
         return cell
     }
+    
+    private func animateMenuBarSlide(index: Int, duration: TimeInterval) {
+        let x = CGFloat(index) * menuBar.frame.width / 5
+        horizontalBarLeftAnchorConstraint?.constant = x
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {self.menuBar.layoutIfNeeded()}, completion: nil)
+    }
 }
 
-//MARK: - Extension
+//MARK: - Extension for CollectionView delegate and datasource
 
 extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -149,40 +132,13 @@ extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
-        guard let noDataCell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoDataCell", for: indexPath) as? NoDataCollectionViewCell else {return UICollectionViewCell()}
-        if collectionView == menuBarCollectionView {
-            cell = getMenuBarCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
-        } else if collectionView == detailsItemCollectionView {
-            if indexPath.item == 0 {
-                cell = getCreditCell(collectionView: collectionView, indexPath: indexPath)
-            } else if indexPath.item == 1 {
-                
-                cell = getRentabilityCell(collectionView: collectionView, indexPath: indexPath)
-            } else if indexPath.item == 2 {
-                
-                noDataCell.configure(message: "Aucune check-list")
-                cell = noDataCell
-            } else if indexPath.item == 3 {
-                noDataCell.configure(message: "Aucune photos")
-                cell = noDataCell
-            } else if indexPath.item == 4 {
-                noDataCell.configure(message: "Aucune map")
-                cell = noDataCell
-            }
-        }
-        
+        cell = getMenuBarCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize()
-        if collectionView == menuBarCollectionView {
-            size = CGSize(width: menuBar.frame.width / 5, height: menuBar.frame.height)
-        } else if collectionView == detailsItemCollectionView {
-            size = CGSize(width: detailsView.frame.width, height: detailsView.frame.height)
-        }
-        return size
+        return CGSize(width: menuBar.frame.width / 5, height: menuBar.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -194,16 +150,50 @@ extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        animateMenuBarSlide(index: indexPath.item, duration: 0.3)
         scrollToMenuIndex(menuIndex: Int(indexPath.item))
     }
+}
+
+//MARK: - Extension for PageViewController delegate and datasource
+
+extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 5
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = viewControllers.firstIndex(of: viewController) else {return nil}
+        let previousIndex = viewControllerIndex - 1
+        guard previousIndex >= 0 else {return nil}
+        guard viewControllers.count > previousIndex else {return nil}
+        return viewControllers[previousIndex]
+    }
+        
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = viewControllers.firstIndex(of: viewController) else {return nil}
+        let nextIndex = viewControllerIndex + 1
+        let viewControllersCount = viewControllers.count
+        guard viewControllersCount != nextIndex else {return nil}
+        guard viewControllersCount > nextIndex else {return nil}
+        return viewControllers[nextIndex]
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let index = targetContentOffset.pointee.x / detailsView.frame.width
-        let indexPath = IndexPath(item: Int(index), section: 0)
-        menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return viewControllers.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if (completed && finished) {
+            if let currentVC = pageViewController.viewControllers?.last {
+                if let index = viewControllers.firstIndex(of: currentVC) {
+                    currentIndex = index
+                    let indexPath = IndexPath(item: index, section: 0)
+                    menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+                    animateMenuBarSlide(index: index, duration: 0)
+                }
+            }
+        }
     }
 }

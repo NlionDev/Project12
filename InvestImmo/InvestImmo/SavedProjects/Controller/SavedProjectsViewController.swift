@@ -13,7 +13,7 @@ class SavedProjectsViewController: UIViewController {
 
     //MARK: - Properties
     
-    
+    private let newProjectAlert = EmptyNewProjectAlert()
     private let realmRepo = RealmRepository()
     private var selectedProject: Project?
     private var selectedSimulation: RentabilitySimulation?
@@ -30,15 +30,13 @@ class SavedProjectsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBarStyle()
+        setupNewProjectButton(action: #selector(didTapOnNewProjectButton))
         configureBackgroundImageForTableView(tableView: savedProjectsTableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        savedProjectsTableView.reloadData()
-        showNoDataLabel()
-        
+        configurePage()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,6 +45,14 @@ class SavedProjectsViewController: UIViewController {
                 let selectedProject = selectedProject else {return}
             destination.selectedProject = selectedProject
         }
+    }
+    
+    //MARK: - Actions
+    
+    @objc private func didTapOnNewProjectButton() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.configurePage), name: NSNotification.Name(rawValue: "ReloadSavedProjectsData"), object: nil)
+        let alert = newProjectAlert.alert()
+        present(alert, animated: true)
     }
     
     //MARK: - Methods
@@ -59,6 +65,11 @@ class SavedProjectsViewController: UIViewController {
             noProjectSavedLabel.isHidden = true
             savedProjectsTableView.isHidden = false
         }
+    }
+    
+    @objc private func configurePage() {
+        savedProjectsTableView.reloadData()
+        showNoDataLabel()
     }
     
 }

@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -13,10 +14,14 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Simulations-->
         <scene sceneID="yEC-Fm-xpI">
             <objects>
-                <navigationController storyboardIdentifier="SimulationsNavigation" id="kjP-go-Eca" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SimulationsNavigation" id="kjP-go-Eca" customClass="CustomNavigationController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Simulations" image="ratio" selectedImage="ratio" id="G6D-JT-8my">
+                        <color key="badgeColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RCe-sR-izj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -42,31 +47,98 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xtM-gD-hDN">
-                                <rect key="frame" x="119.5" y="104" width="175" height="32"/>
-                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMv-tI-n6r">
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EFy-zg-4Ew">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wwv-KB-K78">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MenuBarSimulationCell" id="nlT-Nz-vfi" customClass="MenuBarSimulationCollectionViewCell" customModule="InvestImmo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="-39" width="128" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gQ3-gr-Lay">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="2Ev-ac-wlb" id="lf7-Za-Yf9"/>
+                                            <outlet property="delegate" destination="2Ev-ac-wlb" id="Cuv-uf-Tvr"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="175" id="Kzk-s4-08P"/>
+                                    <constraint firstAttribute="height" constant="50" id="1mh-uR-Xi7"/>
+                                    <constraint firstItem="EFy-zg-4Ew" firstAttribute="leading" secondItem="tMv-tI-n6r" secondAttribute="leading" id="4Tq-fh-8yo"/>
+                                    <constraint firstItem="EFy-zg-4Ew" firstAttribute="top" secondItem="tMv-tI-n6r" secondAttribute="top" id="AZ2-yY-U8s"/>
+                                    <constraint firstAttribute="trailing" secondItem="EFy-zg-4Ew" secondAttribute="trailing" id="SSS-ze-nY3"/>
+                                    <constraint firstAttribute="bottom" secondItem="EFy-zg-4Ew" secondAttribute="bottom" id="mkJ-bL-gSY"/>
                                 </constraints>
-                                <segments>
-                                    <segment title="Crédit"/>
-                                    <segment title="Rentabilité"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ODv-8d-PRz">
+                                <rect key="frame" x="0.0" y="138" width="414" height="675"/>
                                 <connections>
-                                    <action selector="didChangeSegmentedControlValue:" destination="2Ev-ac-wlb" eventType="valueChanged" id="dUK-pe-qcb"/>
+                                    <segue destination="PT7-qM-02W" kind="embed" id="Zno-kW-9h1"/>
                                 </connections>
-                            </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="azH-Og-0p5">
-                                <rect key="frame" x="0.0" y="143" width="414" height="628"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Vsn-bF-NBe" firstAttribute="bottom" secondItem="ODv-8d-PRz" secondAttribute="bottom" id="5hQ-Hm-y66"/>
+                            <constraint firstItem="ODv-8d-PRz" firstAttribute="top" secondItem="tMv-tI-n6r" secondAttribute="bottom" id="DB7-0R-jdw"/>
+                            <constraint firstItem="tMv-tI-n6r" firstAttribute="leading" secondItem="Vsn-bF-NBe" secondAttribute="leading" id="FMi-e4-UeO"/>
+                            <constraint firstItem="ODv-8d-PRz" firstAttribute="leading" secondItem="Vsn-bF-NBe" secondAttribute="leading" id="NZL-WX-iRH"/>
+                            <constraint firstItem="tMv-tI-n6r" firstAttribute="top" secondItem="Vsn-bF-NBe" secondAttribute="top" id="drC-0K-7j5"/>
+                            <constraint firstItem="Vsn-bF-NBe" firstAttribute="trailing" secondItem="tMv-tI-n6r" secondAttribute="trailing" id="ihG-ii-uIm"/>
+                            <constraint firstItem="Vsn-bF-NBe" firstAttribute="trailing" secondItem="ODv-8d-PRz" secondAttribute="trailing" id="oSI-hz-Js0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vsn-bF-NBe"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Invest'Immo" id="mVX-QI-Gqj"/>
+                    <connections>
+                        <outlet property="menuBar" destination="tMv-tI-n6r" id="fcp-Md-uyu"/>
+                        <outlet property="menuBarCollectionView" destination="EFy-zg-4Ew" id="QxL-NW-4y0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xjb-R9-pR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55.072463768115945" y="192.85714285714286"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="qBd-vZ-KoU">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="PT7-qM-02W" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFc-CG-PBL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="897" y="193"/>
+        </scene>
+        <!--Invest'Immo-->
+        <scene sceneID="iUO-kG-e6y">
+            <objects>
+                <viewController storyboardIdentifier="CreditSimulation" id="nwC-zo-rnH" customClass="CreditSimulationViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7OB-Iv-xZG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pdX-hP-AMd">
+                                <rect key="frame" x="0.0" y="44" width="414" height="727"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="2Ev-ac-wlb" id="p33-aP-uru"/>
-                                    <outlet property="delegate" destination="2Ev-ac-wlb" id="DHS-ye-c0q"/>
-                                    <outletCollection property="gestureRecognizers" destination="9mc-26-awc" appends="YES" id="MNx-hC-L5t"/>
+                                    <outlet property="dataSource" destination="nwC-zo-rnH" id="Xaw-CZ-SBU"/>
+                                    <outlet property="delegate" destination="nwC-zo-rnH" id="Spc-3U-cbM"/>
+                                    <outletCollection property="gestureRecognizers" destination="zH2-gh-ycP" appends="YES" id="kuz-7Y-vSO"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc7-m2-bsG">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjw-VH-l58">
                                 <rect key="frame" x="40" y="787" width="334" height="55"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
@@ -80,59 +152,56 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didTapOnCalculButton:" destination="2Ev-ac-wlb" eventType="touchUpInside" id="9Xh-ZN-FWC"/>
+                                    <action selector="didTapOnCalculButton:" destination="nwC-zo-rnH" eventType="touchUpInside" id="ziV-G8-v1r"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="xtM-gD-hDN" firstAttribute="top" secondItem="Vsn-bF-NBe" secondAttribute="top" constant="16" id="8Vz-9j-g3g"/>
-                            <constraint firstItem="rc7-m2-bsG" firstAttribute="top" secondItem="azH-Og-0p5" secondAttribute="bottom" constant="16" id="DfV-Fp-dTv"/>
-                            <constraint firstItem="azH-Og-0p5" firstAttribute="leading" secondItem="Vsn-bF-NBe" secondAttribute="leading" id="HnY-gD-6Wg"/>
-                            <constraint firstItem="azH-Og-0p5" firstAttribute="top" secondItem="xtM-gD-hDN" secondAttribute="bottom" constant="8" id="Oat-HT-uZm"/>
-                            <constraint firstItem="Vsn-bF-NBe" firstAttribute="trailing" secondItem="rc7-m2-bsG" secondAttribute="trailing" constant="40" id="eyO-1X-LXZ"/>
-                            <constraint firstItem="rc7-m2-bsG" firstAttribute="leading" secondItem="Vsn-bF-NBe" secondAttribute="leading" constant="40" id="eya-No-1p1"/>
-                            <constraint firstItem="Vsn-bF-NBe" firstAttribute="bottom" secondItem="rc7-m2-bsG" secondAttribute="bottom" constant="20" id="hNV-s9-lyG"/>
-                            <constraint firstItem="azH-Og-0p5" firstAttribute="trailing" secondItem="Vsn-bF-NBe" secondAttribute="trailing" id="mFY-Ws-djk"/>
-                            <constraint firstItem="xtM-gD-hDN" firstAttribute="centerX" secondItem="cMk-Hx-S7I" secondAttribute="centerX" id="mPY-A3-Rlw"/>
-                            <constraint firstItem="rc7-m2-bsG" firstAttribute="centerX" secondItem="cMk-Hx-S7I" secondAttribute="centerX" id="vwK-lt-NyJ"/>
+                            <constraint firstItem="7n5-i3-5B5" firstAttribute="trailing" secondItem="xjw-VH-l58" secondAttribute="trailing" constant="40" id="1cx-KU-IzI"/>
+                            <constraint firstItem="xjw-VH-l58" firstAttribute="top" secondItem="pdX-hP-AMd" secondAttribute="bottom" constant="16" id="Dpv-0m-ElC"/>
+                            <constraint firstItem="pdX-hP-AMd" firstAttribute="top" secondItem="7n5-i3-5B5" secondAttribute="top" id="Eu7-hU-UyR"/>
+                            <constraint firstItem="7n5-i3-5B5" firstAttribute="bottom" secondItem="xjw-VH-l58" secondAttribute="bottom" constant="20" id="c0U-N9-b15"/>
+                            <constraint firstItem="pdX-hP-AMd" firstAttribute="trailing" secondItem="7n5-i3-5B5" secondAttribute="trailing" id="gQz-aO-r3D"/>
+                            <constraint firstItem="xjw-VH-l58" firstAttribute="leading" secondItem="7n5-i3-5B5" secondAttribute="leading" constant="40" id="rQt-IV-cNN"/>
+                            <constraint firstItem="xjw-VH-l58" firstAttribute="centerX" secondItem="7OB-Iv-xZG" secondAttribute="centerX" id="tB2-RZ-jCG"/>
+                            <constraint firstItem="pdX-hP-AMd" firstAttribute="leading" secondItem="7n5-i3-5B5" secondAttribute="leading" id="vQC-Eg-d2m"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Vsn-bF-NBe"/>
+                        <viewLayoutGuide key="safeArea" id="7n5-i3-5B5"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Invest'Immo" id="mVX-QI-Gqj"/>
+                    <navigationItem key="navigationItem" title="Invest'Immo" id="5Ba-u1-xkq"/>
                     <connections>
-                        <outlet property="choiceSegmentedControl" destination="xtM-gD-hDN" id="bA0-3U-FfH"/>
-                        <outlet property="simulationTableView" destination="azH-Og-0p5" id="Iv1-pk-yP1"/>
-                        <segue destination="gQr-EB-uNa" kind="show" identifier="goToSimulationResult" id="0Fa-wc-xWg"/>
+                        <outlet property="creditSimulationTableView" destination="pdX-hP-AMd" id="PKi-Df-2bt"/>
+                        <segue destination="HPq-bc-tnz" kind="show" identifier="GoToCreditResults" id="TWF-Vi-aeF"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xjb-R9-pR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="9mc-26-awc">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QmP-aN-SoL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="zH2-gh-ycP">
                     <connections>
-                        <action selector="dismissKeyboard:" destination="2Ev-ac-wlb" id="l3a-Wo-bfH"/>
+                        <action selector="dismissKeyboard:" destination="nwC-zo-rnH" id="OXd-gS-D9Q"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-55.072463768115945" y="192.85714285714286"/>
+            <point key="canvasLocation" x="1925" y="-119"/>
         </scene>
         <!--Invest'Immo-->
-        <scene sceneID="KdY-Ac-lA5">
+        <scene sceneID="5Hi-J7-7Gn">
             <objects>
-                <viewController id="gQr-EB-uNa" customClass="SimulationResultViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2FJ-RJ-ndb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <viewController id="HPq-bc-tnz" customClass="CreditResultsViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vwV-5q-PBJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vJg-IN-Ixo">
-                                <rect key="frame" x="0.0" y="88" width="414" height="683"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QgR-AU-twj">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="gQr-EB-uNa" id="OlS-sJ-3P4"/>
-                                    <outlet property="delegate" destination="gQr-EB-uNa" id="eGK-a9-wn9"/>
+                                    <outlet property="dataSource" destination="HPq-bc-tnz" id="OFp-mV-iiP"/>
+                                    <outlet property="delegate" destination="HPq-bc-tnz" id="XvT-hd-qen"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GV3-6i-6bw">
-                                <rect key="frame" x="40" y="787" width="334" height="55"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5u-K5-kpj">
+                                <rect key="frame" x="40" y="733" width="334" height="55"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
@@ -145,31 +214,151 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didTapOnCalculButton:" destination="2Ev-ac-wlb" eventType="touchUpInside" id="AmX-r6-bMe"/>
-                                    <action selector="didTapOnSaveButton:" destination="gQr-EB-uNa" eventType="touchUpInside" id="tLo-Er-gqq"/>
+                                    <action selector="didTapOnSaveButton:" destination="HPq-bc-tnz" eventType="touchUpInside" id="GSS-bN-dgq"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Xrf-0L-EmZ" firstAttribute="bottom" secondItem="GV3-6i-6bw" secondAttribute="bottom" constant="20" id="A2n-b9-gMz"/>
-                            <constraint firstItem="vJg-IN-Ixo" firstAttribute="trailing" secondItem="Xrf-0L-EmZ" secondAttribute="trailing" id="C2w-uj-Jlm"/>
-                            <constraint firstItem="vJg-IN-Ixo" firstAttribute="leading" secondItem="Xrf-0L-EmZ" secondAttribute="leading" id="F8B-BR-DjB"/>
-                            <constraint firstItem="GV3-6i-6bw" firstAttribute="top" secondItem="vJg-IN-Ixo" secondAttribute="bottom" constant="16" id="Sn6-WZ-ngn"/>
-                            <constraint firstItem="vJg-IN-Ixo" firstAttribute="top" secondItem="Xrf-0L-EmZ" secondAttribute="top" id="dJq-cQ-5mS"/>
-                            <constraint firstItem="Xrf-0L-EmZ" firstAttribute="trailing" secondItem="GV3-6i-6bw" secondAttribute="trailing" constant="40" id="gNW-Rv-pcO"/>
-                            <constraint firstItem="GV3-6i-6bw" firstAttribute="leading" secondItem="Xrf-0L-EmZ" secondAttribute="leading" constant="40" id="x2L-dx-iRS"/>
+                            <constraint firstItem="xaU-Yx-Aqn" firstAttribute="trailing" secondItem="Q5u-K5-kpj" secondAttribute="trailing" constant="40" id="79o-qI-ScI"/>
+                            <constraint firstItem="xaU-Yx-Aqn" firstAttribute="bottom" secondItem="Q5u-K5-kpj" secondAttribute="bottom" constant="20" id="KUW-T4-hJY"/>
+                            <constraint firstItem="Q5u-K5-kpj" firstAttribute="leading" secondItem="xaU-Yx-Aqn" secondAttribute="leading" constant="40" id="VNs-Mv-Yz3"/>
+                            <constraint firstItem="QgR-AU-twj" firstAttribute="leading" secondItem="xaU-Yx-Aqn" secondAttribute="leading" id="ZGJ-sR-smy"/>
+                            <constraint firstItem="QgR-AU-twj" firstAttribute="top" secondItem="xaU-Yx-Aqn" secondAttribute="top" id="co0-Lw-oU1"/>
+                            <constraint firstItem="Q5u-K5-kpj" firstAttribute="top" secondItem="QgR-AU-twj" secondAttribute="bottom" constant="16" id="mwM-kN-MdZ"/>
+                            <constraint firstItem="QgR-AU-twj" firstAttribute="trailing" secondItem="xaU-Yx-Aqn" secondAttribute="trailing" id="yje-f1-EDy"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Xrf-0L-EmZ"/>
+                        <viewLayoutGuide key="safeArea" id="xaU-Yx-Aqn"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Invest'Immo" id="Gxq-bh-Mzl"/>
+                    <navigationItem key="navigationItem" title="Invest'Immo" id="77p-nz-U1d"/>
                     <connections>
-                        <outlet property="resultTableView" destination="vJg-IN-Ixo" id="RgQ-nx-1or"/>
+                        <outlet property="creditResultsTableView" destination="QgR-AU-twj" id="vEL-uT-UIK"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MOG-n4-qWk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZZf-Gr-GGI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892.75362318840587" y="192.85714285714286"/>
+            <point key="canvasLocation" x="2897" y="-119"/>
+        </scene>
+        <!--Invest'Immo-->
+        <scene sceneID="fZT-tC-k4k">
+            <objects>
+                <viewController storyboardIdentifier="RentabilitySimulation" id="mE5-7J-Zge" customClass="RentabilitySimulationViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VtP-Xc-C2K">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lug-XS-BhK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="727"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mE5-7J-Zge" id="9lk-5R-O2L"/>
+                                    <outlet property="delegate" destination="mE5-7J-Zge" id="mdM-Z2-Nzp"/>
+                                    <outletCollection property="gestureRecognizers" destination="Pru-Fg-e9t" appends="YES" id="fCK-ke-u5a"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yez-jS-dhQ">
+                                <rect key="frame" x="40" y="787" width="334" height="55"/>
+                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Calculer">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapOnCalculButton:" destination="mE5-7J-Zge" eventType="touchUpInside" id="oYr-Ks-MSB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Lug-XS-BhK" firstAttribute="top" secondItem="mQv-Kt-m6D" secondAttribute="top" id="3qu-ni-pUc"/>
+                            <constraint firstItem="Lug-XS-BhK" firstAttribute="leading" secondItem="mQv-Kt-m6D" secondAttribute="leading" id="7h6-Tg-IXa"/>
+                            <constraint firstItem="Yez-jS-dhQ" firstAttribute="top" secondItem="Lug-XS-BhK" secondAttribute="bottom" constant="16" id="9ad-mm-LLD"/>
+                            <constraint firstItem="mQv-Kt-m6D" firstAttribute="bottom" secondItem="Yez-jS-dhQ" secondAttribute="bottom" constant="20" id="CoO-u2-ZcC"/>
+                            <constraint firstItem="Lug-XS-BhK" firstAttribute="trailing" secondItem="mQv-Kt-m6D" secondAttribute="trailing" id="O7D-rn-wfh"/>
+                            <constraint firstItem="Yez-jS-dhQ" firstAttribute="centerX" secondItem="VtP-Xc-C2K" secondAttribute="centerX" id="ZEB-hU-TY1"/>
+                            <constraint firstItem="mQv-Kt-m6D" firstAttribute="trailing" secondItem="Yez-jS-dhQ" secondAttribute="trailing" constant="40" id="ckR-kB-lGt"/>
+                            <constraint firstItem="Yez-jS-dhQ" firstAttribute="leading" secondItem="mQv-Kt-m6D" secondAttribute="leading" constant="40" id="csf-DO-oUT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mQv-Kt-m6D"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Invest'Immo" id="gya-mf-TLW"/>
+                    <connections>
+                        <outlet property="rentabilityTableView" destination="Lug-XS-BhK" id="QJy-4Z-hJ2"/>
+                        <segue destination="UtQ-EW-ddp" kind="show" identifier="GoToRentabilityResults" id="MBW-Sd-ku1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="375-v1-fLp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Pru-Fg-e9t">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="mE5-7J-Zge" id="6EH-Mb-p6A"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1925" y="577"/>
+        </scene>
+        <!--Invest'Immo-->
+        <scene sceneID="EhW-YR-n9H">
+            <objects>
+                <viewController id="UtQ-EW-ddp" customClass="RentabilityResultsViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JCX-va-7rJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-4f-c0c">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="UtQ-EW-ddp" id="npC-t3-Wjg"/>
+                                    <outlet property="delegate" destination="UtQ-EW-ddp" id="djD-sU-aSb"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pC9-GG-Dhd">
+                                <rect key="frame" x="40" y="733" width="334" height="55"/>
+                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Sauvegarder">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapOnSaveButton:" destination="UtQ-EW-ddp" eventType="touchUpInside" id="l8X-Xe-XyH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pC9-GG-Dhd" firstAttribute="leading" secondItem="iUh-8p-cwL" secondAttribute="leading" constant="40" id="Hhx-yR-AzZ"/>
+                            <constraint firstItem="MXH-4f-c0c" firstAttribute="trailing" secondItem="iUh-8p-cwL" secondAttribute="trailing" id="XsG-tC-MaA"/>
+                            <constraint firstItem="iUh-8p-cwL" firstAttribute="bottom" secondItem="pC9-GG-Dhd" secondAttribute="bottom" constant="20" id="eS5-DK-GGK"/>
+                            <constraint firstItem="MXH-4f-c0c" firstAttribute="leading" secondItem="iUh-8p-cwL" secondAttribute="leading" id="kek-Ft-NJN"/>
+                            <constraint firstItem="pC9-GG-Dhd" firstAttribute="top" secondItem="MXH-4f-c0c" secondAttribute="bottom" constant="16" id="qSF-kg-7oi"/>
+                            <constraint firstItem="iUh-8p-cwL" firstAttribute="trailing" secondItem="pC9-GG-Dhd" secondAttribute="trailing" constant="40" id="wal-J9-48j"/>
+                            <constraint firstItem="MXH-4f-c0c" firstAttribute="top" secondItem="iUh-8p-cwL" secondAttribute="top" id="yPc-fq-dDf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iUh-8p-cwL"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Invest'Immo" id="LHk-Mg-qMk"/>
+                    <connections>
+                        <outlet property="rentabilityResultsTableView" destination="MXH-4f-c0c" id="N9m-7b-0ld"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ILR-Md-fkM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2896" y="577"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ratio" width="24" height="24"/>
+    </resources>
 </document>

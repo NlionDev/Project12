@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Checklist View Controller-->
+        <!--Check-list-->
         <scene sceneID="ZBj-9e-06n">
             <objects>
                 <viewController storyboardIdentifier="Checklist" id="BL6-q5-rdA" customClass="ChecklistViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,37 +31,49 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xhp-Yn-L3j">
-                                <rect key="frame" x="0.0" y="126" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="610"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BL6-q5-rdA" id="mNf-Ho-bX0"/>
                                     <outlet property="delegate" destination="BL6-q5-rdA" id="eB1-e8-gNU"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvT-JF-QJL">
-                                <rect key="frame" x="324.5" y="61.5" width="50" height="33"/>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctn-Qw-f4h">
+                                <rect key="frame" x="40" y="738" width="334" height="55"/>
+                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Sauvegarder">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didTapOnSaveButton:" destination="BL6-q5-rdA" eventType="touchUpInside" id="sy8-yT-Sdr"/>
+                                    <action selector="didTapOnSaveButton:" destination="BL6-q5-rdA" eventType="touchUpInside" id="Fhh-9j-IKO"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="rvT-JF-QJL" firstAttribute="centerY" secondItem="WlL-nS-Wq3" secondAttribute="centerY" id="0uf-R6-MLd"/>
+                            <constraint firstItem="Ctn-Qw-f4h" firstAttribute="leading" secondItem="iFy-f8-B6y" secondAttribute="leading" constant="40" id="2Az-7Z-YYf"/>
                             <constraint firstItem="WlL-nS-Wq3" firstAttribute="centerX" secondItem="ycL-RJ-Iut" secondAttribute="centerX" id="CPO-oH-f0J"/>
-                            <constraint firstItem="xhp-Yn-L3j" firstAttribute="top" secondItem="WlL-nS-Wq3" secondAttribute="bottom" constant="30" id="LOf-R0-bJT"/>
+                            <constraint firstItem="xhp-Yn-L3j" firstAttribute="top" secondItem="WlL-nS-Wq3" secondAttribute="bottom" constant="16" id="LOf-R0-bJT"/>
+                            <constraint firstItem="iFy-f8-B6y" firstAttribute="trailing" secondItem="Ctn-Qw-f4h" secondAttribute="trailing" constant="40" id="LUh-26-Fdm"/>
+                            <constraint firstItem="iFy-f8-B6y" firstAttribute="bottom" secondItem="Ctn-Qw-f4h" secondAttribute="bottom" constant="20" id="Tih-6v-8yQ"/>
                             <constraint firstItem="WlL-nS-Wq3" firstAttribute="top" secondItem="iFy-f8-B6y" secondAttribute="top" constant="16" id="eod-K4-6BD"/>
-                            <constraint firstItem="rvT-JF-QJL" firstAttribute="leading" secondItem="WlL-nS-Wq3" secondAttribute="trailing" constant="30" id="lKJ-9D-JJy"/>
+                            <constraint firstItem="Ctn-Qw-f4h" firstAttribute="top" secondItem="xhp-Yn-L3j" secondAttribute="bottom" constant="16" id="jCM-T3-vPK"/>
                             <constraint firstItem="xhp-Yn-L3j" firstAttribute="leading" secondItem="iFy-f8-B6y" secondAttribute="leading" id="pgk-dQ-Y6W"/>
                             <constraint firstItem="xhp-Yn-L3j" firstAttribute="trailing" secondItem="iFy-f8-B6y" secondAttribute="trailing" id="qsm-Uj-bhp"/>
-                            <constraint firstItem="xhp-Yn-L3j" firstAttribute="bottom" secondItem="iFy-f8-B6y" secondAttribute="bottom" id="zHM-2M-XgN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iFy-f8-B6y"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Check-list" image="checklist" selectedImage="checklist" id="neF-j1-eUn">
+                        <color key="badgeColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="checklistTableView" destination="xhp-Yn-L3j" id="zVY-vW-CJk"/>
                     </connections>
@@ -71,4 +83,7 @@
             <point key="canvasLocation" x="-362.31884057971018" y="104.46428571428571"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checklist" width="24" height="24"/>
+    </resources>
 </document>

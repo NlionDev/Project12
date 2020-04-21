@@ -15,22 +15,18 @@ import RealmSwift
 extension UIViewController {
     
     // MARK: - Methods for configure Views
-    func setNavigationBarStyle() {
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30)!]
-        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "arrow")
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
-        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.title = ""
-        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.isTranslucent = false
-    }
 
     // Method for add a home button to navigation bar
     func setupSaveButtonItem(action: Selector) {
         let saveButton = UIBarButtonItem(image: #imageLiteral(resourceName: "saveIcon"), style: .plain, target: self, action: action)
         self.navigationItem.rightBarButtonItem = saveButton
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
+    
+    func setupNewProjectButton(action: Selector) {
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: action)
+        self.navigationItem.rightBarButtonItem = button
+        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
     
     func configureBackgroundImageForTableView(tableView: UITableView) {

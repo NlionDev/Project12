@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hjo-S9-Bir">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="PoetsenOne-Regular.ttf">
+            <string>PoetsenOne-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Credit Data View Controller-->
+        <scene sceneID="jgF-xB-gmM">
+            <objects>
+                <viewController storyboardIdentifier="CreditData" id="Hjo-S9-Bir" customClass="CreditDataViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="020-Dg-xlV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quel Dommage, vous n'avez pas encore de simulation de crédit sauvegardée !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYS-ny-TVG">
+                                <rect key="frame" x="40" y="44" width="334" height="818"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kuQ-EG-vcL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Hjo-S9-Bir" id="2Hd-Ea-had"/>
+                                    <outlet property="delegate" destination="Hjo-S9-Bir" id="LGc-q0-b8m"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zD2-n1-Urb" firstAttribute="bottom" secondItem="RYS-ny-TVG" secondAttribute="bottom" id="0ZA-KZ-BAm"/>
+                            <constraint firstItem="zD2-n1-Urb" firstAttribute="trailing" secondItem="RYS-ny-TVG" secondAttribute="trailing" constant="40" id="1Vt-AP-eot"/>
+                            <constraint firstItem="zD2-n1-Urb" firstAttribute="trailing" secondItem="kuQ-EG-vcL" secondAttribute="trailing" id="LYK-o3-eeC"/>
+                            <constraint firstItem="kuQ-EG-vcL" firstAttribute="top" secondItem="zD2-n1-Urb" secondAttribute="top" id="OCi-ke-s7N"/>
+                            <constraint firstItem="RYS-ny-TVG" firstAttribute="leading" secondItem="zD2-n1-Urb" secondAttribute="leading" constant="40" id="YIA-Q6-R3M"/>
+                            <constraint firstItem="zD2-n1-Urb" firstAttribute="bottom" secondItem="kuQ-EG-vcL" secondAttribute="bottom" id="eng-uH-qml"/>
+                            <constraint firstItem="kuQ-EG-vcL" firstAttribute="leading" secondItem="zD2-n1-Urb" secondAttribute="leading" id="fsX-fI-Ihz"/>
+                            <constraint firstItem="RYS-ny-TVG" firstAttribute="top" secondItem="zD2-n1-Urb" secondAttribute="top" id="xJM-Yo-r2I"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zD2-n1-Urb"/>
+                    </view>
+                    <connections>
+                        <outlet property="creditLabel" destination="RYS-ny-TVG" id="zIX-Sl-o7p"/>
+                        <outlet property="credtiTableView" destination="kuQ-EG-vcL" id="UMo-dl-3hQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="67u-FZ-ehs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-181.15942028985509" y="169.41964285714286"/>
+        </scene>
+        <!--Rentability Data View Controller-->
+        <scene sceneID="MSf-A0-2oJ">
+            <objects>
+                <viewController storyboardIdentifier="RentabilityData" id="oRv-6V-o65" customClass="RentabilityDataViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="voC-11-oQR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quel Dommage, vous n'avez pas encore de simulation de rentabilité sauvegardée !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eos-uF-Lq4">
+                                <rect key="frame" x="40" y="44" width="334" height="818"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4J-cU-rR1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="oRv-6V-o65" id="Qaz-rN-WeJ"/>
+                                    <outlet property="delegate" destination="oRv-6V-o65" id="YXw-ID-HL9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Eos-uF-Lq4" firstAttribute="top" secondItem="z9Y-EV-AgG" secondAttribute="top" id="6fM-Hj-THU"/>
+                            <constraint firstItem="z9Y-EV-AgG" firstAttribute="trailing" secondItem="Eos-uF-Lq4" secondAttribute="trailing" constant="40" id="BEF-Mx-wX3"/>
+                            <constraint firstItem="z9Y-EV-AgG" firstAttribute="trailing" secondItem="d4J-cU-rR1" secondAttribute="trailing" id="DNi-ID-8mG"/>
+                            <constraint firstItem="d4J-cU-rR1" firstAttribute="top" secondItem="z9Y-EV-AgG" secondAttribute="top" id="Kf2-1v-8S9"/>
+                            <constraint firstItem="z9Y-EV-AgG" firstAttribute="bottom" secondItem="Eos-uF-Lq4" secondAttribute="bottom" id="PwZ-dd-jBo"/>
+                            <constraint firstItem="d4J-cU-rR1" firstAttribute="leading" secondItem="z9Y-EV-AgG" secondAttribute="leading" id="TXg-XZ-Elq"/>
+                            <constraint firstItem="Eos-uF-Lq4" firstAttribute="leading" secondItem="z9Y-EV-AgG" secondAttribute="leading" constant="40" id="WUB-Od-4yp"/>
+                            <constraint firstItem="z9Y-EV-AgG" firstAttribute="bottom" secondItem="d4J-cU-rR1" secondAttribute="bottom" id="lH8-j7-u48"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="z9Y-EV-AgG"/>
+                    </view>
+                    <connections>
+                        <outlet property="rentabilityLabel" destination="Eos-uF-Lq4" id="LvM-Ie-0Do"/>
+                        <outlet property="rentabilityTableView" destination="d4J-cU-rR1" id="CMj-UV-WAi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTA-HH-ITg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="772" y="169"/>
+        </scene>
+        <!--Checklist Data View Controller-->
+        <scene sceneID="dcx-hF-GlG">
+            <objects>
+                <viewController storyboardIdentifier="ChecklistData" id="YTk-q1-HaJ" customClass="ChecklistDataViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Zg-Ny-JM9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quel Dommage, vous n'avez pas encore de check-list sauvegardée !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2s-T9-gYL">
+                                <rect key="frame" x="40" y="44" width="334" height="818"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Af-DA-oiC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="YTk-q1-HaJ" id="CRl-Iy-dyH"/>
+                                    <outlet property="delegate" destination="YTk-q1-HaJ" id="kd2-RK-pja"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="F2s-T9-gYL" firstAttribute="top" secondItem="By5-o9-hY9" secondAttribute="top" id="6B5-oC-CJL"/>
+                            <constraint firstItem="6Af-DA-oiC" firstAttribute="top" secondItem="By5-o9-hY9" secondAttribute="top" id="7Ee-Pr-Pqb"/>
+                            <constraint firstItem="By5-o9-hY9" firstAttribute="bottom" secondItem="6Af-DA-oiC" secondAttribute="bottom" id="8w1-W3-8am"/>
+                            <constraint firstItem="By5-o9-hY9" firstAttribute="trailing" secondItem="F2s-T9-gYL" secondAttribute="trailing" constant="40" id="AWv-qN-Zcz"/>
+                            <constraint firstItem="By5-o9-hY9" firstAttribute="trailing" secondItem="6Af-DA-oiC" secondAttribute="trailing" id="D0t-yY-sJM"/>
+                            <constraint firstItem="By5-o9-hY9" firstAttribute="bottom" secondItem="F2s-T9-gYL" secondAttribute="bottom" id="Z1L-Vy-ow9"/>
+                            <constraint firstItem="6Af-DA-oiC" firstAttribute="leading" secondItem="By5-o9-hY9" secondAttribute="leading" id="hwb-19-b6h"/>
+                            <constraint firstItem="F2s-T9-gYL" firstAttribute="leading" secondItem="By5-o9-hY9" secondAttribute="leading" constant="40" id="jYj-QC-Xfp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="By5-o9-hY9"/>
+                    </view>
+                    <connections>
+                        <outlet property="checklistLabel" destination="F2s-T9-gYL" id="eD2-uk-XyS"/>
+                        <outlet property="checklistTableView" destination="6Af-DA-oiC" id="VMW-GM-RPd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="94Q-im-0dE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1728.985507246377" y="168.75"/>
+        </scene>
+        <!--Saved Photos View Controller-->
+        <scene sceneID="z1v-xL-PE6">
+            <objects>
+                <viewController storyboardIdentifier="SavedPhotos" id="EqQ-Ad-hDH" customClass="SavedPhotosViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3WS-xy-FMV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette fonctionnalité n'est pas encore ajoutée ! Encore un peu de patience." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzt-43-KCt">
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="b1R-dd-ADN" firstAttribute="bottom" secondItem="uzt-43-KCt" secondAttribute="bottom" id="Bpw-qI-e6J"/>
+                            <constraint firstItem="uzt-43-KCt" firstAttribute="top" secondItem="b1R-dd-ADN" secondAttribute="top" id="IRZ-te-W80"/>
+                            <constraint firstItem="b1R-dd-ADN" firstAttribute="trailing" secondItem="uzt-43-KCt" secondAttribute="trailing" constant="20" id="Ygo-5S-dbS"/>
+                            <constraint firstItem="uzt-43-KCt" firstAttribute="leading" secondItem="b1R-dd-ADN" secondAttribute="leading" constant="20" id="pb1-Ew-f0e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="b1R-dd-ADN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jzX-ZL-YLS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2760.8695652173915" y="168.75"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="ILG-A6-elL">
+            <objects>
+                <viewController storyboardIdentifier="Map" id="faC-Sh-4C5" customClass="MapViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j9u-IP-DU6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette fonctionnalité n'est pas encore ajoutée ! Encore un peu de patience." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UnM-gx-MVc">
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zp3-gF-EU1" firstAttribute="bottom" secondItem="UnM-gx-MVc" secondAttribute="bottom" id="1jr-gy-knu"/>
+                            <constraint firstItem="UnM-gx-MVc" firstAttribute="top" secondItem="zp3-gF-EU1" secondAttribute="top" id="HSs-X2-A6S"/>
+                            <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="UnM-gx-MVc" secondAttribute="trailing" constant="20" id="S9J-Kj-DZX"/>
+                            <constraint firstItem="UnM-gx-MVc" firstAttribute="leading" secondItem="zp3-gF-EU1" secondAttribute="leading" constant="20" id="lzx-Jg-qqj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zp3-gF-EU1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfk-0I-OYh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3692.753623188406" y="168.75"/>
+        </scene>
+    </scenes>
+</document>

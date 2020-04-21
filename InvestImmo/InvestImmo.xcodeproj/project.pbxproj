@@ -7,14 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0312F2FB244C5C1F004DB0D7 /* TableViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F2F9244C5C1F004DB0D7 /* TableViewCollectionViewCell.swift */; };
-		0312F2FC244C5C1F004DB0D7 /* TableViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312F2FA244C5C1F004DB0D7 /* TableViewCollectionViewCell.xib */; };
 		0312F2FF244C86EE004DB0D7 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F2FD244C86EE004DB0D7 /* GalleryCollectionViewCell.swift */; };
 		0312F300244C86EE004DB0D7 /* GalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312F2FE244C86EE004DB0D7 /* GalleryCollectionViewCell.xib */; };
 		0312F303244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F301244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift */; };
 		0312F304244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312F302244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.xib */; };
-		0312F307244C9A04004DB0D7 /* NoDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F305244C9A04004DB0D7 /* NoDataCollectionViewCell.swift */; };
-		0312F308244C9A04004DB0D7 /* NoDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312F306244C9A04004DB0D7 /* NoDataCollectionViewCell.xib */; };
+		0312F30A244DC785004DB0D7 /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F309244DC785004DB0D7 /* CustomPageViewController.swift */; };
+		0312F30C244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0312F30B244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard */; };
+		0312F30E244DCD5C004DB0D7 /* CreditDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F30D244DCD5C004DB0D7 /* CreditDataViewController.swift */; };
+		0312F310244DCED6004DB0D7 /* RentabilityDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F30F244DCED6004DB0D7 /* RentabilityDataViewController.swift */; };
+		0312F312244DCEE5004DB0D7 /* ChecklistDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F311244DCEE5004DB0D7 /* ChecklistDataViewController.swift */; };
+		0312F314244DD38C004DB0D7 /* SavedPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F313244DD38C004DB0D7 /* SavedPhotosViewController.swift */; };
+		0312F316244DD398004DB0D7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F315244DD398004DB0D7 /* MapViewController.swift */; };
+		0312F319244F21DF004DB0D7 /* SavedTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F317244F21DF004DB0D7 /* SavedTextViewTableViewCell.swift */; };
+		0312F31A244F21DF004DB0D7 /* SavedTextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312F318244F21DF004DB0D7 /* SavedTextViewTableViewCell.xib */; };
+		0312F322244F45EC004DB0D7 /* CreditSimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F321244F45EC004DB0D7 /* CreditSimulationViewController.swift */; };
+		0312F324244F4649004DB0D7 /* CreditResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F323244F4649004DB0D7 /* CreditResultsViewController.swift */; };
+		0312F326244F4686004DB0D7 /* RentabilitySimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F325244F4686004DB0D7 /* RentabilitySimulationViewController.swift */; };
+		0312F328244F4695004DB0D7 /* RentabilityResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F327244F4695004DB0D7 /* RentabilityResultsViewController.swift */; };
+		0312F32A244F5722004DB0D7 /* MenuBarSimulationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F329244F5722004DB0D7 /* MenuBarSimulationCollectionViewCell.swift */; };
+		0312F32C244F8E60004DB0D7 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F32B244F8E60004DB0D7 /* CustomNavigationController.swift */; };
+		0312F32E244F956E004DB0D7 /* CreateNewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F32D244F956E004DB0D7 /* CreateNewProjectViewController.swift */; };
 		034070172448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034070162448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift */; };
 		0365E797243CB7AE00A97F0E /* ChecklistStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0365E796243CB7AE00A97F0E /* ChecklistStoryboard.storyboard */; };
 		0365E799243CB7DB00A97F0E /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365E798243CB7DB00A97F0E /* ChecklistViewController.swift */; };
@@ -79,7 +91,6 @@
 		03E698A5243C605B001E6A4C /* StepperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E698A3243C605B001E6A4C /* StepperTableViewCell.xib */; };
 		03E698A7243C8582001E6A4C /* SavedProjectsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E698A6243C8582001E6A4C /* SavedProjectsStoryboard.storyboard */; };
 		03E698AD243C887C001E6A4C /* SavedProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E698AC243C887C001E6A4C /* SavedProjectsViewController.swift */; };
-		03E698AF243C8964001E6A4C /* SimulationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E698AE243C8964001E6A4C /* SimulationResultViewController.swift */; };
 		03E698B3243CA63D001E6A4C /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E698B1243CA63D001E6A4C /* ResultTableViewCell.swift */; };
 		03E698B4243CA63D001E6A4C /* ResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E698B2243CA63D001E6A4C /* ResultTableViewCell.xib */; };
 		4CAD1FA7ED51C21DEBB993C4 /* Pods_InvestImmoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBBF91459E8C0820A0AB743 /* Pods_InvestImmoTests.framework */; };
@@ -105,14 +116,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0312F2F9244C5C1F004DB0D7 /* TableViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCollectionViewCell.swift; sourceTree = "<group>"; };
-		0312F2FA244C5C1F004DB0D7 /* TableViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		0312F2FD244C86EE004DB0D7 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		0312F2FE244C86EE004DB0D7 /* GalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		0312F301244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSimulationTableViewCell.swift; sourceTree = "<group>"; };
 		0312F302244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsSimulationTableViewCell.xib; sourceTree = "<group>"; };
-		0312F305244C9A04004DB0D7 /* NoDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataCollectionViewCell.swift; sourceTree = "<group>"; };
-		0312F306244C9A04004DB0D7 /* NoDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		0312F309244DC785004DB0D7 /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
+		0312F30B244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavedProjectsDataStoryboard.storyboard; sourceTree = "<group>"; };
+		0312F30D244DCD5C004DB0D7 /* CreditDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditDataViewController.swift; sourceTree = "<group>"; };
+		0312F30F244DCED6004DB0D7 /* RentabilityDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityDataViewController.swift; sourceTree = "<group>"; };
+		0312F311244DCEE5004DB0D7 /* ChecklistDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistDataViewController.swift; sourceTree = "<group>"; };
+		0312F313244DD38C004DB0D7 /* SavedPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPhotosViewController.swift; sourceTree = "<group>"; };
+		0312F315244DD398004DB0D7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0312F317244F21DF004DB0D7 /* SavedTextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTextViewTableViewCell.swift; sourceTree = "<group>"; };
+		0312F318244F21DF004DB0D7 /* SavedTextViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedTextViewTableViewCell.xib; sourceTree = "<group>"; };
+		0312F321244F45EC004DB0D7 /* CreditSimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditSimulationViewController.swift; sourceTree = "<group>"; };
+		0312F323244F4649004DB0D7 /* CreditResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditResultsViewController.swift; sourceTree = "<group>"; };
+		0312F325244F4686004DB0D7 /* RentabilitySimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilitySimulationViewController.swift; sourceTree = "<group>"; };
+		0312F327244F4695004DB0D7 /* RentabilityResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityResultsViewController.swift; sourceTree = "<group>"; };
+		0312F329244F5722004DB0D7 /* MenuBarSimulationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarSimulationCollectionViewCell.swift; sourceTree = "<group>"; };
+		0312F32B244F8E60004DB0D7 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		0312F32D244F956E004DB0D7 /* CreateNewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewProjectViewController.swift; sourceTree = "<group>"; };
 		034070162448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		0365E796243CB7AE00A97F0E /* ChecklistStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChecklistStoryboard.storyboard; sourceTree = "<group>"; };
 		0365E798243CB7DB00A97F0E /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +207,6 @@
 		03E698A3243C605B001E6A4C /* StepperTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepperTableViewCell.xib; sourceTree = "<group>"; };
 		03E698A6243C8582001E6A4C /* SavedProjectsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavedProjectsStoryboard.storyboard; sourceTree = "<group>"; };
 		03E698AC243C887C001E6A4C /* SavedProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProjectsViewController.swift; sourceTree = "<group>"; };
-		03E698AE243C8964001E6A4C /* SimulationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationResultViewController.swift; sourceTree = "<group>"; };
 		03E698B1243CA63D001E6A4C /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		03E698B2243CA63D001E6A4C /* ResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultTableViewCell.xib; sourceTree = "<group>"; };
 		0D1A41523D8D95D1BE83DAC4 /* Pods-InvestImmo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvestImmo.release.xcconfig"; path = "Target Support Files/Pods-InvestImmo/Pods-InvestImmo.release.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +316,7 @@
 		0365E7AD243E12AF00A97F0E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0312F32D244F956E004DB0D7 /* CreateNewProjectViewController.swift */,
 				03D75CF02448ADD50072F7C4 /* AddRentabilityToNewProjectAlertVC.swift */,
 				03D75CF22448AE290072F7C4 /* AddRentabilityToExistantProjectAlertVC.swift */,
 				03D75CF62448C6910072F7C4 /* AddCreditToNewProjectAlertVC.swift */,
@@ -362,6 +385,7 @@
 				03E4A9842423BE74002404C3 /* Main.storyboard */,
 				03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */,
 				03A6B2A2242760D4003F953E /* Extensions.swift */,
+				0312F32B244F8E60004DB0D7 /* CustomNavigationController.swift */,
 			);
 			path = InvestImmo;
 			sourceTree = "<group>";
@@ -413,16 +437,15 @@
 			isa = PBXGroup;
 			children = (
 				03E698A6243C8582001E6A4C /* SavedProjectsStoryboard.storyboard */,
+				0312F30B244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard */,
 				039AAE1424338D76009B23DC /* SavedProjectsTableViewCell.swift */,
 				034070162448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift */,
-				0312F2F9244C5C1F004DB0D7 /* TableViewCollectionViewCell.swift */,
-				0312F2FA244C5C1F004DB0D7 /* TableViewCollectionViewCell.xib */,
 				0312F2FD244C86EE004DB0D7 /* GalleryCollectionViewCell.swift */,
 				0312F2FE244C86EE004DB0D7 /* GalleryCollectionViewCell.xib */,
 				0312F301244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift */,
 				0312F302244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.xib */,
-				0312F305244C9A04004DB0D7 /* NoDataCollectionViewCell.swift */,
-				0312F306244C9A04004DB0D7 /* NoDataCollectionViewCell.xib */,
+				0312F317244F21DF004DB0D7 /* SavedTextViewTableViewCell.swift */,
+				0312F318244F21DF004DB0D7 /* SavedTextViewTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -432,6 +455,12 @@
 			children = (
 				03E698AC243C887C001E6A4C /* SavedProjectsViewController.swift */,
 				03C4F2182437765100479B64 /* DetailsSavedProjectsViewController.swift */,
+				0312F30D244DCD5C004DB0D7 /* CreditDataViewController.swift */,
+				0312F30F244DCED6004DB0D7 /* RentabilityDataViewController.swift */,
+				0312F311244DCEE5004DB0D7 /* ChecklistDataViewController.swift */,
+				0312F313244DD38C004DB0D7 /* SavedPhotosViewController.swift */,
+				0312F315244DD398004DB0D7 /* MapViewController.swift */,
+				0312F309244DC785004DB0D7 /* CustomPageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -473,6 +502,7 @@
 				03E698A3243C605B001E6A4C /* StepperTableViewCell.xib */,
 				03E698B1243CA63D001E6A4C /* ResultTableViewCell.swift */,
 				03E698B2243CA63D001E6A4C /* ResultTableViewCell.xib */,
+				0312F329244F5722004DB0D7 /* MenuBarSimulationCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -481,7 +511,10 @@
 			isa = PBXGroup;
 			children = (
 				03E69894243B7A24001E6A4C /* SimulationsViewController.swift */,
-				03E698AE243C8964001E6A4C /* SimulationResultViewController.swift */,
+				0312F321244F45EC004DB0D7 /* CreditSimulationViewController.swift */,
+				0312F323244F4649004DB0D7 /* CreditResultsViewController.swift */,
+				0312F325244F4686004DB0D7 /* RentabilitySimulationViewController.swift */,
+				0312F327244F4695004DB0D7 /* RentabilityResultsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -673,21 +706,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				03E4A98E2423BE75002404C3 /* LaunchScreen.storyboard in Resources */,
-				0312F2FC244C5C1F004DB0D7 /* TableViewCollectionViewCell.xib in Resources */,
 				03E4A9B72423C5DE002404C3 /* PoetsenOne-Regular.ttf in Resources */,
 				03E698B4243CA63D001E6A4C /* ResultTableViewCell.xib in Resources */,
 				03E6988B243B71C1001E6A4C /* SimulationsStoryboard.storyboard in Resources */,
 				0365E7B5243F55FA00A97F0E /* ChecklistTextFieldTableViewCell.xib in Resources */,
+				0312F30C244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard in Resources */,
 				03E4A98B2423BE75002404C3 /* Assets.xcassets in Resources */,
 				0365E797243CB7AE00A97F0E /* ChecklistStoryboard.storyboard in Resources */,
 				03E69893243B77D6001E6A4C /* TextFieldWithSubtitleTableViewCell.xib in Resources */,
 				03E4A9862423BE74002404C3 /* Main.storyboard in Resources */,
 				0365E7A5243CCBB400A97F0E /* ChecklistPickerTableViewCell.xib in Resources */,
-				0312F308244C9A04004DB0D7 /* NoDataCollectionViewCell.xib in Resources */,
 				03E6989D243B9532001E6A4C /* TextFieldWithoutSubtitleTableViewCell.xib in Resources */,
 				03E698A7243C8582001E6A4C /* SavedProjectsStoryboard.storyboard in Resources */,
 				0312F300244C86EE004DB0D7 /* GalleryCollectionViewCell.xib in Resources */,
 				03E698A1243C5E95001E6A4C /* PickerViewTableViewCell.xib in Resources */,
+				0312F31A244F21DF004DB0D7 /* SavedTextViewTableViewCell.xib in Resources */,
 				03C4F21F2438719500479B64 /* AlertStoryboard.storyboard in Resources */,
 				03E698A5243C605B001E6A4C /* StepperTableViewCell.xib in Resources */,
 				0365E7A9243CCD0B00A97F0E /* DatePickerTableViewCell.xib in Resources */,
@@ -823,17 +856,20 @@
 			files = (
 				0365E7A0243CCA5D00A97F0E /* SegmentTableViewCell.swift in Sources */,
 				03D75CF92448C6A90072F7C4 /* AddCreditToExistantProjectAlertVC.swift in Sources */,
-				0312F2FB244C5C1F004DB0D7 /* TableViewCollectionViewCell.swift in Sources */,
+				0312F310244DCED6004DB0D7 /* RentabilityDataViewController.swift in Sources */,
 				03827E202446F62D00285DF8 /* CreditEnums.swift in Sources */,
 				03E6989C243B9532001E6A4C /* TextFieldWithoutSubtitleTableViewCell.swift in Sources */,
 				0365E7A4243CCBB400A97F0E /* ChecklistPickerTableViewCell.swift in Sources */,
 				039AAE09243343AA009B23DC /* RentabilitySimulation.swift in Sources */,
 				03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */,
 				03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */,
+				0312F328244F4695004DB0D7 /* RentabilityResultsViewController.swift in Sources */,
 				03DF51822431EB9F0040D97D /* InfoViewController.swift in Sources */,
-				03E698AF243C8964001E6A4C /* SimulationResultViewController.swift in Sources */,
 				03D75CFF2449A1640072F7C4 /* ChecklistApartment.swift in Sources */,
+				0312F324244F4649004DB0D7 /* CreditResultsViewController.swift in Sources */,
+				0312F32C244F8E60004DB0D7 /* CustomNavigationController.swift in Sources */,
 				03E69895243B7A24001E6A4C /* SimulationsViewController.swift in Sources */,
+				0312F32A244F5722004DB0D7 /* MenuBarSimulationCollectionViewCell.swift in Sources */,
 				03827E222446FC3200285DF8 /* ChecklistEnums.swift in Sources */,
 				039AAE1524338D76009B23DC /* SavedProjectsTableViewCell.swift in Sources */,
 				03C4F22324387C1A00479B64 /* ExistantProjectAlertTableViewCell.swift in Sources */,
@@ -844,13 +880,20 @@
 				034070172448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift in Sources */,
 				03A6B2AB242BB34D003F953E /* CreditCalculator.swift in Sources */,
 				0365E799243CB7DB00A97F0E /* ChecklistViewController.swift in Sources */,
+				0312F312244DCEE5004DB0D7 /* ChecklistDataViewController.swift in Sources */,
 				03C4F2212438724000479B64 /* AddChecklistToExistantProjectAlertVC.swift in Sources */,
+				0312F30E244DCD5C004DB0D7 /* CreditDataViewController.swift in Sources */,
+				0312F32E244F956E004DB0D7 /* CreateNewProjectViewController.swift in Sources */,
 				0365E7A8243CCD0B00A97F0E /* DatePickerTableViewCell.swift in Sources */,
 				03C4F2192437765100479B64 /* DetailsSavedProjectsViewController.swift in Sources */,
 				03D75CFB2449A0560072F7C4 /* ChecklistDistrict.swift in Sources */,
 				0312F2FF244C86EE004DB0D7 /* GalleryCollectionViewCell.swift in Sources */,
+				0312F326244F4686004DB0D7 /* RentabilitySimulationViewController.swift in Sources */,
+				0312F30A244DC785004DB0D7 /* CustomPageViewController.swift in Sources */,
 				03A6B2A9242A89CF003F953E /* RentabilityCalculator.swift in Sources */,
+				0312F322244F45EC004DB0D7 /* CreditSimulationViewController.swift in Sources */,
 				03E69899243B7BF0001E6A4C /* CreditRepository.swift in Sources */,
+				0312F316244DD398004DB0D7 /* MapViewController.swift in Sources */,
 				03D75CF12448ADD50072F7C4 /* AddRentabilityToNewProjectAlertVC.swift in Sources */,
 				03827E2424473B5200285DF8 /* ChecklistGeneral.swift in Sources */,
 				03E698A4243C605B001E6A4C /* StepperTableViewCell.swift in Sources */,
@@ -859,17 +902,18 @@
 				03E69885243B6BE8001E6A4C /* Alerts.swift in Sources */,
 				0375F6CB243A17F100BDD0D8 /* AddChecklistToNewProjectAlertVC.swift in Sources */,
 				03E69892243B77D6001E6A4C /* TextFieldWithSubtitleTableViewCell.swift in Sources */,
+				0312F319244F21DF004DB0D7 /* SavedTextViewTableViewCell.swift in Sources */,
 				0365E7B4243F55FA00A97F0E /* ChecklistTextFieldTableViewCell.swift in Sources */,
 				03C4F225243880A800479B64 /* ChecklistRepository.swift in Sources */,
 				03E698AD243C887C001E6A4C /* SavedProjectsViewController.swift in Sources */,
 				03E69897243B7AD5001E6A4C /* RentabilityRepository.swift in Sources */,
-				0312F307244C9A04004DB0D7 /* NoDataCollectionViewCell.swift in Sources */,
 				03E698A0243C5E95001E6A4C /* PickerViewTableViewCell.swift in Sources */,
 				03827E1E2446EDC200285DF8 /* RentabilityEnums.swift in Sources */,
 				03D75CF52448C53D0072F7C4 /* CreditSimulation.swift in Sources */,
 				03827E262448537200285DF8 /* ErrorAlertViewController.swift in Sources */,
 				03E4A9B92423CCF1002404C3 /* SceneDelegate.swift in Sources */,
 				03D75CFD2449A0DF0072F7C4 /* ChecklistApartmentBlock.swift in Sources */,
+				0312F314244DD38C004DB0D7 /* SavedPhotosViewController.swift in Sources */,
 				0375F6C72439CE3D00BDD0D8 /* Project.swift in Sources */,
 				0365E79C243CC8B100A97F0E /* TextViewTableViewCell.swift in Sources */,
 			);

@@ -45,7 +45,6 @@ class ChecklistViewController: UIViewController {
             let alertVC = existantProjectAlert.alert(checklist: checklistRepo)
             present(alertVC, animated: true)
         }
-
     }
     
     //MARK: - Methods
@@ -60,7 +59,7 @@ class ChecklistViewController: UIViewController {
         let nibNameForTextFieldCell = UINib(nibName: "ChecklistTextFieldTableViewCell", bundle: nil)
         checklistTableView.register(nibNameForTextFieldCell, forCellReuseIdentifier: "ChecklistTextFieldCell")
         let nibNameForTextViewCell = UINib(nibName: "TextViewTableViewCell", bundle: nil)
-               checklistTableView.register(nibNameForTextViewCell, forCellReuseIdentifier: "TextViewCell")
+        checklistTableView.register(nibNameForTextViewCell, forCellReuseIdentifier: "TextViewCell")
     }
     
     private func setupTableViewHeader() -> UILabel {

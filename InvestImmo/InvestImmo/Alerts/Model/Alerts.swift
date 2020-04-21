@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+class EmptyNewProjectAlert {
+    
+    func alert() -> CreateNewProjectViewController {
+        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: "EmptyNewProjectAlertVC") as! CreateNewProjectViewController
+        return alertVC
+    }
+}
+
 class ChecklistExistantProjectAlert {
     
     func alert(checklist: ChecklistRepository) -> AddChecklistToExistantProjectAlertVC {

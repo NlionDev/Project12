@@ -12,252 +12,167 @@ import RealmSwift
 class SimulationsViewController: UIViewController {
     
     //MARK: - Properties
-    
-    private let rentaCalculator = RentabilityCalculator()
-    private let creditCalculator = CreditCalculator()
-    private var lastCreditCell = TextFieldWithoutSubtitleTableViewCell()
-    private var lastRentaCell = TextFieldWithSubtitleTableViewCell()
-    private let errorAlert = ErrorAlert()
-    let rentaRepo = RentabilityRepository()
-    let creditRepo = CreditRepository()
+    private var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
+    private let menuBarItems = ["Crédit", "Rentabilité"]
+    private var pageViewController: UIPageViewController!
+    private var viewControllers = [UIViewController]()
     
     
     //MARK: - Outlets
 
-    @IBOutlet weak var simulationTableView: UITableView!
-    @IBOutlet weak var choiceSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var menuBar: UIView!
+    @IBOutlet weak var menuBarCollectionView: UICollectionView!
+    
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(Realm.Configuration.defaultConfiguration.fileURL)
-        nibRegister()
-        simulationTableView.reloadData()
+        setupMenuBarCollectionView()
+        setupHorizontalBar()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToSimulationResult" {
-        guard let destination = segue.destination as? SimulationResultViewController else {return}
-            destination.creditCalculator = creditCalculator
-            destination.rentaCalculator = rentaCalculator
-            destination.rentaRepo = rentaRepo
-            destination.creditRepo = creditRepo
+        getViewControllers()
+        if let vc = segue.destination as? UIPageViewController {
+            pageViewController = vc
+            pageViewController.dataSource = self
+            pageViewController.delegate = self
+            pageViewController.setViewControllers([viewControllers[0]], direction: .forward, animated: true, completion: nil)
         }
     }
     
     //MARK: - Actions
     
-    @IBAction func didChangeSegmentedControlValue(_ sender: Any) {
-        if choiceSegmentedControl.selectedSegmentIndex == 0 {
-            for cell in rentaRepo.rentaTextFieldWithoutSubtitleCells {
-                cell.cellTextField.clear()
-            }
-            for cell in rentaRepo.rentaTextFieldWithSubtitleCells {
-                cell.cellTextField.clear()
-            }
-        } else {
-            for cell in creditRepo.creditTextFieldCells {
-                cell.cellTextField.clear()
-            }
-            for cell in creditRepo.creditStepperCells {
-                cell.cellTextField.clear()
-            }
-        }
-        simulationTableView.reloadData()
-    }
     
-    @IBAction func didTapOnCalculButton(_ sender: Any) {
-        if choiceSegmentedControl.selectedSegmentIndex == 0 {
-            if let creditLastTextField = lastCreditCell.cellTextField {
-                creditLastTextField.resignFirstResponder()
-                getCreditResults()
-            }
-        } else {
-            if let rentaLastTextField = lastRentaCell.cellTextField {
-                rentaLastTextField.resignFirstResponder()
-                getRentabilityResults()
-            }
-        }
-    }
     
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        if choiceSegmentedControl.selectedSegmentIndex == 1 {
-            for cell in rentaRepo.rentaTextFieldWithoutSubtitleCells {
-                cell.cellTextField.resignFirstResponder()
-            }
-            for cell in rentaRepo.rentaTextFieldWithSubtitleCells {
-                cell.cellTextField.resignFirstResponder()
-            }
-        } else {
-            for cell in creditRepo.creditStepperCells {
-                cell.cellTextField.resignFirstResponder()
-            }
-            for cell in creditRepo.creditTextFieldCells {
-                cell.cellTextField.resignFirstResponder()
-            }
-        }
-    }
     
     //MARK: - Methods
-    
-    private func getRentabilityResults() {
-        rentaCalculator.rentabilityData = rentaRepo.rentabilityData
-        do {
-            let grossYield = try rentaCalculator.getGrossYield()
-            let netYield = try rentaCalculator.getNetYield()
-            let annualCashflow = try rentaCalculator.getAnnualCashflow()
-            let mensualCashflow = try rentaCalculator.getMensualCashflow()
-            rentaRepo.results.append(grossYield + " %")
-            rentaRepo.resultsForPositiveCheck.append(grossYield)
-            rentaRepo.results.append(netYield + " %")
-            rentaRepo.resultsForPositiveCheck.append(netYield)
-            rentaRepo.results.append(annualCashflow + " €")
-            rentaRepo.resultsForPositiveCheck.append(annualCashflow)
-            rentaRepo.results.append(mensualCashflow + " €")
-            rentaRepo.resultsForPositiveCheck.append(mensualCashflow)
-            performSegue(withIdentifier: "goToSimulationResult", sender: self)
-        } catch let error as RentabilityCalculator.RentabilityCalculatorError {
-            displayRentabilityError(error)
-        } catch {
-            let alert = errorAlert.alert(message: "Une erreur inconnue s'est produite")
-            present(alert, animated: true)
-        }
+
+    private func getViewControllers() {
+        let storyboard = UIStoryboard(name: "SimulationsStoryboard", bundle: nil)
+        let creditVC = storyboard.instantiateViewController(withIdentifier: "CreditSimulation") as! CreditSimulationViewController
+        let rentabilityVC = storyboard.instantiateViewController(withIdentifier: "RentabilitySimulation") as! RentabilitySimulationViewController
+        viewControllers.append(creditVC)
+        viewControllers.append(rentabilityVC)
     }
     
-    private func getCreditResults() {
-        creditCalculator.creditData = creditRepo.creditData
-        do {
-            let mensuality = try creditCalculator.getStringMensuality() + " €"
-            let interestCost = try creditCalculator.getStringInterestCost() + " €"
-            let insuranceCost = try creditCalculator.getStringInsuranceCost() + " €"
-            let totalCost = try creditCalculator.getTotalCost() + " €"
-            creditRepo.results.append(mensuality)
-            creditRepo.results.append(interestCost)
-            creditRepo.results.append(insuranceCost)
-            creditRepo.results.append(totalCost)
-            performSegue(withIdentifier: "goToSimulationResult", sender: self)
-        } catch let error as CreditCalculator.CreditCalculatorError {
-            displayCreditError(error)
-        } catch {
-            let alert = errorAlert.alert(message: "Une erreur inconnue s'est produite")
-            present(alert, animated: true)
-        }
+    private func setupMenuBarCollectionView() {
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        menuBarCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
+    }
+
+    private func setupHorizontalBar() {
+        let horizontalBar = UIView()
+        horizontalBar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        horizontalBar.layer.cornerRadius = 1
+        horizontalBar.translatesAutoresizingMaskIntoConstraints = false
+        menuBar.addSubview(horizontalBar)
+        horizontalBarLeftAnchorConstraint = horizontalBar.leftAnchor.constraint(equalTo: menuBar.leftAnchor)
+        horizontalBarLeftAnchorConstraint?.isActive = true
+        horizontalBar.bottomAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
+        horizontalBar.widthAnchor.constraint(equalTo: menuBar.widthAnchor, multiplier:  1/2).isActive = true
+        horizontalBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
+    }
+    
+    private func getMenuBarCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = UICollectionViewCell()
+        guard let menuBarCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuBarSimulationCell", for: indexPath) as? MenuBarSimulationCollectionViewCell else {return UICollectionViewCell()}
+        let item = menuBarItems[indexPath.row]
+        menuBarCell.configure(title: item)
+        cell = menuBarCell
+        return cell
+    }
+    
+    private func scrollToMenuIndex(menuIndex: Int) {
+        let nextVC = viewControllers[menuIndex]
+        menuIndex == 0 ? pageViewController.setViewControllers([nextVC], direction: .reverse, animated: true, completion: nil) : pageViewController.setViewControllers([nextVC], direction: .forward, animated: true, completion: nil)
+    }
+    
+    private func animateMenuBarSlide(index: Int, duration: TimeInterval) {
+         let x = CGFloat(index) * menuBar.frame.width / 2
+         horizontalBarLeftAnchorConstraint?.constant = x
+         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {self.menuBar.layoutIfNeeded()}, completion: nil)
+     }
+
+}
+
+//MARK: - Extension for CollectionView delegate and datasource
+
+extension SimulationsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return menuBarItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = UICollectionViewCell()
+        cell = getMenuBarCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
+        return cell
         
     }
     
-    private func nibRegister() {
-        let nibNameForCellWithSubtitle = UINib(nibName: "TextFieldWithSubtitleTableViewCell", bundle: nil)
-        simulationTableView.register(nibNameForCellWithSubtitle, forCellReuseIdentifier: "TextFieldWithSubtitleCell")
-        let nibNameForCellWithoutSubtitle = UINib(nibName: "TextFieldWithoutSubtitleTableViewCell", bundle: nil)
-        simulationTableView.register(nibNameForCellWithoutSubtitle, forCellReuseIdentifier: "TextFieldWithoutSubtitleCell")
-        let nibNameForPickerCell = UINib(nibName: "PickerViewTableViewCell", bundle: nil)
-        simulationTableView.register(nibNameForPickerCell, forCellReuseIdentifier: "PickerCell")
-        let nibNameForStepperCell = UINib(nibName: "StepperTableViewCell", bundle: nil)
-        simulationTableView.register(nibNameForStepperCell, forCellReuseIdentifier: "StepperCell")
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: menuBar.frame.width / 2, height: menuBar.frame.height)
     }
     
-    private func getCorrectCellForRentability(tableView: UITableView, indexPath : IndexPath) -> UITableViewCell {
-        let item = rentaRepo.cells[indexPath.row]
-        switch item.cellType {
-        case .textFieldWithoutSubtitles:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithoutSubtitleCell", for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
-            cell.configure(title: item.titles, unit: item.unit)
-            cell.delegate = self
-            rentaRepo.rentaTextFieldWithoutSubtitleCells.append(cell)
-            return cell
-        case .textFieldWithSubtitles:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithSubtitleCell", for: indexPath) as? TextFieldWithSubtitleTableViewCell else {return UITableViewCell()}
-            cell.configure(title: item.titles, subtitle: item.subtitles)
-            lastRentaCell = cell
-            rentaRepo.rentaTextFieldWithSubtitleCells.append(cell)
-            cell.delegate = self
-            return cell
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
-    private func getCorrectCellForCredit(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let item = creditRepo.cells[indexPath.row]
-        switch item.cellType {
-        case .textField:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithoutSubtitleCell", for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
-            cell.configure(title: item.titles, unit: item.unit)
-            cell.delegate = self
-            lastCreditCell = cell
-            creditRepo.creditTextFieldCells.append(cell)
-            return cell
-        case .pickerView:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell", for: indexPath) as? PickerViewTableViewCell else {return UITableViewCell()}
-            cell.configure(title: item.titles, subtitle: item.subtitles)
-            creditRepo.creditData["Durée"] = String(creditRepo.creditDuration[cell.selectedPickerData])
-            cell.delegate = self
-            return cell
-        case .stepper:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "StepperCell", for: indexPath) as? StepperTableViewCell else {return UITableViewCell()}
-            cell.configure(title: item.titles)
-            creditRepo.creditStepperCells.append(cell)
-            cell.delegate = self
-            return cell
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
-    private func displayRentabilityError(_ error: RentabilityCalculator.RentabilityCalculatorError) {
-        switch error {
-        case .estatePriceMissing:
-            let alert = errorAlert.alert(message: "Le prix du bien n'est pas renseigné")
-            present(alert, animated: true)
-        case .monthlyRentMissing:
-            let alert = errorAlert.alert(message: "Le loyer mensuel n'est pas renseigné")
-            present(alert, animated: true)
-        case .notaryFeesMissing:
-           let alert = errorAlert.alert(message: "Les frais de notaire ne sont pas renseignés")
-           present(alert, animated: true)
-        case .propertyTaxMissing:
-            let alert = errorAlert.alert(message: "La taxe foncière n'est pas renseignée")
-            present(alert, animated: true)
-        case .chargesMissing:
-            let alert = errorAlert.alert(message: "Les charges de copropriété ne sont pas renseignées")
-            present(alert, animated: true)
-        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        animateMenuBarSlide(index: indexPath.item, duration: 0.3)
+        scrollToMenuIndex(menuIndex: Int(indexPath.item))
     }
-
-    private func displayCreditError(_ error: CreditCalculator.CreditCalculatorError) {
-        switch error {
-        case .amountToFinanceMissing:
-            let alert = errorAlert.alert(message: "Le montant à financer n'est pas renseigné")
-            present(alert, animated: true)
-        case .rateMissing:
-            let alert = errorAlert.alert(message: "Le taux n'est pas renseigné")
-            present(alert, animated: true)
-        }
-    }
-
 }
 
-//MARK: - Extension
+//MARK: - Extension for PageViewController delegate and datasource
 
-extension SimulationsViewController: UITableViewDataSource, UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return choiceSegmentedControl.selectedSegmentIndex == 0 ? creditRepo.cells.count : rentaRepo.cells.count
+extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = viewControllers.firstIndex(of: viewController) else {return nil}
+        let previousIndex = viewControllerIndex - 1
+        guard previousIndex >= 0 else {return nil}
+        guard viewControllers.count > previousIndex else {return nil}
+        return viewControllers[previousIndex]
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return choiceSegmentedControl.selectedSegmentIndex == 0 ? getCorrectCellForCredit(tableView: tableView, indexPath: indexPath) : getCorrectCellForRentability(tableView: tableView, indexPath: indexPath)
         
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = viewControllers.firstIndex(of: viewController) else {return nil}
+        let nextIndex = viewControllerIndex + 1
+        let viewControllersCount = viewControllers.count
+        guard viewControllersCount != nextIndex else {return nil}
+        guard viewControllersCount > nextIndex else {return nil}
+        return viewControllers[nextIndex]
+    }
+    
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return viewControllers.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if (completed && finished) {
+            if let currentVC = pageViewController.viewControllers?.last {
+                if let index = viewControllers.firstIndex(of: currentVC) {
+                    let indexPath = IndexPath(item: index, section: 0)
+                    menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+                    animateMenuBarSlide(index: index, duration: 0)
+                }
+            }
+        }
     }
 }
 
-extension SimulationsViewController: TextFieldTableViewCellDelegate {
-    func textFieldTableViewCell(key: String, value: String) {
-        rentaRepo.rentabilityData[key] = value
-        creditRepo.creditData[key] = value
-    }
-}
 
-extension SimulationsViewController: PickerViewTableViewCellDelegate {
-    func pickerViewTableViewCell(_ pickerViewTableViewCell: PickerViewTableViewCell, key: String, value: Int) {
-        let stringValue = String(value)
-        creditRepo.creditData[key] = stringValue
-    }
-}
+
+

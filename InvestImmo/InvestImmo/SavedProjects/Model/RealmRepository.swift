@@ -13,7 +13,7 @@ class RealmRepository {
     
     //MARK: - Properties
     
- 
+    private var project = Project()
     let realm = try! Realm()
     lazy var myProjects: Results<Project> = {
         self.realm.objects(Project.self)}()
@@ -23,13 +23,56 @@ class RealmRepository {
         self.realm.objects(CreditSimulation.self)}()
     lazy var checklistGeneral: Results<ChecklistGeneral> = {
         self.realm.objects(ChecklistGeneral.self)}()
+    lazy var checklistDistrict: Results<ChecklistDistrict> = {
+        self.realm.objects(ChecklistDistrict.self)}()
+    lazy var checklistApartmentBlock: Results<ChecklistApartmentBlock> = {
+        self.realm.objects(ChecklistApartmentBlock.self)}()
+    lazy var checklistApartment: Results<ChecklistApartment> = {
+        self.realm.objects(ChecklistApartment.self)}()
     let errorAlert = ErrorAlert()
     
     //MARK: - Methods
     
+    func saveEmptyNewProject(name: String) {
+        project.name = name
+        try! realm.write {
+            realm.add(project)
+        }
+    }
+    
     func getChecklistGeneralWithProjectName(name: String) -> ChecklistGeneral {
         var checklistToReturn = ChecklistGeneral()
         for checklist in checklistGeneral {
+            if checklist.name == name {
+                checklistToReturn = checklist
+            }
+        }
+        return checklistToReturn
+    }
+    
+    func getChecklistDistrictWithProjectName(name: String) -> ChecklistDistrict {
+        var checklistToReturn = ChecklistDistrict()
+        for checklist in checklistDistrict {
+            if checklist.name == name {
+                checklistToReturn = checklist
+            }
+        }
+        return checklistToReturn
+    }
+    
+    func getChecklistApartmentBlocklWithProjectName(name: String) -> ChecklistApartmentBlock {
+        var checklistToReturn = ChecklistApartmentBlock()
+        for checklist in checklistApartmentBlock {
+            if checklist.name == name {
+                checklistToReturn = checklist
+            }
+        }
+        return checklistToReturn
+    }
+    
+    func getChecklistApartmentWithProjectName(name: String) -> ChecklistApartment {
+        var checklistToReturn = ChecklistApartment()
+        for checklist in checklistApartment {
             if checklist.name == name {
                 checklistToReturn = checklist
             }
@@ -114,5 +157,123 @@ class RealmRepository {
         }
         return results
     }
+    
+    func getSavedChecklistData(general: ChecklistGeneral, district: ChecklistDistrict, block: ChecklistApartmentBlock, apartment: ChecklistApartment) -> [[String]] {
+        var results = [[String]]()
+        results.append(getSavedChecklistGeneralData(checklist: general))
+        results.append(getSavedChecklistDistrictData(checklist: district))
+        results.append(getSavedChecklistApartmentBlockData(checklist: block))
+        results.append(getSavedChecklistApartmentData(checklist: apartment))
+        return results
+    }
+    
+    private func getSavedChecklistGeneralData(checklist: ChecklistGeneral) -> [String] {
+        var results = [String]()
+        if let visitDate = checklist.visitDate,
+            let estateType = checklist.estateType,
+            let surfaceArea = checklist.surfaceArea {
+            results.append(visitDate)
+            results.append(estateType)
+            results.append(surfaceArea)
+        }
+        return results
+    }
+    
+    private func getSavedChecklistDistrictData(checklist: ChecklistDistrict) -> [String] {
+        var results = [String]()
+        if let problem = checklist.problem,
+            let advantage = checklist.advantage,
+            let transports = checklist.transports,
+            let easyPark = checklist.easyPark {
+            results.append(problem)
+            results.append(advantage)
+            results.append(transports)
+            results.append(easyPark)
+        }
+        return results
+    }
+    
+    private func getSavedChecklistApartmentBlockData(checklist: ChecklistApartmentBlock) -> [String] {
+        var results = [String]()
+        if let construction = checklist.yearOfConstruction,
+            let lots = checklist.numberOfLots,
+            let internet = checklist.internet,
+            let syndicate = checklist.syndicate,
+            let facade = checklist.facade,
+            let roof = checklist.roof,
+            let communalAreas = checklist.communalAreas {
+            results.append(construction)
+            results.append(lots)
+            results.append(internet)
+            results.append(syndicate)
+            results.append(facade)
+            results.append(roof)
+            results.append(communalAreas)
+        }
+        return results
+    }
+    
+    private func getSavedChecklistApartmentData(checklist: ChecklistApartment) -> [String] {
+        var results = [String]()
+        if let dpe = checklist.dpe,
+            let light = checklist.light,
+            let dualAspect = checklist.dualAspect,
+            let vmc = checklist.vmc,
+            let humidity = checklist.humidity,
+            let height = checklist.heightUnderCeiling,
+            let planeness = checklist.planeness,
+            let insulation = checklist.insulation,
+            let sound = checklist.soundInsulation,
+            let direction = checklist.direction,
+            let bedroom = checklist.bedroomView,
+            let lifeview = checklist.liferoomView,
+            let heatingSystem = checklist.heatingSystem,
+            let heatingType = checklist.heatingType,
+            let electricity = checklist.electricity,
+            let electricityMeters = checklist.electricityMeters,
+            let toilet = checklist.toilet,
+            let bathroom = checklist.bathroom,
+            let plumbing = checklist.plumbingQuality,
+            let ground = checklist.groundQuality,
+            let wall = checklist.wallQuality,
+            let shutters = checklist.shuttersQuality,
+            let glazing = checklist.doubleGlazing,
+            let reconfiguration = checklist.reconfiguration,
+            let cave = checklist.cave,
+            let caveSurface = checklist.caveSurface,
+            let parking = checklist.parking,
+            let elements = checklist.distinguishElements {
+            results.append(dpe)
+            results.append(light)
+            results.append(dualAspect)
+            results.append(vmc)
+            results.append(humidity)
+            results.append(height)
+            results.append(planeness)
+            results.append(insulation)
+            results.append(sound)
+            results.append(direction)
+            results.append(bedroom)
+            results.append(lifeview)
+            results.append(heatingSystem)
+            results.append(heatingType)
+            results.append(electricity)
+            results.append(electricityMeters)
+            results.append(toilet)
+            results.append(bathroom)
+            results.append(plumbing)
+            results.append(ground)
+            results.append(wall)
+            results.append(shutters)
+            results.append(glazing)
+            results.append(reconfiguration)
+            results.append(cave)
+            results.append(caveSurface)
+            results.append(parking)
+            results.append(elements)
+        }
+        return results
+    }
+    
     
 }
