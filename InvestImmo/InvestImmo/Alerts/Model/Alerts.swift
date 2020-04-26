@@ -6,77 +6,9 @@
 //  Copyright © 2020 Nicolas Lion. All rights reserved.
 //
 
-import Foundation
+
 import UIKit
 
-class EmptyNewProjectAlert {
-    
-    func alert() -> CreateNewProjectViewController {
-        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "EmptyNewProjectAlertVC") as! CreateNewProjectViewController
-        return alertVC
-    }
-}
-
-class ChecklistExistantProjectAlert {
-    
-    func alert(checklist: ChecklistRepository) -> AddChecklistToExistantProjectAlertVC {
-        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "ChecklistExistantProjectAlertVC") as! AddChecklistToExistantProjectAlertVC
-        alertVC.checklistRepo = checklist
-        return alertVC
-    }
-}
-
-class ChecklistNewProjectAlert {
-    
-    func alert(checklist: ChecklistRepository) -> AddChecklistToNewProjectAlertVC {
-        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "ChecklistNewProjectAlertVC") as! AddChecklistToNewProjectAlertVC
-        alertVC.checklistRepo = checklist
-        return alertVC
-    }
-}
-
-class RentabilityNewProjectAlert {
-    
-    func alert(rentability: RentabilityRepository) -> AddRentabilityToNewProjectAlertVC {
-        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "RentabilityNewProjectAlertVC") as! AddRentabilityToNewProjectAlertVC
-        alertVC.rentaRepo = rentability
-        return alertVC
-    }
-}
-
-class RentabilityExistantProjectAlert {
-    
-    func alert(rentability: RentabilityRepository) -> AddRentabilityToExistantProjectAlertVC {
-        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "RentabilityExistantProjectAlertVC") as! AddRentabilityToExistantProjectAlertVC
-        alertVC.rentaRepo = rentability
-        return alertVC
-    }
-}
-
-class CreditNewProjectAlert {
-    
-    func alert(credit: CreditRepository) -> AddCreditToNewProjectAlertVC {
-        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "CreditNewProjectAlertVC") as! AddCreditToNewProjectAlertVC
-        alertVC.creditRepo = credit
-        return alertVC
-    }
-}
-
-class CreditExistantProjectAlert {
-    
-    func alert(credit: CreditRepository) -> AddCreditToExistantProjectAlertVC {
-        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "CreditExistantProjectAlertVC") as! AddCreditToExistantProjectAlertVC
-        alertVC.creditRepo = credit
-        return alertVC
-    }
-}
 
 class ErrorAlert {
     

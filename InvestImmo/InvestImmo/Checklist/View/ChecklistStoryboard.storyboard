@@ -70,7 +70,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iFy-f8-B6y"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Check-list" image="checklist" selectedImage="checklist" id="neF-j1-eUn">
+                    <tabBarItem key="tabBarItem" title="Check-list" image="checklistIcon" selectedImage="checklistIcon" id="neF-j1-eUn">
                         <color key="badgeColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -84,6 +84,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checklist" width="24" height="24"/>
+        <image name="checklistIcon" width="30" height="30"/>
     </resources>
 </document>

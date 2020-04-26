@@ -4,17 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Antipasto-Pro-Regular-trial.ttf">
-            <string>AntipastoPro</string>
-        </array>
-        <array key="PoetsenOne-Regular.ttf">
-            <string>PoetsenOne-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--SimulationsNavigation-->
         <scene sceneID="K6D-wx-sXp">
@@ -43,6 +34,8 @@
                         <segue destination="Z4W-bY-M1I" kind="relationship" relationship="viewControllers" id="skq-gm-3Qs"/>
                         <segue destination="REg-BL-2vz" kind="relationship" relationship="viewControllers" id="cru-qq-dwP"/>
                         <segue destination="Keg-fJ-jCB" kind="relationship" relationship="viewControllers" id="2NI-lp-HgV"/>
+                        <segue destination="p1c-7x-ctZ" kind="relationship" relationship="viewControllers" id="WFK-Bb-aMY"/>
+                        <segue destination="8cw-BB-qN9" kind="relationship" relationship="viewControllers" id="deI-X5-Rol"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1V-8D-TXz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -53,7 +46,7 @@
         <scene sceneID="IKU-So-eJn">
             <objects>
                 <viewControllerPlaceholder storyboardName="ChecklistStoryboard" referencedIdentifier="Checklist" id="REg-BL-2vz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Check-list" image="checklist" selectedImage="checklist" id="18V-fZ-h6Q">
+                    <tabBarItem key="tabBarItem" title="Check-list" id="18V-fZ-h6Q">
                         <color key="badgeColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                 </viewControllerPlaceholder>
@@ -71,68 +64,31 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbb-Sh-rmu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2467" y="1945"/>
+            <point key="canvasLocation" x="-2441" y="1895"/>
         </scene>
-        <!--Info-->
-        <scene sceneID="fos-Ov-da8">
+        <!--InfoVC-->
+        <scene sceneID="PGW-QR-cYY">
             <objects>
-                <viewController id="KUk-gl-yb2" customClass="InfoViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YeV-RD-okM" customClass="BackgroundView" customModule="InvestImmo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette application vous permet d'estimer la rentabilité de votre investissement immobilier en calculant les rendements." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeQ-SJ-05Z">
-                                <rect key="frame" x="30" y="186" width="354" height="81"/>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
-                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invest'Immo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciW-9S-eMP">
-                                <rect key="frame" x="105" y="64" width="204" height="42"/>
-                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="35"/>
-                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRe-5g-qTL">
-                                <rect key="frame" x="20" y="685.5" width="374" height="126.5"/>
-                                <string key="text">Les rendements calculés ne sont qu'une estimation et ne sont pas garantis. D'autres paramètres peuvent modifier les rendements ( ex : votre fiscalité, la zone géographique du bien, etc.. ). Avant d'investir, nous vous conseillons de faire appel à un professionnel.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avertissement :" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgN-md-sbo">
-                                <rect key="frame" x="114.5" y="645.5" width="185.5" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="25"/>
-                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="ciW-9S-eMP" firstAttribute="top" secondItem="qAr-KQ-3tG" secondAttribute="top" constant="20" id="0BG-wL-Sed"/>
-                            <constraint firstItem="qAr-KQ-3tG" firstAttribute="trailing" secondItem="AeQ-SJ-05Z" secondAttribute="trailing" constant="30" id="8oL-Qn-83H"/>
-                            <constraint firstItem="jgN-md-sbo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AeQ-SJ-05Z" secondAttribute="bottom" constant="8" id="A7h-qf-UWr"/>
-                            <constraint firstItem="YRe-5g-qTL" firstAttribute="leading" secondItem="qAr-KQ-3tG" secondAttribute="leading" constant="20" id="AnT-St-XUM"/>
-                            <constraint firstItem="YRe-5g-qTL" firstAttribute="top" secondItem="jgN-md-sbo" secondAttribute="bottom" constant="10" id="CmF-1v-7c4"/>
-                            <constraint firstItem="ciW-9S-eMP" firstAttribute="centerX" secondItem="YeV-RD-okM" secondAttribute="centerX" id="E5K-EX-uao"/>
-                            <constraint firstItem="AeQ-SJ-05Z" firstAttribute="leading" secondItem="qAr-KQ-3tG" secondAttribute="leading" constant="30" id="EoA-XY-Ke3"/>
-                            <constraint firstItem="AeQ-SJ-05Z" firstAttribute="top" secondItem="ciW-9S-eMP" secondAttribute="bottom" constant="80" id="X5Y-Ci-sMJ"/>
-                            <constraint firstItem="qAr-KQ-3tG" firstAttribute="bottom" secondItem="YRe-5g-qTL" secondAttribute="bottom" constant="50" id="ffH-xE-hsH"/>
-                            <constraint firstItem="jgN-md-sbo" firstAttribute="centerX" secondItem="YeV-RD-okM" secondAttribute="centerX" id="lgq-eQ-sMy"/>
-                            <constraint firstItem="qAr-KQ-3tG" firstAttribute="trailing" secondItem="YRe-5g-qTL" secondAttribute="trailing" constant="20" id="zXp-ue-fc5"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="qAr-KQ-3tG"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Info" image="infoIcon" selectedImage="infoIcon" id="Pyv-6I-Jas"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VGa-Yt-f9c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="InfoStoryboard" referencedIdentifier="InfoVC" id="8cw-BB-qN9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Info" image="infoIcon" selectedImage="infoIcon" id="3Rb-Dj-bwk"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UKW-7M-iyR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1413" y="2623"/>
+            <point key="canvasLocation" x="-4521" y="1960"/>
+        </scene>
+        <!--MapVC-->
+        <scene sceneID="Fq0-fo-7zK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MapStoryboard" referencedIdentifier="MapVC" id="p1c-7x-ctZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Carte" id="Lhf-2o-PLB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kBt-Im-aBQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3472" y="1993"/>
         </scene>
     </scenes>
     <resources>
-        <image name="checklist" width="24" height="24"/>
-        <image name="folderIcon" width="40" height="40"/>
+        <image name="folderIcon" width="30" height="30"/>
         <image name="infoIcon" width="40" height="40"/>
         <image name="ratio" width="24" height="24"/>
     </resources>

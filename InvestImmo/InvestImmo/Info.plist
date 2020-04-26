@@ -65,5 +65,23 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Invest&apos;Immo a besoin d&apos;avoir accès à votre appareil photo.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Invest&apos;Immo a besoin d&apos;avoir accès à vos photos.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Invest&apos;Immo a besoin d&apos;avoir accès à vos photos.</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Invest&apos;Immo a besoin d&apos;avoir accès à votre localisation.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Invest&apos;Immo a besoin d&apos;avoir accès à votre localisation.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Invest&apos;Immo a besoin d&apos;avoir accès à votre localisation.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>waze</string>
+	</array>
 </dict>
 </plist>

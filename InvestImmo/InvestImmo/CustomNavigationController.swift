@@ -23,11 +23,12 @@ class CustomNavigationController: UINavigationController {
     
     //MARK: - Methods
     private func setupStyle() {
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30)!]
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30),
+                          NSAttributedString.Key.foregroundColor: UIColor(ciColor: .white)]
+        navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
+        navigationBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         navigationBar.backIndicatorImage = UIImage(named: "arrow")
         navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
-        navigationBar.backItem?.backBarButtonItem?.title = ""
-        navigationBar.backItem?.backBarButtonItem?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         navigationBar.shadowImage = UIImage()
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.isTranslucent = false

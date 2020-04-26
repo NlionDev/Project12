@@ -15,11 +15,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        
+//        autoreleasepool {
+//            guard let realmURL = Realm.Configuration.defaultConfiguration.fileURL else {
+//                return
+//            }
+//            let realmURLs = [
+//                realmURL,
+//                realmURL.appendingPathExtension("lock"),
+//                realmURL.appendingPathExtension("note"),
+//                realmURL.appendingPathExtension("management"),
+//                realmURL.appendingPathExtension("log_a"),
+//                realmURL.appendingPathExtension("log_b")
+//            ]
+//            for URL in realmURLs {
+//                do {
+//                    try FileManager.default.removeItem(at: URL)
+//                } catch let error {
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
+
 //        let realm = try! Realm()
 //        try! realm.write {
 //            realm.deleteAll()
 //        }
-        application.statusBarStyle = .lightContent
         return true
     }
 

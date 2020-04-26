@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class DetailsSavedProjectsViewController: UIViewController {
 
@@ -16,13 +17,16 @@ class DetailsSavedProjectsViewController: UIViewController {
     private let menuBarItems = [UIImage(named: "bankIcon"), UIImage(named: "ratioIcon"), UIImage(named: "checklistIcon"), UIImage(named: "galleryIcon"), UIImage(named: "mapIcon")]
     private var pageViewController: UIPageViewController!
     private var viewControllers = [UIViewController]()
+    private let errorAlert = ErrorAlert()
     private var realmRepo = RealmRepository()
     private let creditRepo = CreditRepository()
     private let rentaRepo = RentabilityRepository()
+    private let photo = Photo()
     private var selectedRentabilitySimulation: RentabilitySimulation?
     private var selectedCreditSimulation: CreditSimulation?
     private var selectedChecklistGeneral: ChecklistGeneral?
     private var currentIndex = 0
+    private let imagePicker = UIImagePickerController()
     var selectedProject: Project?
     
     //MARK: - Outlets
@@ -31,8 +35,6 @@ class DetailsSavedProjectsViewController: UIViewController {
     @IBOutlet weak var menuBar: UIView!
     @IBOutlet weak var menuBarCollectionView: UICollectionView!
     @IBOutlet weak var containerView: UIView!
-    
-    
     
     //MARK: - Lifecycle
     
@@ -43,7 +45,7 @@ class DetailsSavedProjectsViewController: UIViewController {
             nameLabel.text = selectedProject.name
             selectedCreditSimulation = realmRepo.getCreditSimulationWithProjectName(name: projectName)
         }
-        self.navigationItem.rightBarButtonItem = nil
+        imagePicker.delegate = self
         setupMenuBarCollectionView()
         setupHorizontalBar()
     }
@@ -61,7 +63,10 @@ class DetailsSavedProjectsViewController: UIViewController {
     
     //MARK: - Actions
     
-
+    @objc private func didTapOnAddPhotoButton() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadPhotoCollectionView"), object: nil)
+        checkIfUserIsAllowToPickPhotoFromLibrary()
+    }
     
     //MARK: - Methods
  
@@ -71,9 +76,12 @@ class DetailsSavedProjectsViewController: UIViewController {
         creditDataVC.selectedProject = selectedProject
         let rentabilityDataVC = storyboard.instantiateViewController(withIdentifier: "RentabilityData") as! RentabilityDataViewController
         rentabilityDataVC.selectedProject = selectedProject
-        let checklistDataVC = storyboard.instantiateViewController(withIdentifier: "ChecklistData")
-        let savedPhotosVC = storyboard.instantiateViewController(withIdentifier: "SavedPhotos")
-        let mapVC = storyboard.instantiateViewController(withIdentifier: "Map")
+        let checklistDataVC = storyboard.instantiateViewController(withIdentifier: "ChecklistData") as! ChecklistDataViewController
+        checklistDataVC.selectedProject = selectedProject
+        let savedPhotosVC = storyboard.instantiateViewController(withIdentifier: "SavedPhotos") as! SavedPhotosViewController
+        savedPhotosVC.selectedProject = selectedProject
+        let mapVC = storyboard.instantiateViewController(withIdentifier: "Map") as! ProjectMapViewController
+        mapVC.selectedProject = selectedProject
         viewControllers.append(creditDataVC)
         viewControllers.append(rentabilityDataVC)
         viewControllers.append(checklistDataVC)
@@ -103,6 +111,7 @@ class DetailsSavedProjectsViewController: UIViewController {
         let nextVC = viewControllers[menuIndex]
         currentIndex < menuIndex ? pageViewController.setViewControllers([nextVC], direction: .forward, animated: true, completion: nil) : pageViewController.setViewControllers([nextVC], direction: .reverse, animated: true, completion: nil)
         currentIndex = menuIndex
+        configureNavBarRightButton()
     }
     
     private func getMenuBarCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -120,9 +129,37 @@ class DetailsSavedProjectsViewController: UIViewController {
         horizontalBarLeftAnchorConstraint?.constant = x
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {self.menuBar.layoutIfNeeded()}, completion: nil)
     }
+    
+    private func configureNavBarRightButton() {
+        currentIndex == 3 ? setupNavBarRightButton(image: #imageLiteral(resourceName: "camera"), action: #selector(didTapOnAddPhotoButton)) : hideNavBarRightButton()
+    }
+    
+    private func checkIfUserIsAllowToPickPhotoFromLibrary() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        if (status == PHAuthorizationStatus.denied || status == PHAuthorizationStatus.notDetermined) {
+            PHPhotoLibrary.requestAuthorization({ (newStatus) in
+                if (newStatus == PHAuthorizationStatus.authorized) {
+                    self.pickPhotoFromLibrary()
+                } else {
+                    let alert = self.errorAlert.alert(message: "Invest'Immo a besoin d'avoir accès à votre bibliothèque photo. Sans ça vous ne pourrez pas choisir des photos de votre bibliothèque. S'il vous plait allez dans vos réglages et autorisez l'accès.")
+                    self.present(alert, animated: true)
+                }
+            })
+        } else if status == PHAuthorizationStatus.authorized {
+            pickPhotoFromLibrary()
+        }
+    }
+    
+    private func pickPhotoFromLibrary() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true)
+    }
 }
-
-//MARK: - Extension for CollectionView delegate and datasource
+//MARK: - Extension for CollectionView
 
 extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -155,7 +192,7 @@ extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollec
     }
 }
 
-//MARK: - Extension for PageViewController delegate and datasource
+//MARK: - Extension for PageViewController
 
 extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
@@ -192,8 +229,35 @@ extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPa
                     let indexPath = IndexPath(item: index, section: 0)
                     menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
                     animateMenuBarSlide(index: index, duration: 0)
+                    configureNavBarRightButton()
                 }
             }
         }
+    }
+}
+
+//MARK: - Extension for ImagePickerController
+
+extension DetailsSavedProjectsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if picker.sourceType == .photoLibrary {
+            if let imageURL = info[.referenceURL] as? URL {
+                let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
+                guard let asset = result.firstObject else {return}
+                if let name = selectedProject?.name {
+                    photo.name = name
+                    photo.identifier = asset.localIdentifier
+                    try! realmRepo.realm.write {
+                        realmRepo.realm.add(photo)
+                    }
+                }
+            }
+            self.dismiss(animated: true)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
     }
 }

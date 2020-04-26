@@ -30,7 +30,7 @@ class SavedProjectsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNewProjectButton(action: #selector(didTapOnNewProjectButton))
+        setupNavBarRightButton(image: #imageLiteral(resourceName: "addIcon"), action: #selector(didTapOnNewProjectButton))
         configureBackgroundImageForTableView(tableView: savedProjectsTableView)
     }
     
@@ -41,6 +41,7 @@ class SavedProjectsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GoToDetails" {
+            hideNavBarBackItemTitle()
             guard let destination = segue.destination as? DetailsSavedProjectsViewController,
                 let selectedProject = selectedProject else {return}
             destination.selectedProject = selectedProject
@@ -102,13 +103,19 @@ extension SavedProjectsViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if let selectedProjectName = realmRepo.myProjects[indexPath.row].name {
-                let simulationToDelete = realmRepo.realm.objects(RentabilitySimulation.self).filter("name = '\(selectedProjectName)'")
+                let rentabilityToDelete = realmRepo.realm.objects(RentabilitySimulation.self).filter("name = '\(selectedProjectName)'")
+                let creditToDelete = realmRepo.realm.objects(CreditSimulation.self).filter("name = '\(selectedProjectName)'")
                 let checklistGeneralToDelete = realmRepo.realm.objects(ChecklistGeneral.self).filter("name = '\(selectedProjectName)'")
+                let photoToDelete = realmRepo.realm.objects(Photo.self).filter("name = '\(selectedProjectName)'")
+                let mapToDelete = realmRepo.realm.objects(MapAdress.self).filter("name = '\(selectedProjectName)'")
                 let projectToDelete = realmRepo.realm.objects(Project.self).filter("name = '\(selectedProjectName)'")
                 try! realmRepo.realm.write {
                     realmRepo.realm.delete(projectToDelete)
-                    realmRepo.realm.delete(simulationToDelete)
+                    realmRepo.realm.delete(rentabilityToDelete)
                     realmRepo.realm.delete(checklistGeneralToDelete)
+                    realmRepo.realm.delete(creditToDelete)
+                    realmRepo.realm.delete(photoToDelete)
+                    realmRepo.realm.delete(mapToDelete)
                 }
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()

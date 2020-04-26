@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "checklistIcon.png",
+      "filename" : "bigYellowHouse.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "checklistIcon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "checklistIcon@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

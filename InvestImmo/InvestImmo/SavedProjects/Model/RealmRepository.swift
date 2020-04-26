@@ -14,7 +14,12 @@ class RealmRepository {
     //MARK: - Properties
     
     private var project = Project()
+    private var mapAdress = MapAdress()
     let realm = try! Realm()
+    lazy var myAdresses: Results<MapAdress> = {
+        self.realm.objects(MapAdress.self)}()
+    lazy var myPhotos: Results<Photo> = {
+        self.realm.objects(Photo.self)}()
     lazy var myProjects: Results<Project> = {
         self.realm.objects(Project.self)}()
     lazy var mySavedRentabilitySimulations: Results<RentabilitySimulation> = {
@@ -38,6 +43,45 @@ class RealmRepository {
         try! realm.write {
             realm.add(project)
         }
+    }
+    
+    func saveMapAdressWithNewProject(project: Project, mapAdress: MapAdress) {
+        try! realm.write {
+            realm.add(project)
+            realm.add(mapAdress)
+        }
+    }
+    
+    func saveMapAdressInExistantProject(name: String, adress: String, latitude: String, longitude: String) {
+        mapAdress.name = name
+        mapAdress.adress = adress
+        mapAdress.latitude = latitude
+        mapAdress.longitude = longitude
+        try! realm.write {
+            realm.add(mapAdress)
+        }
+    }
+    
+    func getMapAdressWithProjectName(name: String) -> MapAdress {
+        var adressToReturn = MapAdress()
+        for adress in myAdresses {
+            if adress.name == name {
+                adressToReturn = adress
+            }
+        }
+        return adressToReturn
+    }
+    
+    func getPhotosIdentifiersWithProjectName(name: String) -> [String] {
+        var identifiers = [String]()
+        for photo in myPhotos {
+            if photo.name == name {
+                if let identifier = photo.identifier {
+                    identifiers.append(identifier)
+                }
+            }
+        }
+        return identifiers
     }
     
     func getChecklistGeneralWithProjectName(name: String) -> ChecklistGeneral {

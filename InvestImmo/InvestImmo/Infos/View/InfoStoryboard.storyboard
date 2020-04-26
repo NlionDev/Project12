@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zgp-d3-dK7">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+        <array key="PoetsenOne-Regular.ttf">
+            <string>PoetsenOne-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Info-->
+        <scene sceneID="mta-yD-hPR">
+            <objects>
+                <viewController storyboardIdentifier="InfoVC" id="zgp-d3-dK7" customClass="InfoViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h1S-Ge-wuW" customClass="BackgroundView" customModule="InvestImmo" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette application vous permet d'estimer la rentabilité de votre investissement immobilier en calculant les rendements." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D79-mK-9zf">
+                                <rect key="frame" x="30" y="186" width="354" height="81"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
+                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invest'Immo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABc-W6-rES">
+                                <rect key="frame" x="105" y="64" width="204" height="42"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="35"/>
+                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yv2-fV-GAS">
+                                <rect key="frame" x="20" y="685.5" width="374" height="126.5"/>
+                                <string key="text">Les rendements calculés ne sont qu'une estimation et ne sont pas garantis. D'autres paramètres peuvent modifier les rendements ( ex : votre fiscalité, la zone géographique du bien, etc.. ). Avant d'investir, nous vous conseillons de faire appel à un professionnel.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avertissement :" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTE-8m-V5O">
+                                <rect key="frame" x="114.5" y="645.5" width="185.5" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="25"/>
+                                <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ABc-W6-rES" firstAttribute="top" secondItem="Ym4-f4-bbm" secondAttribute="top" constant="20" id="4SL-JB-xER"/>
+                            <constraint firstItem="ABc-W6-rES" firstAttribute="centerX" secondItem="h1S-Ge-wuW" secondAttribute="centerX" id="Aki-b8-KZg"/>
+                            <constraint firstItem="wTE-8m-V5O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="D79-mK-9zf" secondAttribute="bottom" constant="8" id="I36-jG-3Yq"/>
+                            <constraint firstItem="yv2-fV-GAS" firstAttribute="leading" secondItem="Ym4-f4-bbm" secondAttribute="leading" constant="20" id="NX6-TR-We5"/>
+                            <constraint firstItem="Ym4-f4-bbm" firstAttribute="bottom" secondItem="yv2-fV-GAS" secondAttribute="bottom" constant="50" id="Wri-5M-21k"/>
+                            <constraint firstItem="Ym4-f4-bbm" firstAttribute="trailing" secondItem="D79-mK-9zf" secondAttribute="trailing" constant="30" id="axt-OH-3Qc"/>
+                            <constraint firstItem="D79-mK-9zf" firstAttribute="top" secondItem="ABc-W6-rES" secondAttribute="bottom" constant="80" id="eaN-d7-IKr"/>
+                            <constraint firstItem="wTE-8m-V5O" firstAttribute="centerX" secondItem="h1S-Ge-wuW" secondAttribute="centerX" id="jzl-fz-Rfv"/>
+                            <constraint firstItem="Ym4-f4-bbm" firstAttribute="trailing" secondItem="yv2-fV-GAS" secondAttribute="trailing" constant="20" id="otY-5q-Jrh"/>
+                            <constraint firstItem="yv2-fV-GAS" firstAttribute="top" secondItem="wTE-8m-V5O" secondAttribute="bottom" constant="10" id="tBT-RI-XMr"/>
+                            <constraint firstItem="D79-mK-9zf" firstAttribute="leading" secondItem="Ym4-f4-bbm" secondAttribute="leading" constant="30" id="zXQ-SA-ddI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ym4-f4-bbm"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Info" image="infoIcon" selectedImage="infoIcon" id="VFj-by-nzA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WBq-e9-NlJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1461" y="1385"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="infoIcon" width="40" height="40"/>
+    </resources>
+</document>

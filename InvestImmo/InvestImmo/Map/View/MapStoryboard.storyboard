@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TH5-lZ-QfJ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+        <array key="PoetsenOne-Regular.ttf">
+            <string>PoetsenOne-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Carte-->
+        <scene sceneID="3l0-jP-Gbp">
+            <objects>
+                <viewController storyboardIdentifier="MapVC" id="TH5-lZ-QfJ" customClass="MapViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KPe-Hf-oCt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invest'Immo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8h-jK-zjy">
+                                <rect key="frame" x="40" y="52" width="334" height="36"/>
+                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2rc-o6-G05">
+                                <rect key="frame" x="16" y="104" width="382" height="543"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="delegate" destination="TH5-lZ-QfJ" id="Or8-XU-PwE"/>
+                                </connections>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ki0-VV-f26">
+                                <rect key="frame" x="174" y="104" width="220" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="t3o-S8-TcV"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="selectedSegmentTintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="didChangeMapType:" destination="TH5-lZ-QfJ" eventType="valueChanged" id="ExI-Cz-93s"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouJ-bv-Naj">
+                                <rect key="frame" x="373" y="143" width="21" height="19.5"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                <color key="tintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="location.fill" catalog="system">
+                                    <color key="titleColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOnMyPositionButton:" destination="TH5-lZ-QfJ" eventType="touchUpInside" id="zl0-zs-bY8"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ULq-bq-5dN">
+                                <rect key="frame" x="40" y="655" width="334" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kj9-NZ-VN1">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="71"/>
+                                        <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                        <state key="normal" title="Rechercher une adresse">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapOnSearchAdressButton:" destination="TH5-lZ-QfJ" eventType="touchUpInside" id="lKi-gy-Eaf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zlR-gh-Gmo">
+                                        <rect key="frame" x="0.0" y="79" width="334" height="71"/>
+                                        <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                        <state key="normal" title="Ajouter l'adresse du bien">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapOnAddAdressButton:" destination="TH5-lZ-QfJ" eventType="touchUpInside" id="bqU-NX-ISR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="e7P-Es-ear"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ouJ-bv-Naj" firstAttribute="top" secondItem="ki0-VV-f26" secondAttribute="bottom" constant="8" id="17N-lI-u9F"/>
+                            <constraint firstItem="A8h-jK-zjy" firstAttribute="top" secondItem="bh4-7F-sDA" secondAttribute="top" constant="8" id="2Ko-O1-3D5"/>
+                            <constraint firstItem="bh4-7F-sDA" firstAttribute="trailing" secondItem="A8h-jK-zjy" secondAttribute="trailing" constant="40" id="AKk-SJ-bid"/>
+                            <constraint firstItem="A8h-jK-zjy" firstAttribute="leading" secondItem="bh4-7F-sDA" secondAttribute="leading" constant="40" id="AxD-YR-sYh"/>
+                            <constraint firstItem="ULq-bq-5dN" firstAttribute="top" secondItem="2rc-o6-G05" secondAttribute="bottom" constant="8" id="JwA-tn-9R8"/>
+                            <constraint firstItem="bh4-7F-sDA" firstAttribute="trailing" secondItem="2rc-o6-G05" secondAttribute="trailing" constant="16" id="Oi4-QX-Lvu"/>
+                            <constraint firstItem="2rc-o6-G05" firstAttribute="top" secondItem="A8h-jK-zjy" secondAttribute="bottom" constant="16" id="TgD-VB-xCC"/>
+                            <constraint firstItem="2rc-o6-G05" firstAttribute="leading" secondItem="bh4-7F-sDA" secondAttribute="leading" constant="16" id="WmT-dB-cNE"/>
+                            <constraint firstItem="ki0-VV-f26" firstAttribute="top" secondItem="A8h-jK-zjy" secondAttribute="bottom" constant="16" id="blv-1e-t7F"/>
+                            <constraint firstItem="ULq-bq-5dN" firstAttribute="leading" secondItem="bh4-7F-sDA" secondAttribute="leading" constant="40" id="c51-mt-J97"/>
+                            <constraint firstItem="bh4-7F-sDA" firstAttribute="trailing" secondItem="ki0-VV-f26" secondAttribute="trailing" constant="20" id="kRH-dW-iCg"/>
+                            <constraint firstItem="bh4-7F-sDA" firstAttribute="bottom" secondItem="ULq-bq-5dN" secondAttribute="bottom" constant="8" id="mW2-BM-Tvm"/>
+                            <constraint firstItem="bh4-7F-sDA" firstAttribute="trailing" secondItem="ouJ-bv-Naj" secondAttribute="trailing" constant="20" id="nji-8D-QiV"/>
+                            <constraint firstItem="ki0-VV-f26" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bh4-7F-sDA" secondAttribute="leading" constant="16" id="oMD-2C-ZCY"/>
+                            <constraint firstItem="bh4-7F-sDA" firstAttribute="trailing" secondItem="ULq-bq-5dN" secondAttribute="trailing" constant="40" id="v4k-UU-qPU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bh4-7F-sDA"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Carte" image="map" selectedImage="map" id="Kzr-1B-oDd"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="2rc-o6-G05" id="aCK-lk-iOw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bF8-n1-3td" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5.7971014492753632" y="88.392857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="location.fill" catalog="system" width="128" height="115"/>
+        <image name="map" width="24" height="24"/>
+    </resources>
+</document>

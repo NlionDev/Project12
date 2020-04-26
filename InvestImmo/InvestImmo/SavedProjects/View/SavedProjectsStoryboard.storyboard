@@ -123,7 +123,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BwL-Dw-Z1M"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mes Simulations" image="folderIcon" selectedImage="folderIcon" id="9HK-UH-Cdd"/>
+                    <tabBarItem key="tabBarItem" title="Mes Projets" image="folderIcon" selectedImage="folderIcon" id="9HK-UH-Cdd"/>
                     <navigationItem key="navigationItem" title="Invest'Immo" id="jxk-g3-cvi"/>
                     <connections>
                         <outlet property="noProjectSavedLabel" destination="OF8-kt-rYM" id="Xc9-PM-TiO"/>
@@ -244,6 +244,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="folderIcon" width="40" height="40"/>
+        <image name="folderIcon" width="30" height="30"/>
     </resources>
 </document>

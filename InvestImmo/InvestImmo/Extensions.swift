@@ -6,7 +6,7 @@
 //  Copyright © 2020 Nicolas Lion. All rights reserved.
 //
 
-import Foundation
+import MapKit
 import UIKit
 import RealmSwift
 
@@ -16,15 +16,19 @@ extension UIViewController {
     
     // MARK: - Methods for configure Views
 
-    // Method for add a home button to navigation bar
-    func setupSaveButtonItem(action: Selector) {
-        let saveButton = UIBarButtonItem(image: #imageLiteral(resourceName: "saveIcon"), style: .plain, target: self, action: action)
-        self.navigationItem.rightBarButtonItem = saveButton
-        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    func hideNavBarRightButton() {
+        self.navigationItem.rightBarButtonItem = nil
     }
     
-    func setupNewProjectButton(action: Selector) {
-        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: action)
+    func hideNavBarBackItemTitle() {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+    }
+    
+    // Method for add a button to navigation bar
+    func setupNavBarRightButton(image: UIImage, action: Selector) {
+        let button = UIBarButtonItem(image: image, style: .plain, target: self, action: action)
         self.navigationItem.rightBarButtonItem = button
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
@@ -177,5 +181,13 @@ extension UIView {
             viewsDict["v\(index)"] = view
         }
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDict))
+    }
+}
+
+
+extension MKMapItem {
+    convenience init(coordinate: CLLocationCoordinate2D, name: String) {
+        self.init(placemark: .init(coordinate: coordinate))
+        self.name = name
     }
 }
