@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pHR-cl-xft">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SimulationsNavigation-->
+        <scene sceneID="K6D-wx-sXp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SimulationsStoryboard" referencedIdentifier="SimulationsNavigation" id="Z4W-bY-M1I" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Simulation" image="ratio" landscapeImage="ratio" selectedImage="ratio" id="qtg-8D-xwI">
+                        <color key="badgeColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tPe-7m-IH8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2906" y="731"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="SUj-f2-J6c">
+            <objects>
+                <tabBarController id="pHR-cl-xft" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xt2-ym-bfu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Z4W-bY-M1I" kind="relationship" relationship="viewControllers" id="skq-gm-3Qs"/>
+                        <segue destination="REg-BL-2vz" kind="relationship" relationship="viewControllers" id="cru-qq-dwP"/>
+                        <segue destination="Keg-fJ-jCB" kind="relationship" relationship="viewControllers" id="2NI-lp-HgV"/>
+                        <segue destination="p1c-7x-ctZ" kind="relationship" relationship="viewControllers" id="WFK-Bb-aMY"/>
+                        <segue destination="8cw-BB-qN9" kind="relationship" relationship="viewControllers" id="deI-X5-Rol"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N1V-8D-TXz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3867" y="1476"/>
+        </scene>
+        <!--Checklist-->
+        <scene sceneID="IKU-So-eJn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ChecklistStoryboard" referencedIdentifier="Checklist" id="REg-BL-2vz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Check-list" id="18V-fZ-h6Q">
+                        <color key="badgeColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XZt-zV-AH1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2584" y="1461"/>
+        </scene>
+        <!--SavedProjectsNavigation-->
+        <scene sceneID="mF6-wu-Aet">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SavedProjectsStoryboard" referencedIdentifier="SavedProjectsNavigation" id="Keg-fJ-jCB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Mes Projets" image="folderIcon" selectedImage="folderIcon" id="fko-0d-3Lx">
+                        <color key="badgeColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jbb-Sh-rmu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2441" y="1895"/>
+        </scene>
+        <!--InfoVC-->
+        <scene sceneID="PGW-QR-cYY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="InfoStoryboard" referencedIdentifier="InfoVC" id="8cw-BB-qN9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Info" image="infoIcon" selectedImage="infoIcon" id="3Rb-Dj-bwk"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UKW-7M-iyR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4521" y="1960"/>
+        </scene>
+        <!--MapVC-->
+        <scene sceneID="Fq0-fo-7zK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MapStoryboard" referencedIdentifier="MapVC" id="p1c-7x-ctZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Carte" id="Lhf-2o-PLB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kBt-Im-aBQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3472" y="1993"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="folderIcon" width="30" height="30"/>
+        <image name="infoIcon" width="40" height="40"/>
+        <image name="ratio" width="24" height="24"/>
+    </resources>
+</document>

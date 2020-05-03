@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AKj-XC-P21">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+        <array key="PoetsenOne-Regular.ttf">
+            <string>PoetsenOne-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Error Alert View Controller-->
+        <scene sceneID="66u-a4-aL7">
+            <objects>
+                <viewController storyboardIdentifier="ErrorAlertVC" id="AKj-XC-P21" customClass="ErrorAlertViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="djf-7f-3p6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlY-N3-o8I">
+                                <rect key="frame" x="40" y="326" width="334" height="244.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCT-kB-Fo5">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oups !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmJ-AF-Eb0">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                                <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="kmJ-AF-Eb0" firstAttribute="leading" secondItem="DCT-kB-Fo5" secondAttribute="leading" id="53Y-Jg-6u5"/>
+                                            <constraint firstAttribute="trailing" secondItem="kmJ-AF-Eb0" secondAttribute="trailing" id="AR2-Gt-RPB"/>
+                                            <constraint firstItem="kmJ-AF-Eb0" firstAttribute="top" secondItem="DCT-kB-Fo5" secondAttribute="top" id="GML-ur-MXY"/>
+                                            <constraint firstAttribute="height" constant="85" id="bwD-ox-VYF"/>
+                                            <constraint firstAttribute="bottom" secondItem="kmJ-AF-Eb0" secondAttribute="bottom" id="hOc-PR-ORk"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXL-Vd-Mu9">
+                                        <rect key="frame" x="16" y="181.5" width="302" height="47"/>
+                                        <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapOnOKButton:" destination="AKj-XC-P21" eventType="touchUpInside" id="0JY-Qx-dD8"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AI1-Os-CNI">
+                                        <rect key="frame" x="16" y="125" width="302" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                        <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="AI1-Os-CNI" firstAttribute="top" secondItem="DCT-kB-Fo5" secondAttribute="bottom" constant="40" id="3VQ-kR-kGX"/>
+                                    <constraint firstAttribute="bottom" secondItem="iXL-Vd-Mu9" secondAttribute="bottom" constant="16" id="TSn-TH-q8q"/>
+                                    <constraint firstAttribute="trailing" secondItem="AI1-Os-CNI" secondAttribute="trailing" constant="16" id="cPd-wT-nxp"/>
+                                    <constraint firstItem="DCT-kB-Fo5" firstAttribute="top" secondItem="GlY-N3-o8I" secondAttribute="top" id="hZS-ee-QSF"/>
+                                    <constraint firstAttribute="trailing" secondItem="DCT-kB-Fo5" secondAttribute="trailing" id="ixI-lG-Zvs"/>
+                                    <constraint firstAttribute="trailing" secondItem="iXL-Vd-Mu9" secondAttribute="trailing" constant="16" id="kNG-eP-aRL"/>
+                                    <constraint firstItem="DCT-kB-Fo5" firstAttribute="leading" secondItem="GlY-N3-o8I" secondAttribute="leading" id="myY-ya-Y85"/>
+                                    <constraint firstItem="AI1-Os-CNI" firstAttribute="leading" secondItem="GlY-N3-o8I" secondAttribute="leading" constant="16" id="pmF-SG-5FS"/>
+                                    <constraint firstItem="iXL-Vd-Mu9" firstAttribute="leading" secondItem="GlY-N3-o8I" secondAttribute="leading" constant="16" id="sZI-sd-4Z2"/>
+                                    <constraint firstItem="iXL-Vd-Mu9" firstAttribute="top" secondItem="AI1-Os-CNI" secondAttribute="bottom" constant="40" id="wnO-ic-92R"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GlY-N3-o8I" firstAttribute="centerX" secondItem="djf-7f-3p6" secondAttribute="centerX" id="0Dt-fP-hA4"/>
+                            <constraint firstItem="GlY-N3-o8I" firstAttribute="leading" secondItem="oYq-cc-met" secondAttribute="leading" constant="40" id="Igw-eg-d6m"/>
+                            <constraint firstItem="GlY-N3-o8I" firstAttribute="centerY" secondItem="djf-7f-3p6" secondAttribute="centerY" id="YIn-fg-aoq"/>
+                            <constraint firstItem="oYq-cc-met" firstAttribute="trailing" secondItem="GlY-N3-o8I" secondAttribute="trailing" constant="40" id="bwc-Hy-2fs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oYq-cc-met"/>
+                    </view>
+                    <connections>
+                        <outlet property="alertMessageLabel" destination="AI1-Os-CNI" id="Iwn-Wv-wcr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X1a-TK-tak" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1438" y="-686"/>
+        </scene>
+    </scenes>
+</document>

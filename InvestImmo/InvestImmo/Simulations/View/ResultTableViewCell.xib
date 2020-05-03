@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultCell" rowHeight="240" id="KGk-i7-Jjw" customClass="ResultTableViewCell" customModule="InvestImmo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uar-t6-sks">
+                        <rect key="frame" x="24" y="10" width="272" height="209"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNk-wn-OmQ">
+                                <rect key="frame" x="108.5" y="8" width="55" height="20.5"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYX-WX-yNY">
+                                <rect key="frame" x="90.5" y="151" width="91.5" height="42"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dNk-wn-OmQ" firstAttribute="centerX" secondItem="uar-t6-sks" secondAttribute="centerX" id="53B-5x-OiR"/>
+                            <constraint firstItem="cYX-WX-yNY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uar-t6-sks" secondAttribute="leading" constant="8" id="6tg-gh-4sd"/>
+                            <constraint firstAttribute="bottom" secondItem="cYX-WX-yNY" secondAttribute="bottom" constant="16" id="87z-1h-INt"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dNk-wn-OmQ" secondAttribute="trailing" constant="8" id="Qup-Rf-1JU"/>
+                            <constraint firstItem="dNk-wn-OmQ" firstAttribute="top" secondItem="uar-t6-sks" secondAttribute="top" constant="8" id="bup-KZ-c00"/>
+                            <constraint firstItem="cYX-WX-yNY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dNk-wn-OmQ" secondAttribute="bottom" constant="25" id="kzz-85-KdG"/>
+                            <constraint firstItem="dNk-wn-OmQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uar-t6-sks" secondAttribute="leading" constant="8" id="tMM-Gx-eME"/>
+                            <constraint firstItem="cYX-WX-yNY" firstAttribute="centerX" secondItem="uar-t6-sks" secondAttribute="centerX" id="tuU-Cj-RUP"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cYX-WX-yNY" secondAttribute="trailing" constant="8" id="vLq-3n-n57"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="uar-t6-sks" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="gVY-P8-7hf"/>
+                    <constraint firstItem="uar-t6-sks" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="lRS-hT-AjE"/>
+                    <constraint firstItem="uar-t6-sks" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="qDH-2S-3Fz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uar-t6-sks" secondAttribute="trailing" constant="8" id="ryw-xw-hNB"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="uar-t6-sks" secondAttribute="bottom" constant="10" id="zb7-WA-aIe"/>
+                </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                        <integer key="value" value="10"/>
+                    </userDefinedRuntimeAttribute>
+                </userDefinedRuntimeAttributes>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="resultLabel" destination="cYX-WX-yNY" id="r3D-6A-eg1"/>
+                <outlet property="titleLabel" destination="dNk-wn-OmQ" id="5DC-rh-FKS"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="79.6875"/>
+        </tableViewCell>
+    </objects>
+</document>

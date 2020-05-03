@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gbg-wq-Fni">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Add Checklist To Existant Project Pop UpVC-->
+        <scene sceneID="WSN-Bc-3Xh">
+            <objects>
+                <viewController storyboardIdentifier="ChecklistExistantProjectAlertVC" id="gbg-wq-Fni" customClass="AddChecklistToExistantProjectPopUpVC" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HjW-re-KQL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9k1-iU-5oX">
+                                <rect key="frame" x="40" y="195.5" width="334" height="505"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njR-RV-paT">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A quel projet existant voulez-vous ajouter cette check-list ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onK-XQ-H86">
+                                                <rect key="frame" x="8" y="8" width="318" height="69"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="85" id="C8u-JB-uU7"/>
+                                            <constraint firstItem="onK-XQ-H86" firstAttribute="top" secondItem="njR-RV-paT" secondAttribute="topMargin" id="Pb4-or-tvA"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="onK-XQ-H86" secondAttribute="trailing" id="SGi-Ls-CJ7"/>
+                                            <constraint firstItem="onK-XQ-H86" firstAttribute="centerY" secondItem="njR-RV-paT" secondAttribute="centerY" id="X1y-Mq-1uX"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="onK-XQ-H86" secondAttribute="bottom" id="fbw-AK-kGf"/>
+                                            <constraint firstItem="onK-XQ-H86" firstAttribute="leading" secondItem="njR-RV-paT" secondAttribute="leadingMargin" id="gIk-1y-jn8"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jSg-hb-TEN">
+                                        <rect key="frame" x="0.0" y="93" width="334" height="300"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="O0o-We-Bth"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExistantProjectAlertCell" rowHeight="80" id="QuY-Ge-Zka" customClass="ExistantProjectAlertTableViewCell" customModule="InvestImmo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="334" height="80"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QuY-Ge-Zka" id="LLQ-Ou-BQx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGq-mg-49x">
+                                                            <rect key="frame" x="28" y="19" width="278" height="58"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLc-2m-4MG">
+                                                                    <rect key="frame" x="16" y="16" width="246" height="26"/>
+                                                                    <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="hLc-2m-4MG" secondAttribute="bottom" constant="8" id="26O-LL-7ZF"/>
+                                                                <constraint firstItem="hLc-2m-4MG" firstAttribute="leading" secondItem="lGq-mg-49x" secondAttribute="leadingMargin" constant="8" id="7UL-Qv-5h2"/>
+                                                                <constraint firstItem="hLc-2m-4MG" firstAttribute="top" secondItem="lGq-mg-49x" secondAttribute="topMargin" constant="8" id="aPY-ib-XsW"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="hLc-2m-4MG" secondAttribute="trailing" constant="8" id="kJO-Yi-k6B"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <integer key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="lGq-mg-49x" secondAttribute="trailing" constant="8" id="2l9-fi-nXv"/>
+                                                        <constraint firstItem="lGq-mg-49x" firstAttribute="leading" secondItem="LLQ-Ou-BQx" secondAttribute="leadingMargin" constant="8" id="bGd-ci-8dX"/>
+                                                        <constraint firstItem="lGq-mg-49x" firstAttribute="bottom" secondItem="LLQ-Ou-BQx" secondAttribute="bottomMargin" constant="8" id="fxx-7W-Uqn"/>
+                                                        <constraint firstItem="lGq-mg-49x" firstAttribute="top" secondItem="LLQ-Ou-BQx" secondAttribute="topMargin" constant="8" id="w5V-NS-yyA"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="nameLabel" destination="hLc-2m-4MG" id="5Ry-Cv-tKi"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="gbg-wq-Fni" id="fUu-Vc-Uvf"/>
+                                            <outlet property="delegate" destination="gbg-wq-Fni" id="wsJ-QU-k19"/>
+                                        </connections>
+                                    </tableView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="z5C-tr-9h8">
+                                        <rect key="frame" x="16" y="409" width="302" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myc-ur-LS7">
+                                                <rect key="frame" x="0.0" y="0.0" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Créer Nouveau Projet">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapOnCreateNewProject:" destination="gbg-wq-Fni" eventType="touchUpInside" id="ReL-7k-xK5"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWN-af-fy9">
+                                                <rect key="frame" x="0.0" y="45" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Annuler">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapOnCancel:" destination="gbg-wq-Fni" eventType="touchUpInside" id="9nQ-wM-Kk2"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="bBZ-8g-w4X"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="z5C-tr-9h8" secondAttribute="bottom" constant="16" id="BgW-0y-saJ"/>
+                                    <constraint firstItem="jSg-hb-TEN" firstAttribute="top" secondItem="njR-RV-paT" secondAttribute="bottom" constant="8" id="FEO-1N-S5i"/>
+                                    <constraint firstItem="z5C-tr-9h8" firstAttribute="leading" secondItem="9k1-iU-5oX" secondAttribute="leading" constant="16" id="GuY-kP-CfY"/>
+                                    <constraint firstItem="jSg-hb-TEN" firstAttribute="leading" secondItem="9k1-iU-5oX" secondAttribute="leading" id="SVH-tc-ebX"/>
+                                    <constraint firstAttribute="trailing" secondItem="jSg-hb-TEN" secondAttribute="trailing" id="Vrr-Sf-N0f"/>
+                                    <constraint firstItem="njR-RV-paT" firstAttribute="top" secondItem="9k1-iU-5oX" secondAttribute="top" id="ZHq-AI-Hi1"/>
+                                    <constraint firstItem="njR-RV-paT" firstAttribute="leading" secondItem="9k1-iU-5oX" secondAttribute="leading" id="aQQ-dK-9rd"/>
+                                    <constraint firstAttribute="trailing" secondItem="njR-RV-paT" secondAttribute="trailing" id="bK4-ft-mQU"/>
+                                    <constraint firstItem="z5C-tr-9h8" firstAttribute="top" secondItem="jSg-hb-TEN" secondAttribute="bottom" constant="16" id="d5X-oG-KEQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="z5C-tr-9h8" secondAttribute="trailing" constant="16" id="hiX-Nc-GeN"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9k1-iU-5oX" firstAttribute="centerY" secondItem="HjW-re-KQL" secondAttribute="centerY" id="H3e-7f-PbM"/>
+                            <constraint firstItem="9k1-iU-5oX" firstAttribute="leading" secondItem="tjh-D8-Sfa" secondAttribute="leading" constant="40" id="R1P-uE-rXJ"/>
+                            <constraint firstItem="tjh-D8-Sfa" firstAttribute="trailing" secondItem="9k1-iU-5oX" secondAttribute="trailing" constant="40" id="jd7-1v-5rI"/>
+                            <constraint firstItem="9k1-iU-5oX" firstAttribute="centerX" secondItem="HjW-re-KQL" secondAttribute="centerX" id="ueQ-Cy-WGy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tjh-D8-Sfa"/>
+                    </view>
+                    <connections>
+                        <outlet property="alertTableView" destination="jSg-hb-TEN" id="jq1-n0-Zwc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aNG-bC-91t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="98.550724637681171" y="190.84821428571428"/>
+        </scene>
+        <!--Add Checklist To New Project Pop UpVC-->
+        <scene sceneID="emb-d5-TzJ">
+            <objects>
+                <viewController storyboardIdentifier="ChecklistNewProjectAlertVC" id="a3o-qY-zqY" customClass="AddChecklistToNewProjectPopUpVC" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1uq-JD-o9X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jaN-hR-LDI">
+                                <rect key="frame" x="40" y="324.5" width="334" height="247"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YrG-4V-Lc4">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entrez le nom de votre nouveau projet :" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEb-wD-5Uf">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="KEb-wD-5Uf" secondAttribute="trailing" id="6tR-wJ-KKK"/>
+                                            <constraint firstItem="KEb-wD-5Uf" firstAttribute="leading" secondItem="YrG-4V-Lc4" secondAttribute="leading" id="7qe-GQ-bmj"/>
+                                            <constraint firstAttribute="bottom" secondItem="KEb-wD-5Uf" secondAttribute="bottom" id="B0T-P4-PUc"/>
+                                            <constraint firstItem="KEb-wD-5Uf" firstAttribute="top" secondItem="YrG-4V-Lc4" secondAttribute="top" id="LKF-wy-KCU"/>
+                                            <constraint firstAttribute="height" constant="85" id="hmK-Q8-4CZ"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1jR-5d-K3r">
+                                        <rect key="frame" x="16" y="151" width="302" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffh-EC-SUB">
+                                                <rect key="frame" x="0.0" y="0.0" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Créer Nouveau Projet">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapOnNewProjectButton:" destination="a3o-qY-zqY" eventType="touchUpInside" id="QSq-8O-LQt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myJ-xf-C5X">
+                                                <rect key="frame" x="0.0" y="45" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Annuler">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapOnCancelButton:" destination="a3o-qY-zqY" eventType="touchUpInside" id="rKl-z6-BxZ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="QbS-52-0Xc"/>
+                                        </constraints>
+                                    </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Studio Montpellier" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NqB-su-D84">
+                                        <rect key="frame" x="60" y="101" width="214" height="34"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="1jR-5d-K3r" firstAttribute="top" secondItem="NqB-su-D84" secondAttribute="bottom" constant="16" id="Cdj-LT-JBu"/>
+                                    <constraint firstItem="YrG-4V-Lc4" firstAttribute="top" secondItem="jaN-hR-LDI" secondAttribute="top" id="PUq-bk-01P"/>
+                                    <constraint firstAttribute="trailing" secondItem="NqB-su-D84" secondAttribute="trailing" constant="60" id="VJW-nI-DQR"/>
+                                    <constraint firstItem="1jR-5d-K3r" firstAttribute="leading" secondItem="jaN-hR-LDI" secondAttribute="leading" constant="16" id="a7x-ge-vWq"/>
+                                    <constraint firstAttribute="trailing" secondItem="YrG-4V-Lc4" secondAttribute="trailing" id="gCs-nx-GiZ"/>
+                                    <constraint firstItem="YrG-4V-Lc4" firstAttribute="leading" secondItem="jaN-hR-LDI" secondAttribute="leading" id="m2E-51-Bqk"/>
+                                    <constraint firstAttribute="bottom" secondItem="1jR-5d-K3r" secondAttribute="bottom" constant="16" id="q7D-Em-xFQ"/>
+                                    <constraint firstItem="NqB-su-D84" firstAttribute="top" secondItem="YrG-4V-Lc4" secondAttribute="bottom" constant="16" id="sp6-dF-GBX"/>
+                                    <constraint firstItem="NqB-su-D84" firstAttribute="leading" secondItem="jaN-hR-LDI" secondAttribute="leading" constant="60" id="tFi-4o-7cx"/>
+                                    <constraint firstAttribute="trailing" secondItem="1jR-5d-K3r" secondAttribute="trailing" constant="16" id="vyR-qi-XtE"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="jaN-hR-LDI" firstAttribute="centerX" secondItem="1uq-JD-o9X" secondAttribute="centerX" id="Oci-ld-Ntk"/>
+                            <constraint firstItem="jaN-hR-LDI" firstAttribute="leading" secondItem="HuY-eT-Ed9" secondAttribute="leading" constant="40" id="iJM-Ch-7x2"/>
+                            <constraint firstItem="HuY-eT-Ed9" firstAttribute="trailing" secondItem="jaN-hR-LDI" secondAttribute="trailing" constant="40" id="oKg-LO-MeP"/>
+                            <constraint firstItem="jaN-hR-LDI" firstAttribute="centerY" secondItem="1uq-JD-o9X" secondAttribute="centerY" id="yRg-wx-foW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HuY-eT-Ed9"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3Gu-yx-clx" appends="YES" id="g8g-Ia-dP7"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="projectNameLabel" destination="NqB-su-D84" id="hdH-P9-wZ2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wQ7-aD-dlb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3Gu-yx-clx">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="a3o-qY-zqY" id="Xg2-YU-6BO"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1204" y="191"/>
+        </scene>
+        <!--Replace Project Checklist View Controller-->
+        <scene sceneID="Ngf-hz-5ZW">
+            <objects>
+                <viewController storyboardIdentifier="ReplaceChecklistAlertVC" id="mlZ-6B-N9d" customClass="ReplaceProjectChecklistViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lB9-UR-kRb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZz-gp-ILM">
+                                <rect key="frame" x="40" y="349.5" width="334" height="197"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDR-aM-Ipx">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ce projet possède déjà une checklist sauvegardée, voulez-vous la remplacer ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQy-rg-Dlf">
+                                                <rect key="frame" x="8" y="0.0" width="318" height="85"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="NQy-rg-Dlf" secondAttribute="trailing" constant="8" id="9sI-7J-vCF"/>
+                                            <constraint firstItem="NQy-rg-Dlf" firstAttribute="leading" secondItem="HDR-aM-Ipx" secondAttribute="leading" constant="8" id="AHT-aR-MdS"/>
+                                            <constraint firstItem="NQy-rg-Dlf" firstAttribute="top" secondItem="HDR-aM-Ipx" secondAttribute="top" id="iw7-0H-XUK"/>
+                                            <constraint firstAttribute="height" constant="85" id="nR6-Hw-rkX"/>
+                                            <constraint firstAttribute="bottom" secondItem="NQy-rg-Dlf" secondAttribute="bottom" id="vOI-np-vkv"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7vH-9n-Zak">
+                                        <rect key="frame" x="16" y="101" width="302" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHC-k6-Dw0">
+                                                <rect key="frame" x="0.0" y="0.0" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Oui">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapOnYesButton:" destination="mlZ-6B-N9d" eventType="touchUpInside" id="vC4-0Q-XnQ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhY-cG-nrU">
+                                                <rect key="frame" x="0.0" y="45" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Annuler">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapOnCancelButton:" destination="mlZ-6B-N9d" eventType="touchUpInside" id="2kv-5N-484"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="vte-ib-4iU"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="HDR-aM-Ipx" secondAttribute="trailing" id="2cu-BG-dBE"/>
+                                    <constraint firstItem="7vH-9n-Zak" firstAttribute="top" secondItem="HDR-aM-Ipx" secondAttribute="bottom" constant="16" id="H9h-r6-kZh"/>
+                                    <constraint firstItem="7vH-9n-Zak" firstAttribute="leading" secondItem="UZz-gp-ILM" secondAttribute="leading" constant="16" id="KBo-ZK-bC1"/>
+                                    <constraint firstItem="HDR-aM-Ipx" firstAttribute="top" secondItem="UZz-gp-ILM" secondAttribute="top" id="NQJ-aa-bQc"/>
+                                    <constraint firstItem="HDR-aM-Ipx" firstAttribute="leading" secondItem="UZz-gp-ILM" secondAttribute="leading" id="gj3-mm-DrJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="7vH-9n-Zak" secondAttribute="bottom" constant="16" id="keU-bC-Ec4"/>
+                                    <constraint firstAttribute="trailing" secondItem="7vH-9n-Zak" secondAttribute="trailing" constant="16" id="meE-hf-fXb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UZz-gp-ILM" firstAttribute="centerX" secondItem="lB9-UR-kRb" secondAttribute="centerX" id="EPh-Lh-r8s"/>
+                            <constraint firstItem="UZz-gp-ILM" firstAttribute="leading" secondItem="FXX-Cl-g5w" secondAttribute="leading" constant="40" id="Ipa-8g-M5h"/>
+                            <constraint firstItem="UZz-gp-ILM" firstAttribute="centerY" secondItem="lB9-UR-kRb" secondAttribute="centerY" id="JX3-OL-YnS"/>
+                            <constraint firstItem="FXX-Cl-g5w" firstAttribute="trailing" secondItem="UZz-gp-ILM" secondAttribute="trailing" constant="40" id="Jx3-4E-2O4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FXX-Cl-g5w"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k7p-NT-k9u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2341" y="191"/>
+        </scene>
+    </scenes>
+</document>

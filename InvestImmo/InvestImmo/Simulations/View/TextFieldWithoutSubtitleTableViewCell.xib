@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Antipasto-Pro-Regular-trial.ttf">
+            <string>AntipastoPro</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextFieldWithoutSubtitleCell" id="Oxk-Bk-8wz" customClass="TextFieldWithoutSubtitleTableViewCell" customModule="InvestImmo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oxk-Bk-8wz" id="pR4-D5-KVW">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMQ-RJ-9Ml">
+                        <rect key="frame" x="8" y="20" width="39.5" height="38"/>
+                        <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="18"/>
+                        <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcV-Tf-5AT">
+                        <rect key="frame" x="301" y="31" width="11" height="16.5"/>
+                        <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                        <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yGn-q4-GXc">
+                        <rect key="frame" x="193" y="22" width="100" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="PyO-uA-PFs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="continue"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3an-X6-Jvg">
+                        <rect key="frame" x="8" y="46" width="0.0" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="yGn-q4-GXc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sMQ-RJ-9Ml" secondAttribute="trailing" constant="8" id="9rV-En-JUI"/>
+                    <constraint firstAttribute="trailing" secondItem="OcV-Tf-5AT" secondAttribute="trailing" constant="8" id="Aik-Mf-Ahs"/>
+                    <constraint firstItem="sMQ-RJ-9Ml" firstAttribute="leading" secondItem="pR4-D5-KVW" secondAttribute="leading" constant="8" id="D3e-cX-KwB"/>
+                    <constraint firstAttribute="bottom" secondItem="sMQ-RJ-9Ml" secondAttribute="bottom" constant="20" id="G2g-pY-PpC"/>
+                    <constraint firstItem="sMQ-RJ-9Ml" firstAttribute="centerY" secondItem="pR4-D5-KVW" secondAttribute="centerY" id="NQH-Vx-Pim"/>
+                    <constraint firstItem="sMQ-RJ-9Ml" firstAttribute="top" secondItem="pR4-D5-KVW" secondAttribute="top" constant="20" id="kLm-sx-4KG"/>
+                    <constraint firstItem="yGn-q4-GXc" firstAttribute="centerY" secondItem="sMQ-RJ-9Ml" secondAttribute="centerY" id="lVN-cS-mYh"/>
+                    <constraint firstItem="OcV-Tf-5AT" firstAttribute="centerY" secondItem="yGn-q4-GXc" secondAttribute="centerY" id="pbg-Pw-rQF"/>
+                    <constraint firstItem="OcV-Tf-5AT" firstAttribute="leading" secondItem="yGn-q4-GXc" secondAttribute="trailing" constant="8" id="wDa-BE-Tfg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="Jg9-3z-LZ1"/>
+            <connections>
+                <outlet property="cellTextField" destination="yGn-q4-GXc" id="8Hy-t4-YFa"/>
+                <outlet property="titleLabel" destination="sMQ-RJ-9Ml" id="Har-dI-fbO"/>
+                <outlet property="unitLabel" destination="OcV-Tf-5AT" id="odq-F9-J5S"/>
+            </connections>
+            <point key="canvasLocation" x="-636" y="68"/>
+        </tableViewCell>
+    </objects>
+</document>
