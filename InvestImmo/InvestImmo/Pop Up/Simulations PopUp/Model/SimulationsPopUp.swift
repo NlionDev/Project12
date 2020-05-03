@@ -8,42 +8,64 @@
 
 import UIKit
 
-class RentabilityNewProjectAlert {
+class RentabilityNewProjectPopUp {
     
-    func alert(rentability: RentabilityRepository) -> AddRentabilityToNewProjectAlertVC {
+    func alert(rentability: RentabilityRepository) -> AddRentabilityToNewProjectPopUpVC {
         let storyboard = UIStoryboard(name: "SimulationsPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "RentabilityNewProjectAlertVC") as! AddRentabilityToNewProjectAlertVC
-        alertVC.rentaRepo = rentability
+        let alertVC = storyboard.instantiateViewController(withIdentifier: "RentabilityNewProjectAlertVC") as! AddRentabilityToNewProjectPopUpVC
+        alertVC.rentabilityRepository = rentability
         return alertVC
     }
 }
 
-class RentabilityExistantProjectAlert {
+class RentabilityExistantProjectPopUp {
     
-    func alert(rentability: RentabilityRepository) -> AddRentabilityToExistantProjectAlertVC {
+    func alert(rentability: RentabilityRepository) -> AddRentabilityToExistantProjectPopUpVC {
         let storyboard = UIStoryboard(name: "SimulationsPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "RentabilityExistantProjectAlertVC") as! AddRentabilityToExistantProjectAlertVC
-        alertVC.rentaRepo = rentability
+        let alertVC = storyboard.instantiateViewController(withIdentifier: "RentabilityExistantProjectAlertVC") as! AddRentabilityToExistantProjectPopUpVC
+        alertVC.rentabilityRepository = rentability
         return alertVC
     }
 }
 
-class CreditNewProjectAlert {
+class ReplaceRentabilityPopUp {
     
-    func alert(credit: CreditRepository) -> AddCreditToNewProjectAlertVC {
+    func alert(project: Project, rentability: RentabilityRepository) -> ReplaceRentabilityViewController {
         let storyboard = UIStoryboard(name: "SimulationsPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "CreditNewProjectAlertVC") as! AddCreditToNewProjectAlertVC
-        alertVC.creditRepo = credit
+        let alertVC = storyboard.instantiateViewController(withIdentifier: "ReplaceRentabilityAlertVC") as! ReplaceRentabilityViewController
+        alertVC.rentabilityRepository = rentability
+        alertVC.selectedProject = project
         return alertVC
     }
 }
 
-class CreditExistantProjectAlert {
+class CreditNewProjectPopUp {
     
-    func alert(credit: CreditRepository) -> AddCreditToExistantProjectAlertVC {
+    func alert(credit: CreditRepository) -> AddCreditToNewProjectPopUpVC {
         let storyboard = UIStoryboard(name: "SimulationsPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "CreditExistantProjectAlertVC") as! AddCreditToExistantProjectAlertVC
-        alertVC.creditRepo = credit
+        let alertVC = storyboard.instantiateViewController(withIdentifier: "CreditNewProjectAlertVC") as! AddCreditToNewProjectPopUpVC
+        alertVC.creditRepository = credit
+        return alertVC
+    }
+}
+
+class CreditExistantProjectPopUp {
+    
+    func alert(credit: CreditRepository) -> AddCreditToExistantProjectPopUpVC {
+        let storyboard = UIStoryboard(name: "SimulationsPopUpStoryboard", bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: "CreditExistantProjectAlertVC") as! AddCreditToExistantProjectPopUpVC
+        alertVC.creditRepository = credit
+        return alertVC
+    }
+}
+
+class ReplaceCreditPopUp {
+    
+    func alert(project: Project, credit: CreditRepository) -> ReplaceCreditViewController {
+        let storyboard = UIStoryboard(name: "SimulationsPopUpStoryboard", bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: "ReplaceCreditAlertVC") as! ReplaceCreditViewController
+        alertVC.creditRepository = credit
+        alertVC.selectedProject = project
         return alertVC
     }
 }

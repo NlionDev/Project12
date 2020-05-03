@@ -10,25 +10,23 @@ import UIKit
 
 class StepperTableViewCell: UITableViewCell, UITextFieldDelegate {
     
-    
     //MARK: - Properties
-    
-    var key = String()
+    private var key = String()
     weak var delegate: TextFieldTableViewCellDelegate?
     
     //MARK: - Outlets
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak var cellTextField: UITextField!
     
+    //MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         cellTextField.delegate = self
     }
     
     //MARK: - Actions
-    
-    @IBAction func didTapOnPlusButton(_ sender: Any) {
+    @IBAction private func didTapOnPlusButton(_ sender: Any) {
         if let rate = cellTextField.text?.transformInDouble {
             let newRate = rate + 0.01
             let stringNewRate = newRate.formatIntoStringWithTwoNumbersAfterPoint
@@ -36,7 +34,7 @@ class StepperTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    @IBAction func didTapOnMinusButton(_ sender: Any) {
+    @IBAction private func didTapOnMinusButton(_ sender: Any) {
         if let rate = cellTextField.text?.transformInDouble {
             let newRate = rate - 0.01
             if newRate <= 0 {
@@ -51,7 +49,6 @@ class StepperTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     
     //MARK: - Methods
-    
     func configure(title: String) {
         key = title
         titleLabel.text = title

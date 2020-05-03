@@ -32,7 +32,6 @@ class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         cellTextField.delegate = self
-        cellTextField.clear()
     }
     
     //MARK: - Methods

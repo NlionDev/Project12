@@ -11,17 +11,14 @@ import MapKit
 
 class ProjectMapViewController: UIViewController {
     
-    
     //MARK: - Properties
-    
     private let errorAlert = ErrorAlert()
-    private var realmRepo = RealmRepository()
+    private let mapRepository = MapRepository()
     private var annotations = [MKAnnotation]()
     private var estateCoordinate = CLLocationCoordinate2D()
     private var projectAdress: MapAdress?
     private var latitudeInit: Double = 46.227638
     private var longitudeInit: Double = 2.213749
-    private var userPosition: CLLocation?
     private let geoCoder = CLGeocoder()
     private let locationManager = CLLocationManager()
     private var coordinateInit: CLLocationCoordinate2D {
@@ -30,25 +27,19 @@ class ProjectMapViewController: UIViewController {
     
     
     //MARK: - Outlets
-    
-    
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var adressTitleLabel: UILabel!
-    @IBOutlet weak var adressButton: UIButton!
-    @IBOutlet weak var noDataLabel: UILabel!
-    @IBOutlet weak var mapTypeSegment: UISegmentedControl!
-    @IBOutlet weak var myPositionButton: UIButton!
-    @IBOutlet weak var estatePositionButton: UIButton!
-    
+    @IBOutlet weak private var mapView: MKMapView!
+    @IBOutlet weak private var noDataLabel: UILabel!
+    @IBOutlet weak private var mapTypeSegment: UISegmentedControl!
+    @IBOutlet weak private var buttonStackView: UIStackView!
     
     //MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         if let projectName = selectedProject?.name {
-            projectAdress = realmRepo.getMapAdressWithProjectName(name: projectName)
+            projectAdress = mapRepository.getMapAdressWithProjectName(name: projectName)
         }
         mapView.delegate = self
+        mapView.showsUserLocation = true
         getAuthorizationAndDisplayUserLocation()
         configureMapViewAnnotations()
         configurePage()
@@ -57,14 +48,14 @@ class ProjectMapViewController: UIViewController {
     
     //MARK: - Actions
     
-    @IBAction func didTapOnMyPositionButton(_ sender: Any) {
+    @IBAction private func didTapOnMyPositionButton(_ sender: Any) {
         getPosition()
     }
-    @IBAction func didTapOnEstatePositionButton(_ sender: Any) {
+    @IBAction private func didTapOnEstatePositionButton(_ sender: Any) {
         setupMap(coordinate: estateCoordinate, spanLatitude: 0.1, spanLongitude: 0.1)
     }
     
-    @IBAction func didChangeMapType(_ sender: UISegmentedControl) {
+    @IBAction private func didChangeMapType(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             mapView.mapType = .standard
@@ -77,9 +68,9 @@ class ProjectMapViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapOnAdressButton(_ sender: Any) {
-        guard let adress = projectAdress?.adress else {return}
-        guard let position = locationManager.location?.coordinate else {return}
+    @IBAction private func didTapOnGpsButton(_ sender: Any) {
+        guard let adress = projectAdress?.adress,
+            let position = locationManager.location?.coordinate else {return}
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Waze", style: .default, handler: { (alert:UIAlertAction!) -> Void in
             self.openWaze(latitude: self.estateCoordinate.latitude, longitude: self.estateCoordinate.longitude)
@@ -92,7 +83,6 @@ class ProjectMapViewController: UIViewController {
     }
     
     //MARK: - Methods
-    
     private func openMaps(coordinate: CLLocationCoordinate2D, adress: String) {
         let source = MKMapItem(coordinate: coordinate, name: "Ma Position")
         let destination = MKMapItem(coordinate: estateCoordinate, name: adress)
@@ -101,38 +91,21 @@ class ProjectMapViewController: UIViewController {
     
     private func openWaze(latitude: Double, longitude: Double) {
         if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
-            
             // Waze is installed. Launch Waze and start navigation
             let urlStr = String(format: "waze://?ll=%f,%f&navigate=yes", latitude, longitude)
             UIApplication.shared.open(URL(string: urlStr)!)
         } else {
-            
             // Waze is not installed. Launch AppStore to install Waze app
             UIApplication.shared.open(URL(string: "http://itunes.apple.com/us/app/id323229106")!)
         }
     }
-    
-    private func displayEstateAdress() {
-        guard let projectAdress = projectAdress else {return}
-        if let adress = projectAdress.adress {
-            adressButton.setTitle(adress, for: .normal)
-            adressButton.titleLabel?.lineBreakMode = .byWordWrapping
-            adressButton.titleLabel?.numberOfLines = 2
-        }
-        
-    }
-    
+
     private func configurePage() {
-        if projectAdress == nil {
+        if projectAdress?.name == nil {
             hideMap()
-            adressTitleLabel.isHidden = true
-            adressButton.isHidden = true
             noDataLabel.isHidden = false
         } else {
             showMap()
-            displayEstateAdress()
-            adressTitleLabel.isHidden = false
-            adressButton.isHidden = false
             noDataLabel.isHidden = true
         }
     }
@@ -140,15 +113,13 @@ class ProjectMapViewController: UIViewController {
     private func hideMap() {
         mapView.isHidden = true
         mapTypeSegment.isHidden = true
-        myPositionButton.isHidden = true
-        estatePositionButton.isHidden = true
+        buttonStackView.isHidden = true
     }
     
     private func showMap() {
         mapView.isHidden = false
         mapTypeSegment.isHidden = false
-        myPositionButton.isHidden = false
-        estatePositionButton.isHidden = false
+        buttonStackView.isHidden = false
     }
     
     @objc private func configureMapViewAnnotations() {
@@ -157,8 +128,8 @@ class ProjectMapViewController: UIViewController {
     }
     
     private func addAnnotation() {
-        guard let projectAdress = projectAdress else {return}
-        guard let name = projectAdress.name,
+        guard let projectAdress = projectAdress,
+            let name = projectAdress.name,
             let adress = projectAdress.adress,
             let latitude = projectAdress.latitude?.transformInDouble,
             let longitude = projectAdress.longitude?.transformInDouble else {return}
@@ -204,7 +175,6 @@ class ProjectMapViewController: UIViewController {
 }
 
 //MARK: - Extension
-
 extension ProjectMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -224,10 +194,4 @@ extension ProjectMapViewController: MKMapViewDelegate, CLLocationManagerDelegate
         annotationView?.canShowCallout = true
         return annotationView
     }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        
-    }
-    
 }

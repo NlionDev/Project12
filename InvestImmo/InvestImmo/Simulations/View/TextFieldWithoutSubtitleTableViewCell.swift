@@ -15,26 +15,21 @@ protocol TextFieldTableViewCellDelegate: class {
 class TextFieldWithoutSubtitleTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     //MARK: - Properties
-    
-    weak var delegate: TextFieldTableViewCellDelegate?
     private var key = String()
+    weak var delegate: TextFieldTableViewCellDelegate?
 
     //MARK: - Outlets
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var unitLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var unitLabel: UILabel!
     @IBOutlet weak var cellTextField: UITextField!
     
-    
     //MARK: - Lifecycle
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         cellTextField.delegate = self
     }
     
     //MARK: - Methods
-    
     func configure(title: String, unit: String) {
         key = title
         titleLabel.text = title

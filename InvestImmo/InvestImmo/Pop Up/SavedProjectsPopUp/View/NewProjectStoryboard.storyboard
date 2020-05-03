@@ -105,9 +105,15 @@
                                     <constraint firstItem="yjS-IO-VnG" firstAttribute="leading" secondItem="RRh-wW-ZZJ" secondAttribute="leading" id="cvV-aU-ZzB"/>
                                     <constraint firstItem="yjS-IO-VnG" firstAttribute="top" secondItem="RRh-wW-ZZJ" secondAttribute="top" id="emA-Fd-CdG"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="RRh-wW-ZZJ" firstAttribute="leading" secondItem="VGo-bE-AOn" secondAttribute="leading" constant="40" id="Iwp-Ff-viK"/>
                             <constraint firstItem="RRh-wW-ZZJ" firstAttribute="centerX" secondItem="23m-L9-EUo" secondAttribute="centerX" id="Nes-1x-Ad6"/>
@@ -115,12 +121,20 @@
                             <constraint firstItem="VGo-bE-AOn" firstAttribute="trailing" secondItem="RRh-wW-ZZJ" secondAttribute="trailing" constant="40" id="ePJ-AC-TJu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VGo-bE-AOn"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4eU-EG-xQy" appends="YES" id="GLX-Lm-fnY"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="newProjectTextField" destination="weZ-8t-bCw" id="3rU-9g-wbz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UeU-yK-Sfg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4eU-EG-xQy">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="clR-Fm-oKS" id="1oB-pg-DJg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1439" y="35"/>
         </scene>

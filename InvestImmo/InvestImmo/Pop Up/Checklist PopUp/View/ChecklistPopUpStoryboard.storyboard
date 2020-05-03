@@ -13,10 +13,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Add Checklist To Existant Project AlertVC-->
+        <!--Add Checklist To Existant Project Pop UpVC-->
         <scene sceneID="WSN-Bc-3Xh">
             <objects>
-                <viewController storyboardIdentifier="ChecklistExistantProjectAlertVC" id="gbg-wq-Fni" customClass="AddChecklistToExistantProjectAlertVC" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChecklistExistantProjectAlertVC" id="gbg-wq-Fni" customClass="AddChecklistToExistantProjectPopUpVC" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HjW-re-KQL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,7 +58,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="334" height="80"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGq-mg-49x" customClass="ResultView" customModule="InvestImmo" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGq-mg-49x">
                                                             <rect key="frame" x="28" y="19" width="278" height="58"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLc-2m-4MG">
@@ -75,6 +75,11 @@
                                                                 <constraint firstItem="hLc-2m-4MG" firstAttribute="top" secondItem="lGq-mg-49x" secondAttribute="topMargin" constant="8" id="aPY-ib-XsW"/>
                                                                 <constraint firstAttribute="trailingMargin" secondItem="hLc-2m-4MG" secondAttribute="trailing" constant="8" id="kJO-Yi-k6B"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <integer key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
@@ -172,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="98.550724637681171" y="190.84821428571428"/>
         </scene>
-        <!--Add Checklist To New Project AlertVC-->
+        <!--Add Checklist To New Project Pop UpVC-->
         <scene sceneID="emb-d5-TzJ">
             <objects>
-                <viewController storyboardIdentifier="ChecklistNewProjectAlertVC" id="a3o-qY-zqY" customClass="AddChecklistToNewProjectAlertVC" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChecklistNewProjectAlertVC" id="a3o-qY-zqY" customClass="AddChecklistToNewProjectPopUpVC" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1uq-JD-o9X">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,9 +269,15 @@
                                     <constraint firstItem="NqB-su-D84" firstAttribute="leading" secondItem="jaN-hR-LDI" secondAttribute="leading" constant="60" id="tFi-4o-7cx"/>
                                     <constraint firstAttribute="trailing" secondItem="1jR-5d-K3r" secondAttribute="trailing" constant="16" id="vyR-qi-XtE"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="jaN-hR-LDI" firstAttribute="centerX" secondItem="1uq-JD-o9X" secondAttribute="centerX" id="Oci-ld-Ntk"/>
                             <constraint firstItem="jaN-hR-LDI" firstAttribute="leading" secondItem="HuY-eT-Ed9" secondAttribute="leading" constant="40" id="iJM-Ch-7x2"/>
@@ -274,14 +285,124 @@
                             <constraint firstItem="jaN-hR-LDI" firstAttribute="centerY" secondItem="1uq-JD-o9X" secondAttribute="centerY" id="yRg-wx-foW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HuY-eT-Ed9"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3Gu-yx-clx" appends="YES" id="g8g-Ia-dP7"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="projectNameLabel" destination="NqB-su-D84" id="hdH-P9-wZ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQ7-aD-dlb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3Gu-yx-clx">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="a3o-qY-zqY" id="Xg2-YU-6BO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1204" y="191"/>
+        </scene>
+        <!--Replace Project Checklist View Controller-->
+        <scene sceneID="Ngf-hz-5ZW">
+            <objects>
+                <viewController storyboardIdentifier="ReplaceChecklistAlertVC" id="mlZ-6B-N9d" customClass="ReplaceProjectChecklistViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lB9-UR-kRb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZz-gp-ILM">
+                                <rect key="frame" x="40" y="349.5" width="334" height="197"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDR-aM-Ipx">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="85"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ce projet possède déjà une checklist sauvegardée, voulez-vous la remplacer ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQy-rg-Dlf">
+                                                <rect key="frame" x="8" y="0.0" width="318" height="85"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="NQy-rg-Dlf" secondAttribute="trailing" constant="8" id="9sI-7J-vCF"/>
+                                            <constraint firstItem="NQy-rg-Dlf" firstAttribute="leading" secondItem="HDR-aM-Ipx" secondAttribute="leading" constant="8" id="AHT-aR-MdS"/>
+                                            <constraint firstItem="NQy-rg-Dlf" firstAttribute="top" secondItem="HDR-aM-Ipx" secondAttribute="top" id="iw7-0H-XUK"/>
+                                            <constraint firstAttribute="height" constant="85" id="nR6-Hw-rkX"/>
+                                            <constraint firstAttribute="bottom" secondItem="NQy-rg-Dlf" secondAttribute="bottom" id="vOI-np-vkv"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7vH-9n-Zak">
+                                        <rect key="frame" x="16" y="101" width="302" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHC-k6-Dw0">
+                                                <rect key="frame" x="0.0" y="0.0" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Oui">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapOnYesButton:" destination="mlZ-6B-N9d" eventType="touchUpInside" id="vC4-0Q-XnQ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhY-cG-nrU">
+                                                <rect key="frame" x="0.0" y="45" width="302" height="35"/>
+                                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
+                                                <state key="normal" title="Annuler">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapOnCancelButton:" destination="mlZ-6B-N9d" eventType="touchUpInside" id="2kv-5N-484"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="vte-ib-4iU"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="HDR-aM-Ipx" secondAttribute="trailing" id="2cu-BG-dBE"/>
+                                    <constraint firstItem="7vH-9n-Zak" firstAttribute="top" secondItem="HDR-aM-Ipx" secondAttribute="bottom" constant="16" id="H9h-r6-kZh"/>
+                                    <constraint firstItem="7vH-9n-Zak" firstAttribute="leading" secondItem="UZz-gp-ILM" secondAttribute="leading" constant="16" id="KBo-ZK-bC1"/>
+                                    <constraint firstItem="HDR-aM-Ipx" firstAttribute="top" secondItem="UZz-gp-ILM" secondAttribute="top" id="NQJ-aa-bQc"/>
+                                    <constraint firstItem="HDR-aM-Ipx" firstAttribute="leading" secondItem="UZz-gp-ILM" secondAttribute="leading" id="gj3-mm-DrJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="7vH-9n-Zak" secondAttribute="bottom" constant="16" id="keU-bC-Ec4"/>
+                                    <constraint firstAttribute="trailing" secondItem="7vH-9n-Zak" secondAttribute="trailing" constant="16" id="meE-hf-fXb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UZz-gp-ILM" firstAttribute="centerX" secondItem="lB9-UR-kRb" secondAttribute="centerX" id="EPh-Lh-r8s"/>
+                            <constraint firstItem="UZz-gp-ILM" firstAttribute="leading" secondItem="FXX-Cl-g5w" secondAttribute="leading" constant="40" id="Ipa-8g-M5h"/>
+                            <constraint firstItem="UZz-gp-ILM" firstAttribute="centerY" secondItem="lB9-UR-kRb" secondAttribute="centerY" id="JX3-OL-YnS"/>
+                            <constraint firstItem="FXX-Cl-g5w" firstAttribute="trailing" secondItem="UZz-gp-ILM" secondAttribute="trailing" constant="40" id="Jx3-4E-2O4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FXX-Cl-g5w"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k7p-NT-k9u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2341" y="191"/>
         </scene>
     </scenes>
 </document>

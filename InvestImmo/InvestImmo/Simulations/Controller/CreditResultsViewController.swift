@@ -12,28 +12,25 @@ class CreditResultsViewController: UIViewController {
 
     
     //MARK: - Properties
-    private let realmRepo = RealmRepository()
-    private let creditNewProjectAlert = CreditNewProjectAlert()
-    private let creditExistantProjectAlert = CreditExistantProjectAlert()
-    var creditRepo: CreditRepository?
+    private let projectRepository = ProjectRepository()
+    private let creditNewProjectPopUp = CreditNewProjectPopUp()
+    private let creditExistantProjectPopUp = CreditExistantProjectPopUp()
+    var creditRepository: CreditRepository?
     
     //MARK: - Outlets
-    @IBOutlet weak var creditResultsTableView: UITableView!
-    
+    @IBOutlet weak private var creditResultsTableView: UITableView!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         nibRegister()
         creditResultsTableView.reloadData()
-      
     }
     
-    
     //MARK: - Actions
-    @IBAction func didTapOnSaveButton(_ sender: Any) {
-        guard let creditRepo = creditRepo else {return}
-        let alert = realmRepo.myProjects.isEmpty ? creditNewProjectAlert.alert(credit: creditRepo) : creditExistantProjectAlert.alert(credit: creditRepo)
+    @IBAction private func didTapOnSaveButton(_ sender: Any) {
+        guard let creditRepository = creditRepository else {return}
+        let alert = projectRepository.myProjects.isEmpty ? creditNewProjectPopUp.alert(credit: creditRepository) : creditExistantProjectPopUp.alert(credit: creditRepository)
         present(alert, animated: true)
     }
     
@@ -49,7 +46,6 @@ class CreditResultsViewController: UIViewController {
 //MARK: - Extension
 
 extension CreditResultsViewController: UITableViewDataSource, UITableViewDelegate {
-    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return 4
@@ -57,8 +53,8 @@ extension CreditResultsViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? ResultTableViewCell else {return UITableViewCell()}
-        if let creditRepo = creditRepo {
-            cell.configureForCredit(title: creditRepo.resultTitles[indexPath.row], result: creditRepo.results[indexPath.row])
+        if let creditRepository = creditRepository {
+            cell.configureForCredit(title: creditRepository.resultTitles[indexPath.row], result: creditRepository.results[indexPath.row])
         }
         return cell
     }

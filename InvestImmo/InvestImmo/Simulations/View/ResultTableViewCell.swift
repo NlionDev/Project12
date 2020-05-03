@@ -12,12 +12,10 @@ class ResultTableViewCell: UITableViewCell {
 
 
     //MARK: - Outlets
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var resultLabel: UILabel!
     
     //MARK: - Methods
-    
     func configureForRenta(title: String, result: String, isPositive: Bool) {
         titleLabel.text = title
         resultLabel.text = result

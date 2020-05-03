@@ -44,7 +44,7 @@
         <scene sceneID="vXo-Dw-qDc">
             <objects>
                 <viewController id="D2f-Gh-YDS" customClass="SavedProjectsViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="z42-W8-y2P" customClass="BackgroundView" customModule="InvestImmo" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="z42-W8-y2P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -65,7 +65,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYX-M8-htI" customClass="ResultView" customModule="InvestImmo" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYX-M8-htI">
                                                     <rect key="frame" x="30" y="21" width="354" height="158"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIf-ik-337">
@@ -244,6 +244,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="folderIcon" width="30" height="30"/>
+        <image name="folderIcon" width="25.5" height="25"/>
     </resources>
 </document>

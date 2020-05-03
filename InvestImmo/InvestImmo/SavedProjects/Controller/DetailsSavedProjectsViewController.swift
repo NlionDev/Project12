@@ -8,43 +8,33 @@
 
 import UIKit
 import Photos
+import AssetsLibrary
 
 class DetailsSavedProjectsViewController: UIViewController {
 
     //MARK: - Properties
-   
     private var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
-    private let menuBarItems = [UIImage(named: "bankIcon"), UIImage(named: "ratioIcon"), UIImage(named: "checklistIcon"), UIImage(named: "galleryIcon"), UIImage(named: "mapIcon")]
+    private let menuBarItems = [UIImage(named: "euroIcon"), UIImage(named: "ratioIcon"), UIImage(named: "checklistIcon"), UIImage(named: "galleryIcon"), UIImage(named: "mapIcon")]
     private var pageViewController: UIPageViewController!
     private var viewControllers = [UIViewController]()
     private let errorAlert = ErrorAlert()
-    private var realmRepo = RealmRepository()
-    private let creditRepo = CreditRepository()
-    private let rentaRepo = RentabilityRepository()
+    private let photoRepository = PhotoRepository()
     private let photo = Photo()
-    private var selectedRentabilitySimulation: RentabilitySimulation?
-    private var selectedCreditSimulation: CreditSimulation?
-    private var selectedChecklistGeneral: ChecklistGeneral?
     private var currentIndex = 0
     private let imagePicker = UIImagePickerController()
     var selectedProject: Project?
     
     //MARK: - Outlets
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var menuBar: UIView!
-    @IBOutlet weak var menuBarCollectionView: UICollectionView!
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var menuBar: UIView!
+    @IBOutlet weak private var menuBarCollectionView: UICollectionView!
+    @IBOutlet weak private var containerView: UIView!
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let selectedProject = selectedProject {
-            guard let projectName = selectedProject.name else {return}
-            nameLabel.text = selectedProject.name
-            selectedCreditSimulation = realmRepo.getCreditSimulationWithProjectName(name: projectName)
-        }
+        guard let projectName = selectedProject?.name else {return}
+        nameLabel.text = projectName
         imagePicker.delegate = self
         setupMenuBarCollectionView()
         setupHorizontalBar()
@@ -62,14 +52,12 @@ class DetailsSavedProjectsViewController: UIViewController {
 
     
     //MARK: - Actions
-    
     @objc private func didTapOnAddPhotoButton() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadPhotoCollectionView"), object: nil)
         checkIfUserIsAllowToPickPhotoFromLibrary()
     }
     
     //MARK: - Methods
- 
     private func getViewControllers() {
         let storyboard = UIStoryboard(name: "SavedProjectsDataStoryboard", bundle: nil)
         let creditDataVC = storyboard.instantiateViewController(withIdentifier: "CreditData") as! CreditDataViewController
@@ -131,7 +119,7 @@ class DetailsSavedProjectsViewController: UIViewController {
     }
     
     private func configureNavBarRightButton() {
-        currentIndex == 3 ? setupNavBarRightButton(image: #imageLiteral(resourceName: "camera"), action: #selector(didTapOnAddPhotoButton)) : hideNavBarRightButton()
+        currentIndex == 3 ? setupNavBarRightButton(image: #imageLiteral(resourceName: "cameraIcon"), action: #selector(didTapOnAddPhotoButton)) : hideNavBarRightButton()
     }
     
     private func checkIfUserIsAllowToPickPhotoFromLibrary() {
@@ -160,7 +148,6 @@ class DetailsSavedProjectsViewController: UIViewController {
     }
 }
 //MARK: - Extension for CollectionView
-
 extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -193,14 +180,13 @@ extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollec
 }
 
 //MARK: - Extension for PageViewController
-
 extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = viewControllers.firstIndex(of: viewController) else {return nil}
         let previousIndex = viewControllerIndex - 1
-        guard previousIndex >= 0 else {return nil}
-        guard viewControllers.count > previousIndex else {return nil}
+        guard previousIndex >= 0,
+            viewControllers.count > previousIndex else {return nil}
         return viewControllers[previousIndex]
     }
         
@@ -208,8 +194,8 @@ extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPa
         guard let viewControllerIndex = viewControllers.firstIndex(of: viewController) else {return nil}
         let nextIndex = viewControllerIndex + 1
         let viewControllersCount = viewControllers.count
-        guard viewControllersCount != nextIndex else {return nil}
-        guard viewControllersCount > nextIndex else {return nil}
+        guard viewControllersCount != nextIndex,
+            viewControllersCount > nextIndex else {return nil}
         return viewControllers[nextIndex]
     }
     
@@ -223,21 +209,19 @@ extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPa
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if (completed && finished) {
-            if let currentVC = pageViewController.viewControllers?.last {
-                if let index = viewControllers.firstIndex(of: currentVC) {
-                    currentIndex = index
-                    let indexPath = IndexPath(item: index, section: 0)
-                    menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
-                    animateMenuBarSlide(index: index, duration: 0)
-                    configureNavBarRightButton()
-                }
+            if let currentVC = pageViewController.viewControllers?.last,
+                let index = viewControllers.firstIndex(of: currentVC) {
+                currentIndex = index
+                let indexPath = IndexPath(item: index, section: 0)
+                menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+                animateMenuBarSlide(index: index, duration: 0)
+                configureNavBarRightButton()
             }
         }
     }
 }
 
 //MARK: - Extension for ImagePickerController
-
 extension DetailsSavedProjectsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -245,11 +229,12 @@ extension DetailsSavedProjectsViewController: UIImagePickerControllerDelegate, U
             if let imageURL = info[.referenceURL] as? URL {
                 let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
                 guard let asset = result.firstObject else {return}
-                if let name = selectedProject?.name {
+                if let name = selectedProject?.name,
+                    let realm = photoRepository.realm {
                     photo.name = name
                     photo.identifier = asset.localIdentifier
-                    try! realmRepo.realm.write {
-                        realmRepo.realm.add(photo)
+                    realm.safeWrite {
+                        realm.add(photo)
                     }
                 }
             }

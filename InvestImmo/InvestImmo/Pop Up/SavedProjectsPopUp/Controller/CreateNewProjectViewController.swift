@@ -11,21 +11,17 @@ import UIKit
 class CreateNewProjectViewController: UIViewController {
     
     //MARK: - Properties
-    
     private let errorAlert = ErrorAlert()
-    private let realmRepo = RealmRepository()
-    private let project = Project()
+    private let projectRepository = ProjectRepository()
     
     //MARK: - Outlets
-    
-    @IBOutlet weak var newProjectTextField: UITextField!
+    @IBOutlet weak private var newProjectTextField: UITextField!
     
     //MARK: - Actions
-    
-    @IBAction func didTapOnCreateNewProjectButton(_ sender: Any) {
+    @IBAction private func didTapOnCreateNewProjectButton(_ sender: Any) {
         guard let name = newProjectTextField.text else {return}
-        if isMyProjectNameUnique(name: name, projects: realmRepo.myProjects) {
-            realmRepo.saveEmptyNewProject(name: name)
+        if isMyProjectNameUnique(name: name, projects: projectRepository.myProjects) {
+            projectRepository.saveEmptyNewProject(name: name)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadSavedProjectsData"), object: nil)
             dismiss(animated: true)
         } else {
@@ -34,7 +30,19 @@ class CreateNewProjectViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapOnCancelButton(_ sender: Any) {
+    @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        newProjectTextField.resignFirstResponder()
+    }
+    
+}
+
+//MARK: - Extension
+extension CreateNewProjectViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        newProjectTextField.resignFirstResponder()
     }
 }

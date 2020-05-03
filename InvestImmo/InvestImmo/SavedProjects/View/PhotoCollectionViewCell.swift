@@ -11,17 +11,9 @@ import UIKit
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Outlets
-    
-    @IBOutlet weak var photoImageView: UIImageView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
+    @IBOutlet weak private var photoImageView: UIImageView!
     
     //MARK: - Methods
-
     func configure(photo: UIImageView) {
         photoImageView = photo
     }

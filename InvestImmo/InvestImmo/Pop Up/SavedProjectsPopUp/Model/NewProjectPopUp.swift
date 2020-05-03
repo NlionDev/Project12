@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmptyNewProjectAlert {
+class EmptyNewProjectPopUp {
     
     func alert() -> CreateNewProjectViewController {
         let storyboard = UIStoryboard(name: "NewProjectStoryboard", bundle: .main)

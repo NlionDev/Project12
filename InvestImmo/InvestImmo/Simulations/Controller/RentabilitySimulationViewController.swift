@@ -12,14 +12,13 @@ class RentabilitySimulationViewController: UIViewController {
     
     
     //MARK: - Properties
-    private let rentaCalculator = RentabilityCalculator()
+    private let rentabilityCalculator = RentabilityCalculator()
     private var lastRentaCell = TextFieldWithSubtitleTableViewCell()
     private let errorAlert = ErrorAlert()
-    let rentaRepo = RentabilityRepository()
+    let rentabilityRepository = RentabilityRepository()
     
     //MARK: - Outlets
-    @IBOutlet weak var rentabilityTableView: UITableView!
-    
+    @IBOutlet weak private var rentabilityTableView: UITableView!
     
     //MARK: - Lifecycle
 
@@ -27,35 +26,58 @@ class RentabilitySimulationViewController: UIViewController {
         super.viewDidLoad()
         nibRegister()
         rentabilityTableView.reloadData()
+        addKeyboardObservers(method: #selector(adjustViewForKeyboard(notification:)))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GoToRentabilityResults" {
             guard let destination = segue.destination as? RentabilityResultsViewController else {return}
-            destination.rentaCalculator = rentaCalculator
-            destination.rentaRepo = rentaRepo
+            destination.rentabilityCalculator = rentabilityCalculator
+            destination.rentabilityRepository = rentabilityRepository
         }
     }
 
+    deinit {
+        removeKeyboardObserver()
+    }
+    
     //MARK: - Actions
     
-    @IBAction func didTapOnCalculButton(_ sender: Any) {
+    @IBAction private func didTapOnCalculButton(_ sender: Any) {
         if let rentaLastTextField = lastRentaCell.cellTextField {
             rentaLastTextField.resignFirstResponder()
             getRentabilityResults()
         }
     }
     
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        for cell in rentaRepo.rentaTextFieldWithoutSubtitleCells {
+    @IBAction private func dismissKeyboard(_ sender: Any) {
+        for cell in rentabilityRepository.rentaTextFieldWithoutSubtitleCells {
             cell.cellTextField.resignFirstResponder()
         }
-        for cell in rentaRepo.rentaTextFieldWithSubtitleCells {
+        for cell in rentabilityRepository.rentaTextFieldWithSubtitleCells {
             cell.cellTextField.resignFirstResponder()
         }
     }
     
     //MARK: - Methods
+        @objc private func adjustViewForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            rentabilityTableView.contentInset = .zero
+        } else {
+            if #available(iOS 11.0, *) {
+                rentabilityTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+            } else {
+                let keyboardSize = keyboardViewEndFrame.size
+                let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+                rentabilityTableView.contentInset = contentInsets
+                rentabilityTableView.scrollIndicatorInsets = contentInsets
+            }
+        }
+        rentabilityTableView.scrollIndicatorInsets =  rentabilityTableView.contentInset
+    }
     
     private func nibRegister() {
         let nibNameForCellWithSubtitle = UINib(nibName: "TextFieldWithSubtitleTableViewCell", bundle: nil)
@@ -65,21 +87,21 @@ class RentabilitySimulationViewController: UIViewController {
     }
     
     private func getRentabilityResults() {
-        rentaCalculator.rentabilityData = rentaRepo.rentabilityData
+        rentabilityCalculator.rentabilityData = rentabilityRepository.rentabilityData
         do {
-            let grossYield = try rentaCalculator.getGrossYield()
-            let netYield = try rentaCalculator.getNetYield()
-            let annualCashflow = try rentaCalculator.getAnnualCashflow()
-            let mensualCashflow = try rentaCalculator.getMensualCashflow()
-            rentaRepo.results.append(grossYield + " %")
-            rentaRepo.resultsForPositiveCheck.append(grossYield)
-            rentaRepo.results.append(netYield + " %")
-            rentaRepo.resultsForPositiveCheck.append(netYield)
-            rentaRepo.results.append(annualCashflow + " €")
-            rentaRepo.resultsForPositiveCheck.append(annualCashflow)
-            rentaRepo.results.append(mensualCashflow + " €")
-            rentaRepo.resultsForPositiveCheck.append(mensualCashflow)
-            performSegue(withIdentifier: "goToSimulationResult", sender: self)
+            let grossYield = try rentabilityCalculator.getGrossYield()
+            let netYield = try rentabilityCalculator.getNetYield()
+            let annualCashflow = try rentabilityCalculator.getAnnualCashflow()
+            let mensualCashflow = try rentabilityCalculator.getMensualCashflow()
+            rentabilityRepository.results.append(grossYield + " %")
+            rentabilityRepository.resultsForPositiveCheck.append(grossYield)
+            rentabilityRepository.results.append(netYield + " %")
+            rentabilityRepository.resultsForPositiveCheck.append(netYield)
+            rentabilityRepository.results.append(annualCashflow + " €")
+            rentabilityRepository.resultsForPositiveCheck.append(annualCashflow)
+            rentabilityRepository.results.append(mensualCashflow + " €")
+            rentabilityRepository.resultsForPositiveCheck.append(mensualCashflow)
+            performSegue(withIdentifier: "GoToRentabilityResults", sender: self)
         } catch let error as RentabilityCalculator.RentabilityCalculatorError {
             displayRentabilityError(error)
         } catch {
@@ -89,19 +111,19 @@ class RentabilitySimulationViewController: UIViewController {
     }
     
     private func getCorrectCell(tableView: UITableView, indexPath : IndexPath) -> UITableViewCell {
-        let item = rentaRepo.cells[indexPath.row]
+        let item = rentabilityRepository.cells[indexPath.row]
         switch item.cellType {
         case .textFieldWithoutSubtitles:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithoutSubtitleCell", for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, unit: item.unit)
             cell.delegate = self
-            rentaRepo.rentaTextFieldWithoutSubtitleCells.append(cell)
+            rentabilityRepository.rentaTextFieldWithoutSubtitleCells.append(cell)
             return cell
         case .textFieldWithSubtitles:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithSubtitleCell", for: indexPath) as? TextFieldWithSubtitleTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, subtitle: item.subtitles)
             lastRentaCell = cell
-            rentaRepo.rentaTextFieldWithSubtitleCells.append(cell)
+            rentabilityRepository.rentaTextFieldWithSubtitleCells.append(cell)
             cell.delegate = self
             return cell
         }
@@ -129,22 +151,21 @@ class RentabilitySimulationViewController: UIViewController {
 
 }
 
-//MARK: - Extensions
-
+//MARK: - Extension for TableView
 extension RentabilitySimulationViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rentaRepo.cells.count
+        return rentabilityRepository.cells.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return getCorrectCell(tableView: tableView, indexPath: indexPath)
-        
     }
 }
 
+//MARK: - TextFieldTableViewCellDelegate
 extension RentabilitySimulationViewController: TextFieldTableViewCellDelegate {
     func textFieldTableViewCell(key: String, value: String) {
-        rentaRepo.rentabilityData[key] = value
+        rentabilityRepository.rentabilityData[key] = value
     }
 }

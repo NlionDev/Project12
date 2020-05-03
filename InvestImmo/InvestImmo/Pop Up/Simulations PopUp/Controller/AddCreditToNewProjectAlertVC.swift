@@ -8,38 +8,33 @@
 
 import UIKit
 
-class AddCreditToNewProjectAlertVC: UIViewController {
+class AddCreditToNewProjectPopUpVC: UIViewController {
     
     //MARK: - Properties
-    
     private let errorAlert = ErrorAlert()
-    private let realmRepo = RealmRepository()
-    private let simulation = CreditSimulation()
+    private let projectRepository = ProjectRepository()
     private let project = Project()
-    var creditRepo: CreditRepository?
-    
+    var creditRepository: CreditRepository?
     
     //MARK: - Outlets
-    
-    @IBOutlet weak var projectTextField: UITextField!
+    @IBOutlet weak private var projectTextField: UITextField!
     
     
     //MARK: - Actions
-    
-    @IBAction func didTapOnNewProjectButton(_ sender: Any) {
-        guard let name = projectTextField.text else {return}
-        guard let creditRepo = creditRepo else {return}
-         if isMyProjectNameUnique(name: name, projects: realmRepo.myProjects) {
-            creditRepo.saveNewCreditSimulation(name: name, simulation: simulation, project: project, realmRepo: realmRepo, creditRepo: creditRepo)
-             dismiss(animated: true)
+    @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
+        guard let name = projectTextField.text,
+            let creditRepo = creditRepository else {return}
+        if isMyProjectNameUnique(name: name, projects: projectRepository.myProjects) {
+            creditRepo.saveNewCreditSimulation(name: name, project: project, creditRepo: creditRepo)
+            dismiss(animated: true)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DismissPreviousAlert"), object: nil)
-         } else {
-             let alert = errorAlert.alert(message: "Un projet existant porte déjà ce nom.")
-             present(alert, animated: true)
-         }
+        } else {
+            let alert = errorAlert.alert(message: "Un projet existant porte déjà ce nom.")
+            present(alert, animated: true)
+        }
     }
     
-    @IBAction func didTapOnCancelButton(_ sender: Any) {
+    @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
 

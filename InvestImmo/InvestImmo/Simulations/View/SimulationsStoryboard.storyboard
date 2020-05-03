@@ -18,7 +18,7 @@
         <scene sceneID="yEC-Fm-xpI">
             <objects>
                 <navigationController storyboardIdentifier="SimulationsNavigation" id="kjP-go-Eca" customClass="CustomNavigationController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Simulations" image="ratio" selectedImage="ratio" id="G6D-JT-8my">
+                    <tabBarItem key="tabBarItem" title="Simulations" image="ratioIcon" selectedImage="ratioIcon" id="G6D-JT-8my">
                         <color key="badgeColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -133,7 +133,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pdX-hP-AMd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="727"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="735"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="nwC-zo-rnH" id="Xaw-CZ-SBU"/>
@@ -142,16 +142,16 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjw-VH-l58">
-                                <rect key="frame" x="40" y="787" width="334" height="55"/>
+                                <rect key="frame" x="40" y="795" width="334" height="47"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" title="Calculer">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="30"/>
+                                        <integer key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -196,7 +196,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QgR-AU-twj">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="HPq-bc-tnz" id="OFp-mV-iiP"/>
@@ -204,16 +204,16 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5u-K5-kpj">
-                                <rect key="frame" x="40" y="733" width="334" height="55"/>
+                                <rect key="frame" x="40" y="741" width="334" height="47"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" title="Sauvegarder">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="30"/>
+                                        <integer key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -251,7 +251,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lug-XS-BhK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="727"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="735"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="mE5-7J-Zge" id="9lk-5R-O2L"/>
@@ -260,16 +260,16 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yez-jS-dhQ">
-                                <rect key="frame" x="40" y="787" width="334" height="55"/>
+                                <rect key="frame" x="40" y="795" width="334" height="47"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" title="Calculer">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="30"/>
+                                        <integer key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -314,7 +314,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-4f-c0c">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="UtQ-EW-ddp" id="npC-t3-Wjg"/>
@@ -322,16 +322,16 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pC9-GG-Dhd">
-                                <rect key="frame" x="40" y="733" width="334" height="55"/>
+                                <rect key="frame" x="40" y="741" width="334" height="47"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" title="Sauvegarder">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="30"/>
+                                        <integer key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -362,6 +362,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ratio" width="24" height="24"/>
+        <image name="ratioIcon" width="24.5" height="24.5"/>
     </resources>
 </document>

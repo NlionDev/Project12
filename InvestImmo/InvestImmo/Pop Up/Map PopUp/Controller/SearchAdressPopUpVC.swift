@@ -19,20 +19,18 @@ class SearchAdressPopUpVC: UIViewController {
     weak var delegate: SearchAdressPopUpVCDelegate?
     
     //MARK: - Outlets
+    @IBOutlet weak private var adressTextField: UITextField!
+    @IBOutlet weak private var postalCodeTextField: UITextField!
+    @IBOutlet weak private var cityTextField: UITextField!
     
-    @IBOutlet weak var adressTextField: UITextField!
-    @IBOutlet weak var postalCodeTextField: UITextField!
-    @IBOutlet weak var cityTextField: UITextField!
-    
-    //MARK: - Actions
-
-    @IBAction func didTapOnScreen(_ sender: UITapGestureRecognizer) {
+    //MARK: - Actionn
+    @IBAction private func didTapOnScreen(_ sender: UITapGestureRecognizer) {
         adressTextField.resignFirstResponder()
         postalCodeTextField.resignFirstResponder()
         cityTextField.resignFirstResponder()
     }
     
-    @IBAction func didTapOnSearchAdress(_ sender: Any) {
+    @IBAction private func didTapOnSearchAdress(_ sender: Any) {
         if adressTextField.text == nil {
             let alert = errorAlert.alert(message: "Vous n'avez pas rempli le champ 'Adresse'.")
             present(alert, animated: true)
@@ -53,7 +51,7 @@ class SearchAdressPopUpVC: UIViewController {
         }
     }
     
-    @IBAction func didTapOnCancel(_ sender: Any) {
+    @IBAction private func didTapOnCancel(_ sender: Any) {
         dismiss(animated: true)
     }
 

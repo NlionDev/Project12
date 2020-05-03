@@ -31,7 +31,6 @@ class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         cellTextView.delegate = self
-        cellTextView.clear()
     }
     
     //MARK: - Methods
@@ -48,6 +47,5 @@ class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
         }
         return true
     }
-    
     
 }

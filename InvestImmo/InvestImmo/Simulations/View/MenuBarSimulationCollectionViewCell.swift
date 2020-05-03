@@ -12,7 +12,7 @@ import UIKit
 class MenuBarSimulationCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let title = UILabel()
         title.font = UIFont(name: "Antipasto Pro", size: 20)
         title.textColor = UIColor(red: 55/255.0, green: 70/255.0, blue: 128/255.0, alpha: 1.0)
@@ -34,17 +34,13 @@ class MenuBarSimulationCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var label: UILabel!
-    
     //MARK: - Lifecycle
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
     }
     
     //MARK: - Methods
-    
     func configure(title: String) {
         titleLabel.text = title
     }

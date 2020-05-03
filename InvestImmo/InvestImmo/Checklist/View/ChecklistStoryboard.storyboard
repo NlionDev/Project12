@@ -25,30 +25,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invest'Immo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlL-nS-Wq3">
-                                <rect key="frame" x="119.5" y="60" width="175" height="36"/>
+                                <rect key="frame" x="124.5" y="60" width="165" height="35"/>
                                 <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="30"/>
                                 <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xhp-Yn-L3j">
-                                <rect key="frame" x="0.0" y="112" width="414" height="610"/>
+                                <rect key="frame" x="0.0" y="111" width="414" height="612"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="dataSource" destination="BL6-q5-rdA" id="mNf-Ho-bX0"/>
                                     <outlet property="delegate" destination="BL6-q5-rdA" id="eB1-e8-gNU"/>
+                                    <outletCollection property="gestureRecognizers" destination="JHj-t7-fqF" appends="YES" id="w4J-t3-cNk"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctn-Qw-f4h">
-                                <rect key="frame" x="40" y="738" width="334" height="55"/>
+                                <rect key="frame" x="40" y="739" width="334" height="54"/>
                                 <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="20"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" title="Sauvegarder">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="30"/>
+                                        <integer key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -57,6 +59,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Ctn-Qw-f4h" firstAttribute="leading" secondItem="iFy-f8-B6y" secondAttribute="leading" constant="40" id="2Az-7Z-YYf"/>
                             <constraint firstItem="WlL-nS-Wq3" firstAttribute="centerX" secondItem="ycL-RJ-Iut" secondAttribute="centerX" id="CPO-oH-f0J"/>
@@ -79,11 +82,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCd-7r-P61" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="JHj-t7-fqF">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="BL6-q5-rdA" id="G9u-hG-x3O"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-362.31884057971018" y="104.46428571428571"/>
         </scene>
     </scenes>
     <resources>
-        <image name="checklistIcon" width="30" height="30"/>
+        <image name="checklistIcon" width="20" height="24.5"/>
     </resources>
 </document>

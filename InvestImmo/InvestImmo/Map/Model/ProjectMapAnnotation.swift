@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 
 class ProjectMapAnnotation: NSObject, MKAnnotation {
+    
+    //MARK: - Properties
     var title: String?
     var info: String
     var coordinate: CLLocationCoordinate2D

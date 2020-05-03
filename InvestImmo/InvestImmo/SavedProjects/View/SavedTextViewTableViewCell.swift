@@ -11,13 +11,10 @@ import UIKit
 class SavedTextViewTableViewCell: UITableViewCell {
 
     //MARK: - Outlets
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var resultsLabel: UILabel!
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var resultsLabel: UILabel!
-    
-
     //MARK: - Methods
-    
     func configure(title: String, result: String) {
         titleLabel.text = title
         resultsLabel.text = result

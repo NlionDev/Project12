@@ -24,22 +24,19 @@ class ChecklistDataViewController: UIViewController {
         [String](),
         [String]()
     ]
-    private var checklistRepo = ChecklistRepository()
+    private var checklistRepository = ChecklistRepository()
     private var checklistGeneral = ChecklistGeneral()
     private var checklistDistrict = ChecklistDistrict()
     private var checklistApartmentBlock = ChecklistApartmentBlock()
     private var checklistApartment = ChecklistApartment()
-    private var realmRepo = RealmRepository()
     var selectedProject: Project?
     
     //MARK: - Outlets
-    
-    @IBOutlet weak var checklistTableView: UITableView!
-    @IBOutlet weak var checklistLabel: UILabel!
+    @IBOutlet weak private var checklistTableView: UITableView!
+    @IBOutlet weak private var checklistLabel: UILabel!
     
     
     //MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         nibRegister()
@@ -50,8 +47,9 @@ class ChecklistDataViewController: UIViewController {
     
 
 //MARK: - Methods
-    
     private func nibRegister() {
+        let nibNamForTextViewCell = UINib(nibName: "SavedTextViewTableViewCell", bundle: nil)
+        checklistTableView.register(nibNamForTextViewCell, forCellReuseIdentifier: "SavedTextViewCell")
         let nibNameForDetailsSimulationCell = UINib(nibName: "DetailsSimulationTableViewCell", bundle: nil)
         checklistTableView.register(nibNameForDetailsSimulationCell, forCellReuseIdentifier: "DetailsSimulationCell")
     }
@@ -76,36 +74,21 @@ class ChecklistDataViewController: UIViewController {
     }
     
     private func getTitles() {
-        getTitlesFromDictionnary(data: checklistRepo.checklistData)
+        titles = checklistRepository.allTitles
     }
     
     private func getResults() {
         if let projectName = selectedProject?.name {
-        checklistGeneral = realmRepo.getChecklistGeneralWithProjectName(name: projectName)
-            checklistDistrict = realmRepo.getChecklistDistrictWithProjectName(name: projectName)
-            checklistApartmentBlock = realmRepo.getChecklistApartmentBlocklWithProjectName(name: projectName)
-            checklistApartment = realmRepo.getChecklistApartmentWithProjectName(name: projectName)
-        results = realmRepo.getSavedChecklistData(general: checklistGeneral, district: checklistDistrict, block: checklistApartmentBlock, apartment: checklistApartment)
-        }
-    }
-    
-    private func getTitlesFromDictionnary(data: [[String: String]]) {
-        for (key, _) in data[0] {
-            titles[0].append(key)
-        }
-        for (key, _) in data[1] {
-            titles[1].append(key)
-        }
-        for (key, _) in data[2] {
-            titles[2].append(key)
-        }
-        for (key, _) in data[3] {
-            titles[3].append(key)
+        checklistGeneral = checklistRepository.getChecklistGeneralWithProjectName(name: projectName)
+            checklistDistrict = checklistRepository.getChecklistDistrictWithProjectName(name: projectName)
+            checklistApartmentBlock = checklistRepository.getChecklistApartmentBlocklWithProjectName(name: projectName)
+            checklistApartment = checklistRepository.getChecklistApartmentWithProjectName(name: projectName)
+        results = checklistRepository.getSavedChecklistData(general: checklistGeneral, district: checklistDistrict, block: checklistApartmentBlock, apartment: checklistApartment)
         }
     }
     
     private func configureTableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let item = checklistRepo.sections[indexPath.section][indexPath.row]
+        let item = checklistRepository.sections[indexPath.section][indexPath.row]
         var cell = UITableViewCell()
         switch item.cellType {
         case .textView:
@@ -119,16 +102,13 @@ class ChecklistDataViewController: UIViewController {
         }
         return cell
     }
-    
-
 }
 
 //MARK: - Extension
-
 extension ChecklistDataViewController: UITableViewDataSource, UITableViewDelegate {
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return checklistRepo.sections[section].count
+        return checklistRepository.sections[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -140,7 +120,7 @@ extension ChecklistDataViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return checklistRepo.sections.count
+        return checklistRepository.sections.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

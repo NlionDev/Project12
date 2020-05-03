@@ -11,14 +11,14 @@ import UIKit
 class CreditSimulationViewController: UIViewController {
     
     //MARK: - Properties
+    private let errorAlert = ErrorAlert()
     private let creditCalculator = CreditCalculator()
     private var lastCreditCell = TextFieldWithoutSubtitleTableViewCell()
-    let creditRepo = CreditRepository()
-    private let errorAlert = ErrorAlert()
+    private var activeTextField: UITextField?
+    let creditRepository = CreditRepository()
     
     //MARK: - Outlets
-    @IBOutlet weak var creditSimulationTableView: UITableView!
-    
+    @IBOutlet weak private var creditSimulationTableView: UITableView!
     
     //MARK: - Lifecycle
 
@@ -26,34 +26,57 @@ class CreditSimulationViewController: UIViewController {
         super.viewDidLoad()
         nibRegister()
         creditSimulationTableView.reloadData()
+        addKeyboardObservers(method: #selector(adjustViewForKeyboard(notification:)))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GoToCreditResults" {
             guard let destination = segue.destination as? CreditResultsViewController else {return}
-            destination.creditRepo = creditRepo
+            destination.creditRepository = creditRepository
         }
+    }
+    
+    deinit {
+        removeKeyboardObserver()
     }
     
     //MARK: - Actions
     
-    @IBAction func didTapOnCalculButton(_ sender: Any) {
+    @IBAction private func didTapOnCalculButton(_ sender: Any) {
         if let creditLastTextField = lastCreditCell.cellTextField {
             creditLastTextField.resignFirstResponder()
             getCreditResults()
         }
     }
     
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        for cell in creditRepo.creditStepperCells {
+    @IBAction private func dismissKeyboard(_ sender: Any) {
+        for cell in creditRepository.creditStepperCells {
             cell.cellTextField.resignFirstResponder()
         }
-        for cell in creditRepo.creditTextFieldCells {
+        for cell in creditRepository.creditTextFieldCells {
             cell.cellTextField.resignFirstResponder()
         }
     }
     
     //MARK: - Methods
+    @objc private func adjustViewForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            creditSimulationTableView.contentInset = .zero
+        } else {
+            if #available(iOS 11.0, *) {
+                creditSimulationTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+            } else {
+                let keyboardSize = keyboardScreenEndFrame.size
+                let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+                creditSimulationTableView.contentInset = contentInsets
+                creditSimulationTableView.scrollIndicatorInsets = contentInsets
+            }
+        }
+        creditSimulationTableView.scrollIndicatorInsets = creditSimulationTableView.contentInset
+    }
     
     private func nibRegister() {
         let nibNameForCellWithoutSubtitle = UINib(nibName: "TextFieldWithoutSubtitleTableViewCell", bundle: nil)
@@ -65,17 +88,17 @@ class CreditSimulationViewController: UIViewController {
     }
     
     private func getCreditResults() {
-        creditCalculator.creditData = creditRepo.creditData
+        creditCalculator.creditData = creditRepository.creditData
         do {
             let mensuality = try creditCalculator.getStringMensuality() + " €"
             let interestCost = try creditCalculator.getStringInterestCost() + " €"
             let insuranceCost = try creditCalculator.getStringInsuranceCost() + " €"
             let totalCost = try creditCalculator.getTotalCost() + " €"
-            creditRepo.results.append(mensuality)
-            creditRepo.results.append(interestCost)
-            creditRepo.results.append(insuranceCost)
-            creditRepo.results.append(totalCost)
-            performSegue(withIdentifier: "goToSimulationResult", sender: self)
+            creditRepository.results.append(mensuality)
+            creditRepository.results.append(interestCost)
+            creditRepository.results.append(insuranceCost)
+            creditRepository.results.append(totalCost)
+            performSegue(withIdentifier: "GoToCreditResults", sender: self)
         } catch let error as CreditCalculator.CreditCalculatorError {
             displayCreditError(error)
         } catch {
@@ -86,25 +109,25 @@ class CreditSimulationViewController: UIViewController {
     }
     
     private func getCorrectCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let item = creditRepo.cells[indexPath.row]
+        let item = creditRepository.cells[indexPath.row]
         switch item.cellType {
         case .textField:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithoutSubtitleCell", for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, unit: item.unit)
             cell.delegate = self
             lastCreditCell = cell
-            creditRepo.creditTextFieldCells.append(cell)
+            creditRepository.creditTextFieldCells.append(cell)
             return cell
         case .pickerView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell", for: indexPath) as? PickerViewTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, subtitle: item.subtitles)
-            creditRepo.creditData["Durée"] = String(creditRepo.creditDuration[cell.selectedPickerData])
+            creditRepository.creditData["Durée"] = String(creditRepository.creditDuration[cell.selectedPickerData])
             cell.delegate = self
             return cell
         case .stepper:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "StepperCell", for: indexPath) as? StepperTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles)
-            creditRepo.creditStepperCells.append(cell)
+            creditRepository.creditStepperCells.append(cell)
             cell.delegate = self
             return cell
         }
@@ -123,12 +146,11 @@ class CreditSimulationViewController: UIViewController {
 
 }
 
-//MARK: - Extensions
-
+//MARK: - Extension for TableView
 extension CreditSimulationViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return creditRepo.cells.count
+        return creditRepository.cells.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,15 +158,17 @@ extension CreditSimulationViewController: UITableViewDataSource, UITableViewDele
     }
 }
 
+//MARK: - PickerViewTableViewCellDelegate
 extension CreditSimulationViewController: PickerViewTableViewCellDelegate {
     func pickerViewTableViewCell(_ pickerViewTableViewCell: PickerViewTableViewCell, key: String, value: Int) {
         let stringValue = String(value)
-        creditRepo.creditData[key] = stringValue
+        creditRepository.creditData[key] = stringValue
     }
 }
 
+//MARK: - TextFieldTableViewCellDelegate
 extension CreditSimulationViewController: TextFieldTableViewCellDelegate {
     func textFieldTableViewCell(key: String, value: String) {
-        creditRepo.creditData[key] = value
+        creditRepository.creditData[key] = value
     }
 }

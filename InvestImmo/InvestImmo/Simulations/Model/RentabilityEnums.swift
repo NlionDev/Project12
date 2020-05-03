@@ -53,17 +53,17 @@ enum RentabilityItem {
     var subtitles: String {
         switch self {
         case .monthlyRent:
-            return "( Hors Charges )"
+            return "(Hors Charges)"
         case .propertyTax:
-            return "( Annuelle )"
+            return "(Annuelle)"
         case .maintenanceFees:
-            return "( Annuels )"
+            return "(Annuels)"
         case .charges:
-            return "( Annuelles )"
+            return "(Annuelles)"
         case .insurance:
-            return "( Mensuelle )"
+            return "(Mensuelle)"
         case .creditCost:
-            return "( Mensuel )"
+            return "(Mensuel)"
         default:
             return ""
         }

@@ -11,7 +11,6 @@ import Foundation
 class CreditCalculator {
     
     //MARK: - Properties
-    
     var creditData = ["Montant à financer": "", "Durée": "", "Taux": "", "Taux assurance": "", "Frais de dossier": ""]
     var powerResult = Double()
     var mensualityWithoutInsurance = Double()
@@ -20,14 +19,12 @@ class CreditCalculator {
     var interestCost = Double()
     
     //MARK: - Enum
-    
     enum CreditCalculatorError: Error {
         case amountToFinanceMissing
         case rateMissing
     }
     
-    //MARK: - Methods
-    
+    //MARK: - Private Methods
     private func getPowerResult() throws -> Double {
         var result = Double()
         if let rate = creditData["Taux"],
@@ -143,6 +140,7 @@ class CreditCalculator {
         return insuranceCost
     }
     
+    //MARK: - Public Methods
     func getStringMensuality() throws -> String {
         do {
             mensualityWithoutInsurance = try getMensualityWithoutInsurance()

@@ -13,19 +13,15 @@ class CreditDataViewController: UIViewController {
     //MARK: - Properties
     private var results = [String]()
     private var titles = [String]()
-    private var creditRepo = CreditRepository()
+    private var creditRepository = CreditRepository()
     private var simulation = CreditSimulation()
-    private var realmRepo = RealmRepository()
     var selectedProject: Project?
     
     //MARK: - Outlets
-
-    @IBOutlet weak var credtiTableView: UITableView!
-    @IBOutlet weak var creditLabel: UILabel!
-    
+    @IBOutlet weak private var credtiTableView: UITableView!
+    @IBOutlet weak private var creditLabel: UILabel!
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         nibRegister()
@@ -34,25 +30,17 @@ class CreditDataViewController: UIViewController {
         credtiTableView.reloadData()
     }
     
-
 //MARK: - Methods
-
-    
     private func nibRegister() {
         let nibNameForDetailsSimulationCell = UINib(nibName: "DetailsSimulationTableViewCell", bundle: nil)
         credtiTableView.register(nibNameForDetailsSimulationCell, forCellReuseIdentifier: "DetailsSimulationCell")
     }
     
     private func getResultsAndTitles() {
-        for (title, _) in creditRepo.creditData {
-            titles.append(title)
-        }
-        for title in creditRepo.resultTitles {
-            titles.append(title)
-        }
+        titles = creditRepository.allTitles
         if let projectName = selectedProject?.name {
-            simulation = realmRepo.getCreditSimulationWithProjectName(name: projectName)
-            results = realmRepo.getSavedCreditSimulationResultsData(simulation: simulation)
+            simulation = creditRepository.getCreditSimulationWithProjectName(name: projectName)
+            results = creditRepository.getSavedCreditSimulationResultsData(creditSimulation: simulation)
         }
     }
     
@@ -68,10 +56,9 @@ class CreditDataViewController: UIViewController {
 }
 
 //MARK: - Extension
-
 extension CreditDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return creditRepo.allTitles.count
+        return creditRepository.allTitles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,7 +70,5 @@ extension CreditDataViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-    
-    
 }
 

@@ -12,26 +12,19 @@ import RealmSwift
 class SavedProjectsViewController: UIViewController {
 
     //MARK: - Properties
-    
-    private let newProjectAlert = EmptyNewProjectAlert()
-    private let realmRepo = RealmRepository()
+    private let newProjectPopUp = EmptyNewProjectPopUp()
+    private let projectRepository = ProjectRepository()
     private var selectedProject: Project?
-    private var selectedSimulation: RentabilitySimulation?
-    private var selectedChecklistGeneral: ChecklistGeneral?
     
     //MARK: - Outlets
-    
-    
-    @IBOutlet weak var noProjectSavedLabel: UILabel!
-    @IBOutlet weak var savedProjectsTableView: UITableView!
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak private var noProjectSavedLabel: UILabel!
+    @IBOutlet weak private var savedProjectsTableView: UITableView!
+    @IBOutlet weak private var backgroundView: UIView!
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBarRightButton(image: #imageLiteral(resourceName: "addIcon"), action: #selector(didTapOnNewProjectButton))
-        configureBackgroundImageForTableView(tableView: savedProjectsTableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,17 +42,15 @@ class SavedProjectsViewController: UIViewController {
     }
     
     //MARK: - Actions
-    
     @objc private func didTapOnNewProjectButton() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.configurePage), name: NSNotification.Name(rawValue: "ReloadSavedProjectsData"), object: nil)
-        let alert = newProjectAlert.alert()
+        let alert = newProjectPopUp.alert()
         present(alert, animated: true)
     }
     
     //MARK: - Methods
-    
     private func showNoDataLabel() {
-        if realmRepo.myProjects.isEmpty {
+        if projectRepository.myProjects.isEmpty {
             savedProjectsTableView.isHidden = true
             noProjectSavedLabel.isHidden = false
         } else {
@@ -75,13 +66,11 @@ class SavedProjectsViewController: UIViewController {
     
 }
 
-//MARK: - Extensions
-
+//MARK: - Extension for TableView
 extension SavedProjectsViewController: UITableViewDataSource, UITableViewDelegate {
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return realmRepo.myProjects.count
+        return projectRepository.myProjects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,33 +78,40 @@ extension SavedProjectsViewController: UITableViewDataSource, UITableViewDelegat
             
             return UITableViewCell()
         }
-        if let projectName = realmRepo.myProjects[indexPath.row].name {
+        if let projectName = projectRepository.myProjects[indexPath.row].name {
             cell.configure(projectName: projectName)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedProject = realmRepo.myProjects[indexPath.row]
+        selectedProject = projectRepository.myProjects[indexPath.row]
         performSegue(withIdentifier: "GoToDetails", sender: self)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if let selectedProjectName = realmRepo.myProjects[indexPath.row].name {
-                let rentabilityToDelete = realmRepo.realm.objects(RentabilitySimulation.self).filter("name = '\(selectedProjectName)'")
-                let creditToDelete = realmRepo.realm.objects(CreditSimulation.self).filter("name = '\(selectedProjectName)'")
-                let checklistGeneralToDelete = realmRepo.realm.objects(ChecklistGeneral.self).filter("name = '\(selectedProjectName)'")
-                let photoToDelete = realmRepo.realm.objects(Photo.self).filter("name = '\(selectedProjectName)'")
-                let mapToDelete = realmRepo.realm.objects(MapAdress.self).filter("name = '\(selectedProjectName)'")
-                let projectToDelete = realmRepo.realm.objects(Project.self).filter("name = '\(selectedProjectName)'")
-                try! realmRepo.realm.write {
-                    realmRepo.realm.delete(projectToDelete)
-                    realmRepo.realm.delete(rentabilityToDelete)
-                    realmRepo.realm.delete(checklistGeneralToDelete)
-                    realmRepo.realm.delete(creditToDelete)
-                    realmRepo.realm.delete(photoToDelete)
-                    realmRepo.realm.delete(mapToDelete)
+            if let selectedProjectName = projectRepository.myProjects[indexPath.row].name,
+                let realm = projectRepository.realm {
+                let rentabilityToDelete = realm.objects(RentabilitySimulation.self).filter("name = '\(selectedProjectName)'")
+                let creditToDelete = realm.objects(CreditSimulation.self).filter("name = '\(selectedProjectName)'")
+                let checklistGeneralToDelete = realm.objects(ChecklistGeneral.self).filter("name = '\(selectedProjectName)'")
+                let checklistDistrictToDelete = realm.objects(ChecklistDistrict.self).filter("name = '\(selectedProjectName)'")
+                let checklistApartmentBlockToDelete = realm.objects(ChecklistApartmentBlock.self).filter("name = '\(selectedProjectName)'")
+                let checklistApartmentToDelete = realm.objects(ChecklistApartment.self).filter("name = '\(selectedProjectName)'")
+                let photoToDelete = realm.objects(Photo.self).filter("name = '\(selectedProjectName)'")
+                let mapToDelete = realm.objects(MapAdress.self).filter("name = '\(selectedProjectName)'")
+                let projectToDelete = realm.objects(Project.self).filter("name = '\(selectedProjectName)'")
+                realm.safeWrite {
+                    realm.delete(projectToDelete)
+                    realm.delete(rentabilityToDelete)
+                    realm.delete(checklistGeneralToDelete)
+                    realm.delete(checklistDistrictToDelete)
+                    realm.delete(checklistApartmentBlockToDelete)
+                    realm.delete(checklistApartmentToDelete)
+                    realm.delete(creditToDelete)
+                    realm.delete(photoToDelete)
+                    realm.delete(mapToDelete)
                 }
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()

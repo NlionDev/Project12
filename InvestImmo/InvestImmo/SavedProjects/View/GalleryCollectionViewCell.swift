@@ -10,11 +10,10 @@ import UIKit
 
 class GalleryCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var galleryCollectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
 
 }

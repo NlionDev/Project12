@@ -8,42 +8,39 @@
 
 import UIKit
 
-class AddCreditToExistantProjectAlertVC: UIViewController {
+class AddCreditToExistantProjectPopUpVC: UIViewController {
     
     //MARK: - Properties
-    
     private let errorAlert = ErrorAlert()
-    private let creditNewProjectAlert = CreditNewProjectAlert()
+    private let replaceCreditPopUp = ReplaceCreditPopUp()
+    private let creditNewProjectPopUp = CreditNewProjectPopUp()
     private let simulation = CreditSimulation()
-    private let project = Project()
     private var selectedProject: Project?
-    private let realmRepo = RealmRepository()
-    var creditRepo: CreditRepository?
+    private let projectRepository = ProjectRepository()
+    var creditRepository: CreditRepository?
     
     //MARK: - Outlets
-    
-    @IBOutlet weak var alertTableView: UITableView!
+    @IBOutlet weak private var alertTableView: UITableView!
     
     //MARK: - Actions
-    
-    @IBAction func didTapOnNewProjectButton(_ sender: Any) {
-        guard let creditRepo = creditRepo else {return}
-        let alert = creditNewProjectAlert.alert(credit: creditRepo)
+    @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
+        guard let creditRepo = creditRepository else {return}
+        let alert = creditNewProjectPopUp.alert(credit: creditRepo)
         NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: "DismissPreviousAlert"), object: nil)
         present(alert, animated: true)
     }
     
-    @IBAction func didTapOnCancelButton(_ sender: Any) {
+    @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
     
-    
     //MARK: - Methods
-    
     private func checkIfTheProjectAlreadyHaveSavedCreditSimulation(project: Project) -> Bool {
         var result = true
-        if let projectName = project.name {
-            let simulations = realmRepo.realm.objects(CreditSimulation.self).filter("name = '\(projectName)'")
+        if let projectName = project.name,
+            let creditRepository = creditRepository,
+            let realm = creditRepository.realm {
+            let simulations = realm.objects(CreditSimulation.self).filter("name = '\(projectName)'")
             if simulations.isEmpty {
                 result = false
             } else {
@@ -59,11 +56,10 @@ class AddCreditToExistantProjectAlertVC: UIViewController {
 }
 
 //MARK: - Extension
-
-extension AddCreditToExistantProjectAlertVC: UITableViewDataSource, UITableViewDelegate {
+extension AddCreditToExistantProjectPopUpVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return realmRepo.myProjects.count
+        return projectRepository.myProjects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,21 +67,22 @@ extension AddCreditToExistantProjectAlertVC: UITableViewDataSource, UITableViewD
             
             return UITableViewCell()
         }
-        if let projectName = realmRepo.myProjects[indexPath.row].name {
+        if let projectName = projectRepository.myProjects[indexPath.row].name {
             cell.configure(projectName: projectName)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedProject = realmRepo.myProjects[indexPath.row]
-        guard let project = selectedProject else {return}
-        guard let creditRepo = creditRepo else {return}
+        selectedProject = projectRepository.myProjects[indexPath.row]
+        guard let project = selectedProject,
+        let creditRepository = creditRepository else {return}
         if checkIfTheProjectAlreadyHaveSavedCreditSimulation(project: project) {
-            let alert = errorAlert.alert(message: "Ce projet possède déjà une simulation de crédit.")
+            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: "DismissAlertFromReplaceVC"), object: nil)
+            let alert = replaceCreditPopUp.alert(project: project, credit: creditRepository)
             present(alert, animated: true)
         } else {
-            creditRepo.addCreditSimulationToExistantProject(project: project, simulation: simulation, realmRepo: realmRepo, creditRepo: creditRepo)
+            creditRepository.addCreditSimulationToExistantProject(project: project, creditRepo: creditRepository)
             dismiss(animated: true)
         }
     }

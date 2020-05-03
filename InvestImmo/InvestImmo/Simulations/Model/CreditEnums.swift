@@ -39,7 +39,7 @@ enum CreditItem {
     var subtitles: String {
         switch self {
         case .duration:
-            return "( Années )"
+            return "(Années)"
         case .rate, .insuranceRate:
             return "%"
         default:

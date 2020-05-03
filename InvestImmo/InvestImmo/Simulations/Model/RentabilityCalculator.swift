@@ -11,7 +11,6 @@ import Foundation
 class RentabilityCalculator {
     
     //MARK: - Properties
-    
     var rentabilityData = ["Prix du bien": "", "Coût des travaux": "", "Frais de notaire": "", "Loyer mensuel": "", "Taxe foncière": "", "Frais d'entretien": "", "Charges de copropriété": "", "Frais de gérance": "", "Assurance loyers impayés": "", "Coût du crédit": ""]
     var annualRent = Double()
     var annualTotalCharges = Double()
@@ -19,7 +18,6 @@ class RentabilityCalculator {
     var totalToFinance = Double()
     
     //MARK: - Enum
-    
     enum RentabilityCalculatorError: Error {
         case estatePriceMissing
         case notaryFeesMissing
@@ -28,8 +26,7 @@ class RentabilityCalculator {
         case chargesMissing
     }
     
-    //MARK: - Methods
-    
+    //MARK: - Private Methods
     private func getAnnualRent() throws -> Double {
         var annualRent = Double()
         if let monthlyRent = rentabilityData["Loyer mensuel"] {
@@ -145,6 +142,7 @@ class RentabilityCalculator {
         return totalCharges
     }
     
+    //MARK: - Public Methods
     func getGrossYield() throws -> String {
         do {
             annualRent = try getAnnualRent()
@@ -204,7 +202,6 @@ class RentabilityCalculator {
         let finalMensualCashflow = doubleMensualCashflow.clean
         return finalMensualCashflow
     }
-    
     
     func isResultPositive(result: String) -> Bool {
         var boolResult = true

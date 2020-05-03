@@ -11,15 +11,12 @@ import UIKit
 class ErrorAlertViewController: UIViewController {
     
     //MARK: - Properties
-    
     var message: String?
     
     //MARK: - Outlets
-    
     @IBOutlet weak var alertMessageLabel: UILabel!
     
     //MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         if let message = message {
@@ -28,7 +25,6 @@ class ErrorAlertViewController: UIViewController {
     }
 
     //MARK: - Actions
-    
     @IBAction func didTapOnOKButton(_ sender: Any) {
         dismiss(animated: true)
     }

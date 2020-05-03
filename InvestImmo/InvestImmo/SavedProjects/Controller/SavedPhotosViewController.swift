@@ -8,22 +8,21 @@
 
 import UIKit
 import Photos
+import AssetsLibrary
 
 class SavedPhotosViewController: UIViewController {
     
     //MARK: - Properties
     private var identifiers = [String]()
     private var photosToDisplay = [UIImageView]()
-    private let realmRepo = RealmRepository()
+    private let photoRepository = PhotoRepository()
     var selectedProject: Project?
 
     //MARK: - Outlets
-    
-    @IBOutlet weak var galleryCollectionView: UICollectionView!
-    @IBOutlet weak var noDataLabel: UILabel!
+    @IBOutlet weak private var galleryCollectionView: UICollectionView!
+    @IBOutlet weak private var noDataLabel: UILabel!
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         nibRegister()
@@ -34,14 +33,11 @@ class SavedPhotosViewController: UIViewController {
     
 
     //MARK: - Actions
-    
     @objc private func modifyLabel() {
         galleryCollectionView.reloadData()
     }
     
-    
     //MARK: - Methods
-    
     private func nibRegister() {
         let nibName = UINib(nibName: "PhotoCollectionViewCell", bundle: nil)
         galleryCollectionView.register(nibName, forCellWithReuseIdentifier: "PhotoCell")
@@ -49,7 +45,7 @@ class SavedPhotosViewController: UIViewController {
     
     private func getIdentifiers() {
         if let name = selectedProject?.name {
-            identifiers = realmRepo.getPhotosIdentifiersWithProjectName(name: name)
+            identifiers = photoRepository.getPhotosIdentifiersWithProjectName(name: name)
         }
         configurePage()
     }
@@ -67,20 +63,20 @@ class SavedPhotosViewController: UIViewController {
     
     private func getImages() {
         photosToDisplay.removeAll()
-        
         let options = PHFetchOptions()
         
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
-        let results = PHAsset.fetchAssets(withLocalIdentifiers: self.identifiers, options: nil)
-        let manager = PHImageManager.default()
+        let results: PHFetchResult = PHAsset.fetchAssets(withLocalIdentifiers: self.identifiers, options: options)
         
+        let manager = PHImageManager.default()
         results.enumerateObjects { (thisAsset, _, _) in
             
             manager.requestImage(for: thisAsset, targetSize: CGSize(width: 80.0, height: 80.0), contentMode: .aspectFit, options: nil, resultHandler: {(thisImage, _) in
                 
-                self.photosToDisplay.append(UIImageView(image: thisImage))
-                
+                DispatchQueue.main.async {
+                    self.photosToDisplay.append(UIImageView(image: thisImage))
+                }
             })
         }
         self.galleryCollectionView.reloadData()
@@ -89,7 +85,6 @@ class SavedPhotosViewController: UIViewController {
 }
 
 //MARK: - Extension
-
 extension SavedPhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -9,9 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Antipasto-Pro-Regular-trial.ttf">
-            <string>AntipastoPro</string>
-        </array>
         <array key="PoetsenOne-Regular.ttf">
             <string>PoetsenOne-Regular</string>
         </array>
@@ -228,16 +225,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9QQ-lU-nY8">
-                                <rect key="frame" x="16" y="52" width="382" height="677.5"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresse :" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsZ-nE-AQt">
-                                <rect key="frame" x="16" y="745.5" width="91.5" height="20.5"/>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
-                                <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="I2w-En-xMg">
-                                <rect key="frame" x="174" y="52" width="220" height="32"/>
+                                <rect key="frame" x="16" y="823" width="220" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="xIG-NO-s06"/>
                                 </constraints>
@@ -252,75 +243,63 @@
                                     <action selector="didChangeMapType:" destination="faC-Sh-4C5" eventType="valueChanged" id="kpk-ct-SKG"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mw-2R-ASO">
-                                <rect key="frame" x="373" y="91" width="21" height="22"/>
-                                <color key="tintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="location.fill" catalog="system"/>
-                                <connections>
-                                    <action selector="didTapOnMyPositionButton:" destination="faC-Sh-4C5" eventType="touchUpInside" id="wVe-g2-dLE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qim-f2-UsD">
-                                <rect key="frame" x="360" y="121" width="34" height="34"/>
-                                <color key="tintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="homeButton"/>
-                                <connections>
-                                    <action selector="didTapOnEstatePositionButton:" destination="faC-Sh-4C5" eventType="touchUpInside" id="tMC-jR-zCe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fY-JW-iME">
-                                <rect key="frame" x="40" y="774" width="334" height="80"/>
-                                <color key="backgroundColor" red="0.3921568627" green="0.67450980390000004" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="yNv-4v-nuS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="17"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="didTapOnAdressButton:" destination="faC-Sh-4C5" eventType="touchUpInside" id="gD2-Tg-lvz"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IeV-X9-uvz">
+                                <rect key="frame" x="368" y="74" width="30" height="130"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mw-2R-ASO">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <color key="tintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="locationIcon"/>
+                                        <connections>
+                                            <action selector="didTapOnMyPositionButton:" destination="faC-Sh-4C5" eventType="touchUpInside" id="wVe-g2-dLE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qim-f2-UsD">
+                                        <rect key="frame" x="0.0" y="50" width="30" height="30"/>
+                                        <color key="tintColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="estateLocationIcon"/>
+                                        <connections>
+                                            <action selector="didTapOnEstatePositionButton:" destination="faC-Sh-4C5" eventType="touchUpInside" id="tMC-jR-zCe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fY-JW-iME">
+                                        <rect key="frame" x="0.0" y="100" width="30" height="30"/>
+                                        <state key="normal" image="gpsIcon">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapOnGpsButton:" destination="faC-Sh-4C5" eventType="touchUpInside" id="BHc-fm-Aj3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="zp3-gF-EU1" firstAttribute="bottom" secondItem="9QQ-lU-nY8" secondAttribute="bottom" id="3Dx-px-NuN"/>
                             <constraint firstItem="zp3-gF-EU1" firstAttribute="bottom" secondItem="6Vl-nn-rmS" secondAttribute="bottom" id="DVb-Lf-VDY"/>
-                            <constraint firstItem="9QQ-lU-nY8" firstAttribute="top" secondItem="zp3-gF-EU1" secondAttribute="top" constant="8" id="H2G-uN-vDM"/>
-                            <constraint firstItem="7fY-JW-iME" firstAttribute="leading" secondItem="zp3-gF-EU1" secondAttribute="leading" constant="40" id="HFC-5Y-u0l"/>
+                            <constraint firstItem="9QQ-lU-nY8" firstAttribute="top" secondItem="zp3-gF-EU1" secondAttribute="top" id="H2G-uN-vDM"/>
                             <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="6Vl-nn-rmS" secondAttribute="trailing" constant="40" id="HP5-ct-CQB"/>
-                            <constraint firstItem="CsZ-nE-AQt" firstAttribute="leading" secondItem="zp3-gF-EU1" secondAttribute="leading" constant="16" id="HRw-pC-cuO"/>
-                            <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="7fY-JW-iME" secondAttribute="trailing" constant="40" id="HkT-bH-AaE"/>
-                            <constraint firstItem="2Mw-2R-ASO" firstAttribute="top" secondItem="I2w-En-xMg" secondAttribute="bottom" constant="8" id="Kmg-vb-247"/>
+                            <constraint firstItem="I2w-En-xMg" firstAttribute="leading" secondItem="zp3-gF-EU1" secondAttribute="leading" constant="16" id="HUl-1K-d2A"/>
                             <constraint firstItem="6Vl-nn-rmS" firstAttribute="leading" secondItem="zp3-gF-EU1" secondAttribute="leading" constant="40" id="LCj-2n-cLS"/>
-                            <constraint firstItem="Qim-f2-UsD" firstAttribute="top" secondItem="2Mw-2R-ASO" secondAttribute="bottom" constant="8" id="Lsn-E0-fRa"/>
-                            <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="2Mw-2R-ASO" secondAttribute="trailing" constant="20" id="M9o-10-Mxe"/>
-                            <constraint firstItem="9QQ-lU-nY8" firstAttribute="leading" secondItem="zp3-gF-EU1" secondAttribute="leading" constant="16" id="T5J-Fd-xQt"/>
-                            <constraint firstItem="I2w-En-xMg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zp3-gF-EU1" secondAttribute="leading" constant="16" id="UD7-SO-noc"/>
-                            <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="9QQ-lU-nY8" secondAttribute="trailing" constant="16" id="Wr9-wQ-eRj"/>
+                            <constraint firstItem="9QQ-lU-nY8" firstAttribute="leading" secondItem="zp3-gF-EU1" secondAttribute="leading" id="T5J-Fd-xQt"/>
+                            <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="9QQ-lU-nY8" secondAttribute="trailing" id="Wr9-wQ-eRj"/>
                             <constraint firstItem="6Vl-nn-rmS" firstAttribute="top" secondItem="zp3-gF-EU1" secondAttribute="top" id="YE3-7F-dX1"/>
-                            <constraint firstItem="CsZ-nE-AQt" firstAttribute="top" secondItem="9QQ-lU-nY8" secondAttribute="bottom" constant="16" id="bNO-4C-Ms0"/>
-                            <constraint firstItem="zp3-gF-EU1" firstAttribute="bottom" secondItem="7fY-JW-iME" secondAttribute="bottom" constant="8" id="bdS-6N-TeF"/>
-                            <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="I2w-En-xMg" secondAttribute="trailing" constant="20" id="hJ1-I1-QkC"/>
-                            <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="Qim-f2-UsD" secondAttribute="trailing" constant="20" id="kTg-30-jjV"/>
-                            <constraint firstItem="I2w-En-xMg" firstAttribute="top" secondItem="zp3-gF-EU1" secondAttribute="top" constant="8" id="m2m-x8-wRZ"/>
-                            <constraint firstItem="7fY-JW-iME" firstAttribute="top" secondItem="CsZ-nE-AQt" secondAttribute="bottom" constant="8" id="nKb-1i-mx7"/>
+                            <constraint firstItem="zp3-gF-EU1" firstAttribute="trailing" secondItem="IeV-X9-uvz" secondAttribute="trailing" constant="16" id="a6h-0t-6Qx"/>
+                            <constraint firstItem="IeV-X9-uvz" firstAttribute="top" secondItem="zp3-gF-EU1" secondAttribute="top" constant="30" id="osZ-4w-FpL"/>
+                            <constraint firstItem="zp3-gF-EU1" firstAttribute="bottom" secondItem="I2w-En-xMg" secondAttribute="bottom" constant="8" id="pgB-Fq-bXR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zp3-gF-EU1"/>
                     </view>
                     <connections>
-                        <outlet property="adressButton" destination="7fY-JW-iME" id="a4W-BC-5w2"/>
-                        <outlet property="adressTitleLabel" destination="CsZ-nE-AQt" id="giQ-e7-JhO"/>
-                        <outlet property="estatePositionButton" destination="Qim-f2-UsD" id="GYy-tE-t4x"/>
+                        <outlet property="buttonStackView" destination="IeV-X9-uvz" id="5Fu-wd-SbO"/>
                         <outlet property="mapTypeSegment" destination="I2w-En-xMg" id="uUV-Ob-EYW"/>
                         <outlet property="mapView" destination="9QQ-lU-nY8" id="3Vd-37-5fq"/>
-                        <outlet property="myPositionButton" destination="2Mw-2R-ASO" id="d9S-jX-TFk"/>
                         <outlet property="noDataLabel" destination="6Vl-nn-rmS" id="Vqg-MO-jtu"/>
                     </connections>
                 </viewController>
@@ -330,7 +309,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="homeButton" width="34" height="34"/>
-        <image name="location.fill" catalog="system" width="128" height="115"/>
+        <image name="estateLocationIcon" width="30" height="30"/>
+        <image name="gpsIcon" width="30" height="30"/>
+        <image name="locationIcon" width="30" height="30"/>
     </resources>
 </document>

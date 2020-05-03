@@ -9,24 +9,12 @@
 import UIKit
 
 class DetailsSimulationTableViewCell: UITableViewCell {
-    
-    //MARK: - Properties
 
-    
     //MARK: - Outlets
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var resultLabel: UILabel!
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var resultLabel: UILabel!
-    
-    //MARK: - Lifecycle
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
  //MARK: - Methods
-    
     func configure(title: String, result: String) {
         titleLabel.text = title
         resultLabel.text = result

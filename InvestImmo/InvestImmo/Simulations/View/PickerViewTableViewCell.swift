@@ -14,52 +14,40 @@ protocol PickerViewTableViewCellDelegate: class {
 
 class PickerViewTableViewCell: UITableViewCell {
 
-    
     //MARK: - Properties
-  
-    let creditRepo = CreditRepository()
+    private let creditRepo = CreditRepository()
+    private var key = String()
     var selectedPickerData = Int()
-    var key = String()
     weak var delegate: PickerViewTableViewCellDelegate?
  
     //MARK: - Outlets
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var durationPicker: UIPickerView!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var subtitleLabel: UILabel!
+    @IBOutlet weak private var durationPicker: UIPickerView!
     
     //MARK: - Lifecycle
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         durationPicker.delegate = self
         durationPicker.dataSource = self
         setupDurationPickerView()
-        
-        
     }
     
     //MARK: - Methods
-    
     private func setupDurationPickerView() {
         durationPicker.setValue(UIColor(red: 91/255.0, green: 102/255.0, blue: 248/255.0, alpha: 1.0), forKeyPath: "textColor")
         let middleOfPicker = creditRepo.creditDuration.count/2
         durationPicker.selectRow(middleOfPicker, inComponent: 0, animated: true)
         selectedPickerData = middleOfPicker
-        
-        
     }
     
     func configure(title: String, subtitle: String) {
         key = title
         titleLabel.text = title
         subtitleLabel.text = subtitle
-        
-        
     }
     
 }
-
 
 extension PickerViewTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
 

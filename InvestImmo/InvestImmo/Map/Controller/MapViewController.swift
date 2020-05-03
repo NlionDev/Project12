@@ -14,36 +14,32 @@ class MapViewController: UIViewController {
     
     //MARK: - Properties
     private let errorAlert = ErrorAlert()
-    private let searchAdressPopUp = MapSearchAdressAlert()
-    private let realmRepo = RealmRepository()
-    private let mapExistantProject = MapExistantProjectAlert()
-    private let mapNewProject = MapNewProjectAlert()
+    private let searchAdressPopUp = MapSearchAdressPopUp()
+    private let projectRepository = ProjectRepository()
+    private let mapRepository = MapRepository()
+    private let mapExistantProject = MapExistantProjectPopUp()
+    private let mapNewProject = MapNewProjectPopUp()
     private var annotations = [MKAnnotation]()
     private var searchedAdress = String()
     private var searchResultLatitude = String()
     private var searchResultLongitude = String()
     private var latitudeInit: Double = 46.227638
     private var longitudeInit: Double = 2.213749
-    private var userPosition: CLLocation?
     private let geoCoder = CLGeocoder()
     private let locationManager = CLLocationManager()
     private var coordinateInit: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitudeInit, longitude: longitudeInit)}
     
-    
     //MARK: - Outlets
-    
-    @IBOutlet weak var mapView: MKMapView!
-    
+    @IBOutlet weak private var mapView: MKMapView!
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         mapView.showsUserLocation = true
         getAuthorizationAndDisplayUserLocation()
-        setupMap(coordinate: coordinateInit, spanLatitude: 3.0, spanLongitude: 3.0)
+        setupMap(coordinate: coordinateInit, spanLatitude: 10, spanLongitude: 10)
         configureMapViewAnnotations()
     }
 
@@ -64,18 +60,18 @@ class MapViewController: UIViewController {
         getPosition()
     }
 
-    @IBAction func didTapOnSearchAdressButton(_ sender: Any) {
+    @IBAction private func didTapOnSearchAdressButton(_ sender: Any) {
         let popUp = searchAdressPopUp.alert(delegate: self)
         present(popUp, animated: true)
     }
     
-    @IBAction func didTapOnAddAdressButton(_ sender: Any) {
+    @IBAction private func didTapOnAddAdressButton(_ sender: Any) {
         NotificationCenter.default.addObserver(self, selector: #selector(self.configureMapViewAnnotations), name: NSNotification.Name(rawValue: "ConfigureMapView"), object: nil)
         if searchedAdress == "" {
             let alert = errorAlert.alert(message: "Vous devez d'abord rechercher une adresse avant de pouvoir l'ajouter.")
             present(alert, animated: true)
         } else {
-            if realmRepo.myProjects.count == 0 {
+            if projectRepository.myProjects.count == 0 {
                
                 let popUp = mapNewProject.alert(adress: searchedAdress, latitude: searchResultLatitude, longitude: searchResultLongitude)
                 present(popUp, animated: true)
@@ -94,7 +90,7 @@ class MapViewController: UIViewController {
     }
     
     private func addSomeAnnotations() {
-        for mapAdress in realmRepo.myAdresses {
+        for mapAdress in mapRepository.myAdresses {
             guard let name = mapAdress.name,
                 let adress = mapAdress.adress,
                 let latitude = mapAdress.latitude?.transformInDouble,
@@ -143,7 +139,6 @@ class MapViewController: UIViewController {
 
 
 //MARK: - Extension
-
 extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -162,11 +157,6 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         annotationView?.detailCalloutAccessoryView = adress
         annotationView?.canShowCallout = true
         return annotationView
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        
     }
     
 }

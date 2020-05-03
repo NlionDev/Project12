@@ -12,9 +12,12 @@ import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
+    
+    static var realm = Realm.safeInit()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         
 //        autoreleasepool {
 //            guard let realmURL = Realm.Configuration.defaultConfiguration.fileURL else {

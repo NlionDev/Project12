@@ -14,19 +14,15 @@ class RentabilityDataViewController: UIViewController {
     //MARK: - Properties
     private var results = [String]()
     private var titles = [String]()
-    private let rentaRepo = RentabilityRepository()
-    private let realmRepo = RealmRepository()
+    private let rentabilityRepository = RentabilityRepository()
     private var simulation = RentabilitySimulation()
     var selectedProject: Project?
     
     //MARK: - Outlets
-    
-    @IBOutlet weak var rentabilityTableView: UITableView!
-    @IBOutlet weak var rentabilityLabel: UILabel!
-    
+    @IBOutlet weak private var rentabilityTableView: UITableView!
+    @IBOutlet weak private var rentabilityLabel: UILabel!
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         nibRegister()
@@ -34,25 +30,18 @@ class RentabilityDataViewController: UIViewController {
         configurePage()
         rentabilityTableView.reloadData()
     }
-    
 
     //MARK: - Methods
-    
     private func nibRegister() {
         let nibNameForDetailsSimulationCell = UINib(nibName: "DetailsSimulationTableViewCell", bundle: nil)
         rentabilityTableView.register(nibNameForDetailsSimulationCell, forCellReuseIdentifier: "DetailsSimulationCell")
     }
 
     private func getResultsAndTitles() {
-        for (title, _) in rentaRepo.rentabilityData {
-            titles.append(title)
-        }
-        for title in rentaRepo.resultTitles {
-            titles.append(title)
-        }
+        titles = rentabilityRepository.allTitles
         if let projectName = selectedProject?.name {
-            simulation = realmRepo.getRentabilitySimulationWithProjectName(name: projectName)
-            results = realmRepo.getSavedRentabilitySimulationResultsData(simulation: simulation)
+            simulation = rentabilityRepository.getRentabilitySimulationWithProjectName(name: projectName)
+            results = rentabilityRepository.getSavedRentabilitySimulationResultsData(simulation: simulation)
         }
     }
     
@@ -65,16 +54,14 @@ class RentabilityDataViewController: UIViewController {
             rentabilityLabel.isHidden = true
         }
     }
-    
 }
 
 
 //MARK: - Extension
-
 extension RentabilityDataViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rentaRepo.allTitles.count
+        return rentabilityRepository.allTitles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

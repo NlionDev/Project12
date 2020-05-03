@@ -17,12 +17,10 @@ class SimulationsViewController: UIViewController {
     private var pageViewController: UIPageViewController!
     private var viewControllers = [UIViewController]()
     
-    
     //MARK: - Outlets
 
-    @IBOutlet weak var menuBar: UIView!
-    @IBOutlet weak var menuBarCollectionView: UICollectionView!
-    
+    @IBOutlet weak private var menuBar: UIView!
+    @IBOutlet weak private var menuBarCollectionView: UICollectionView!
     
     //MARK: - Lifecycle
     
@@ -98,7 +96,7 @@ class SimulationsViewController: UIViewController {
 
 }
 
-//MARK: - Extension for CollectionView delegate and datasource
+//MARK: - Extension for CollectionView
 
 extension SimulationsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -131,15 +129,15 @@ extension SimulationsViewController: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
-//MARK: - Extension for PageViewController delegate and datasource
+//MARK: - Extension for PageViewController 
 
 extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = viewControllers.firstIndex(of: viewController) else {return nil}
         let previousIndex = viewControllerIndex - 1
-        guard previousIndex >= 0 else {return nil}
-        guard viewControllers.count > previousIndex else {return nil}
+        guard previousIndex >= 0,
+            viewControllers.count > previousIndex else {return nil}
         return viewControllers[previousIndex]
     }
         
@@ -147,8 +145,8 @@ extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewCon
         guard let viewControllerIndex = viewControllers.firstIndex(of: viewController) else {return nil}
         let nextIndex = viewControllerIndex + 1
         let viewControllersCount = viewControllers.count
-        guard viewControllersCount != nextIndex else {return nil}
-        guard viewControllersCount > nextIndex else {return nil}
+        guard viewControllersCount != nextIndex,
+            viewControllersCount > nextIndex else {return nil}
         return viewControllers[nextIndex]
     }
     
@@ -162,12 +160,11 @@ extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewCon
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if (completed && finished) {
-            if let currentVC = pageViewController.viewControllers?.last {
-                if let index = viewControllers.firstIndex(of: currentVC) {
-                    let indexPath = IndexPath(item: index, section: 0)
-                    menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
-                    animateMenuBarSlide(index: index, duration: 0)
-                }
+            if let currentVC = pageViewController.viewControllers?.last,
+                let index = viewControllers.firstIndex(of: currentVC) {
+                let indexPath = IndexPath(item: index, section: 0)
+                menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+                animateMenuBarSlide(index: index, duration: 0)
             }
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MapNewProjectAlert {
+class MapNewProjectPopUp {
     
     func alert(adress: String, latitude: String, longitude: String) -> AddAdressToNewProjectVC {
         let storyboard = UIStoryboard(name: "MapPopUpStoryboard", bundle: .main)
@@ -20,7 +20,7 @@ class MapNewProjectAlert {
     }
 }
 
-class MapExistantProjectAlert {
+class MapExistantProjectPopUp {
     
     func alert(adress: String, latitude: String, longitude: String) -> AddAdressToExistantProjectVC {
         let storyboard = UIStoryboard(name: "MapPopUpStoryboard", bundle: .main)
@@ -32,12 +32,25 @@ class MapExistantProjectAlert {
     }
 }
 
-class MapSearchAdressAlert {
+class MapSearchAdressPopUp {
     
     func alert(delegate: MapViewController) -> SearchAdressPopUpVC {
         let storyboard = UIStoryboard(name: "MapPopUpStoryboard", bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: "SearchAdressVC") as! SearchAdressPopUpVC
         alertVC.delegate = delegate
+        return alertVC
+    }
+}
+
+class ReplaceProjectAdressPopUp {
+    
+    func alert(project: Project, adress: String, latitude: String, longitude: String) -> ReplaceAdressViewController {
+        let storyboard = UIStoryboard(name: "MapPopUpStoryboard", bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: "ReplaceAdressAlertVC") as! ReplaceAdressViewController
+        alertVC.selectedProject = project
+        alertVC.adress = adress
+        alertVC.latitude = latitude
+        alertVC.longitude = longitude
         return alertVC
     }
 }
