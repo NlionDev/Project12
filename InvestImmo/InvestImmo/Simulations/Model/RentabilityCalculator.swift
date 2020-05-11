@@ -40,21 +40,17 @@ class RentabilityCalculator {
         return annualRent
     }
     
-    private func getAnnualManagementFeesAmount() throws -> Double {
+    private func getAnnualManagementFeesAmount() -> Double {
         var annualManagementFeesAmount = Double()
         if let managementFees = rentabilityData["Frais de gérance"],
-            let monthlyRent = rentabilityData["Loyer Mensuel"] {
-            if monthlyRent == "" {
-                throw RentabilityCalculatorError.monthlyRentMissing
+            let monthlyRent = rentabilityData["Loyer mensuel"] {
+            if managementFees == "" {
+                annualManagementFeesAmount = 0.00
             } else {
-                if managementFees == "" {
-                    annualManagementFeesAmount = 0.00
-                } else {
-                    let doubleMonthlyRent = monthlyRent.transformInDouble
-                    let doubleManagementFees = managementFees.transformInDouble
-                    let managementFeesAmount = doubleMonthlyRent * doubleManagementFees / 100
-                    annualManagementFeesAmount = managementFeesAmount * 12
-                }
+                let doubleMonthlyRent = monthlyRent.transformInDouble
+                let doubleManagementFees = managementFees.transformInDouble
+                let managementFeesAmount = doubleMonthlyRent * doubleManagementFees / 100
+                annualManagementFeesAmount = managementFeesAmount * 12
             }
         }
         return annualManagementFeesAmount
@@ -121,11 +117,7 @@ class RentabilityCalculator {
             } else if charges == "" {
                 throw RentabilityCalculatorError.chargesMissing
             } else {
-                do {
-                    annualManagementFeesAmount = try getAnnualManagementFeesAmount()
-                } catch let error as RentabilityCalculator.RentabilityCalculatorError {
-                    throw error
-                }
+                annualManagementFeesAmount = getAnnualManagementFeesAmount()
                 let annualInsuranceCost = getAnnualInsuranceCost()
                 if maintenanceFees == "" {
                     let doublePropertyTax = propertyTax.transformInDouble

@@ -56,12 +56,11 @@ class AddAdressToNewProjectVC: UIViewController {
     }
 
     private func save(name: String) {
-        project.name = name
-        mapAdress.name = name
-        mapAdress.adress = adress
-        mapAdress.latitude = latitude
-        mapAdress.longitude = longitude
-        mapRepository.saveMapAdressWithNewProject(project: project, mapAdress: mapAdress)
+        if let adress = adress,
+            let latitude = latitude,
+            let longitude = longitude {
+            mapRepository.saveMapAdressWithNewProject(project: project, name: name, adress: adress, latitude: latitude, longitude: longitude)
+        }
     }
 }
 

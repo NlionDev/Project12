@@ -13,7 +13,7 @@ class PhotoRepository {
     
     
     //MARK: - Properties
-    let realm = Realm.safeInit()
+    let realm = AppDelegate.realm
     lazy var myPhotos: Results<Photo> = {
         realm?.objects(Photo.self)}()!
     

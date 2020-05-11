@@ -13,7 +13,7 @@ class SimulationsViewController: UIViewController {
     
     //MARK: - Properties
     private var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
-    private let menuBarItems = ["Crédit", "Rentabilité"]
+    private let menuBarItems = [MenuBarItems.credit.titles, MenuBarItems.rentability.titles]
     private var pageViewController: UIPageViewController!
     private var viewControllers = [UIViewController]()
     
@@ -41,17 +41,12 @@ class SimulationsViewController: UIViewController {
         }
     }
     
-    //MARK: - Actions
-    
-    
-    
-    
     //MARK: - Methods
 
     private func getViewControllers() {
-        let storyboard = UIStoryboard(name: "SimulationsStoryboard", bundle: nil)
-        let creditVC = storyboard.instantiateViewController(withIdentifier: "CreditSimulation") as! CreditSimulationViewController
-        let rentabilityVC = storyboard.instantiateViewController(withIdentifier: "RentabilitySimulation") as! RentabilitySimulationViewController
+        let storyboard = UIStoryboard(name: SimulationsStoryboard.storyboard.identifiers, bundle: nil)
+        let creditVC = storyboard.instantiateViewController(withIdentifier: SimulationsStoryboard.creditVC.identifiers) as! CreditSimulationViewController
+        let rentabilityVC = storyboard.instantiateViewController(withIdentifier: SimulationsStoryboard.rentabilityVC.identifiers) as! RentabilitySimulationViewController
         viewControllers.append(creditVC)
         viewControllers.append(rentabilityVC)
     }
@@ -76,7 +71,7 @@ class SimulationsViewController: UIViewController {
     
     private func getMenuBarCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
-        guard let menuBarCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuBarSimulationCell", for: indexPath) as? MenuBarSimulationCollectionViewCell else {return UICollectionViewCell()}
+        guard let menuBarCell = collectionView.dequeueReusableCell(withReuseIdentifier: SimulationsCells.menuBar.reuseIdentifier, for: indexPath) as? MenuBarSimulationCollectionViewCell else {return UICollectionViewCell()}
         let item = menuBarItems[indexPath.row]
         menuBarCell.configure(title: item)
         cell = menuBarCell
@@ -163,8 +158,8 @@ extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewCon
             if let currentVC = pageViewController.viewControllers?.last,
                 let index = viewControllers.firstIndex(of: currentVC) {
                 let indexPath = IndexPath(item: index, section: 0)
-                menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
-                animateMenuBarSlide(index: index, duration: 0)
+                self.menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+                self.animateMenuBarSlide(index: index, duration: 0)
             }
         }
     }

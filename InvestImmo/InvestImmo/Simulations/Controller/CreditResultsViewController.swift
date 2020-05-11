@@ -37,8 +37,8 @@ class CreditResultsViewController: UIViewController {
     
     //MARK: - Methods
     private func nibRegister() {
-        let nibName = UINib(nibName: "ResultTableViewCell", bundle: nil)
-        creditResultsTableView.register(nibName, forCellReuseIdentifier: "ResultCell")
+        let nibName = UINib(nibName: SimulationsCells.result.name, bundle: nil)
+        creditResultsTableView.register(nibName, forCellReuseIdentifier: SimulationsCells.result.reuseIdentifier)
     }
 
 }
@@ -52,7 +52,7 @@ extension CreditResultsViewController: UITableViewDataSource, UITableViewDelegat
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? ResultTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.result.reuseIdentifier, for: indexPath) as? ResultTableViewCell else {return UITableViewCell()}
         if let creditRepository = creditRepository {
             cell.configureForCredit(title: creditRepository.resultTitles[indexPath.row], result: creditRepository.results[indexPath.row])
         }

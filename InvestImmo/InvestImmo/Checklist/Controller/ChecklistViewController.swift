@@ -73,7 +73,7 @@ class ChecklistViewController: UIViewController {
                 checklistTableView.scrollIndicatorInsets = contentInsets
             }
         }
-        checklistTableView.scrollIndicatorInsets =  checklistTableView.contentInset
+        checklistTableView.scrollIndicatorInsets = checklistTableView.contentInset
     }
     
     private func nibRegister() {

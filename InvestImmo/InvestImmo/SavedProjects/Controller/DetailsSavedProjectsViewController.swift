@@ -49,11 +49,9 @@ class DetailsSavedProjectsViewController: UIViewController {
             pageViewController.setViewControllers([viewControllers[0]], direction: .forward, animated: true, completion: nil)
         }
     }
-
     
     //MARK: - Actions
     @objc private func didTapOnAddPhotoButton() {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadPhotoCollectionView"), object: nil)
         checkIfUserIsAllowToPickPhotoFromLibrary()
     }
     
@@ -230,7 +228,7 @@ extension DetailsSavedProjectsViewController: UIImagePickerControllerDelegate, U
                 let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
                 guard let asset = result.firstObject else {return}
                 if let name = selectedProject?.name,
-                    let realm = photoRepository.realm {
+                    let realm = AppDelegate.realm {
                     photo.name = name
                     photo.identifier = asset.localIdentifier
                     realm.safeWrite {
@@ -238,6 +236,7 @@ extension DetailsSavedProjectsViewController: UIImagePickerControllerDelegate, U
                     }
                 }
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadPhotoCollectionView"), object: nil)
             self.dismiss(animated: true)
         }
     }

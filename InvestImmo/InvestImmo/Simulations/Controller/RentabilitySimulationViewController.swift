@@ -88,6 +88,7 @@ class RentabilitySimulationViewController: UIViewController {
     
     private func getRentabilityResults() {
         rentabilityCalculator.rentabilityData = rentabilityRepository.rentabilityData
+        rentabilityRepository.results.removeAll()
         do {
             let grossYield = try rentabilityCalculator.getGrossYield()
             let netYield = try rentabilityCalculator.getNetYield()

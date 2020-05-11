@@ -14,13 +14,18 @@ class MapRepository {
     
     //MARK: - Properties
     private var mapAdress = MapAdress()
-    let realm = Realm.safeInit()
+    let realm = AppDelegate.realm
     lazy var myAdresses: Results<MapAdress> = {
         realm?.objects(MapAdress.self)}()!
     
     //MARK: - Methods
-    func saveMapAdressWithNewProject(project: Project, mapAdress: MapAdress) {
+    func saveMapAdressWithNewProject(project: Project, name: String, adress: String, latitude: String, longitude: String) {
         guard let realm = realm else {return}
+        project.name = name
+        mapAdress.name = name
+        mapAdress.adress = adress
+        mapAdress.latitude = latitude
+        mapAdress.longitude = longitude
          realm.safeWrite {
              realm.add(project)
              realm.add(mapAdress)

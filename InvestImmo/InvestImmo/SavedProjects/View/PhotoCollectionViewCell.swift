@@ -14,7 +14,10 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var photoImageView: UIImageView!
     
     //MARK: - Methods
-    func configure(photo: UIImageView) {
-        photoImageView = photo
+    func configure(photo: UIImage) {
+        photoImageView.contentMode = .scaleAspectFill
+        photoImageView.image = photo
+        photoImageView.frame = self.bounds
+        photoImageView.backgroundColor = .red
     }
 }

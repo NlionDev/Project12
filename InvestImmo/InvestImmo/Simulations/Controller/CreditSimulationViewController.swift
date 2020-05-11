@@ -30,7 +30,7 @@ class CreditSimulationViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoToCreditResults" {
+        if segue.identifier == SimulationsSegue.credit.identifier {
             guard let destination = segue.destination as? CreditResultsViewController else {return}
             destination.creditRepository = creditRepository
         }
@@ -79,16 +79,17 @@ class CreditSimulationViewController: UIViewController {
     }
     
     private func nibRegister() {
-        let nibNameForCellWithoutSubtitle = UINib(nibName: "TextFieldWithoutSubtitleTableViewCell", bundle: nil)
-        creditSimulationTableView.register(nibNameForCellWithoutSubtitle, forCellReuseIdentifier: "TextFieldWithoutSubtitleCell")
-        let nibNameForPickerCell = UINib(nibName: "PickerViewTableViewCell", bundle: nil)
-        creditSimulationTableView.register(nibNameForPickerCell, forCellReuseIdentifier: "PickerCell")
-        let nibNameForStepperCell = UINib(nibName: "StepperTableViewCell", bundle: nil)
-        creditSimulationTableView.register(nibNameForStepperCell, forCellReuseIdentifier: "StepperCell")
+        let nibNameForCellWithoutSubtitle = UINib(nibName: SimulationsCells.textFieldWithoutSubtitle.name, bundle: nil)
+        creditSimulationTableView.register(nibNameForCellWithoutSubtitle, forCellReuseIdentifier: SimulationsCells.textFieldWithoutSubtitle.reuseIdentifier)
+        let nibNameForPickerCell = UINib(nibName: SimulationsCells.pickerView.name, bundle: nil)
+        creditSimulationTableView.register(nibNameForPickerCell, forCellReuseIdentifier: SimulationsCells.pickerView.reuseIdentifier)
+        let nibNameForStepperCell = UINib(nibName: SimulationsCells.stepper.name, bundle: nil)
+        creditSimulationTableView.register(nibNameForStepperCell, forCellReuseIdentifier: SimulationsCells.stepper.reuseIdentifier)
     }
     
     private func getCreditResults() {
         creditCalculator.creditData = creditRepository.creditData
+        creditRepository.results.removeAll()
         do {
             let mensuality = try creditCalculator.getStringMensuality() + " €"
             let interestCost = try creditCalculator.getStringInterestCost() + " €"
@@ -98,12 +99,11 @@ class CreditSimulationViewController: UIViewController {
             creditRepository.results.append(interestCost)
             creditRepository.results.append(insuranceCost)
             creditRepository.results.append(totalCost)
-            performSegue(withIdentifier: "GoToCreditResults", sender: self)
+            performSegue(withIdentifier: SimulationsSegue.credit.identifier, sender: self)
         } catch let error as CreditCalculator.CreditCalculatorError {
             displayCreditError(error)
         } catch {
-            let alert = errorAlert.alert(message: "Une erreur inconnue s'est produite")
-            present(alert, animated: true)
+            displayCreditError(.unknowError)
         }
         
     }
@@ -112,20 +112,20 @@ class CreditSimulationViewController: UIViewController {
         let item = creditRepository.cells[indexPath.row]
         switch item.cellType {
         case .textField:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithoutSubtitleCell", for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.textFieldWithoutSubtitle.reuseIdentifier, for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, unit: item.unit)
             cell.delegate = self
             lastCreditCell = cell
             creditRepository.creditTextFieldCells.append(cell)
             return cell
         case .pickerView:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell", for: indexPath) as? PickerViewTableViewCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.pickerView.reuseIdentifier, for: indexPath) as? PickerViewTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, subtitle: item.subtitles)
             creditRepository.creditData["Durée"] = String(creditRepository.creditDuration[cell.selectedPickerData])
             cell.delegate = self
             return cell
         case .stepper:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "StepperCell", for: indexPath) as? StepperTableViewCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.stepper.reuseIdentifier, for: indexPath) as? StepperTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles)
             creditRepository.creditStepperCells.append(cell)
             cell.delegate = self
@@ -136,10 +136,13 @@ class CreditSimulationViewController: UIViewController {
     private func displayCreditError(_ error: CreditCalculator.CreditCalculatorError) {
         switch error {
         case .amountToFinanceMissing:
-            let alert = errorAlert.alert(message: "Le montant à financer n'est pas renseigné")
+            let alert = errorAlert.alert(message: error.message)
             present(alert, animated: true)
         case .rateMissing:
-            let alert = errorAlert.alert(message: "Le taux n'est pas renseigné")
+            let alert = errorAlert.alert(message: error.message)
+            present(alert, animated: true)
+        case .unknowError:
+            let alert = errorAlert.alert(message: error.message)
             present(alert, animated: true)
         }
     }

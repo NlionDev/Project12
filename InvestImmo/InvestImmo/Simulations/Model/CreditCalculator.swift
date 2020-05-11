@@ -22,6 +22,18 @@ class CreditCalculator {
     enum CreditCalculatorError: Error {
         case amountToFinanceMissing
         case rateMissing
+        case unknowError
+        
+        var message: String {
+            switch self {
+            case .amountToFinanceMissing:
+                return "Le montant à financer n'est pas renseigné"
+            case .rateMissing:
+                return "Le taux n'est pas renseigné"
+            case .unknowError:
+                return "Une erreur inconnue s'est produite"
+            }
+        }
     }
     
     //MARK: - Private Methods
@@ -52,18 +64,12 @@ class CreditCalculator {
         var mensuality = Double()
         if let amountToFinance = creditData["Montant à financer"],
             let rate = creditData["Taux"] {
-            if amountToFinance == "" {
-                throw CreditCalculatorError.amountToFinanceMissing
-            } else if rate == "" {
-                throw CreditCalculatorError.rateMissing
-            } else {
-                let doubleAmountToFinance = amountToFinance.transformInDouble
-                let doubleRate = rate.transformInDouble
-                let rate = doubleRate / 100
-                let calcul1 = doubleAmountToFinance * (rate / 12)
-                let calcul2 = 1 - powerResult
-                mensuality = calcul1 / calcul2
-            }
+            let doubleAmountToFinance = amountToFinance.transformInDouble
+            let doubleRate = rate.transformInDouble
+            let rate = doubleRate / 100
+            let calcul1 = doubleAmountToFinance * (rate / 12)
+            let calcul2 = 1 - powerResult
+            mensuality = calcul1 / calcul2
         }
         return mensuality
     }
@@ -79,21 +85,15 @@ class CreditCalculator {
         if let amountToFinance = creditData["Montant à financer"],
             let rate = creditData["Taux"],
             let creditDuration = creditData["Durée"] {
-            if amountToFinance == "" {
-                throw CreditCalculatorError.amountToFinanceMissing
-            } else if rate == "" {
-                throw CreditCalculatorError.rateMissing
-            } else {
-                let doubleAmountToFinance = amountToFinance.transformInDouble
-                let doubleRate = rate.transformInDouble
-                let duration = creditDuration.transformInDouble
-                let mensualInsuranceCost = insuranceCost / (12 * duration)
-                let rate = doubleRate / 100
-                let calcul1 = doubleAmountToFinance * (rate / 12)
-                let calcul2 = 1 - powerResult
-                let mensualityWithoutInsurance = calcul1 / calcul2
-                mensuality = mensualityWithoutInsurance + mensualInsuranceCost
-            }
+            let doubleAmountToFinance = amountToFinance.transformInDouble
+            let doubleRate = rate.transformInDouble
+            let duration = creditDuration.transformInDouble
+            let mensualInsuranceCost = insuranceCost / (12 * duration)
+            let rate = doubleRate / 100
+            let calcul1 = doubleAmountToFinance * (rate / 12)
+            let calcul2 = 1 - powerResult
+            let mensualityWithoutInsurance = calcul1 / calcul2
+            mensuality = mensualityWithoutInsurance + mensualInsuranceCost
         }
         return mensuality
     }
@@ -107,13 +107,9 @@ class CreditCalculator {
         var interestCost = Double()
         if let amountToFinance = creditData["Montant à financer"],
             let creditDuration = creditData["Durée"] {
-            if amountToFinance == "" {
-                throw CreditCalculatorError.amountToFinanceMissing
-            } else {
-                let doubleAmountToFinance = amountToFinance.transformInDouble
-                let duration = creditDuration.transformInDouble
-                interestCost = 12 * duration * mensualityWithoutInsurance - doubleAmountToFinance
-            }
+            let doubleAmountToFinance = amountToFinance.transformInDouble
+            let duration = creditDuration.transformInDouble
+            interestCost = 12 * duration * mensualityWithoutInsurance - doubleAmountToFinance
         }
         return interestCost
     }
@@ -198,21 +194,17 @@ class CreditCalculator {
         var finalTotalCost = String()
         if let bookingFees = creditData["Frais de dossier"],
             let amountToFinance = creditData["Montant à financer"] {
-            if amountToFinance == "" {
-                throw CreditCalculatorError.amountToFinanceMissing
+            if bookingFees == "" {
+                let amount = amountToFinance.transformInDouble
+                totalCost = amount + insuranceCost + interestCost + 0.00
             } else {
-                if bookingFees == "" {
-                    let amount = amountToFinance.transformInDouble
-                    totalCost = amount + insuranceCost + interestCost + 0.00
-                } else {
-                    let amount = amountToFinance.transformInDouble
-                    let doubleBookingFees = bookingFees.transformInDouble
-                    totalCost = amount + insuranceCost + interestCost + doubleBookingFees
-                }
-                let stringTotalCost = totalCost.formatIntoStringWithTwoNumbersAfterPoint
-                let doubleTotalCost = stringTotalCost.transformInDouble
-                finalTotalCost = doubleTotalCost.clean
+                let amount = amountToFinance.transformInDouble
+                let doubleBookingFees = bookingFees.transformInDouble
+                totalCost = amount + insuranceCost + interestCost + doubleBookingFees
             }
+            let stringTotalCost = totalCost.formatIntoStringWithTwoNumbersAfterPoint
+            let doubleTotalCost = stringTotalCost.transformInDouble
+            finalTotalCost = doubleTotalCost.clean
         }
         return finalTotalCost
     }

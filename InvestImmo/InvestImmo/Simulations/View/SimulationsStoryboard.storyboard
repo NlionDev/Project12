@@ -127,7 +127,7 @@
         <!--Invest'Immo-->
         <scene sceneID="iUO-kG-e6y">
             <objects>
-                <viewController storyboardIdentifier="CreditSimulation" id="nwC-zo-rnH" customClass="CreditSimulationViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreditSimulationVC" id="nwC-zo-rnH" customClass="CreditSimulationViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7OB-Iv-xZG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -245,7 +245,7 @@
         <!--Invest'Immo-->
         <scene sceneID="fZT-tC-k4k">
             <objects>
-                <viewController storyboardIdentifier="RentabilitySimulation" id="mE5-7J-Zge" customClass="RentabilitySimulationViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RentabilitySimulationVC" id="mE5-7J-Zge" customClass="RentabilitySimulationViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VtP-Xc-C2K">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

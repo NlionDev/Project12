@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0312F2FF244C86EE004DB0D7 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F2FD244C86EE004DB0D7 /* GalleryCollectionViewCell.swift */; };
-		0312F300244C86EE004DB0D7 /* GalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312F2FE244C86EE004DB0D7 /* GalleryCollectionViewCell.xib */; };
 		0312F303244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312F301244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift */; };
 		0312F304244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312F302244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.xib */; };
 		0312F30C244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0312F30B244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard */; };
@@ -65,7 +63,8 @@
 		03378CCB2459BB7A00482E02 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CCA2459BB7A00482E02 /* UITextFieldExtension.swift */; };
 		03378CCD2459BB9900482E02 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CCC2459BB9900482E02 /* UITextViewExtension.swift */; };
 		03378CD02459CAB700482E02 /* UISegmentedControlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CCF2459CAB700482E02 /* UISegmentedControlExtension.swift */; };
-		03378CD6245EAE7F00482E02 /* CreditUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CD5245EAE7F00482E02 /* CreditUnitTests.swift */; };
+		03378CD6245EAE7F00482E02 /* CreditCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CD5245EAE7F00482E02 /* CreditCalculatorTests.swift */; };
+		03378CDA245FF64600482E02 /* CreditRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CD9245FF64600482E02 /* CreditRepositoryTests.swift */; };
 		034070172448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034070162448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift */; };
 		0365E797243CB7AE00A97F0E /* ChecklistStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0365E796243CB7AE00A97F0E /* ChecklistStoryboard.storyboard */; };
 		0365E799243CB7DB00A97F0E /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365E798243CB7DB00A97F0E /* ChecklistViewController.swift */; };
@@ -95,6 +94,13 @@
 		03C4F2212438724000479B64 /* AddChecklistToExistantProjectPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4F2202438724000479B64 /* AddChecklistToExistantProjectPopUpVC.swift */; };
 		03C4F22324387C1A00479B64 /* ExistantProjectAlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4F22224387C1A00479B64 /* ExistantProjectAlertTableViewCell.swift */; };
 		03C4F225243880A800479B64 /* ChecklistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4F224243880A800479B64 /* ChecklistRepository.swift */; };
+		03C72640245FFC1900EF69ED /* RentabilityCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7263F245FFC1900EF69ED /* RentabilityCalculatorTests.swift */; };
+		03C726442466ADEF00EF69ED /* RentabilityRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C726432466ADEF00EF69ED /* RentabilityRepositoryTests.swift */; };
+		03C726482466EF9B00EF69ED /* ChecklistRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C726472466EF9B00EF69ED /* ChecklistRepositoryTests.swift */; };
+		03C7264D2466F8F300EF69ED /* ProjectRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7264C2466F8F300EF69ED /* ProjectRepositoryTests.swift */; };
+		03C7264F2466FB6E00EF69ED /* PhotoRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7264E2466FB6E00EF69ED /* PhotoRepositoryTests.swift */; };
+		03C726512466FD6600EF69ED /* MapRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C726502466FD6600EF69ED /* MapRepositoryTests.swift */; };
+		03C726532469430500EF69ED /* SimulationsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C726522469430500EF69ED /* SimulationsEnums.swift */; };
 		03D75CF12448ADD50072F7C4 /* AddRentabilityToNewProjectPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CF02448ADD50072F7C4 /* AddRentabilityToNewProjectPopUpVC.swift */; };
 		03D75CF32448AE290072F7C4 /* AddRentabilityToExistantProjectPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CF22448AE290072F7C4 /* AddRentabilityToExistantProjectPopUpVC.swift */; };
 		03D75CF52448C53D0072F7C4 /* CreditSimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CF42448C53D0072F7C4 /* CreditSimulation.swift */; };
@@ -152,8 +158,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0312F2FD244C86EE004DB0D7 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
-		0312F2FE244C86EE004DB0D7 /* GalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		0312F301244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSimulationTableViewCell.swift; sourceTree = "<group>"; };
 		0312F302244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsSimulationTableViewCell.xib; sourceTree = "<group>"; };
 		0312F30B244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavedProjectsDataStoryboard.storyboard; sourceTree = "<group>"; };
@@ -210,7 +214,8 @@
 		03378CCA2459BB7A00482E02 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		03378CCC2459BB9900482E02 /* UITextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
 		03378CCF2459CAB700482E02 /* UISegmentedControlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControlExtension.swift; sourceTree = "<group>"; };
-		03378CD5245EAE7F00482E02 /* CreditUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditUnitTests.swift; sourceTree = "<group>"; };
+		03378CD5245EAE7F00482E02 /* CreditCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCalculatorTests.swift; sourceTree = "<group>"; };
+		03378CD9245FF64600482E02 /* CreditRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditRepositoryTests.swift; sourceTree = "<group>"; };
 		034070162448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		0365E796243CB7AE00A97F0E /* ChecklistStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChecklistStoryboard.storyboard; sourceTree = "<group>"; };
 		0365E798243CB7DB00A97F0E /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +245,13 @@
 		03C4F2202438724000479B64 /* AddChecklistToExistantProjectPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChecklistToExistantProjectPopUpVC.swift; sourceTree = "<group>"; };
 		03C4F22224387C1A00479B64 /* ExistantProjectAlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistantProjectAlertTableViewCell.swift; sourceTree = "<group>"; };
 		03C4F224243880A800479B64 /* ChecklistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistRepository.swift; sourceTree = "<group>"; };
+		03C7263F245FFC1900EF69ED /* RentabilityCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityCalculatorTests.swift; sourceTree = "<group>"; };
+		03C726432466ADEF00EF69ED /* RentabilityRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityRepositoryTests.swift; sourceTree = "<group>"; };
+		03C726472466EF9B00EF69ED /* ChecklistRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistRepositoryTests.swift; sourceTree = "<group>"; };
+		03C7264C2466F8F300EF69ED /* ProjectRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepositoryTests.swift; sourceTree = "<group>"; };
+		03C7264E2466FB6E00EF69ED /* PhotoRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepositoryTests.swift; sourceTree = "<group>"; };
+		03C726502466FD6600EF69ED /* MapRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRepositoryTests.swift; sourceTree = "<group>"; };
+		03C726522469430500EF69ED /* SimulationsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationsEnums.swift; sourceTree = "<group>"; };
 		03D75CF02448ADD50072F7C4 /* AddRentabilityToNewProjectPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRentabilityToNewProjectPopUpVC.swift; sourceTree = "<group>"; };
 		03D75CF22448AE290072F7C4 /* AddRentabilityToExistantProjectPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRentabilityToExistantProjectPopUpVC.swift; sourceTree = "<group>"; };
 		03D75CF42448C53D0072F7C4 /* CreditSimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditSimulation.swift; sourceTree = "<group>"; };
@@ -527,7 +539,7 @@
 		03378CAF2459B8B300482E02 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				03378CCE2459CAA100482E02 /* UISegmentedCobtrol */,
+				03378CCE2459CAA100482E02 /* UISegmentedControl */,
 				03378CBF2459B9F300482E02 /* UIViewController */,
 				03378CBE2459B9E600482E02 /* Formatter */,
 				03378CBD2459B9D900482E02 /* Double */,
@@ -622,20 +634,30 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
-		03378CCE2459CAA100482E02 /* UISegmentedCobtrol */ = {
+		03378CCE2459CAA100482E02 /* UISegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
 				03378CCF2459CAB700482E02 /* UISegmentedControlExtension.swift */,
 			);
-			path = UISegmentedCobtrol;
+			path = UISegmentedControl;
 			sourceTree = "<group>";
 		};
 		03378CD7245EAF6100482E02 /* SimulationsTests */ = {
 			isa = PBXGroup;
 			children = (
-				03378CD5245EAE7F00482E02 /* CreditUnitTests.swift */,
+				03C7263E245FFBFF00EF69ED /* RentabilityTests */,
+				03378CD8245EB1EA00482E02 /* CreditTests */,
 			);
 			path = SimulationsTests;
+			sourceTree = "<group>";
+		};
+		03378CD8245EB1EA00482E02 /* CreditTests */ = {
+			isa = PBXGroup;
+			children = (
+				03378CD5245EAE7F00482E02 /* CreditCalculatorTests.swift */,
+				03378CD9245FF64600482E02 /* CreditRepositoryTests.swift */,
+			);
+			path = CreditTests;
 			sourceTree = "<group>";
 		};
 		0365E7AA243E124800A97F0E /* Alerts */ = {
@@ -689,6 +711,63 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		03C7263E245FFBFF00EF69ED /* RentabilityTests */ = {
+			isa = PBXGroup;
+			children = (
+				03C7263F245FFC1900EF69ED /* RentabilityCalculatorTests.swift */,
+				03C726432466ADEF00EF69ED /* RentabilityRepositoryTests.swift */,
+			);
+			path = RentabilityTests;
+			sourceTree = "<group>";
+		};
+		03C726452466B37800EF69ED /* ChecklistTests */ = {
+			isa = PBXGroup;
+			children = (
+				03C726472466EF9B00EF69ED /* ChecklistRepositoryTests.swift */,
+			);
+			path = ChecklistTests;
+			sourceTree = "<group>";
+		};
+		03C726462466B3B200EF69ED /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0375F6C62439CE3D00BDD0D8 /* Project.swift */,
+				039AAE08243343AA009B23DC /* RentabilitySimulation.swift */,
+				03D75CF42448C53D0072F7C4 /* CreditSimulation.swift */,
+				03827E2324473B5200285DF8 /* ChecklistGeneral.swift */,
+				03D75CFA2449A0560072F7C4 /* ChecklistDistrict.swift */,
+				03D75CFC2449A0DF0072F7C4 /* ChecklistApartmentBlock.swift */,
+				03D75CFE2449A1640072F7C4 /* ChecklistApartment.swift */,
+				03378C5724507DCB00482E02 /* Photo.swift */,
+				03378C93245320CE00482E02 /* MapAdress.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		03C726492466F8B500EF69ED /* ProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				03C7264C2466F8F300EF69ED /* ProjectRepositoryTests.swift */,
+			);
+			path = ProjectTests;
+			sourceTree = "<group>";
+		};
+		03C7264A2466F8C600EF69ED /* MapTests */ = {
+			isa = PBXGroup;
+			children = (
+				03C726502466FD6600EF69ED /* MapRepositoryTests.swift */,
+			);
+			path = MapTests;
+			sourceTree = "<group>";
+		};
+		03C7264B2466F8CD00EF69ED /* PhotosTests */ = {
+			isa = PBXGroup;
+			children = (
+				03C7264E2466FB6E00EF69ED /* PhotoRepositoryTests.swift */,
+			);
+			path = PhotosTests;
+			sourceTree = "<group>";
+		};
 		03E4A9722423BE74002404C3 = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +802,7 @@
 				03378C6A2453153600482E02 /* Pop Up */,
 				03378CA62458807100482E02 /* UI Files */,
 				03378CAF2459B8B300482E02 /* Extensions */,
+				03C726462466B3B200EF69ED /* Realm */,
 				03E4A98A2423BE75002404C3 /* Assets.xcassets */,
 				03E4A97E2423BE74002404C3 /* AppDelegate.swift */,
 				03E4A9B82423CCF1002404C3 /* SceneDelegate.swift */,
@@ -738,6 +818,10 @@
 			isa = PBXGroup;
 			children = (
 				03378CD7245EAF6100482E02 /* SimulationsTests */,
+				03C726452466B37800EF69ED /* ChecklistTests */,
+				03C726492466F8B500EF69ED /* ProjectTests */,
+				03C7264B2466F8CD00EF69ED /* PhotosTests */,
+				03C7264A2466F8C600EF69ED /* MapTests */,
 				03E4A99A2423BE75002404C3 /* Info.plist */,
 			);
 			path = InvestImmoTests;
@@ -765,15 +849,6 @@
 		03E69887243B6CE7001E6A4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0375F6C62439CE3D00BDD0D8 /* Project.swift */,
-				039AAE08243343AA009B23DC /* RentabilitySimulation.swift */,
-				03D75CF42448C53D0072F7C4 /* CreditSimulation.swift */,
-				03827E2324473B5200285DF8 /* ChecklistGeneral.swift */,
-				03D75CFA2449A0560072F7C4 /* ChecklistDistrict.swift */,
-				03D75CFC2449A0DF0072F7C4 /* ChecklistApartmentBlock.swift */,
-				03D75CFE2449A1640072F7C4 /* ChecklistApartment.swift */,
-				03378C5724507DCB00482E02 /* Photo.swift */,
-				03378C93245320CE00482E02 /* MapAdress.swift */,
 				03378C9B2458305800482E02 /* ProjectRepository.swift */,
 				03378C9F245832A300482E02 /* PhotoRepository.swift */,
 			);
@@ -787,8 +862,6 @@
 				0312F30B244DCD2A004DB0D7 /* SavedProjectsDataStoryboard.storyboard */,
 				039AAE1424338D76009B23DC /* SavedProjectsTableViewCell.swift */,
 				034070162448A1D9002AEBE4 /* MenuBarCollectionViewCell.swift */,
-				0312F2FD244C86EE004DB0D7 /* GalleryCollectionViewCell.swift */,
-				0312F2FE244C86EE004DB0D7 /* GalleryCollectionViewCell.xib */,
 				0312F301244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift */,
 				0312F302244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.xib */,
 				0312F317244F21DF004DB0D7 /* SavedTextViewTableViewCell.swift */,
@@ -832,6 +905,7 @@
 				03A6B2AA242BB34D003F953E /* CreditCalculator.swift */,
 				03E69898243B7BF0001E6A4C /* CreditRepository.swift */,
 				03827E1F2446F62D00285DF8 /* CreditEnums.swift */,
+				03C726522469430500EF69ED /* SimulationsEnums.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1073,7 +1147,6 @@
 				03E6989D243B9532001E6A4C /* TextFieldWithoutSubtitleTableViewCell.xib in Resources */,
 				03E698A7243C8582001E6A4C /* SavedProjectsStoryboard.storyboard in Resources */,
 				03378C812453186B00482E02 /* NewProjectStoryboard.storyboard in Resources */,
-				0312F300244C86EE004DB0D7 /* GalleryCollectionViewCell.xib in Resources */,
 				03378C792453178D00482E02 /* ChecklistPopUpStoryboard.storyboard in Resources */,
 				03E698A1243C5E95001E6A4C /* PickerViewTableViewCell.xib in Resources */,
 				0312F31A244F21DF004DB0D7 /* SavedTextViewTableViewCell.xib in Resources */,
@@ -1217,6 +1290,7 @@
 				03378C9A245821B000482E02 /* ReplaceAdressViewController.swift in Sources */,
 				03378CB82459B99700482E02 /* UIViewExtension.swift in Sources */,
 				03378CCD2459BB9900482E02 /* UITextViewExtension.swift in Sources */,
+				03C726532469430500EF69ED /* SimulationsEnums.swift in Sources */,
 				03827E202446F62D00285DF8 /* CreditEnums.swift in Sources */,
 				03E6989C243B9532001E6A4C /* TextFieldWithoutSubtitleTableViewCell.swift in Sources */,
 				0365E7A4243CCBB400A97F0E /* ChecklistPickerTableViewCell.swift in Sources */,
@@ -1258,7 +1332,6 @@
 				03C4F2192437765100479B64 /* DetailsSavedProjectsViewController.swift in Sources */,
 				03378CB52459B96200482E02 /* MKMapItemExtension.swift in Sources */,
 				03D75CFB2449A0560072F7C4 /* ChecklistDistrict.swift in Sources */,
-				0312F2FF244C86EE004DB0D7 /* GalleryCollectionViewCell.swift in Sources */,
 				0312F326244F4686004DB0D7 /* RentabilitySimulationViewController.swift in Sources */,
 				03378CCB2459BB7A00482E02 /* UITextFieldExtension.swift in Sources */,
 				03378C692452EC8D00482E02 /* ProjectMapAnnotation.swift in Sources */,
@@ -1307,7 +1380,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03378CD6245EAE7F00482E02 /* CreditUnitTests.swift in Sources */,
+				03C726482466EF9B00EF69ED /* ChecklistRepositoryTests.swift in Sources */,
+				03378CDA245FF64600482E02 /* CreditRepositoryTests.swift in Sources */,
+				03378CD6245EAE7F00482E02 /* CreditCalculatorTests.swift in Sources */,
+				03C726442466ADEF00EF69ED /* RentabilityRepositoryTests.swift in Sources */,
+				03C726512466FD6600EF69ED /* MapRepositoryTests.swift in Sources */,
+				03C72640245FFC1900EF69ED /* RentabilityCalculatorTests.swift in Sources */,
+				03C7264D2466F8F300EF69ED /* ProjectRepositoryTests.swift in Sources */,
+				03C7264F2466FB6E00EF69ED /* PhotoRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1516,14 +1596,14 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CRUKPX9CKJ;
-				INFOPLIST_FILE = "Invest'ImmoTests/Info.plist";
+				INFOPLIST_FILE = InvestImmoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.NicolasLion.Invest-ImmoTests";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.NicolasLion.InvestImmoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1539,14 +1619,14 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CRUKPX9CKJ;
-				INFOPLIST_FILE = "Invest'ImmoTests/Info.plist";
+				INFOPLIST_FILE = InvestImmoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.NicolasLion.Invest-ImmoTests";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.NicolasLion.InvestImmoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1561,7 +1641,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CRUKPX9CKJ;
-				INFOPLIST_FILE = "Invest'ImmoUITests/Info.plist";
+				INFOPLIST_FILE = InvestImmoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1582,7 +1662,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CRUKPX9CKJ;
-				INFOPLIST_FILE = "Invest'ImmoUITests/Info.plist";
+				INFOPLIST_FILE = InvestImmoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

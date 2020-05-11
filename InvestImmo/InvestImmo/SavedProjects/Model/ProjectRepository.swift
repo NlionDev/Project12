@@ -12,7 +12,7 @@ import RealmSwift
 class ProjectRepository {
     
     //MARK: - Properties
-    let realm = Realm.safeInit()
+    let realm = AppDelegate.realm
     private var project = Project()
     lazy var myProjects: Results<Project> = {
         realm?.objects(Project.self)}()!
