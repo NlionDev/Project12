@@ -14,12 +14,11 @@ class DetailsSavedProjectsViewController: UIViewController {
 
     //MARK: - Properties
     private var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
-    private let menuBarItems = [UIImage(named: "euroIcon"), UIImage(named: "ratioIcon"), UIImage(named: "checklistIcon"), UIImage(named: "galleryIcon"), UIImage(named: "mapIcon")]
+    private let menuBarItems = [UIImage(named: MenuBarItemsNames.euro.name), UIImage(named: MenuBarItemsNames.ratio.name), UIImage(named: MenuBarItemsNames.checklist.name), UIImage(named: MenuBarItemsNames.gallery.name), UIImage(named: MenuBarItemsNames.map.name)]
     private var pageViewController: UIPageViewController!
     private var viewControllers = [UIViewController]()
     private let errorAlert = ErrorAlert()
     private let photoRepository = PhotoRepository()
-    private let photo = Photo()
     private var currentIndex = 0
     private let imagePicker = UIImagePickerController()
     var selectedProject: Project?
@@ -57,16 +56,16 @@ class DetailsSavedProjectsViewController: UIViewController {
     
     //MARK: - Methods
     private func getViewControllers() {
-        let storyboard = UIStoryboard(name: "SavedProjectsDataStoryboard", bundle: nil)
-        let creditDataVC = storyboard.instantiateViewController(withIdentifier: "CreditData") as! CreditDataViewController
+        let storyboard = UIStoryboard(name: savedProjectsStoryboardIdentifier, bundle: nil)
+        let creditDataVC = storyboard.instantiateViewController(withIdentifier: SavedProjectsVC.credit.identifier) as! CreditDataViewController
         creditDataVC.selectedProject = selectedProject
-        let rentabilityDataVC = storyboard.instantiateViewController(withIdentifier: "RentabilityData") as! RentabilityDataViewController
+        let rentabilityDataVC = storyboard.instantiateViewController(withIdentifier: SavedProjectsVC.rentability.identifier) as! RentabilityDataViewController
         rentabilityDataVC.selectedProject = selectedProject
-        let checklistDataVC = storyboard.instantiateViewController(withIdentifier: "ChecklistData") as! ChecklistDataViewController
+        let checklistDataVC = storyboard.instantiateViewController(withIdentifier: SavedProjectsVC.checklist.identifier) as! ChecklistDataViewController
         checklistDataVC.selectedProject = selectedProject
-        let savedPhotosVC = storyboard.instantiateViewController(withIdentifier: "SavedPhotos") as! SavedPhotosViewController
+        let savedPhotosVC = storyboard.instantiateViewController(withIdentifier: SavedProjectsVC.gallery.identifier) as! SavedPhotosViewController
         savedPhotosVC.selectedProject = selectedProject
-        let mapVC = storyboard.instantiateViewController(withIdentifier: "Map") as! ProjectMapViewController
+        let mapVC = storyboard.instantiateViewController(withIdentifier: SavedProjectsVC.map.identifier) as! ProjectMapViewController
         mapVC.selectedProject = selectedProject
         viewControllers.append(creditDataVC)
         viewControllers.append(rentabilityDataVC)
@@ -102,7 +101,7 @@ class DetailsSavedProjectsViewController: UIViewController {
     
     private func getMenuBarCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
-        guard let menuBarCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuBarCell", for: indexPath) as? MenuBarCollectionViewCell else {return UICollectionViewCell()}
+        guard let menuBarCell = collectionView.dequeueReusableCell(withReuseIdentifier: SavedProjectsCell.menuBar.reuseIdentifier, for: indexPath) as? MenuBarCollectionViewCell else {return UICollectionViewCell()}
         if let item = menuBarItems[indexPath.row] {
             menuBarCell.configure(image: item)
             cell = menuBarCell
@@ -127,7 +126,7 @@ class DetailsSavedProjectsViewController: UIViewController {
                 if (newStatus == PHAuthorizationStatus.authorized) {
                     self.pickPhotoFromLibrary()
                 } else {
-                    let alert = self.errorAlert.alert(message: "Invest'Immo a besoin d'avoir accès à votre bibliothèque photo. Sans ça vous ne pourrez pas choisir des photos de votre bibliothèque. S'il vous plait allez dans vos réglages et autorisez l'accès.")
+                    let alert = self.errorAlert.alert(message: unauthorizeToPickPhotoMessageAlert)
                     self.present(alert, animated: true)
                 }
             })
@@ -223,20 +222,21 @@ extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPa
 extension DetailsSavedProjectsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let photo = Photo()
         if picker.sourceType == .photoLibrary {
             if let imageURL = info[.referenceURL] as? URL {
                 let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
                 guard let asset = result.firstObject else {return}
                 if let name = selectedProject?.name,
                     let realm = AppDelegate.realm {
-                    photo.name = name
-                    photo.identifier = asset.localIdentifier
                     realm.safeWrite {
+                        photo.name = name
+                        photo.identifier = asset.localIdentifier
                         realm.add(photo)
                     }
                 }
             }
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadPhotoCollectionView"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SavedProjectsNotification.photoCollectionView.name), object: nil)
             self.dismiss(animated: true)
         }
     }

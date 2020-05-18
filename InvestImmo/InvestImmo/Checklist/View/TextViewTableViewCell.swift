@@ -42,10 +42,10 @@ class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        
         if let text = cellTextView.text {
             delegate?.textViewTableViewCell(self, key: key, value: text, sectionKey: section)
         }
-        
         return true
     }
     

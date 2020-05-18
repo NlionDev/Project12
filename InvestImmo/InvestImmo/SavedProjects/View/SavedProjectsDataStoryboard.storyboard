@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -163,25 +162,20 @@
                                 <color key="textColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZFF-cX-GrZ">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0vt-3o-RU2">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <color key="color" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZFF-cX-GrZ">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m8u-98-Oau">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m8u-98-Oau">
+                                    <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="BI7-jB-by4">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="a2Q-Is-Lu6">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="EqQ-Ad-hDH" id="hwr-ch-zZT"/>
                                     <outlet property="delegate" destination="EqQ-Ad-hDH" id="MdV-z9-mUS"/>
@@ -194,21 +188,102 @@
                             <constraint firstItem="ZFF-cX-GrZ" firstAttribute="leading" secondItem="b1R-dd-ADN" secondAttribute="leading" id="6Av-av-nYP"/>
                             <constraint firstItem="b1R-dd-ADN" firstAttribute="bottom" secondItem="ZFF-cX-GrZ" secondAttribute="bottom" id="A4F-a4-4oP"/>
                             <constraint firstItem="vUM-Hs-xQI" firstAttribute="top" secondItem="b1R-dd-ADN" secondAttribute="top" id="GIw-rw-UUJ"/>
+                            <constraint firstItem="0vt-3o-RU2" firstAttribute="centerY" secondItem="3WS-xy-FMV" secondAttribute="centerY" id="JlZ-Zr-L26"/>
                             <constraint firstItem="b1R-dd-ADN" firstAttribute="trailing" secondItem="vUM-Hs-xQI" secondAttribute="trailing" id="M3H-WP-7Aq"/>
                             <constraint firstItem="b1R-dd-ADN" firstAttribute="trailing" secondItem="ZFF-cX-GrZ" secondAttribute="trailing" id="N16-Xg-gw9"/>
                             <constraint firstItem="b1R-dd-ADN" firstAttribute="bottom" secondItem="vUM-Hs-xQI" secondAttribute="bottom" id="QB1-OQ-tHI"/>
                             <constraint firstItem="ZFF-cX-GrZ" firstAttribute="top" secondItem="b1R-dd-ADN" secondAttribute="top" id="X3L-Ug-rFO"/>
+                            <constraint firstItem="0vt-3o-RU2" firstAttribute="centerX" secondItem="3WS-xy-FMV" secondAttribute="centerX" id="dQb-UR-bVV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b1R-dd-ADN"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="0vt-3o-RU2" id="mb4-ou-stO"/>
                         <outlet property="galleryCollectionView" destination="ZFF-cX-GrZ" id="7mp-C9-rpy"/>
                         <outlet property="noDataLabel" destination="vUM-Hs-xQI" id="eiW-ex-pPK"/>
+                        <segue destination="0hh-Dg-oqQ" kind="presentation" identifier="ShowSelectedPhoto" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="Q2F-54-DNz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzX-ZL-YLS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2760.8695652173915" y="168.75"/>
+        </scene>
+        <!--Selected Photo View Controller-->
+        <scene sceneID="sw3-CC-JWf">
+            <objects>
+                <viewController id="0hh-Dg-oqQ" customClass="SelectedPhotoViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kFK-cE-1ed">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QVy-NE-cNE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jIl-Sc-vJ6">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="0hh-Dg-oqQ" id="8pO-XX-8Hg"/>
+                                    <outlet property="delegate" destination="0hh-Dg-oqQ" id="bKM-WZ-4vY"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0s-BC-c3L">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceb-d4-isG">
+                                        <rect key="frame" x="16" y="44" width="36" height="31"/>
+                                        <state key="normal" image="arrow"/>
+                                        <connections>
+                                            <action selector="didTapOnReturnButton:" destination="0hh-Dg-oqQ" eventType="touchUpInside" id="VgE-0p-G9k"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAw-g0-GCO">
+                                        <rect key="frame" x="353" y="45" width="45" height="30"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapOnDeleteButton:" destination="0hh-Dg-oqQ" eventType="touchUpInside" id="g6E-oR-S6O"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.97254901959999995" alpha="0.79930971746575341" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jAw-g0-GCO" secondAttribute="bottom" constant="5" id="8Zy-HQ-exK"/>
+                                    <constraint firstAttribute="bottom" secondItem="ceb-d4-isG" secondAttribute="bottom" constant="5" id="Dwa-S7-VxM"/>
+                                    <constraint firstItem="ceb-d4-isG" firstAttribute="leading" secondItem="r0s-BC-c3L" secondAttribute="leading" constant="16" id="dee-3i-aRU"/>
+                                    <constraint firstAttribute="trailing" secondItem="jAw-g0-GCO" secondAttribute="trailing" constant="16" id="l88-0U-QKB"/>
+                                    <constraint firstAttribute="height" constant="80" id="vC4-do-GQW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QVy-NE-cNE" firstAttribute="leading" secondItem="Vnu-VI-sXT" secondAttribute="leading" id="5vy-uH-RgA"/>
+                            <constraint firstAttribute="bottom" secondItem="QVy-NE-cNE" secondAttribute="bottom" id="EGX-Qa-axk"/>
+                            <constraint firstItem="Vnu-VI-sXT" firstAttribute="trailing" secondItem="r0s-BC-c3L" secondAttribute="trailing" id="Ged-RT-FfA"/>
+                            <constraint firstItem="r0s-BC-c3L" firstAttribute="leading" secondItem="Vnu-VI-sXT" secondAttribute="leading" id="Wx1-CH-PGH"/>
+                            <constraint firstItem="QVy-NE-cNE" firstAttribute="top" secondItem="kFK-cE-1ed" secondAttribute="top" id="teg-Wi-88h"/>
+                            <constraint firstItem="r0s-BC-c3L" firstAttribute="top" secondItem="kFK-cE-1ed" secondAttribute="top" id="wHx-8q-TJK"/>
+                            <constraint firstItem="Vnu-VI-sXT" firstAttribute="trailing" secondItem="QVy-NE-cNE" secondAttribute="trailing" id="yrg-HU-bt0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vnu-VI-sXT"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hTZ-4p-vNO"/>
+                    <connections>
+                        <outlet property="backButton" destination="ceb-d4-isG" id="5TW-v2-9mV"/>
+                        <outlet property="deleteButton" destination="jAw-g0-GCO" id="trI-Ug-Qpo"/>
+                        <outlet property="menuBar" destination="r0s-BC-c3L" id="CVE-rK-fgc"/>
+                        <outlet property="selectedPhotoCollectionView" destination="QVy-NE-cNE" id="Z7r-F7-qpY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZNT-gv-fOw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2760.8695652173915" y="1034.5982142857142"/>
         </scene>
         <!--Project Map View Controller-->
         <scene sceneID="ILG-A6-elL">
@@ -309,6 +384,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow" width="35.5" height="30.5"/>
         <image name="estateLocationIcon" width="30" height="30"/>
         <image name="gpsIcon" width="30" height="30"/>
         <image name="locationIcon" width="30" height="30"/>

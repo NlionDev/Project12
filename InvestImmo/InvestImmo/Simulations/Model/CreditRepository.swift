@@ -31,11 +31,11 @@ class CreditRepository {
         guard let realm = realm else {return}
         project.name = name
         simulation.name = name
-        simulation.amountToFinance = creditRepo.creditData["Montant à financer"]
-        simulation.duration = creditRepo.creditData["Durée"]
-        simulation.rate = creditRepo.creditData["Taux"]
-        simulation.insuranceRate = creditRepo.creditData["Taux assurance"]
-        simulation.bookingFees = creditRepo.creditData["Frais de dossier"]
+        simulation.amountToFinance = creditRepo.creditData[CreditItem.amountToFinance.titles]
+        simulation.duration = creditRepo.creditData[CreditItem.duration.titles]
+        simulation.rate = creditRepo.creditData[CreditItem.rate.titles]
+        simulation.insuranceRate = creditRepo.creditData[CreditItem.insuranceRate.titles]
+        simulation.bookingFees = creditRepo.creditData[CreditItem.bookingFees.titles]
         simulation.mensuality = creditRepo.results[0]
         simulation.interestCost = creditRepo.results[1]
         simulation.insuranceCost = creditRepo.results[2]
@@ -49,11 +49,11 @@ class CreditRepository {
     func addCreditSimulationToExistantProject(project: Project, creditRepo: CreditRepository) {
         guard let realm = realm else {return}
         simulation.name = project.name
-        simulation.amountToFinance = creditRepo.creditData["Montant à financer"]
-        simulation.duration = creditRepo.creditData["Durée"]
-        simulation.rate = creditRepo.creditData["Taux"]
-        simulation.insuranceRate = creditRepo.creditData["Taux assurance"]
-        simulation.bookingFees = creditRepo.creditData["Frais de dossier"]
+        simulation.amountToFinance = creditRepo.creditData[CreditItem.amountToFinance.titles]
+        simulation.duration = creditRepo.creditData[CreditItem.duration.titles]
+        simulation.rate = creditRepo.creditData[CreditItem.rate.titles]
+        simulation.insuranceRate = creditRepo.creditData[CreditItem.insuranceRate.titles]
+        simulation.bookingFees = creditRepo.creditData[CreditItem.bookingFees.titles]
         simulation.mensuality = creditRepo.results[0]
         simulation.interestCost = creditRepo.results[1]
         simulation.insuranceCost = creditRepo.results[2]
@@ -84,11 +84,11 @@ class CreditRepository {
             let interestCost = creditSimulation.interestCost,
             let insuranceCost = creditSimulation.insuranceCost,
             let totalCost = creditSimulation.totalCost {
-            results.append(amountTofinance + " €")
-            results.append(duration + " ans")
-            results.append(rate + " %")
-            results.append(insuranceRate + " %")
-            results.append(bookingFees + " €")
+            results.append(amountTofinance + eurosUnit)
+            results.append(duration + yearsUnit)
+            results.append(rate + percentUnit)
+            results.append(insuranceRate + percentUnit)
+            results.append(bookingFees + eurosUnit)
             results.append(mensuality)
             results.append(interestCost)
             results.append(insuranceCost)

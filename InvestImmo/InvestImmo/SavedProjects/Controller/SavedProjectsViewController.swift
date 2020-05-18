@@ -33,7 +33,7 @@ class SavedProjectsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoToDetails" {
+        if segue.identifier == SavedProjectsSegue.details.identifier {
             hideNavBarBackItemTitle()
             guard let destination = segue.destination as? DetailsSavedProjectsViewController,
                 let selectedProject = selectedProject else {return}
@@ -43,7 +43,7 @@ class SavedProjectsViewController: UIViewController {
     
     //MARK: - Actions
     @objc private func didTapOnNewProjectButton() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.configurePage), name: NSNotification.Name(rawValue: "ReloadSavedProjectsData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.configurePage), name: NSNotification.Name(rawValue: SavedProjectsNotification.projectsTableView.name), object: nil)
         let alert = newProjectPopUp.alert()
         present(alert, animated: true)
     }
@@ -74,7 +74,7 @@ extension SavedProjectsViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as? SavedProjectsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedProjectsCell.project.reuseIdentifier, for: indexPath) as? SavedProjectsTableViewCell else {
             
             return UITableViewCell()
         }
@@ -86,7 +86,7 @@ extension SavedProjectsViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedProject = projectRepository.myProjects[indexPath.row]
-        performSegue(withIdentifier: "GoToDetails", sender: self)
+        performSegue(withIdentifier: SavedProjectsSegue.details.identifier, sender: self)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

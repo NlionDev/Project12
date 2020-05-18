@@ -31,4 +31,11 @@ class PhotoRepository {
         return identifiers
     }
     
+    func deletePhotoWithIdentifier(identifier: String, name: String) {
+        guard let realm = realm else {return}
+        let photoToDelete = realm.objects(Photo.self).filter("identifier = '\(identifier)' AND name = '\(name)'")
+        realm.safeWrite {
+            realm.delete(photoToDelete)
+        }
+    }
 }

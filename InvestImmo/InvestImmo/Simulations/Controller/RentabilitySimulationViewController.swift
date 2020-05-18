@@ -30,7 +30,7 @@ class RentabilitySimulationViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoToRentabilityResults" {
+        if segue.identifier == SimulationsSegue.rentability.identifier {
             guard let destination = segue.destination as? RentabilityResultsViewController else {return}
             destination.rentabilityCalculator = rentabilityCalculator
             destination.rentabilityRepository = rentabilityRepository
@@ -80,10 +80,10 @@ class RentabilitySimulationViewController: UIViewController {
     }
     
     private func nibRegister() {
-        let nibNameForCellWithSubtitle = UINib(nibName: "TextFieldWithSubtitleTableViewCell", bundle: nil)
-        rentabilityTableView.register(nibNameForCellWithSubtitle, forCellReuseIdentifier: "TextFieldWithSubtitleCell")
-        let nibNameForCellWithoutSubtitle = UINib(nibName: "TextFieldWithoutSubtitleTableViewCell", bundle: nil)
-        rentabilityTableView.register(nibNameForCellWithoutSubtitle, forCellReuseIdentifier: "TextFieldWithoutSubtitleCell")
+        let nibNameForCellWithSubtitle = UINib(nibName: SimulationsCells.textFieldWithSubtitle.name, bundle: nil)
+        rentabilityTableView.register(nibNameForCellWithSubtitle, forCellReuseIdentifier: SimulationsCells.textFieldWithSubtitle.reuseIdentifier)
+        let nibNameForCellWithoutSubtitle = UINib(nibName: SimulationsCells.textFieldWithoutSubtitle.name, bundle: nil)
+        rentabilityTableView.register(nibNameForCellWithoutSubtitle, forCellReuseIdentifier: SimulationsCells.textFieldWithoutSubtitle.reuseIdentifier)
     }
     
     private func getRentabilityResults() {
@@ -94,20 +94,19 @@ class RentabilitySimulationViewController: UIViewController {
             let netYield = try rentabilityCalculator.getNetYield()
             let annualCashflow = try rentabilityCalculator.getAnnualCashflow()
             let mensualCashflow = try rentabilityCalculator.getMensualCashflow()
-            rentabilityRepository.results.append(grossYield + " %")
+            rentabilityRepository.results.append(grossYield + percentUnit)
             rentabilityRepository.resultsForPositiveCheck.append(grossYield)
-            rentabilityRepository.results.append(netYield + " %")
+            rentabilityRepository.results.append(netYield + percentUnit)
             rentabilityRepository.resultsForPositiveCheck.append(netYield)
-            rentabilityRepository.results.append(annualCashflow + " €")
+            rentabilityRepository.results.append(annualCashflow + eurosUnit)
             rentabilityRepository.resultsForPositiveCheck.append(annualCashflow)
-            rentabilityRepository.results.append(mensualCashflow + " €")
+            rentabilityRepository.results.append(mensualCashflow + eurosUnit)
             rentabilityRepository.resultsForPositiveCheck.append(mensualCashflow)
-            performSegue(withIdentifier: "GoToRentabilityResults", sender: self)
+            performSegue(withIdentifier: SimulationsSegue.rentability.identifier, sender: self)
         } catch let error as RentabilityCalculator.RentabilityCalculatorError {
             displayRentabilityError(error)
         } catch {
-            let alert = errorAlert.alert(message: "Une erreur inconnue s'est produite")
-            present(alert, animated: true)
+            displayRentabilityError(.unknowError)
         }
     }
     
@@ -115,13 +114,13 @@ class RentabilitySimulationViewController: UIViewController {
         let item = rentabilityRepository.cells[indexPath.row]
         switch item.cellType {
         case .textFieldWithoutSubtitles:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithoutSubtitleCell", for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.textFieldWithoutSubtitle.reuseIdentifier, for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, unit: item.unit)
             cell.delegate = self
             rentabilityRepository.rentaTextFieldWithoutSubtitleCells.append(cell)
             return cell
         case .textFieldWithSubtitles:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldWithSubtitleCell", for: indexPath) as? TextFieldWithSubtitleTableViewCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.textFieldWithSubtitle.reuseIdentifier, for: indexPath) as? TextFieldWithSubtitleTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, subtitle: item.subtitles)
             lastRentaCell = cell
             rentabilityRepository.rentaTextFieldWithSubtitleCells.append(cell)
@@ -133,19 +132,22 @@ class RentabilitySimulationViewController: UIViewController {
     private func displayRentabilityError(_ error: RentabilityCalculator.RentabilityCalculatorError) {
         switch error {
         case .estatePriceMissing:
-            let alert = errorAlert.alert(message: "Le prix du bien n'est pas renseigné")
+            let alert = errorAlert.alert(message: error.message)
             present(alert, animated: true)
         case .monthlyRentMissing:
-            let alert = errorAlert.alert(message: "Le loyer mensuel n'est pas renseigné")
+            let alert = errorAlert.alert(message: error.message)
             present(alert, animated: true)
         case .notaryFeesMissing:
-           let alert = errorAlert.alert(message: "Les frais de notaire ne sont pas renseignés")
+           let alert = errorAlert.alert(message: error.message)
            present(alert, animated: true)
         case .propertyTaxMissing:
-            let alert = errorAlert.alert(message: "La taxe foncière n'est pas renseignée")
+            let alert = errorAlert.alert(message: error.message)
             present(alert, animated: true)
         case .chargesMissing:
-            let alert = errorAlert.alert(message: "Les charges de copropriété ne sont pas renseignées")
+            let alert = errorAlert.alert(message: error.message)
+            present(alert, animated: true)
+        case .unknowError:
+            let alert = errorAlert.alert(message: error.message)
             present(alert, animated: true)
         }
     }

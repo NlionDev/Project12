@@ -11,8 +11,8 @@ import UIKit
 class ChecklistExistantProjectPopUp {
     
     func alert(checklist: ChecklistRepository) -> AddChecklistToExistantProjectPopUpVC {
-        let storyboard = UIStoryboard(name: "ChecklistPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "ChecklistExistantProjectAlertVC") as! AddChecklistToExistantProjectPopUpVC
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.checklist.identifier, bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: ChecklistVC.checklistExistantProject.identifier) as! AddChecklistToExistantProjectPopUpVC
         alertVC.checklistRepository = checklist
         return alertVC
     }
@@ -21,8 +21,8 @@ class ChecklistExistantProjectPopUp {
 class ChecklistNewProjectPopUp {
     
     func alert(checklist: ChecklistRepository) -> AddChecklistToNewProjectPopUpVC {
-        let storyboard = UIStoryboard(name: "ChecklistPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "ChecklistNewProjectAlertVC") as! AddChecklistToNewProjectPopUpVC
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.checklist.identifier, bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: ChecklistVC.checklistNewProject.identifier) as! AddChecklistToNewProjectPopUpVC
         alertVC.checklistRepository = checklist
         return alertVC
     }
@@ -31,8 +31,8 @@ class ChecklistNewProjectPopUp {
 class ReplaceProjectChecklistPopUp {
     
     func alert(project: Project, checklist: ChecklistRepository) -> ReplaceProjectChecklistViewController {
-        let storyboard = UIStoryboard(name: "ChecklistPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "ReplaceChecklistAlertVC") as! ReplaceProjectChecklistViewController
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.checklist.identifier, bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: ChecklistVC.checklistReplaceProject.identifier) as! ReplaceProjectChecklistViewController
         alertVC.checklistRepository = checklist
         alertVC.selectedProject = project
         return alertVC

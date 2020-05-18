@@ -24,17 +24,35 @@ class RentabilityCalculator {
         case monthlyRentMissing
         case propertyTaxMissing
         case chargesMissing
+        case unknowError
+        
+        var message: String {
+            switch self {
+            case .estatePriceMissing:
+                return "Le prix du bien n'est pas renseigné"
+            case .notaryFeesMissing:
+                return "Les frais de notaire ne sont pas renseignés"
+            case .monthlyRentMissing:
+                return "Le loyer mensuel n'est pas renseigné"
+            case .propertyTaxMissing:
+                return "La taxe foncière n'est pas renseignée"
+            case .chargesMissing:
+                return "Les charges de copropriété ne sont pas renseignées"
+            case .unknowError:
+                return "Une erreur inconnue s'est produite"
+            }
+        }
     }
     
     //MARK: - Private Methods
     private func getAnnualRent() throws -> Double {
         var annualRent = Double()
-        if let monthlyRent = rentabilityData["Loyer mensuel"] {
-            if monthlyRent == "" {
+        if let monthlyRent = rentabilityData[RentabilityItem.monthlyRent.titles] {
+            if monthlyRent == emptyString {
                 throw RentabilityCalculatorError.monthlyRentMissing
             } else {
                 let doubleMonthlyRent = monthlyRent.transformInDouble
-                annualRent = doubleMonthlyRent * 12
+                annualRent = doubleMonthlyRent * numberOfMonths
             }
         }
         return annualRent
@@ -42,15 +60,15 @@ class RentabilityCalculator {
     
     private func getAnnualManagementFeesAmount() -> Double {
         var annualManagementFeesAmount = Double()
-        if let managementFees = rentabilityData["Frais de gérance"],
-            let monthlyRent = rentabilityData["Loyer mensuel"] {
-            if managementFees == "" {
-                annualManagementFeesAmount = 0.00
+        if let managementFees = rentabilityData[RentabilityItem.managementFees.titles],
+            let monthlyRent = rentabilityData[RentabilityItem.monthlyRent.titles] {
+            if managementFees == emptyString {
+                annualManagementFeesAmount = zero
             } else {
                 let doubleMonthlyRent = monthlyRent.transformInDouble
                 let doubleManagementFees = managementFees.transformInDouble
-                let managementFeesAmount = doubleMonthlyRent * doubleManagementFees / 100
-                annualManagementFeesAmount = managementFeesAmount * 12
+                let managementFeesAmount = doubleMonthlyRent * doubleManagementFees / hundred
+                annualManagementFeesAmount = managementFeesAmount * numberOfMonths
             }
         }
         return annualManagementFeesAmount
@@ -58,12 +76,12 @@ class RentabilityCalculator {
     
     private func getAnnualInsuranceCost() -> Double {
         var annualInsuranceCost = Double()
-        if let insurance = rentabilityData["Assurance loyers impayés"] {
-            if insurance == "" {
-                annualInsuranceCost = 0.00
+        if let insurance = rentabilityData[RentabilityItem.insurance.titles] {
+            if insurance == emptyString {
+                annualInsuranceCost = zero
             } else {
                 let doubleInsurance = insurance.transformInDouble
-                annualInsuranceCost = doubleInsurance * 12
+                annualInsuranceCost = doubleInsurance * numberOfMonths
             }
         }
         return annualInsuranceCost
@@ -71,12 +89,12 @@ class RentabilityCalculator {
     
     private func getAnnualCreditCost() -> Double {
         var annualCreditCost = Double()
-        if let creditCost = rentabilityData["Coût du crédit"] {
-            if creditCost == "" {
-                annualCreditCost = 0.00
+        if let creditCost = rentabilityData[RentabilityItem.creditCost.titles] {
+            if creditCost == emptyString {
+                annualCreditCost = zero
             } else {
                 let doubleCreditCost = creditCost.transformInDouble
-                annualCreditCost = doubleCreditCost * 12
+                annualCreditCost = doubleCreditCost * numberOfMonths
             }
         }
         return annualCreditCost
@@ -84,18 +102,18 @@ class RentabilityCalculator {
     
     private func getTotalToFinance() throws -> Double {
         var totalToFinance = Double()
-        if let worksPrice = rentabilityData["Coût des travaux"],
-            let estatePrice = rentabilityData["Prix du bien"],
-            let notaryFees = rentabilityData["Frais de notaire"] {
-            if estatePrice == "" {
+        if let worksPrice = rentabilityData[RentabilityItem.worksCost.titles],
+            let estatePrice = rentabilityData[RentabilityItem.estatePrice.titles],
+            let notaryFees = rentabilityData[RentabilityItem.notaryFees.titles] {
+            if estatePrice == emptyString {
                 throw RentabilityCalculatorError.estatePriceMissing
-            } else if notaryFees == "" {
+            } else if notaryFees == emptyString {
                 throw RentabilityCalculatorError.notaryFeesMissing
             } else {
-                if worksPrice == "" {
+                if worksPrice == emptyString {
                     let doubleEstatePrice = estatePrice.transformInDouble
                     let doubleNotaryFees = notaryFees.transformInDouble
-                    totalToFinance = doubleEstatePrice + 0.00 + doubleNotaryFees
+                    totalToFinance = doubleEstatePrice + zero + doubleNotaryFees
                 } else {
                     let doubleEstatePrice = estatePrice.transformInDouble
                     let doubleWorksPrice = worksPrice.transformInDouble
@@ -109,20 +127,20 @@ class RentabilityCalculator {
     
     private func getAnnualTotalCharges() throws -> Double {
         var totalCharges = Double()
-        if let maintenanceFees = rentabilityData["Frais d'entretien"],
-            let propertyTax = rentabilityData["Taxe foncière"],
-            let charges = rentabilityData["Charges de copropriété"] {
-            if propertyTax == "" {
+        if let maintenanceFees = rentabilityData[RentabilityItem.maintenanceFees.titles],
+            let propertyTax = rentabilityData[RentabilityItem.propertyTax.titles],
+            let charges = rentabilityData[RentabilityItem.charges.titles] {
+            if propertyTax == emptyString {
                 throw RentabilityCalculatorError.propertyTaxMissing
-            } else if charges == "" {
+            } else if charges == emptyString {
                 throw RentabilityCalculatorError.chargesMissing
             } else {
                 annualManagementFeesAmount = getAnnualManagementFeesAmount()
                 let annualInsuranceCost = getAnnualInsuranceCost()
-                if maintenanceFees == "" {
+                if maintenanceFees == emptyString {
                     let doublePropertyTax = propertyTax.transformInDouble
                     let doubleCharges = charges.transformInDouble
-                    totalCharges = annualManagementFeesAmount + annualInsuranceCost + doublePropertyTax + 0.00 + doubleCharges
+                    totalCharges = annualManagementFeesAmount + annualInsuranceCost + doublePropertyTax + zero + doubleCharges
                 } else {
                     let doublePropertyTax = propertyTax.transformInDouble
                     let doubleMaintenanceFees = maintenanceFees.transformInDouble
@@ -142,7 +160,7 @@ class RentabilityCalculator {
         } catch let error as RentabilityCalculator.RentabilityCalculatorError {
             throw error
         }
-        let grossYield = annualRent / totalToFinance * 100
+        let grossYield = annualRent / totalToFinance * hundred
         let stringGrossYield = grossYield.formatIntoStringWithTwoNumbersAfterPoint
         let doubleGrossYield = stringGrossYield.transformInDouble
         let finalGrossYield = doubleGrossYield.clean
@@ -157,7 +175,7 @@ class RentabilityCalculator {
         } catch let error as RentabilityCalculator.RentabilityCalculatorError {
             throw error
         }
-        let netYield = (annualRent - annualTotalCharges) / totalToFinance * 100
+        let netYield = (annualRent - annualTotalCharges) / totalToFinance * hundred
         let stringNetYield = netYield.formatIntoStringWithTwoNumbersAfterPoint
         let doubleNetYield = stringNetYield.transformInDouble
         let finalNetYield = doubleNetYield.clean
@@ -188,7 +206,7 @@ class RentabilityCalculator {
         }
         let annualCreditCost = getAnnualCreditCost()
         let annualCashflow = annualRent - annualTotalCharges - annualCreditCost
-        let mensualCashflow = annualCashflow / 12
+        let mensualCashflow = annualCashflow / numberOfMonths
         let stringMensualCashflow = mensualCashflow.formatIntoStringWithTwoNumbersAfterPoint
         let doubleMensualCashflow = stringMensualCashflow.transformInDouble
         let finalMensualCashflow = doubleMensualCashflow.clean
@@ -198,7 +216,7 @@ class RentabilityCalculator {
     func isResultPositive(result: String) -> Bool {
         var boolResult = true
         if let numericResult = Double(result) {
-            if numericResult >= 0.00 {
+            if numericResult >= zero {
                 boolResult = true
             } else {
                 boolResult = false

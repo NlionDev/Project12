@@ -27,9 +27,9 @@ class AddCreditToNewProjectPopUpVC: UIViewController {
         if isMyProjectNameUnique(name: name, projects: projectRepository.myProjects) {
             creditRepo.saveNewCreditSimulation(name: name, project: project, creditRepo: creditRepo)
             dismiss(animated: true)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DismissPreviousAlert"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFromPrevious.name), object: nil)
         } else {
-            let alert = errorAlert.alert(message: "Un projet existant porte déjà ce nom.")
+            let alert = errorAlert.alert(message: popUpProjectAlreadyExistMessage)
             present(alert, animated: true)
         }
     }

@@ -22,10 +22,10 @@ class CreateNewProjectViewController: UIViewController {
         guard let name = newProjectTextField.text else {return}
         if isMyProjectNameUnique(name: name, projects: projectRepository.myProjects) {
             projectRepository.saveEmptyNewProject(name: name)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadSavedProjectsData"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.reloadSavedProjects.name), object: nil)
             dismiss(animated: true)
         } else {
-            let alert = errorAlert.alert(message: "Un projet existant porte déjà ce nom.")
+            let alert = errorAlert.alert(message: popUpProjectAlreadyExistMessage)
             present(alert, animated: true)
         }
     }

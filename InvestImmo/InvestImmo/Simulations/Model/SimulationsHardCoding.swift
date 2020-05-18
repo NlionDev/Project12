@@ -6,6 +6,18 @@
 //  Copyright © 2020 Nicolas Lion. All rights reserved.
 //
 
+//MARK: - Properties
+let eurosUnit = " €"
+let percentUnit = " %"
+let yearsUnit = " ans"
+let resultCellRowInSection = 4
+let numberOfMonths: Double = 12
+let zero: Double = 0.00
+let hundred: Double = 100
+let one: Double = 1
+
+//MARK: - Enums
+
 enum MenuBarItems {
     case credit
     case rentability

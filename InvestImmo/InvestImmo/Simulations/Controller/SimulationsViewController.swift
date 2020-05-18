@@ -9,13 +9,15 @@
 import UIKit
 import RealmSwift
 
-class SimulationsViewController: UIViewController {
+class SimulationsViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: - Properties
     private var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
     private let menuBarItems = [MenuBarItems.credit.titles, MenuBarItems.rentability.titles]
     private var pageViewController: UIPageViewController!
     private var viewControllers = [UIViewController]()
+    private var startOffset = CGFloat(0)
+    private var currentVCIndex = Int()
     
     //MARK: - Outlets
 
@@ -29,6 +31,11 @@ class SimulationsViewController: UIViewController {
         print(Realm.Configuration.defaultConfiguration.fileURL)
         setupMenuBarCollectionView()
         setupHorizontalBar()
+        for view in self.pageViewController.view.subviews {
+          if let scrollView = view as? UIScrollView {
+            scrollView.delegate = self
+          }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -88,6 +95,22 @@ class SimulationsViewController: UIViewController {
          horizontalBarLeftAnchorConstraint?.constant = x
          UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {self.menuBar.layoutIfNeeded()}, completion: nil)
      }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let index = Int(targetContentOffset.pointee.x / view.frame.width)
+        let indexPath = IndexPath(item: index, section: 0)
+        menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        startOffset = scrollView.contentOffset.x
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let positionFromStartOfCurrentPage = abs(startOffset - scrollView.contentOffset.x)
+        horizontalBarLeftAnchorConstraint?.constant = positionFromStartOfCurrentPage / 2
+    }
+    
 
 }
 
@@ -157,6 +180,7 @@ extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewCon
         if (completed && finished) {
             if let currentVC = pageViewController.viewControllers?.last,
                 let index = viewControllers.firstIndex(of: currentVC) {
+                currentVCIndex = index
                 let indexPath = IndexPath(item: index, section: 0)
                 self.menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
                 self.animateMenuBarSlide(index: index, duration: 0)
@@ -164,7 +188,4 @@ extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewCon
         }
     }
 }
-
-
-
 

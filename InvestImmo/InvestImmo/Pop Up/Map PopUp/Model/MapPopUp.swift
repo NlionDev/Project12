@@ -11,8 +11,8 @@ import UIKit
 class MapNewProjectPopUp {
     
     func alert(adress: String, latitude: String, longitude: String) -> AddAdressToNewProjectVC {
-        let storyboard = UIStoryboard(name: "MapPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "MapNewProjectAlertVC") as! AddAdressToNewProjectVC
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.map.identifier, bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: MapVC.mapNewProject.identifier) as! AddAdressToNewProjectVC
         alertVC.adress = adress
         alertVC.latitude = latitude
         alertVC.longitude = longitude
@@ -23,8 +23,8 @@ class MapNewProjectPopUp {
 class MapExistantProjectPopUp {
     
     func alert(adress: String, latitude: String, longitude: String) -> AddAdressToExistantProjectVC {
-        let storyboard = UIStoryboard(name: "MapPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "MapExistantProjectAlertVC") as! AddAdressToExistantProjectVC
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.map.identifier, bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: MapVC.mapExistantProject.identifier) as! AddAdressToExistantProjectVC
         alertVC.adress = adress
         alertVC.latitude = latitude
         alertVC.longitude = longitude
@@ -35,8 +35,8 @@ class MapExistantProjectPopUp {
 class MapSearchAdressPopUp {
     
     func alert(delegate: MapViewController) -> SearchAdressPopUpVC {
-        let storyboard = UIStoryboard(name: "MapPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "SearchAdressVC") as! SearchAdressPopUpVC
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.map.identifier, bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: MapVC.mapSearchAdress.identifier) as! SearchAdressPopUpVC
         alertVC.delegate = delegate
         return alertVC
     }
@@ -45,8 +45,8 @@ class MapSearchAdressPopUp {
 class ReplaceProjectAdressPopUp {
     
     func alert(project: Project, adress: String, latitude: String, longitude: String) -> ReplaceAdressViewController {
-        let storyboard = UIStoryboard(name: "MapPopUpStoryboard", bundle: .main)
-        let alertVC = storyboard.instantiateViewController(withIdentifier: "ReplaceAdressAlertVC") as! ReplaceAdressViewController
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.map.identifier, bundle: .main)
+        let alertVC = storyboard.instantiateViewController(withIdentifier: MapVC.mapReplaceProject.identifier) as! ReplaceAdressViewController
         alertVC.selectedProject = project
         alertVC.adress = adress
         alertVC.latitude = latitude

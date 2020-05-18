@@ -91,10 +91,10 @@ class CreditSimulationViewController: UIViewController {
         creditCalculator.creditData = creditRepository.creditData
         creditRepository.results.removeAll()
         do {
-            let mensuality = try creditCalculator.getStringMensuality() + " €"
-            let interestCost = try creditCalculator.getStringInterestCost() + " €"
-            let insuranceCost = try creditCalculator.getStringInsuranceCost() + " €"
-            let totalCost = try creditCalculator.getTotalCost() + " €"
+            let mensuality = try creditCalculator.getStringMensuality() + eurosUnit
+            let interestCost = try creditCalculator.getStringInterestCost() + eurosUnit
+            let insuranceCost = try creditCalculator.getStringInsuranceCost() + eurosUnit
+            let totalCost = try creditCalculator.getTotalCost() + eurosUnit
             creditRepository.results.append(mensuality)
             creditRepository.results.append(interestCost)
             creditRepository.results.append(insuranceCost)
@@ -121,7 +121,7 @@ class CreditSimulationViewController: UIViewController {
         case .pickerView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.pickerView.reuseIdentifier, for: indexPath) as? PickerViewTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, subtitle: item.subtitles)
-            creditRepository.creditData["Durée"] = String(creditRepository.creditDuration[cell.selectedPickerData])
+            creditRepository.creditData[CreditItem.duration.titles] = String(creditRepository.creditDuration[cell.selectedPickerData])
             cell.delegate = self
             return cell
         case .stepper:

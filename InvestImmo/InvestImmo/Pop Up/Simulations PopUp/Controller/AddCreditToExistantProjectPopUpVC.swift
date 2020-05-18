@@ -25,7 +25,7 @@ class AddCreditToExistantProjectPopUpVC: UIViewController {
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let creditRepo = creditRepository else {return}
         let alert = creditNewProjectPopUp.alert(credit: creditRepo)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: "DismissPreviousAlert"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: PopUpNotification.dismissFromPrevious.name), object: nil)
         present(alert, animated: true)
     }
     
@@ -62,7 +62,7 @@ extension AddCreditToExistantProjectPopUpVC: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExistantProjectAlertCell", for: indexPath) as? ExistantProjectAlertTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: existantProjectCellIdentifier, for: indexPath) as? ExistantProjectAlertTableViewCell else {
             
             return UITableViewCell()
         }
@@ -77,7 +77,7 @@ extension AddCreditToExistantProjectPopUpVC: UITableViewDataSource, UITableViewD
         guard let project = selectedProject,
         let creditRepository = creditRepository else {return}
         if checkIfTheProjectAlreadyHaveSavedCreditSimulation(project: project) {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: "DismissAlertFromReplaceVC"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: PopUpNotification.dismissFromReplace.name), object: nil)
             let alert = replaceCreditPopUp.alert(project: project, credit: creditRepository)
             present(alert, animated: true)
         } else {

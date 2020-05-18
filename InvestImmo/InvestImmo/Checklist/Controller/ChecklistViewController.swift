@@ -77,22 +77,22 @@ class ChecklistViewController: UIViewController {
     }
     
     private func nibRegister() {
-        let nibNameForDatePickerCell = UINib(nibName: "DatePickerTableViewCell", bundle: nil)
-        checklistTableView.register(nibNameForDatePickerCell, forCellReuseIdentifier: "DatePickerCell")
-        let nibNameForChecklistPickerCell = UINib(nibName: "ChecklistPickerTableViewCell", bundle: nil)
-        checklistTableView.register(nibNameForChecklistPickerCell, forCellReuseIdentifier: "ChecklistPickerCell")
-        let nibNameSegmentCell = UINib(nibName: "SegmentTableViewCell", bundle: nil)
-        checklistTableView.register(nibNameSegmentCell, forCellReuseIdentifier: "SegmentCell")
-        let nibNameForTextFieldCell = UINib(nibName: "ChecklistTextFieldTableViewCell", bundle: nil)
-        checklistTableView.register(nibNameForTextFieldCell, forCellReuseIdentifier: "ChecklistTextFieldCell")
-        let nibNameForTextViewCell = UINib(nibName: "TextViewTableViewCell", bundle: nil)
-        checklistTableView.register(nibNameForTextViewCell, forCellReuseIdentifier: "TextViewCell")
+        let nibNameForDatePickerCell = UINib(nibName: ChecklistCellType.datePicker.name, bundle: nil)
+        checklistTableView.register(nibNameForDatePickerCell, forCellReuseIdentifier: ChecklistCellType.datePicker.reuseIdentifier)
+        let nibNameForChecklistPickerCell = UINib(nibName: ChecklistCellType.pickerView.name, bundle: nil)
+        checklistTableView.register(nibNameForChecklistPickerCell, forCellReuseIdentifier: ChecklistCellType.pickerView.reuseIdentifier)
+        let nibNameSegmentCell = UINib(nibName: ChecklistCellType.segment.name, bundle: nil)
+        checklistTableView.register(nibNameSegmentCell, forCellReuseIdentifier: ChecklistCellType.segment.reuseIdentifier)
+        let nibNameForTextFieldCell = UINib(nibName: ChecklistCellType.textField.name, bundle: nil)
+        checklistTableView.register(nibNameForTextFieldCell, forCellReuseIdentifier: ChecklistCellType.textField.reuseIdentifier)
+        let nibNameForTextViewCell = UINib(nibName: ChecklistCellType.textView.name, bundle: nil)
+        checklistTableView.register(nibNameForTextViewCell, forCellReuseIdentifier: ChecklistCellType.textView.reuseIdentifier)
     }
     
     private func setupTableViewHeader() -> UILabel {
         let sectionTitle = UILabel()
-        sectionTitle.backgroundColor = UIColor(red: 91/255.0, green: 102/255.0, blue: 248/255.0, alpha: 1.0)
-        sectionTitle.font = UIFont(name: "AntipastoPro", size: 50)
+        sectionTitle.backgroundColor = UIColor(red: Purple.red.colorValue, green: Purple.green.colorValue, blue: Purple.blue.colorValue, alpha: Purple.alpha.colorValue)
+        sectionTitle.font = UIFont(name: antipastoFont, size: sectionTitleFontSize)
         sectionTitle.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         sectionTitle.textAlignment = .center
         return sectionTitle
@@ -102,13 +102,13 @@ class ChecklistViewController: UIViewController {
         let item = checklistRepository.sections[indexPath.section][indexPath.row]
         switch item.cellType {
         case .datePicker:
-            guard let dateCell = tableView.dequeueReusableCell(withIdentifier: "DatePickerCell", for: indexPath) as? DatePickerTableViewCell else {return UITableViewCell()}
+            guard let dateCell = tableView.dequeueReusableCell(withIdentifier: ChecklistCellType.datePicker.reuseIdentifier, for: indexPath) as? DatePickerTableViewCell else {return UITableViewCell()}
             dateCell.configure(title: item.titles, sectionKey: indexPath.section)
             checklistRepository.checklistData[indexPath.section][item.titles] = dateCell.cellDatePicker.date.transformIntoString
             dateCell.delegate = self
             return dateCell
         case .textView:
-            guard let textViewCell = tableView.dequeueReusableCell(withIdentifier: "TextViewCell", for: indexPath) as? TextViewTableViewCell else {return UITableViewCell()}
+            guard let textViewCell = tableView.dequeueReusableCell(withIdentifier: ChecklistCellType.textView.reuseIdentifier, for: indexPath) as? TextViewTableViewCell else {return UITableViewCell()}
             textViewCell.configure(title: item.titles, sectionKey: indexPath.section)
             textViewCell.delegate = self
             lastCell = textViewCell
@@ -116,20 +116,20 @@ class ChecklistViewController: UIViewController {
             checklistRepository.textViewCells.append(textViewCell)
             return textViewCell
         case .pickerView:
-            guard let pickerCell = tableView.dequeueReusableCell(withIdentifier: "ChecklistPickerCell", for: indexPath) as? ChecklistPickerTableViewCell else {return UITableViewCell()}
+            guard let pickerCell = tableView.dequeueReusableCell(withIdentifier: ChecklistCellType.pickerView.reuseIdentifier, for: indexPath) as? ChecklistPickerTableViewCell else {return UITableViewCell()}
             pickerCell.configure(title: item.titles, sectionKey: indexPath.section)
             pickerCell.delegate = self
             checklistRepository.checklistData[indexPath.section][item.titles] = pickerCell.pickerData[pickerCell.cellPicker.selectedRow(inComponent: 0)]
             return pickerCell
         case .textField:
-            guard let textFieldCell = tableView.dequeueReusableCell(withIdentifier: "ChecklistTextFieldCell", for: indexPath) as? ChecklistTextFieldTableViewCell else {return UITableViewCell()}
+            guard let textFieldCell = tableView.dequeueReusableCell(withIdentifier: ChecklistCellType.textField.reuseIdentifier, for: indexPath) as? ChecklistTextFieldTableViewCell else {return UITableViewCell()}
             textFieldCell.configure(title: item.titles, unit: item.unit, sectionKey: indexPath.section)
             textFieldCell.delegate = self
             textFieldCell.cellTextField.clear()
             checklistRepository.textFieldCells.append(textFieldCell)
             return textFieldCell
         case .segment:
-            guard let segmentCell = tableView.dequeueReusableCell(withIdentifier: "SegmentCell", for: indexPath) as? SegmentTableViewCell else {return UITableViewCell()}
+            guard let segmentCell = tableView.dequeueReusableCell(withIdentifier: ChecklistCellType.segment.reuseIdentifier, for: indexPath) as? SegmentTableViewCell else {return UITableViewCell()}
             segmentCell.configure(title: item.titles, sectionKey: indexPath.section)
             segmentCell.delegate = self
             checklistRepository.checklistData[indexPath.section][item.titles] = segmentCell.segmentValue
@@ -157,19 +157,19 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let title = setupTableViewHeader()
         if section == 0 {
-            title.text = "Général"
+            title.text = ChecklistSections.general.title
         } else if section == 1 {
-            title.text = "Quartier"
+            title.text = ChecklistSections.district.title
         } else if section == 2 {
-            title.text = "Immeuble"
+            title.text = ChecklistSections.apartmentBlock.title
         } else if section == 3 {
-            title.text = "Appartement"
+            title.text = ChecklistSections.apartment.title
         }
         return title
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return sectionHeaderHeight
     }
 }
 

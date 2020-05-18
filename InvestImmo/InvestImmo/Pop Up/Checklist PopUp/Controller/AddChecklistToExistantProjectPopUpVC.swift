@@ -32,7 +32,7 @@ class AddChecklistToExistantProjectPopUpVC: UIViewController {
     @IBAction private func didTapOnCreateNewProject(_ sender: Any) {
         guard let checklistRepo = checklistRepository else {return}
         let alertVC = self.newProjectPopUp.alert(checklist: checklistRepo)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: Notification.Name(rawValue: "DismissPreviousAlert"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: Notification.Name(rawValue: PopUpNotification.dismissFromPrevious.name), object: nil)
         self.present(alertVC, animated: true)
     }
     
@@ -70,7 +70,7 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExistantProjectAlertCell", for: indexPath) as? ExistantProjectAlertTableViewCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: existantProjectCellIdentifier, for: indexPath) as? ExistantProjectAlertTableViewCell else {
         
         return UITableViewCell()
     }
@@ -86,7 +86,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             let name = project.name,
             let checklistRepository = checklistRepository else {return}
         if checkIfTheProjectAlreadyHaveSavedChecklist(project: project) {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: "DismissAlertFromReplaceVC"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: PopUpNotification.dismissFromReplace.name), object: nil)
             let alert = replaceProjectChecklistPopUp.alert(project: project, checklist: checklistRepository)
             present(alert, animated: true)
         } else {

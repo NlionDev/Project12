@@ -36,8 +36,8 @@ class RentabilityResultsViewController: UIViewController {
     //MARK: - Methods
     
     private func nibRegister() {
-        let nibName = UINib(nibName: "ResultTableViewCell", bundle: nil)
-        rentabilityResultsTableView.register(nibName, forCellReuseIdentifier: "ResultCell")
+        let nibName = UINib(nibName: SimulationsCells.result.name, bundle: nil)
+        rentabilityResultsTableView.register(nibName, forCellReuseIdentifier: SimulationsCells.result.reuseIdentifier)
     }
     
 }
@@ -47,11 +47,11 @@ class RentabilityResultsViewController: UIViewController {
 extension RentabilityResultsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 4
+       return resultCellRowInSection
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as? ResultTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.result.reuseIdentifier, for: indexPath) as? ResultTableViewCell else {return UITableViewCell()}
         if let calculator = rentabilityCalculator,
             let rentabilityRepository = rentabilityRepository {
             cell.configureForRenta(title: rentabilityRepository.resultTitles[indexPath.row], result: rentabilityRepository.results[indexPath.row], isPositive: calculator.isResultPositive(result: rentabilityRepository.resultsForPositiveCheck[indexPath.row]))

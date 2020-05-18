@@ -34,17 +34,17 @@ class ChecklistRepository {
         [ChecklistItem.dpe, ChecklistItem.light, ChecklistItem.dualAspect, ChecklistItem.vmc, ChecklistItem.humidity, ChecklistItem.heightUnderCeiling, ChecklistItem.planeness, ChecklistItem.insulation, ChecklistItem.soundInsulation, ChecklistItem.direction, ChecklistItem.bedroomView, ChecklistItem.lifeRoomView, ChecklistItem.heatingSystem, ChecklistItem.heatingType, ChecklistItem.electricity, ChecklistItem.electricityMeters, ChecklistItem.toilet, ChecklistItem.bathroom, ChecklistItem.plumbingQuality, ChecklistItem.groundQuality, ChecklistItem.wallQuality, ChecklistItem.shutters, ChecklistItem.doubleGlazing, ChecklistItem.reconfiguration, ChecklistItem.cave, ChecklistItem.caveSurface, ChecklistItem.parking, ChecklistItem.distinguishElements]
     ]
     var checklistData = [
-        ["Date de la visite": "", "Type de bien": "", "Superficie": ""],
-        ["Nuisances": "", "Atouts": "", "Transports en commun": "", "Stationnement facile": ""],
-        ["Année de construction": "", "Nombre de lots": "", "Internet": "", "Syndicat": "", "Qualité façades": "", "Qualité toitures": "", "Qualité communs": ""],
-        ["Diagnostic de performances énergétiques": "", "Lumineux": "", "Traversant": "", "VMC": "", "Présence d'humidité": "", "Hauteur sous plafond": "", "Planéité des sols": "", "Isolation": "", "Insonorisation": "", "Orientation": "", "Vue de la chambre": "", "Vue de la pièce de vie": "", "Energie du chauffage": "", "Type de chauffage": "", "Electricité au normes": "", "Compteur individuel": "", "WC isolé": "", "Salle de bain moderne": "", "Etat robinetterie": "", "Etat des sols": "", "Etat des murs": "", "Etat des volets": "", "Double vitrage": "", "Reconfiguration possible": "", "Présence de cave": "", "Surface cave": "", "Parking": "", "Elements différenciants par rapport aux autres biens": ""]
+        [ChecklistItem.visitDate.titles: emptyString, ChecklistItem.estateType.titles: emptyString, ChecklistItem.surfaceArea.titles: emptyString],
+        [ChecklistItem.problem.titles: emptyString, ChecklistItem.advantage.titles: emptyString, ChecklistItem.transports.titles: emptyString, ChecklistItem.easyPark.titles: emptyString],
+        [ChecklistItem.yearOfConstruction.titles: emptyString, ChecklistItem.numberOfLots.titles: emptyString, ChecklistItem.internet.titles: emptyString, ChecklistItem.syndicate.titles: emptyString, ChecklistItem.facade.titles: emptyString, ChecklistItem.roof.titles: emptyString, ChecklistItem.communalAreas.titles: emptyString],
+        [ChecklistItem.dpe.titles: emptyString, ChecklistItem.light.titles: emptyString, ChecklistItem.dualAspect.titles: emptyString, ChecklistItem.vmc.titles: emptyString, ChecklistItem.humidity.titles: emptyString, ChecklistItem.heightUnderCeiling.titles: emptyString, ChecklistItem.planeness.titles: emptyString, ChecklistItem.insulation.titles: emptyString, ChecklistItem.soundInsulation.titles: emptyString, ChecklistItem.direction.titles: emptyString, ChecklistItem.bedroomView.titles: emptyString, ChecklistItem.lifeRoomView.titles: emptyString, ChecklistItem.heatingSystem.titles: emptyString, ChecklistItem.heatingType.titles: emptyString, ChecklistItem.electricity.titles: emptyString, ChecklistItem.electricityMeters.titles: emptyString, ChecklistItem.toilet.titles: emptyString, ChecklistItem.bathroom.titles: emptyString, ChecklistItem.plumbingQuality.titles: emptyString, ChecklistItem.groundQuality.titles: emptyString, ChecklistItem.wallQuality.titles: emptyString, ChecklistItem.shutters.titles: emptyString, ChecklistItem.doubleGlazing.titles: emptyString, ChecklistItem.reconfiguration.titles: emptyString, ChecklistItem.cave.titles: emptyString, ChecklistItem.caveSurface.titles: emptyString, ChecklistItem.parking.titles: emptyString, ChecklistItem.distinguishElements.titles: emptyString]
     ]
     let allTitles = [
-        ["Date de la visite", "Type de bien", "Superficie"],
-        ["Nuisances", "Atouts", "Transports en commun", "Stationnement facile"],
-        ["Année de construction", "Nombre de lots", "Internet", "Syndicat", "Qualité façades", "Qualité toitures", "Qualité communs"],
-        ["Diagnostic de performances énergétiques", "Lumineux", "Traversant", "VMC", "Présence d'humidité", "Hauteur sous plafond", "Planéité des sols", "Isolation", "Insonorisation", "Orientation", "Vue de la chambre", "Vue de la pièce de vie", "Energie du chauffage", "Type de chauffage", "Electricité au normes", "Compteur individuel", "WC isolé", "Salle de bain moderne", "Etat robinetterie", "Etat des sols", "Etat des murs", "Etat des volets", "Double vitrage", "Reconfiguration possible", "Présence de cave", "Surface cave", "Parking", "Elements différenciants par rapport aux autres biens"]
-    ]
+        [ChecklistItem.visitDate.titles, ChecklistItem.estateType.titles, ChecklistItem.surfaceArea.titles],
+            [ChecklistItem.problem.titles, ChecklistItem.advantage.titles, ChecklistItem.transports.titles, ChecklistItem.easyPark.titles],
+            [ChecklistItem.yearOfConstruction.titles, ChecklistItem.numberOfLots.titles, ChecklistItem.internet.titles, ChecklistItem.syndicate.titles, ChecklistItem.facade.titles, ChecklistItem.roof.titles, ChecklistItem.communalAreas.titles],
+            [ChecklistItem.dpe.titles, ChecklistItem.light.titles, ChecklistItem.dualAspect.titles, ChecklistItem.vmc.titles, ChecklistItem.humidity.titles, ChecklistItem.heightUnderCeiling.titles, ChecklistItem.planeness.titles, ChecklistItem.insulation.titles, ChecklistItem.soundInsulation.titles, ChecklistItem.direction.titles, ChecklistItem.bedroomView.titles, ChecklistItem.lifeRoomView.titles, ChecklistItem.heatingSystem.titles, ChecklistItem.heatingType.titles, ChecklistItem.electricity.titles, ChecklistItem.electricityMeters.titles, ChecklistItem.toilet.titles, ChecklistItem.bathroom.titles, ChecklistItem.plumbingQuality.titles, ChecklistItem.groundQuality.titles, ChecklistItem.wallQuality.titles, ChecklistItem.shutters.titles, ChecklistItem.doubleGlazing.titles, ChecklistItem.reconfiguration.titles, ChecklistItem.cave.titles, ChecklistItem.caveSurface.titles, ChecklistItem.parking.titles, ChecklistItem.distinguishElements.titles]
+        ]
     var pickerCells = [ChecklistPickerTableViewCell]()
     var textFieldCells = [ChecklistTextFieldTableViewCell]()
     var textViewCells = [TextViewTableViewCell]()
@@ -60,9 +60,9 @@ class ChecklistRepository {
         guard let realm = realm else {return}
         project.name = name
         checklistGeneral.name = name
-        checklistGeneral.estateType = checklistRepo.checklistData[0]["Type de bien"]
-        checklistGeneral.visitDate = checklistRepo.checklistData[0]["Date de la visite"]
-        checklistGeneral.surfaceArea = checklistRepo.checklistData[0]["Superficie"]
+        checklistGeneral.estateType = checklistRepo.checklistData[ChecklistSections.general.number][ChecklistItem.estateType.titles]
+        checklistGeneral.visitDate = checklistRepo.checklistData[ChecklistSections.general.number][ChecklistItem.visitDate.titles]
+        checklistGeneral.surfaceArea = checklistRepo.checklistData[ChecklistSections.general.number][ChecklistItem.surfaceArea.titles]
         realm.safeWrite {
             realm.add(checklistGeneral)
             realm.add(project)
@@ -72,9 +72,9 @@ class ChecklistRepository {
     func saveChecklistGeneralToExistantProject(project: Project, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         checklistGeneral.name = project.name
-        checklistGeneral.estateType = checklistRepo.checklistData[0]["Type de bien"]
-        checklistGeneral.visitDate = checklistRepo.checklistData[0]["Date de la visite"]
-        checklistGeneral.surfaceArea = checklistRepo.checklistData[0]["Superficie"]
+        checklistGeneral.estateType = checklistRepo.checklistData[ChecklistSections.general.number][ChecklistItem.estateType.titles]
+        checklistGeneral.visitDate = checklistRepo.checklistData[ChecklistSections.general.number][ChecklistItem.visitDate.titles]
+        checklistGeneral.surfaceArea = checklistRepo.checklistData[ChecklistSections.general.number][ChecklistItem.surfaceArea.titles]
         realm.safeWrite {
             realm.add(checklistGeneral)
         }
@@ -83,10 +83,10 @@ class ChecklistRepository {
     func saveChecklistDistrict(name: String, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         checklistDistrict.name = name
-        checklistDistrict.problem = checklistRepo.checklistData[1]["Nuisances"]
-        checklistDistrict.advantage = checklistRepo.checklistData[1]["Atouts"]
-        checklistDistrict.transports = checklistRepo.checklistData[1]["Transports en commun"]
-        checklistDistrict.easyPark = checklistRepo.checklistData[1]["Stationnement facile"]
+        checklistDistrict.problem = checklistRepo.checklistData[ChecklistSections.district.number][ChecklistItem.problem.titles]
+        checklistDistrict.advantage = checklistRepo.checklistData[ChecklistSections.district.number][ChecklistItem.advantage.titles]
+        checklistDistrict.transports = checklistRepo.checklistData[ChecklistSections.district.number][ChecklistItem.transports.titles]
+        checklistDistrict.easyPark = checklistRepo.checklistData[ChecklistSections.district.number][ChecklistItem.easyPark.titles]
         realm.safeWrite {
             realm.add(checklistDistrict)
         }
@@ -95,13 +95,13 @@ class ChecklistRepository {
     func saveChecklistApartmentBlock(name: String, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         checklistApartmentBlock.name = name
-        checklistApartmentBlock.yearOfConstruction = checklistRepo.checklistData[2]["Année de construction"]
-        checklistApartmentBlock.numberOfLots = checklistRepo.checklistData[2]["Nombre de lots"]
-        checklistApartmentBlock.internet = checklistRepo.checklistData[2]["Internet"]
-        checklistApartmentBlock.syndicate = checklistRepo.checklistData[2]["Syndicat"]
-        checklistApartmentBlock.facade = checklistRepo.checklistData[2]["Qualité façades"]
-        checklistApartmentBlock.roof = checklistRepo.checklistData[2]["Qualité toitures"]
-        checklistApartmentBlock.communalAreas = checklistRepo.checklistData[2]["Qualité communs"]
+        checklistApartmentBlock.yearOfConstruction = checklistRepo.checklistData[ChecklistSections.apartmentBlock.number][ChecklistItem.yearOfConstruction.titles]
+        checklistApartmentBlock.numberOfLots = checklistRepo.checklistData[ChecklistSections.apartmentBlock.number][ChecklistItem.numberOfLots.titles]
+        checklistApartmentBlock.internet = checklistRepo.checklistData[ChecklistSections.apartmentBlock.number][ChecklistItem.internet.titles]
+        checklistApartmentBlock.syndicate = checklistRepo.checklistData[ChecklistSections.apartmentBlock.number][ChecklistItem.syndicate.titles]
+        checklistApartmentBlock.facade = checklistRepo.checklistData[ChecklistSections.apartmentBlock.number][ChecklistItem.facade.titles]
+        checklistApartmentBlock.roof = checklistRepo.checklistData[ChecklistSections.apartmentBlock.number][ChecklistItem.roof.titles]
+        checklistApartmentBlock.communalAreas = checklistRepo.checklistData[ChecklistSections.apartmentBlock.number][ChecklistItem.communalAreas.titles]
         realm.safeWrite {
             realm.add(checklistApartmentBlock)
         }
@@ -110,34 +110,34 @@ class ChecklistRepository {
     func saveChecklistApartment(name: String, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         checklistApartment.name = name
-        checklistApartment.dpe = checklistRepo.checklistData[3]["Diagnostic de performances énergétiques"]
-        checklistApartment.light = checklistRepo.checklistData[3]["Lumineux"]
-        checklistApartment.dualAspect = checklistRepo.checklistData[3]["Traversant"]
-        checklistApartment.vmc = checklistRepo.checklistData[3]["VMC"]
-        checklistApartment.humidity = checklistRepo.checklistData[3]["Présence d'humidité"]
-        checklistApartment.heightUnderCeiling = checklistRepo.checklistData[3]["Hauteur sous plafond"]
-        checklistApartment.planeness = checklistRepo.checklistData[3]["Planéité des sols"]
-        checklistApartment.insulation = checklistRepo.checklistData[3]["Isolation"]
-        checklistApartment.soundInsulation = checklistRepo.checklistData[3]["Insonorisation"]
-        checklistApartment.direction = checklistRepo.checklistData[3]["Orientation"]
-        checklistApartment.bedroomView = checklistRepo.checklistData[3]["Vue de la chambre"]
-        checklistApartment.liferoomView = checklistRepo.checklistData[3]["Vue de la pièce de vie"]
-        checklistApartment.heatingSystem = checklistRepo.checklistData[3]["Energie du chauffage"]
-        checklistApartment.heatingType = checklistRepo.checklistData[3]["Type de chauffage"]
-        checklistApartment.electricity = checklistRepo.checklistData[3]["Electricité au normes"]
-        checklistApartment.electricityMeters = checklistRepo.checklistData[3]["Compteur individuel"]
-        checklistApartment.toilet = checklistRepo.checklistData[3]["WC isolé"]
-        checklistApartment.bathroom = checklistRepo.checklistData[3]["Salle de bain moderne"]
-        checklistApartment.plumbingQuality = checklistRepo.checklistData[3]["Etat robinetterie"]
-        checklistApartment.groundQuality = checklistRepo.checklistData[3]["Etat des sols"]
-        checklistApartment.wallQuality = checklistRepo.checklistData[3]["Etat des murs"]
-        checklistApartment.shuttersQuality = checklistRepo.checklistData[3]["Etat des volets"]
-        checklistApartment.doubleGlazing = checklistRepo.checklistData[3]["Double vitrage"]
-        checklistApartment.reconfiguration = checklistRepo.checklistData[3]["Reconfiguration possible"]
-        checklistApartment.cave = checklistRepo.checklistData[3]["Présence de cave"]
-        checklistApartment.caveSurface = checklistRepo.checklistData[3]["Surface cave"]
-        checklistApartment.parking = checklistRepo.checklistData[3]["Parking"]
-        checklistApartment.distinguishElements = checklistRepo.checklistData[3]["Elements différenciants par rapport aux autres biens"]
+        checklistApartment.dpe = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.dpe.titles]
+        checklistApartment.light = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.light.titles]
+        checklistApartment.dualAspect = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.dualAspect.titles]
+        checklistApartment.vmc = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.vmc.titles]
+        checklistApartment.humidity = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.humidity.titles]
+        checklistApartment.heightUnderCeiling = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.heightUnderCeiling.titles]
+        checklistApartment.planeness = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.planeness.titles]
+        checklistApartment.insulation = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.insulation.titles]
+        checklistApartment.soundInsulation = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.soundInsulation.titles]
+        checklistApartment.direction = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.direction.titles]
+        checklistApartment.bedroomView = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.bedroomView.titles]
+        checklistApartment.liferoomView = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.lifeRoomView.titles]
+        checklistApartment.heatingSystem = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.heatingSystem.titles]
+        checklistApartment.heatingType = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.heatingType.titles]
+        checklistApartment.electricity = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.electricity.titles]
+        checklistApartment.electricityMeters = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.electricityMeters.titles]
+        checklistApartment.toilet = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.toilet.titles]
+        checklistApartment.bathroom = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.bathroom.titles]
+        checklistApartment.plumbingQuality = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.plumbingQuality.titles]
+        checklistApartment.groundQuality = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.groundQuality.titles]
+        checklistApartment.wallQuality = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.wallQuality.titles]
+        checklistApartment.shuttersQuality = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.shutters.titles]
+        checklistApartment.doubleGlazing = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.doubleGlazing.titles]
+        checklistApartment.reconfiguration = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.reconfiguration.titles]
+        checklistApartment.cave = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.cave.titles]
+        checklistApartment.caveSurface = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.caveSurface.titles]
+        checklistApartment.parking = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.parking.titles]
+        checklistApartment.distinguishElements = checklistRepo.checklistData[ChecklistSections.apartment.number][ChecklistItem.distinguishElements.titles]
         realm.safeWrite {
             realm.add(checklistApartment)
         }

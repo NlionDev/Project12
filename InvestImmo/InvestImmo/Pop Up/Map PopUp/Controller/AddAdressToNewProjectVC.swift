@@ -28,14 +28,14 @@ class AddAdressToNewProjectVC: UIViewController {
         guard let name = projectNameTextField.text else {return}
         if isMyProjectNameUnique(name: name, projects: projectRepository.myProjects) {
             save(name: name)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DismissFirstAlert"), object: nil)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ConfigureMapView"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFisrtAlert.name), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.configureMapView.name), object: nil)
             dismiss(animated: true)
         } else if projectNameTextField.text == nil {
-            let alert = self.errorAlert.alert(message: "Vous n'avez pas entré de nom pour ce projet.")
+            let alert = self.errorAlert.alert(message: PopUpAlertMessage.projectNameMissing.message)
             present(alert, animated: true)
         } else {
-            let alert = errorAlert.alert(message: "Un projet existant porte déjà ce nom.")
+            let alert = errorAlert.alert(message: PopUpAlertMessage.projectAlreadyExist.message)
             present(alert, animated: true)
         }
     }

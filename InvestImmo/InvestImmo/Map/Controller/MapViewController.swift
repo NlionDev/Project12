@@ -66,9 +66,9 @@ class MapViewController: UIViewController {
     }
     
     @IBAction private func didTapOnAddAdressButton(_ sender: Any) {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.configureMapViewAnnotations), name: NSNotification.Name(rawValue: "ConfigureMapView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.configureMapViewAnnotations), name: NSNotification.Name(rawValue: mapNotificationName), object: nil)
         if searchedAdress == "" {
-            let alert = errorAlert.alert(message: "Vous devez d'abord rechercher une adresse avant de pouvoir l'ajouter.")
+            let alert = errorAlert.alert(message: MapAlert.adressMissing.message)
             present(alert, animated: true)
         } else {
             if projectRepository.myProjects.count == 0 {
@@ -106,7 +106,7 @@ class MapViewController: UIViewController {
     private func getAuthorizationAndDisplayUserLocation() {
         switch CLLocationManager.authorizationStatus() {
         case .denied, .restricted:
-            let alert = errorAlert.alert(message: "Invest'Immo ne pourra pas mettre à jour votre position sur la carte sans avoir accès à votre localisation.")
+            let alert = errorAlert.alert(message: MapAlert.Unauthorize.message)
             present(alert, animated: true)
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -143,14 +143,14 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? ProjectMapAnnotation else {return nil}
-        let identifier = "pma"
+        let identifier = projectMapAnnotationIdentifier
         var  annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
         let adress = UILabel()
         adress.text = annotation.info
-        adress.font = UIFont(name: "Poetsen One", size: 13)
+        adress.font = UIFont(name: poetsenOneFont, size: adressFontSize)
         adress.numberOfLines = 0
         annotationView?.annotation = annotation
         annotationView?.image = #imageLiteral(resourceName: "bigRedHouse")
@@ -167,7 +167,7 @@ extension MapViewController: SearchAdressPopUpVCDelegate {
         geoCoder.geocodeAddressString(adress) { (placemarks, error) in
             guard let placemark = placemarks?.first else {return}
             if error != nil {
-                let alert = self.errorAlert.alert(message: "L'adresse entrée est incorrect et ne peut pas être trouvée.")
+                let alert = self.errorAlert.alert(message: MapAlert.incorrectAdress.message)
                 self.present(alert, animated: true)
             } else {
                 if let coordinate = placemark.location?.coordinate {

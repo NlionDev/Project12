@@ -29,7 +29,7 @@ class AddAdressToExistantProjectVC: UIViewController {
             let latitude = self.latitude,
             let longitude = self.longitude else {return}
         let alert = self.newProjectPopUp.alert(adress: adress, latitude: latitude, longitude: longitude)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: "DismissFirstAlert"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: PopUpNotification.dismissFisrtAlert.name), object: nil)
         self.present(alert, animated: true)
     }
     
@@ -68,7 +68,7 @@ extension AddAdressToExistantProjectVC: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExistantProjectAlertCell", for: indexPath) as? ExistantProjectAlertTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: existantProjectCellIdentifier, for: indexPath) as? ExistantProjectAlertTableViewCell else {
             return UITableViewCell()
         }
         if let projectName = projectRepository.myProjects[indexPath.row].name {
@@ -85,13 +85,13 @@ extension AddAdressToExistantProjectVC: UITableViewDataSource, UITableViewDelega
         let latitude = latitude,
         let longitude = longitude else {return}
         if checkIfTheProjectAlreadyHaveSavedAdress(project: project) {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: "DismissAlertFromReplaceVC"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: PopUpNotification.dismissFromReplace.name), object: nil)
             let alert = replaceProjectAdressPopUp.alert(project: project, adress: adress, latitude: latitude, longitude: longitude)
             present(alert, animated: true)
         } else {
             mapRepository.saveMapAdressInExistantProject(name: name, adress: adress, latitude: latitude, longitude: longitude)
             dismiss(animated: true)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ConfigureMapView"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.configureMapView.name), object: nil)
         }
     }
 }

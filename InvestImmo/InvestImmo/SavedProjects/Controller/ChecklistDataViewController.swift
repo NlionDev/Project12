@@ -48,10 +48,10 @@ class ChecklistDataViewController: UIViewController {
 
 //MARK: - Methods
     private func nibRegister() {
-        let nibNamForTextViewCell = UINib(nibName: "SavedTextViewTableViewCell", bundle: nil)
-        checklistTableView.register(nibNamForTextViewCell, forCellReuseIdentifier: "SavedTextViewCell")
-        let nibNameForDetailsSimulationCell = UINib(nibName: "DetailsSimulationTableViewCell", bundle: nil)
-        checklistTableView.register(nibNameForDetailsSimulationCell, forCellReuseIdentifier: "DetailsSimulationCell")
+        let nibNamForTextViewCell = UINib(nibName: SavedProjectsCell.textView.name, bundle: nil)
+        checklistTableView.register(nibNamForTextViewCell, forCellReuseIdentifier: SavedProjectsCell.textView.reuseIdentifier)
+        let nibNameForDetailsSimulationCell = UINib(nibName: SavedProjectsCell.simulation.name, bundle: nil)
+        checklistTableView.register(nibNameForDetailsSimulationCell, forCellReuseIdentifier: SavedProjectsCell.simulation.reuseIdentifier)
     }
     
     private func configurePage() {
@@ -66,8 +66,8 @@ class ChecklistDataViewController: UIViewController {
     
     private func setupTableViewHeader() -> UILabel {
         let sectionTitle = UILabel()
-        sectionTitle.backgroundColor = UIColor(red: 91/255.0, green: 102/255.0, blue: 248/255.0, alpha: 1.0)
-        sectionTitle.font = UIFont(name: "AntipastoPro", size: 50)
+        sectionTitle.backgroundColor = UIColor(red: Purple.red.colorValue, green: Purple.green.colorValue, blue: Purple.blue.colorValue, alpha: Purple.alpha.colorValue)
+        sectionTitle.font = UIFont(name: antipastoFont, size: sectionTitleFontSize)
         sectionTitle.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         sectionTitle.textAlignment = .center
         return sectionTitle
@@ -92,11 +92,11 @@ class ChecklistDataViewController: UIViewController {
         var cell = UITableViewCell()
         switch item.cellType {
         case .textView:
-            guard let cellTextView = tableView.dequeueReusableCell(withIdentifier: "SavedTextViewCell", for: indexPath) as? SavedTextViewTableViewCell else {return UITableViewCell()}
+            guard let cellTextView = tableView.dequeueReusableCell(withIdentifier: SavedProjectsCell.textView.reuseIdentifier, for: indexPath) as? SavedTextViewTableViewCell else {return UITableViewCell()}
             cellTextView.configure(title: titles[indexPath.section][indexPath.row], result: results[indexPath.section][indexPath.row])
             cell = cellTextView
         default:
-            guard let defaultCell = tableView.dequeueReusableCell(withIdentifier: "DetailsSimulationCell", for: indexPath) as? DetailsSimulationTableViewCell else {return UITableViewCell()}
+            guard let defaultCell = tableView.dequeueReusableCell(withIdentifier: SavedProjectsCell.simulation.reuseIdentifier, for: indexPath) as? DetailsSimulationTableViewCell else {return UITableViewCell()}
             defaultCell.configure(title: titles[indexPath.section][indexPath.row], result: results[indexPath.section][indexPath.row])
             cell = defaultCell
         }
@@ -126,19 +126,19 @@ extension ChecklistDataViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let title = setupTableViewHeader()
         if section == 0 {
-            title.text = "Général"
+            title.text = ChecklistSections.general.title
         } else if section == 1 {
-            title.text = "Quartier"
+            title.text = ChecklistSections.district.title
         } else if section == 2 {
-            title.text = "Immeuble"
+            title.text = ChecklistSections.apartmentBlock.title
         } else if section == 3 {
-            title.text = "Appartement"
+            title.text = ChecklistSections.apartment.title
         }
         return title
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return sectionHeaderHeight
     }
     
 }

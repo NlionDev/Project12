@@ -30,7 +30,7 @@ class ReplaceProjectChecklistViewController: UIViewController {
         checklistRepository.saveChecklistApartmentBlock(name: projectName, checklistRepo: checklistRepository)
         checklistRepository.saveChecklistApartment(name: projectName, checklistRepo: checklistRepository)
         dismiss(animated: true)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DismissAlertFromReplaceVC"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFromReplace.name), object: nil)
     }
     
     @IBAction func didTapOnCancelButton(_ sender: Any) {

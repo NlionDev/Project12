@@ -24,7 +24,7 @@ class ReplaceCreditViewController: UIViewController {
         creditRepository.deleteCreditSimulation(creditToDelete: creditToDelete)
         creditRepository.addCreditSimulationToExistantProject(project: project, creditRepo: creditRepository)
          dismiss(animated: true)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DismissAlertFromReplaceVC"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFromReplace.name), object: nil)
     }
     
     @IBAction private func didTapOnCancelButton(_ sender: Any) {

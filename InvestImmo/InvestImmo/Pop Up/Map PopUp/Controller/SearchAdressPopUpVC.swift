@@ -32,19 +32,19 @@ class SearchAdressPopUpVC: UIViewController {
     
     @IBAction private func didTapOnSearchAdress(_ sender: Any) {
         if adressTextField.text == nil {
-            let alert = errorAlert.alert(message: "Vous n'avez pas rempli le champ 'Adresse'.")
+            let alert = errorAlert.alert(message: PopUpAlertMessage.adressMissing.message)
             present(alert, animated: true)
         } else if postalCodeTextField.text == nil {
-            let alert = errorAlert.alert(message: "Vous n'avez pas rempli le champ 'Code postal'.")
+            let alert = errorAlert.alert(message: PopUpAlertMessage.postalCodeMissing.message)
             present(alert, animated: true)
         } else if cityTextField.text == nil {
-            let alert = errorAlert.alert(message: "Vous n'avez pas rempli le champ 'Ville'.")
+            let alert = errorAlert.alert(message: PopUpAlertMessage.cityMissing.message)
             present(alert, animated: true)
         } else {
             if let adressText = adressTextField.text,
                 let postalCodeText = postalCodeTextField.text,
                 let cityText = cityTextField.text {
-                 let adress = adressText + ", " + postalCodeText + ", " + cityText
+                 let adress = adressText + commaString + postalCodeText + commaString + cityText
                 delegate?.searchAdressPopUpVC(self, adress: adress)
                 dismiss(animated: true)
             }

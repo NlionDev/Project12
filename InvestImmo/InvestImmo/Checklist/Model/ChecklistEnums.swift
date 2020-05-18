@@ -6,7 +6,6 @@
 //  Copyright © 2020 Nicolas Lion. All rights reserved.
 //
 
-import Foundation
 
 enum ChecklistCellType {
     case datePicker
@@ -14,6 +13,36 @@ enum ChecklistCellType {
     case textField
     case segment
     case pickerView
+    
+    var name: String {
+        switch self {
+        case .datePicker:
+            return "DatePickerTableViewCell"
+        case .textView:
+            return "TextViewTableViewCell"
+        case .textField:
+            return "ChecklistTextFieldTableViewCell"
+        case .segment:
+            return "SegmentTableViewCell"
+        case .pickerView:
+            return "ChecklistPickerTableViewCell"
+        }
+    }
+    
+    var reuseIdentifier: String {
+        switch self {
+        case .datePicker:
+            return "DatePickerCell"
+        case .textView:
+            return "TextViewCell"
+        case .textField:
+            return "ChecklistTextFieldCell"
+        case .segment:
+            return "SegmentCell"
+        case .pickerView:
+            return "ChecklistPickerCell"
+        }
+    }
 }
 
 enum ChecklistItem {
@@ -177,3 +206,37 @@ enum ChecklistItem {
 }
 
 typealias ChecklistSection = [[ChecklistItem]]
+
+enum ChecklistSections {
+    case general
+    case district
+    case apartmentBlock
+    case apartment
+    
+    var title: String {
+        switch self {
+        case .general:
+            return "Général"
+        case .district:
+            return "Quartier"
+        case .apartmentBlock:
+            return "Immeuble"
+        case .apartment:
+            return "Appartement"
+        }
+    }
+    
+    var number: Int {
+        switch self {
+        case .general:
+            return 0
+        case .district:
+            return 1
+        case .apartmentBlock:
+            return 2
+        case .apartment:
+            return 3
+        }
+    }
+}
+

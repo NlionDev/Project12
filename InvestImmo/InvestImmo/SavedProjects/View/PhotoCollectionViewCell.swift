@@ -11,13 +11,17 @@ import UIKit
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Outlets
-    @IBOutlet weak private var photoImageView: UIImageView!
+    @IBOutlet weak var photoImageView: UIImageView!
+    
+    //MARK: - Lifecycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        photoImageView.clipsToBounds = true
+        photoImageView.contentMode = .scaleAspectFill
+    }
     
     //MARK: - Methods
     func configure(photo: UIImage) {
-        photoImageView.contentMode = .scaleAspectFill
         photoImageView.image = photo
-        photoImageView.frame = self.bounds
-        photoImageView.backgroundColor = .red
     }
 }

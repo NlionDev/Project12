@@ -65,7 +65,7 @@ extension AddRentabilityToExistantProjectPopUpVC: UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExistantProjectAlertCell", for: indexPath) as? ExistantProjectAlertTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: existantProjectCellIdentifier, for: indexPath) as? ExistantProjectAlertTableViewCell else {
             
             return UITableViewCell()
         }
@@ -80,7 +80,7 @@ extension AddRentabilityToExistantProjectPopUpVC: UITableViewDataSource, UITable
         guard let project = selectedProject,
             let rentaRepo = rentabilityRepository else {return}
         if checkIfTheProjectAlreadyHaveSavedRentabilitySimulation(project: project) {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: "DismissAlertFromReplaceVC"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.hideAlertController), name: NSNotification.Name(rawValue: PopUpNotification.dismissFromReplace.name), object: nil)
             let alert = replaceRentabilityPopUp.alert(project: project, rentability: rentaRepo)
             present(alert, animated: true)
         } else {

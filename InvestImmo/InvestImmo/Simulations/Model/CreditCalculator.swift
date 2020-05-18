@@ -39,16 +39,16 @@ class CreditCalculator {
     //MARK: - Private Methods
     private func getPowerResult() throws -> Double {
         var result = Double()
-        if let rate = creditData["Taux"],
-            let creditDuration = creditData["Durée"] {
-            if rate == "" {
+        if let rate = creditData[CreditItem.rate.titles],
+            let creditDuration = creditData[CreditItem.duration.titles] {
+            if rate == emptyString {
                 throw CreditCalculatorError.rateMissing
             } else {
                 let doubleRate = rate.transformInDouble
                 let duration = creditDuration.transformInDouble
-                let rate = doubleRate / 100
-                let number = 1 + ( rate / 12 )
-                let exponent = (12 * duration)
+                let rate = doubleRate / hundred
+                let number = one + ( rate / numberOfMonths )
+                let exponent = (numberOfMonths * duration)
                 result = pow(number, -exponent)
             }
         }
@@ -62,13 +62,13 @@ class CreditCalculator {
             throw error
         }
         var mensuality = Double()
-        if let amountToFinance = creditData["Montant à financer"],
-            let rate = creditData["Taux"] {
+        if let amountToFinance = creditData[CreditItem.amountToFinance.titles],
+            let rate = creditData[CreditItem.rate.titles] {
             let doubleAmountToFinance = amountToFinance.transformInDouble
             let doubleRate = rate.transformInDouble
-            let rate = doubleRate / 100
-            let calcul1 = doubleAmountToFinance * (rate / 12)
-            let calcul2 = 1 - powerResult
+            let rate = doubleRate / hundred
+            let calcul1 = doubleAmountToFinance * (rate / numberOfMonths)
+            let calcul2 = one - powerResult
             mensuality = calcul1 / calcul2
         }
         return mensuality
@@ -82,16 +82,16 @@ class CreditCalculator {
             throw error
         }
         var mensuality = Double()
-        if let amountToFinance = creditData["Montant à financer"],
-            let rate = creditData["Taux"],
-            let creditDuration = creditData["Durée"] {
+        if let amountToFinance = creditData[CreditItem.amountToFinance.titles],
+            let rate = creditData[CreditItem.rate.titles],
+            let creditDuration = creditData[CreditItem.duration.titles] {
             let doubleAmountToFinance = amountToFinance.transformInDouble
             let doubleRate = rate.transformInDouble
             let duration = creditDuration.transformInDouble
-            let mensualInsuranceCost = insuranceCost / (12 * duration)
-            let rate = doubleRate / 100
-            let calcul1 = doubleAmountToFinance * (rate / 12)
-            let calcul2 = 1 - powerResult
+            let mensualInsuranceCost = insuranceCost / (numberOfMonths * duration)
+            let rate = doubleRate / hundred
+            let calcul1 = doubleAmountToFinance * (rate / numberOfMonths)
+            let calcul2 = one - powerResult
             let mensualityWithoutInsurance = calcul1 / calcul2
             mensuality = mensualityWithoutInsurance + mensualInsuranceCost
         }
@@ -105,30 +105,30 @@ class CreditCalculator {
             throw error
         }
         var interestCost = Double()
-        if let amountToFinance = creditData["Montant à financer"],
-            let creditDuration = creditData["Durée"] {
+        if let amountToFinance = creditData[CreditItem.amountToFinance.titles],
+            let creditDuration = creditData[CreditItem.duration.titles] {
             let doubleAmountToFinance = amountToFinance.transformInDouble
             let duration = creditDuration.transformInDouble
-            interestCost = 12 * duration * mensualityWithoutInsurance - doubleAmountToFinance
+            interestCost = numberOfMonths * duration * mensualityWithoutInsurance - doubleAmountToFinance
         }
         return interestCost
     }
     
     private func getInsuranceCost() throws -> Double {
         var insuranceCost = Double()
-        if let insuranceRate = creditData["Taux assurance"],
-            let amountToFinance = creditData["Montant à financer"],
-            let creditDuration = creditData["Durée"] {
-            if amountToFinance == "" {
+        if let insuranceRate = creditData[CreditItem.insuranceRate.titles],
+            let amountToFinance = creditData[CreditItem.amountToFinance.titles],
+            let creditDuration = creditData[CreditItem.duration.titles] {
+            if amountToFinance == emptyString {
                 throw CreditCalculatorError.amountToFinanceMissing
             } else {
-                if insuranceRate == "" {
-                    insuranceCost = 0.00
+                if insuranceRate == emptyString {
+                    insuranceCost = zero
                 } else {
                     let doubleAmountToFinance = amountToFinance.transformInDouble
                     let doubleInsuranceRate = insuranceRate.transformInDouble
                     let duration = creditDuration.transformInDouble
-                    let calculInsuranceRate = doubleInsuranceRate / 100
+                    let calculInsuranceRate = doubleInsuranceRate / hundred
                     insuranceCost = doubleAmountToFinance * calculInsuranceRate * duration
                 }
             }
@@ -145,8 +145,8 @@ class CreditCalculator {
             throw error
         }
         var finalMensuality = String()
-        if let insuranceRate = creditData["Taux assurance"] {
-            if insuranceRate == "" {
+        if let insuranceRate = creditData[CreditItem.insuranceRate.titles] {
+            if insuranceRate == emptyString {
                 let stringMensuality = mensualityWithoutInsurance.formatIntoStringWithTwoNumbersAfterPoint
                 let doubleMensuality = stringMensuality.transformInDouble
                 finalMensuality = doubleMensuality.clean
@@ -192,11 +192,11 @@ class CreditCalculator {
         }
         var totalCost = Double()
         var finalTotalCost = String()
-        if let bookingFees = creditData["Frais de dossier"],
-            let amountToFinance = creditData["Montant à financer"] {
-            if bookingFees == "" {
+        if let bookingFees = creditData[CreditItem.bookingFees.titles],
+            let amountToFinance = creditData[CreditItem.amountToFinance.titles] {
+            if bookingFees == emptyString {
                 let amount = amountToFinance.transformInDouble
-                totalCost = amount + insuranceCost + interestCost + 0.00
+                totalCost = amount + insuranceCost + interestCost + zero
             } else {
                 let amount = amountToFinance.transformInDouble
                 let doubleBookingFees = bookingFees.transformInDouble
