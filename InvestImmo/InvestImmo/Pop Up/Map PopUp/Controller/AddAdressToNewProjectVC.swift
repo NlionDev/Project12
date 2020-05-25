@@ -26,7 +26,7 @@ class AddAdressToNewProjectVC: UIViewController {
     //MARK: - Actions
     @IBAction private func didTapOnCreatNewProjectButton(_ sender: Any) {
         guard let name = projectNameTextField.text else {return}
-        if isMyProjectNameUnique(name: name, projects: projectRepository.myProjects) {
+        if projectRepository.isMyProjectNameUnique(name: name) {
             save(name: name)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFisrtAlert.name), object: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.configureMapView.name), object: nil)

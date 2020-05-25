@@ -181,9 +181,9 @@ enum ChecklistItem {
     var unit: String {
         switch self {
         case .surfaceArea, .caveSurface:
-            return "m2"
+            return " m2"
         case .heightUnderCeiling:
-            return "cm"
+            return " cm"
         default:
             return ""
         }

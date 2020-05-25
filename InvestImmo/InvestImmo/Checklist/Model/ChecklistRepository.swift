@@ -210,7 +210,7 @@ class ChecklistRepository {
             let surfaceArea = checklist.surfaceArea {
             results.append(visitDate)
             results.append(estateType)
-            results.append(surfaceArea)
+            results.append(surfaceArea + ChecklistItem.surfaceArea.unit)
         }
         return results
     }
@@ -284,7 +284,7 @@ class ChecklistRepository {
             results.append(dualAspect)
             results.append(vmc)
             results.append(humidity)
-            results.append(height)
+            results.append(height + ChecklistItem.heightUnderCeiling.unit)
             results.append(planeness)
             results.append(insulation)
             results.append(sound)
@@ -304,7 +304,7 @@ class ChecklistRepository {
             results.append(glazing)
             results.append(reconfiguration)
             results.append(cave)
-            results.append(caveSurface)
+            results.append(caveSurface + ChecklistItem.caveSurface.unit)
             results.append(parking)
             results.append(elements)
         }

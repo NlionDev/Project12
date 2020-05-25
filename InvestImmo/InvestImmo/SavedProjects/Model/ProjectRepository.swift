@@ -27,5 +27,17 @@ class ProjectRepository {
         }
     }
     
+    func isMyProjectNameUnique(name: String) -> Bool {
+        var result = Bool()
+        if let realm = realm {
+            let sameProject = realm.objects(Project.self).filter("name = '\(name)'")
+            if sameProject.count == 0 {
+                result = true
+            } else {
+                result = false
+            }
+        }
+        return result
+    }
     
 }

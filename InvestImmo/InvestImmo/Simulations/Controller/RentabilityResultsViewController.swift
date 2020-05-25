@@ -47,7 +47,11 @@ class RentabilityResultsViewController: UIViewController {
 extension RentabilityResultsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return resultCellRowInSection
+        var numberOfTitles = Int()
+        if let rentabilityRepository = rentabilityRepository {
+            numberOfTitles = rentabilityRepository.resultTitles.count
+        }
+        return numberOfTitles
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -17,15 +17,15 @@ class RentabilityRepository {
     private var simulation = RentabilitySimulation()
     lazy var mySavedRentabilitySimulations: Results<RentabilitySimulation> = {
         self.realm?.objects(RentabilitySimulation.self)}()!
-    let allTitles = ["Prix du bien", "Coût des travaux", "Frais de notaire", "Loyer mensuel", "Taxe foncière", "Frais d'entretien", "Charges de copropriété", "Frais de gérance", "Assurance loyers impayés", "Coût du crédit", "Rendement Brut", "Rendement Net", "Cash-Flow Annuel", "Cash-Flow Mensuel"]
-    let resultTitles = ["Rendement Brut", "Rendement Net", "Cash-Flow Annuel", "Cash-Flow Mensuel"]
+    let allTitles = [RentabilityItem.estatePrice.titles, RentabilityItem.worksCost.titles, RentabilityItem.notaryFees.titles, RentabilityItem.monthlyRent.titles, RentabilityItem.propertyTax.titles, RentabilityItem.maintenanceFees.titles, RentabilityItem.charges.titles, RentabilityItem.managementFees.titles, RentabilityItem.insurance.titles, RentabilityItem.creditCost.titles, RentabilityResultItem.grossYield.titles, RentabilityResultItem.netYield.titles, RentabilityResultItem.annualCashflow.titles, RentabilityResultItem.mensualCashflow.titles]
+    let resultTitles = [RentabilityResultItem.grossYield.titles, RentabilityResultItem.netYield.titles, RentabilityResultItem.annualCashflow.titles, RentabilityResultItem.mensualCashflow.titles]
     let cells: RentabilityCells = [RentabilityItem.estatePrice, RentabilityItem.worksCost, RentabilityItem.notaryFees, RentabilityItem.monthlyRent, RentabilityItem.propertyTax, RentabilityItem.maintenanceFees, RentabilityItem.charges, RentabilityItem.managementFees, RentabilityItem.insurance, RentabilityItem.creditCost]
     var rentaTextFieldWithoutSubtitleCells = [TextFieldWithoutSubtitleTableViewCell]()
     var rentaTextFieldWithSubtitleCells = [TextFieldWithSubtitleTableViewCell]()
     var results = [String]()
     var resultsForPositiveCheck = [String]()
-    var rentabilityData = ["Prix du bien": "", "Coût des travaux": "", "Frais de notaire": "", "Loyer mensuel": "", "Taxe foncière": "", "Frais d'entretien": "", "Charges de copropriété": "", "Frais de gérance": "", "Assurance loyers impayés": "", "Coût du crédit": ""]
-    var rentabilityResultData = ["Rendement Brut": "", "Rendement Net": "", "Cash-Flow Annuel": "", "Cash-Flow Mensuel": ""]
+    var rentabilityData = [RentabilityItem.estatePrice.titles: emptyString, RentabilityItem.worksCost.titles: emptyString, RentabilityItem.notaryFees.titles: emptyString, RentabilityItem.monthlyRent.titles: emptyString, RentabilityItem.propertyTax.titles: emptyString, RentabilityItem.maintenanceFees.titles: emptyString, RentabilityItem.charges.titles: emptyString, RentabilityItem.managementFees.titles: emptyString, RentabilityItem.insurance.titles: emptyString, RentabilityItem.creditCost.titles: emptyString]
+    var rentabilityResultData = [RentabilityResultItem.grossYield.titles: emptyString, RentabilityResultItem.netYield.titles: emptyString, RentabilityResultItem.annualCashflow.titles: emptyString, RentabilityResultItem.mensualCashflow.titles: emptyString]
     
     //MARK: - Methods
     func saveNewRentabilitySimulation(name: String, project: Project, rentaRepo: RentabilityRepository) {
@@ -41,10 +41,10 @@ class RentabilityRepository {
         simulation.managementFees = rentaRepo.rentabilityData[RentabilityItem.managementFees.titles]
         simulation.insurance = rentaRepo.rentabilityData[RentabilityItem.insurance.titles]
         simulation.creditCost = rentaRepo.rentabilityData[RentabilityItem.creditCost.titles]
-        simulation.grossYield = rentaRepo.results[0]
-        simulation.netYield = rentaRepo.results[1]
-        simulation.annualCashflow = rentaRepo.results[2]
-        simulation.mensualCashflow = rentaRepo.results[3]
+        simulation.grossYield = rentaRepo.results[RentabilityResultItem.grossYield.index]
+        simulation.netYield = rentaRepo.results[RentabilityResultItem.netYield.index]
+        simulation.annualCashflow = rentaRepo.results[RentabilityResultItem.annualCashflow.index]
+        simulation.mensualCashflow = rentaRepo.results[RentabilityResultItem.mensualCashflow.index]
         guard let realm = realm else {return}
         realm.safeWrite {
             realm.add(project)
@@ -64,10 +64,10 @@ class RentabilityRepository {
         simulation.managementFees = rentaRepo.rentabilityData[RentabilityItem.managementFees.titles]
         simulation.insurance = rentaRepo.rentabilityData[RentabilityItem.insurance.titles]
         simulation.creditCost = rentaRepo.rentabilityData[RentabilityItem.creditCost.titles]
-        simulation.grossYield = rentaRepo.results[0]
-        simulation.netYield = rentaRepo.results[1]
-        simulation.annualCashflow = rentaRepo.results[2]
-        simulation.mensualCashflow = rentaRepo.results[3]
+        simulation.grossYield = rentaRepo.results[RentabilityResultItem.grossYield.index]
+        simulation.netYield = rentaRepo.results[RentabilityResultItem.netYield.index]
+        simulation.annualCashflow = rentaRepo.results[RentabilityResultItem.annualCashflow.index]
+        simulation.mensualCashflow = rentaRepo.results[RentabilityResultItem.mensualCashflow.index]
         guard let realm = realm else {return}
         realm.safeWrite {
             realm.add(simulation)

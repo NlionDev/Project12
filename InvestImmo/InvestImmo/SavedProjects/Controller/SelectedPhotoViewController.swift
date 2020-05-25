@@ -12,14 +12,14 @@ class SelectedPhotoViewController: UIViewController {
 
     //MARK: - Properties
     private var itemSpacing: CGFloat = 0
-    private var isMenuBarDisplayed = true
+    private var isMenuBarDisplayed = false
     private var onceOnly = false
     private var currentIndex = Int()
     private let photoRepository = PhotoRepository()
     var project: Project?
     var photos: [Int: UIImage]?
     var initialIndexPath: IndexPath?
-    var identifiers: [String]?
+    var identifiers: [Int: String]?
     
     //MARK: - Outlets
     
@@ -31,7 +31,7 @@ class SelectedPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nibRegister()
-        
+        setupMenuBar()
     }
     
     //MARK: - Actions
@@ -42,9 +42,10 @@ class SelectedPhotoViewController: UIViewController {
     
     @IBAction func didTapOnDeleteButton(_ sender: Any) {
         guard let identifiers = identifiers,
+            let identifier = identifiers[currentIndex],
             let project = project,
             let name = project.name else {return}
-        photoRepository.deletePhotoWithIdentifier(identifier: identifiers[currentIndex], name: name)
+        photoRepository.deletePhotoWithIdentifier(identifier: identifier, name: name)
         selectedPhotoCollectionView.reloadData()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: SavedProjectsNotification.photoCollectionView.name), object: nil)
         dismiss(animated: true)
@@ -85,7 +86,6 @@ extension SelectedPhotoViewController: UICollectionViewDelegate, UICollectionVie
                 cell.configure(photo: photo)
             }
             cell.photoImageView.contentMode = .scaleAspectFit
-            currentIndex = indexPath.row
         }
         return cell
     }
@@ -114,6 +114,7 @@ extension SelectedPhotoViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         isMenuBarDisplayed.toggle()
         setupMenuBar()
+        currentIndex = indexPath.row
     }
     
 }

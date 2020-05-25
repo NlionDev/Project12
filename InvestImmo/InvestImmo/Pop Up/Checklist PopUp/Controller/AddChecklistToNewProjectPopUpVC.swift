@@ -28,7 +28,7 @@ class AddChecklistToNewProjectPopUpVC: UIViewController {
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let name = projectNameLabel.text,
             let checklistRepo = checklistRepository else {return}
-        if isMyProjectNameUnique(name: name, projects: projectRepository.myProjects) {
+        if projectRepository.isMyProjectNameUnique(name: name) {
             checklistRepo.saveNewChecklistGeneral(name: name, project: project, checklistRepo: checklistRepo)
             checklistRepo.saveChecklistDistrict(name: name, checklistRepo: checklistRepo)
             checklistRepo.saveChecklistApartmentBlock(name: name, checklistRepo: checklistRepo)
@@ -36,7 +36,7 @@ class AddChecklistToNewProjectPopUpVC: UIViewController {
             dismiss(animated: true)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFromPrevious.name), object: nil)
         } else {
-            let alert = errorAlert.alert(message: popUpProjectAlreadyExistMessage)
+            let alert = errorAlert.alert(message: PopUpAlertMessage.projectAlreadyExist.message)
             present(alert, animated: true)
         }
     }

@@ -40,4 +40,22 @@ class ProjectRepositoryTests: XCTestCase {
         XCTAssertEqual(project.count, 1)
         XCTAssertEqual(projectRepository.myProjects[0].name, "New Project")
     }
+    
+    //Check if project is unique and return false
+    func testGivenExistantProject_WhenICheckIfNewProjectNameIsUnique_ThenReturnFalse() {
+        projectRepository.saveEmptyNewProject(name: "New Project")
+        
+        let result = projectRepository.isMyProjectNameUnique(name: "New Project")
+        
+        XCTAssertEqual(result, false)
+    }
+    
+    //Check if project is unique and return false
+    func testGivenExistantProject_WhenICheckIfNewProjectNameIsUnique_ThenReturnTrue() {
+        projectRepository.saveEmptyNewProject(name: "Project")
+        
+        let result = projectRepository.isMyProjectNameUnique(name: "New Project")
+        
+        XCTAssertEqual(result, true)
+    }
 }

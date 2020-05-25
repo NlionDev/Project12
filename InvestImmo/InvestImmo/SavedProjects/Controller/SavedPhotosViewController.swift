@@ -15,8 +15,9 @@ class SavedPhotosViewController: UIViewController {
     //MARK: - Properties
     private let itemSpacing: CGFloat = 1
     private var identifiers = [String]()
-    private var miniPhotos = [UIImage]()
-    private var fullSizePhotos = [Int: UIImage]()
+    private var degradedPhotos = [Int: UIImage]()
+    private var photosDictionary = [Int: UIImage]()
+    private var identifiersDictionary = [Int: String]()
     private let photoRepository = PhotoRepository()
     private var selectedPhotoIndexPath = IndexPath()
     private let optionKey = "creationDate"
@@ -44,13 +45,12 @@ class SavedPhotosViewController: UIViewController {
         if segue.identifier == SavedProjectsSegue.photos.identifier {
             guard let destination = segue.destination as? SelectedPhotoViewController else {return}
             destination.project = selectedProject
-            destination.photos = fullSizePhotos
+            destination.photos = photosDictionary
             destination.initialIndexPath = selectedPhotoIndexPath
-            destination.identifiers = identifiers
+            destination.identifiers = identifiersDictionary
         }
     }
     
-
     //MARK: - Actions
     @objc private func updateChange() {
         getIdentifiers()
@@ -83,29 +83,31 @@ class SavedPhotosViewController: UIViewController {
             noDataLabel.isHidden = false
             activityIndicator.isHidden = true
         }
+        
     }
     
     private func getImages() {
-        miniPhotos.removeAll()
-        fullSizePhotos.removeAll()
+        degradedPhotos.removeAll()
+        photosDictionary.removeAll()
+        var key = 0
         galleryCollectionView.isHidden = true
-        activityIndicator.isHidden = false
+        
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: optionKey, ascending: true)]
         let results: PHFetchResult = PHAsset.fetchAssets(withLocalIdentifiers: self.identifiers, options: options)
         let manager = PHImageManager.default()
         results.enumerateObjects { (thisAsset, index, _) in
-            print("l'index est \(index) dans enumerateObjects")
+            self.activityIndicator.isHidden = false
             manager.requestImage(for: thisAsset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: .none, resultHandler: {(thisImage, info)  in
                 let isDegraded = (info?[PHImageResultIsDegradedKey] as? Bool) ?? false
                 guard let image = thisImage else {return}
                 if isDegraded {
-                    print("l'index est \(index) dans miniPhoto")
-                    self.miniPhotos.insert(image, at: index)
+                    self.degradedPhotos[index] = image
                 } else {
-                    print("l'index est \(index) dans fullsizephotos")
-                    self.fullSizePhotos[index] = image
-                    if self.fullSizePhotos.count == self.miniPhotos.count {
+                    self.photosDictionary[key] = image
+                    self.identifiersDictionary[key] = thisAsset.localIdentifier
+                    key += 1
+                    if self.photosDictionary.count == self.degradedPhotos.count {
                         self.activityIndicator.isHidden = true
                         self.galleryCollectionView.isHidden = false
                         self.galleryCollectionView.reloadData()
@@ -121,13 +123,13 @@ class SavedPhotosViewController: UIViewController {
 extension SavedPhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fullSizePhotos.count
+        return photosDictionary.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SavedProjectsCell.photo.reuseIdentifier,for: indexPath) as? PhotoCollectionViewCell else {return UICollectionViewCell()}
-        if fullSizePhotos.count != 0 {
-            if let photo = fullSizePhotos[indexPath.row] {
+        if photosDictionary.count != 0 {
+            if let photo = photosDictionary[indexPath.row] {
             cell.configure(photo: photo)
             }
         }

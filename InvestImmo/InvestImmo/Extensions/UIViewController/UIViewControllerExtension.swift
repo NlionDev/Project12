@@ -29,19 +29,6 @@ extension UIViewController {
         self.navigationItem.rightBarButtonItem = button
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
-
-    
-    func isMyProjectNameUnique(name: String, projects: Results<Project>) -> Bool {
-        var result = true
-        for project in projects {
-            if name == project.name {
-                result = false
-            } else {
-                result = true
-            }
-        }
-        return result
-    }
     
     func addKeyboardObservers(method: Selector) {
         NotificationCenter.default.addObserver(self, selector: method, name: UIResponder.keyboardWillShowNotification, object: nil)

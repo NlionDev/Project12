@@ -9,6 +9,7 @@
 //MARK: - Properties
 let savedProjectsStoryboardIdentifier = "SavedProjectsDataStoryboard"
 let unauthorizeToPickPhotoMessageAlert = "Invest'Immo a besoin d'avoir accès à votre bibliothèque photo. Sans ça vous ne pourrez pas choisir des photos de votre bibliothèque. S'il vous plait allez dans vos réglages et autorisez l'accès."
+let duplicatePhotoAlertMessage = "Cette photo a déjà été ajoutée à la gallerie de ce projet."
 
 //MARK: - Enums
 enum SavedProjectsSegue {

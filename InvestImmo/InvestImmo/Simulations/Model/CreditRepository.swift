@@ -21,10 +21,10 @@ class CreditRepository {
     var creditTextFieldCells = [TextFieldWithoutSubtitleTableViewCell]()
     var creditStepperCells = [StepperTableViewCell]()
     let creditDuration = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
-    let allTitles = ["Montant à financer", "Durée", "Taux", "Taux assurance", "Frais de dossier", "Mensualités", "Coût intérêts", "Coût assurance", "Coût total"]
-    let resultTitles = ["Mensualités", "Coût intérêts", "Coût assurance", "Coût total"]
+    let allTitles = [CreditItem.amountToFinance.titles, CreditItem.duration.titles, CreditItem.rate.titles, CreditItem.insuranceRate.titles, CreditItem.bookingFees.titles, CreditResultItem.mensuality.titles, CreditResultItem.interestCost.titles, CreditResultItem.insuranceCost.titles, CreditResultItem.totalCost.titles]
+    let resultTitles = [CreditResultItem.mensuality.titles, CreditResultItem.interestCost.titles, CreditResultItem.insuranceCost.titles, CreditResultItem.totalCost.titles]
     var results = [String]()
-    var creditData = ["Montant à financer": "", "Durée": "", "Taux": "", "Taux assurance": "", "Frais de dossier": ""]
+    var creditData = [CreditItem.amountToFinance.titles: emptyString, CreditItem.duration.titles: emptyString, CreditItem.rate.titles: emptyString, CreditItem.insuranceRate.titles: emptyString, CreditItem.bookingFees.titles: emptyString]
     
     //MARK: - Methods
     func saveNewCreditSimulation(name: String, project: Project, creditRepo: CreditRepository) {
@@ -36,10 +36,10 @@ class CreditRepository {
         simulation.rate = creditRepo.creditData[CreditItem.rate.titles]
         simulation.insuranceRate = creditRepo.creditData[CreditItem.insuranceRate.titles]
         simulation.bookingFees = creditRepo.creditData[CreditItem.bookingFees.titles]
-        simulation.mensuality = creditRepo.results[0]
-        simulation.interestCost = creditRepo.results[1]
-        simulation.insuranceCost = creditRepo.results[2]
-        simulation.totalCost = creditRepo.results[3]
+        simulation.mensuality = creditRepo.results[CreditResultItem.mensuality.index]
+        simulation.interestCost = creditRepo.results[CreditResultItem.interestCost.index]
+        simulation.insuranceCost = creditRepo.results[CreditResultItem.insuranceCost.index]
+        simulation.totalCost = creditRepo.results[CreditResultItem.totalCost.index]
          realm.safeWrite {
             realm.add(simulation)
             realm.add(project)
@@ -54,10 +54,10 @@ class CreditRepository {
         simulation.rate = creditRepo.creditData[CreditItem.rate.titles]
         simulation.insuranceRate = creditRepo.creditData[CreditItem.insuranceRate.titles]
         simulation.bookingFees = creditRepo.creditData[CreditItem.bookingFees.titles]
-        simulation.mensuality = creditRepo.results[0]
-        simulation.interestCost = creditRepo.results[1]
-        simulation.insuranceCost = creditRepo.results[2]
-        simulation.totalCost = creditRepo.results[3]
+        simulation.mensuality = creditRepo.results[CreditResultItem.mensuality.index]
+        simulation.interestCost = creditRepo.results[CreditResultItem.interestCost.index]
+        simulation.insuranceCost = creditRepo.results[CreditResultItem.insuranceCost.index]
+        simulation.totalCost = creditRepo.results[CreditResultItem.totalCost.index]
         realm.safeWrite {
             realm.add(simulation)
         }

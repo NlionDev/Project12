@@ -23,12 +23,12 @@ class AddRentabilityToNewProjectPopUpVC: UIViewController {
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let name = projectNameTextField.text,
             let rentaRepo = rentabilityRepository else {return}
-        if isMyProjectNameUnique(name: name, projects: projectRepository.myProjects) {
+        if projectRepository.isMyProjectNameUnique(name: name) {
             rentaRepo.saveNewRentabilitySimulation(name: name, project: project, rentaRepo: rentaRepo)
             dismiss(animated: true)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFromPrevious.name), object: nil)
         } else {
-            let alert = errorAlert.alert(message: popUpProjectAlreadyExistMessage)
+            let alert = errorAlert.alert(message: PopUpAlertMessage.projectAlreadyExist.message)
             present(alert, animated: true)
         }
     }

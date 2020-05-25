@@ -48,7 +48,11 @@ class CreditResultsViewController: UIViewController {
 extension CreditResultsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return resultCellRowInSection
+        var numberOfTitles = Int()
+        if let creditRepository = creditRepository {
+            numberOfTitles = creditRepository.resultTitles.count
+        }
+       return numberOfTitles
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

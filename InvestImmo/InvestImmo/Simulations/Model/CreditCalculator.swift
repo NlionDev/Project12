@@ -11,7 +11,7 @@ import Foundation
 class CreditCalculator {
     
     //MARK: - Properties
-    var creditData = ["Montant à financer": "", "Durée": "", "Taux": "", "Taux assurance": "", "Frais de dossier": ""]
+    var creditData = [CreditItem.amountToFinance.titles: emptyString, CreditItem.duration.titles: emptyString, CreditItem.rate.titles: emptyString, CreditItem.insuranceRate.titles: emptyString, CreditItem.bookingFees.titles: emptyString]
     var powerResult = Double()
     var mensualityWithoutInsurance = Double()
     var mensualityWithInsurance = Double()

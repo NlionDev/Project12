@@ -89,3 +89,36 @@ enum RentabilityItem {
 }
 
 typealias RentabilityCells = [RentabilityItem]
+
+enum RentabilityResultItem {
+    case grossYield
+    case netYield
+    case annualCashflow
+    case mensualCashflow
+    
+    var titles: String {
+        switch self {
+        case .grossYield:
+            return "Rendement Brut"
+        case .netYield:
+            return "Rendement Net"
+        case .annualCashflow:
+            return "Cash-Flow Annuel"
+        case .mensualCashflow:
+            return  "Cash-Flow Mensuel"
+        }
+    }
+    
+    var index: Int {
+        switch self {
+        case .grossYield:
+            return 0
+        case .netYield:
+            return 1
+        case .annualCashflow:
+            return 2
+        case .mensualCashflow:
+            return 3
+        }
+    }
+}

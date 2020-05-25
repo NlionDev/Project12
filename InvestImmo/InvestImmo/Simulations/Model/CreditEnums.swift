@@ -69,3 +69,36 @@ enum CreditItem {
 }
 
 typealias CreditCells = [CreditItem]
+
+enum CreditResultItem {
+    case mensuality
+    case interestCost
+    case insuranceCost
+    case totalCost
+    
+    var titles: String {
+        switch self {
+        case .mensuality:
+            return "Mensualités"
+        case .interestCost:
+            return "Coût intérêts"
+        case .insuranceCost:
+            return "Coût assurance"
+        case .totalCost:
+            return "Coût total"
+        }
+    }
+    
+    var index: Int {
+        switch self {
+        case .mensuality:
+            return 0
+        case .interestCost:
+            return 1
+        case .insuranceCost:
+            return 2
+        case .totalCost:
+            return 3
+        }
+    }
+}

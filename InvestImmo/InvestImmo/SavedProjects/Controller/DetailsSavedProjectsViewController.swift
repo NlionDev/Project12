@@ -222,22 +222,23 @@ extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPa
 extension DetailsSavedProjectsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let photo = Photo()
         if picker.sourceType == .photoLibrary {
             if let imageURL = info[.referenceURL] as? URL {
                 let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
                 guard let asset = result.firstObject else {return}
-                if let name = selectedProject?.name,
-                    let realm = AppDelegate.realm {
-                    realm.safeWrite {
-                        photo.name = name
-                        photo.identifier = asset.localIdentifier
-                        realm.add(photo)
+                if let name = selectedProject?.name {
+                    if photoRepository.isUniquePhoto(name: name, identifier: asset.localIdentifier) {
+                        photoRepository.savePhoto(name: name, identifier: asset.localIdentifier)
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            let alert = self.errorAlert.alert(message: duplicatePhotoAlertMessage)
+                            self.present(alert, animated: true)
+                        }
                     }
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: SavedProjectsNotification.photoCollectionView.name), object: nil)
+                self.dismiss(animated: true)
             }
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: SavedProjectsNotification.photoCollectionView.name), object: nil)
-            self.dismiss(animated: true)
         }
     }
     
