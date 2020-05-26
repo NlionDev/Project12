@@ -19,19 +19,19 @@
         <!--Info-->
         <scene sceneID="mta-yD-hPR">
             <objects>
-                <viewController storyboardIdentifier="InfoVC" id="zgp-d3-dK7" customClass="InfoViewController" customModule="InvestImmo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoVC" id="zgp-d3-dK7" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h1S-Ge-wuW" customClass="BackgroundView" customModule="InvestImmo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cette application vous permet d'estimer la rentabilité de votre investissement immobilier en calculant les rendements." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D79-mK-9zf">
-                                <rect key="frame" x="30" y="186" width="354" height="81"/>
+                                <rect key="frame" x="30" y="185" width="354" height="116.5"/>
                                 <fontDescription key="fontDescription" name="AntipastoPro" family="Antipasto Pro" pointSize="25"/>
                                 <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invest'Immo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABc-W6-rES">
-                                <rect key="frame" x="105" y="64" width="204" height="42"/>
+                                <rect key="frame" x="111" y="64" width="192" height="41"/>
                                 <fontDescription key="fontDescription" name="PoetsenOne-Regular" family="Poetsen One" pointSize="35"/>
                                 <color key="textColor" red="0.38823529410000002" green="0.43137254899999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -74,6 +74,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="infoIcon" width="40" height="40"/>
+        <image name="infoIcon" width="24" height="24.5"/>
     </resources>
 </document>

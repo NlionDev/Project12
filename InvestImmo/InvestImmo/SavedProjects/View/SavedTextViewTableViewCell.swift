@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Class for SavedTextViewTableViewCell
 class SavedTextViewTableViewCell: UITableViewCell {
 
     //MARK: - Outlets
@@ -15,6 +16,8 @@ class SavedTextViewTableViewCell: UITableViewCell {
     @IBOutlet weak private var resultsLabel: UILabel!
     
     //MARK: - Methods
+    
+    /// Method for configure cell with data
     func configure(title: String, result: String) {
         titleLabel.text = title
         resultsLabel.text = result

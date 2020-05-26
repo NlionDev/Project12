@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Class for DetailsSimulationTableViewCell
 class DetailsSimulationTableViewCell: UITableViewCell {
 
     //MARK: - Outlets
@@ -15,6 +16,8 @@ class DetailsSimulationTableViewCell: UITableViewCell {
     @IBOutlet weak private var resultLabel: UILabel!
     
  //MARK: - Methods
+    
+    /// Method for configure cell with data
     func configure(title: String, result: String) {
         titleLabel.text = title
         resultLabel.text = result

@@ -8,12 +8,14 @@
 
 import Foundation
 
+/// Enumeration for credit cells type
 enum CreditCellType {
     case textField
     case pickerView
     case stepper
 }
 
+/// Enumeration for credit items
 enum CreditItem {
     case amountToFinance
     case duration
@@ -21,6 +23,7 @@ enum CreditItem {
     case insuranceRate
     case bookingFees
     
+    /// Items titles
     var titles: String {
         switch self {
         case .amountToFinance:
@@ -36,6 +39,7 @@ enum CreditItem {
         }
     }
     
+    /// Items subtitles
     var subtitles: String {
         switch self {
         case .duration:
@@ -47,6 +51,7 @@ enum CreditItem {
         }
     }
     
+    /// Items unit
     var unit: String {
         switch self {
         case .amountToFinance, .bookingFees:
@@ -56,6 +61,7 @@ enum CreditItem {
         }
     }
     
+    /// Items cell type
     var cellType: CreditCellType {
         switch self {
         case .amountToFinance, .bookingFees:
@@ -70,12 +76,14 @@ enum CreditItem {
 
 typealias CreditCells = [CreditItem]
 
+/// Enumeration for credit result items
 enum CreditResultItem {
     case mensuality
     case interestCost
     case insuranceCost
     case totalCost
     
+    /// Items titles
     var titles: String {
         switch self {
         case .mensuality:
@@ -89,6 +97,7 @@ enum CreditResultItem {
         }
     }
     
+    /// Items index
     var index: Int {
         switch self {
         case .mensuality:

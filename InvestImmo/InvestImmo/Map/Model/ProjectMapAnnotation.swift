@@ -9,11 +9,18 @@
 import UIKit
 import MapKit
 
+/// Class for ProjectMapAnnotation
 class ProjectMapAnnotation: NSObject, MKAnnotation {
     
     //MARK: - Properties
+    
+    /// Title of map annotation
     var title: String?
+    
+    /// Info of map annotation
     var info: String
+    
+    /// Coordinate of map annotation
     var coordinate: CLLocationCoordinate2D
     
     init(title: String, coordinate: CLLocationCoordinate2D, info: String) {

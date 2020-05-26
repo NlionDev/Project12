@@ -9,6 +9,8 @@
 import RealmSwift
 
 extension Realm {
+    
+    /// Method for initialize Realm in safety
     static func safeInit() -> Realm? {
         do {
             let realm = try Realm()
@@ -19,6 +21,7 @@ extension Realm {
         }
     }
 
+    /// Method for write in Realm in safety
     func safeWrite(_ block: () -> ()) {
         do {
             // Async safety, to prevent "Realm already in a write transaction" Exceptions

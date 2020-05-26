@@ -7,15 +7,24 @@
 //
 
 //MARK: - Properties
+
+/// Identifier of saved projects storyboard
 let savedProjectsStoryboardIdentifier = "SavedProjectsDataStoryboard"
+
+/// Message for Unauthorize To Pick Photo alert
 let unauthorizeToPickPhotoMessageAlert = "Invest'Immo a besoin d'avoir accès à votre bibliothèque photo. Sans ça vous ne pourrez pas choisir des photos de votre bibliothèque. S'il vous plait allez dans vos réglages et autorisez l'accès."
+
+/// Message for duplicate photo alert
 let duplicatePhotoAlertMessage = "Cette photo a déjà été ajoutée à la gallerie de ce projet."
 
 //MARK: - Enums
+
+/// Enumeration for Saved projects segue
 enum SavedProjectsSegue {
     case details
     case photos
     
+    /// Segue identifiers
     var identifier: String {
         switch self {
         case .details:
@@ -26,10 +35,12 @@ enum SavedProjectsSegue {
     }
 }
 
+/// Enumeration for saved projects notifications
 enum SavedProjectsNotification {
     case projectsTableView
     case photoCollectionView
     
+    /// Notifications names
     var name: String {
         switch self {
         case .projectsTableView:
@@ -40,6 +51,7 @@ enum SavedProjectsNotification {
     }
 }
 
+/// Enumeration for saved projects cells
 enum SavedProjectsCell {
     case project
     case menuBar
@@ -47,6 +59,7 @@ enum SavedProjectsCell {
     case textView
     case photo
     
+    /// Cells names
     var name: String {
         switch self {
         case .project:
@@ -62,6 +75,7 @@ enum SavedProjectsCell {
         }
     }
     
+    /// Cells identifiers
     var reuseIdentifier: String {
         switch self {
         case .project:
@@ -78,6 +92,7 @@ enum SavedProjectsCell {
     }
 }
 
+/// Enumeration for menu bar items
 enum MenuBarItemsNames {
     case euro
     case ratio
@@ -85,6 +100,7 @@ enum MenuBarItemsNames {
     case gallery
     case map
     
+    /// Items names
     var name: String {
         switch self {
         case .euro:
@@ -101,6 +117,7 @@ enum MenuBarItemsNames {
     }
 }
 
+/// Enumeration for saved projects viewControllers
 enum SavedProjectsVC {
     case credit
     case rentability
@@ -108,6 +125,7 @@ enum SavedProjectsVC {
     case gallery
     case map
     
+    /// ViewControllers identifiers
     var identifier: String {
         switch self {
         case .credit:

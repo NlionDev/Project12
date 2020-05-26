@@ -8,14 +8,20 @@
 
 import UIKit
 
+/// Protocol for TextFieldTableViewCellDelegate
 protocol TextFieldTableViewCellDelegate: class {
     func textFieldTableViewCell(key: String, value: String)
 }
 
+/// Class for TextField without subtitle cell
 class TextFieldWithoutSubtitleTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     //MARK: - Properties
+    
+    /// Property for stock title of cell who will be the key in data dictionary
     private var key = String()
+    
+    /// Property for delegate
     weak var delegate: TextFieldTableViewCellDelegate?
 
     //MARK: - Outlets
@@ -30,12 +36,15 @@ class TextFieldWithoutSubtitleTableViewCell: UITableViewCell, UITextFieldDelegat
     }
     
     //MARK: - Methods
+    
+    /// Method for configure the cell with data
     func configure(title: String, unit: String) {
         key = title
         titleLabel.text = title
         unitLabel.text = unit
     }
     
+    /// Method call when textfield should end editing
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let text = cellTextField.text {
         delegate?.textFieldTableViewCell(key: key, value: text)
@@ -43,6 +52,7 @@ class TextFieldWithoutSubtitleTableViewCell: UITableViewCell, UITextFieldDelegat
         return true
     }
     
+    /// Method call when user tap on keyboard return button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cellTextField.resignFirstResponder()
         return true

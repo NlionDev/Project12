@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// Class for MapNewProjectPopUp
 class MapNewProjectPopUp {
     
+    /// Method for instatiate AddAdressToNewProjectVC and present alert
     func alert(adress: String, latitude: String, longitude: String) -> AddAdressToNewProjectVC {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.map.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: MapVC.mapNewProject.identifier) as! AddAdressToNewProjectVC
@@ -20,8 +22,10 @@ class MapNewProjectPopUp {
     }
 }
 
+/// Class for MapExistantProjectPopUp
 class MapExistantProjectPopUp {
     
+    /// Method for instatiate AddAdressToExistantProjectVC and present alert
     func alert(adress: String, latitude: String, longitude: String) -> AddAdressToExistantProjectVC {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.map.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: MapVC.mapExistantProject.identifier) as! AddAdressToExistantProjectVC
@@ -32,8 +36,10 @@ class MapExistantProjectPopUp {
     }
 }
 
+/// Class for MapSearchAdressPopUp
 class MapSearchAdressPopUp {
     
+    /// Method for instatiate SearchAdressPopUpVC and present alert
     func alert(delegate: MapViewController) -> SearchAdressPopUpVC {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.map.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: MapVC.mapSearchAdress.identifier) as! SearchAdressPopUpVC
@@ -42,8 +48,10 @@ class MapSearchAdressPopUp {
     }
 }
 
+/// Class for ReplaceProjectAdressPopUp
 class ReplaceProjectAdressPopUp {
     
+    /// Method for instatiate ReplaceAdressViewController and present alert
     func alert(project: Project, adress: String, latitude: String, longitude: String) -> ReplaceAdressViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.map.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: MapVC.mapReplaceProject.identifier) as! ReplaceAdressViewController

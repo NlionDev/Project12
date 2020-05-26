@@ -9,14 +9,25 @@
 import UIKit
 import RealmSwift
 
+/// Class for AddChecklistToExistantProjectPopUpVC
 class AddChecklistToExistantProjectPopUpVC: UIViewController {
 
     
     //MARK: - Properties
+    
+    /// Instance of ReplaceProjectChecklistPopUp
     private let replaceProjectChecklistPopUp = ReplaceProjectChecklistPopUp()
+    
+    /// Instance of ChecklistNewProjectPopUp
     private let newProjectPopUp = ChecklistNewProjectPopUp()
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Property for store project selected by user
     private var selectedProject: Project?
+    
+    /// Instance of ChecklistRepository past from viewcontroller who present the pop up
     var checklistRepository: ChecklistRepository?
     
     //MARK: - Outlets
@@ -29,6 +40,8 @@ class AddChecklistToExistantProjectPopUpVC: UIViewController {
     }
     
     //MARK: - Actions
+    
+    /// Action activated  when tap on new project button for present new project pop up
     @IBAction private func didTapOnCreateNewProject(_ sender: Any) {
         guard let checklistRepo = checklistRepository else {return}
         let alertVC = self.newProjectPopUp.alert(checklist: checklistRepo)
@@ -36,11 +49,14 @@ class AddChecklistToExistantProjectPopUpVC: UIViewController {
         self.present(alertVC, animated: true)
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction private func didTapOnCancel(_ sender: Any) {
         dismiss(animated: true)
     }
     
     //MARK: - Methods
+    
+    /// Method for check if the selected project already have checklist
     private func checkIfTheProjectAlreadyHaveSavedChecklist(project: Project) -> Bool {
         var result = true
         if let projectName = project.name,
@@ -56,6 +72,7 @@ class AddChecklistToExistantProjectPopUpVC: UIViewController {
         return result
     }
     
+    /// Method for dismiss viewController
     @objc private func hideAlertController() {
         self.dismiss(animated: true)
     }
@@ -63,6 +80,8 @@ class AddChecklistToExistantProjectPopUpVC: UIViewController {
 }
 
 //MARK: - Extensions
+
+/// Extension of AddChecklistToExistantProjectPopUpVC for tableview delegate and datasource methods
 extension AddChecklistToExistantProjectPopUpVC: UITableViewDataSource, UITableViewDelegate {
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

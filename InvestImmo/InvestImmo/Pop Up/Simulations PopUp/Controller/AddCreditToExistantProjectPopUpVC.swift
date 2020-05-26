@@ -8,20 +8,35 @@
 
 import UIKit
 
+/// Class for AddCreditToExistantProjectPopUpVC
 class AddCreditToExistantProjectPopUpVC: UIViewController {
     
     //MARK: - Properties
+    
+    /// Instance of ErrorAlert for present alert
     private let errorAlert = ErrorAlert()
+    
+    /// Instance of ReplaceCreditPopUp
     private let replaceCreditPopUp = ReplaceCreditPopUp()
+    
+    /// Instance CreditNewProjectPopUp
     private let creditNewProjectPopUp = CreditNewProjectPopUp()
+    
+    /// Property for store project selected by user
     private var selectedProject: Project?
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Instance of CreditRepository past from viewcontroller who present the pop up
     var creditRepository: CreditRepository?
     
     //MARK: - Outlets
     @IBOutlet weak private var alertTableView: UITableView!
     
     //MARK: - Actions
+    
+    /// Action activated  when tap on new project button for present new project pop up
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let creditRepo = creditRepository else {return}
         let alert = creditNewProjectPopUp.alert(credit: creditRepo)
@@ -29,11 +44,14 @@ class AddCreditToExistantProjectPopUpVC: UIViewController {
         present(alert, animated: true)
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
     
     //MARK: - Methods
+    
+    /// Method for check if the selected project already have credit simulation
     private func checkIfTheProjectAlreadyHaveSavedCreditSimulation(project: Project) -> Bool {
         var result = true
         if let projectName = project.name,
@@ -49,12 +67,15 @@ class AddCreditToExistantProjectPopUpVC: UIViewController {
         return result
     }
     
+    /// Method for dismiss viewController
     @objc private func hideAlertController() {
         self.dismiss(animated: true)
     }
 }
 
 //MARK: - Extension
+
+/// Extension of AddCreditToExistantProjectPopUpVC for tableview delegate and datasource methods
 extension AddCreditToExistantProjectPopUpVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

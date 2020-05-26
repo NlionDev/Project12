@@ -8,18 +8,29 @@
 
 import UIKit
 
+/// Class for AddRentabilityToNewProjectPopUpVC
 class AddRentabilityToNewProjectPopUpVC: UIViewController {
 
     //MARK: - Properties
+    
+    /// Instance of ErrorAlert for present alert
     private let errorAlert = ErrorAlert()
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Instance of Project
     private let project = Project()
+    
+    /// Instance of RentabilityRepository past from ViewController who present pop up
     var rentabilityRepository: RentabilityRepository?
     
     //MARK: - Outlets
     @IBOutlet weak private var projectNameTextField: UITextField!
     
     //MARK: - Actions
+    
+    /// Action activated when tap on new project button for save the rentability simulation in a new project
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let name = projectNameTextField.text,
             let rentaRepo = rentabilityRepository else {return}
@@ -33,10 +44,12 @@ class AddRentabilityToNewProjectPopUpVC: UIViewController {
         }
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
     
+    /// Action activated when tap on screen so that textfields resign first responder
     @IBAction func dismissKeyboard(_ sender: Any) {
         projectNameTextField.resignFirstResponder()
     }
@@ -44,6 +57,8 @@ class AddRentabilityToNewProjectPopUpVC: UIViewController {
 }
 
 //MARK: - Extension
+
+/// Extension of AddRentabilityToNewProjectPopUpVC for textfield delegate methods
 extension AddRentabilityToNewProjectPopUpVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         projectNameTextField.resignFirstResponder()

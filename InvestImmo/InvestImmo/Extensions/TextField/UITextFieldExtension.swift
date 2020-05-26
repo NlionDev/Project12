@@ -9,6 +9,8 @@
 import UIKit
 
 extension UITextField {
+    
+    /// Method for delete text from textfield
     func clear() {
         self.text = ""
     }

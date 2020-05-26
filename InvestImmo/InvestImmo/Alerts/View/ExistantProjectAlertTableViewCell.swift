@@ -9,12 +9,15 @@
 import Foundation
 import UIKit
 
+/// Class for ExistantProjectAlertTableViewCell
 class ExistantProjectAlertTableViewCell: UITableViewCell {
     
     //MARK: - Outlets
     @IBOutlet weak private var nameLabel: UILabel!
         
     //MARK: - Methods
+    
+    /// Method for configure cell with name
     func configure(projectName: String) {
         nameLabel.text = projectName
     }

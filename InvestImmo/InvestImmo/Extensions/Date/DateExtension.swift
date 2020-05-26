@@ -9,6 +9,8 @@
 import UIKit
 
 extension Date {
+    
+    /// Property for transform Date into String
     var transformIntoString: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "fr_FR")

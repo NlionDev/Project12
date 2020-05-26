@@ -9,22 +9,41 @@
 import UIKit
 import RealmSwift
 
+/// Class for AddChecklistToNewProjectPopUpVC
 class AddChecklistToNewProjectPopUpVC: UIViewController {
 
     //MARK: - Properties
+    
+    /// Instance of ErrorAlert for present alert
     private let errorAlert = ErrorAlert()
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Instance of Project
     private var project = Project()
+    
+    /// Instance of ChecklistGeneral
     private var checklistGeneral = ChecklistGeneral()
+    
+    /// Instance of ChecklistDistrict
     private var checklistDistrict = ChecklistDistrict()
+    
+    /// Instance of ChecklistApartmentBlock
     private var checklistApartmentBlock = ChecklistApartmentBlock()
+    
+    /// Instance of ChecklistApartment
     private var checklistApartment = ChecklistApartment()
+    
+    /// Property to store ChecklistRepository past from viewcontroller who present the pop up
     var checklistRepository: ChecklistRepository?
     
     //MARK: - Outlets
     @IBOutlet weak private var projectNameLabel: UITextField!
     
     //MARK: - Actions
+    
+    /// Action activated when tap on new project button for save the checklist  in a new project
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let name = projectNameLabel.text,
             let checklistRepo = checklistRepository else {return}
@@ -41,10 +60,12 @@ class AddChecklistToNewProjectPopUpVC: UIViewController {
         }
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
     
+    /// Action activated when tap on screen so that textfields resign first responder
     @IBAction func dismissKeyboard(_ sender: Any) {
         projectNameLabel.resignFirstResponder()
     }
@@ -52,6 +73,8 @@ class AddChecklistToNewProjectPopUpVC: UIViewController {
 }
 
 //MARK: - Extension
+
+/// Extension of AddChecklistToNewProjectPopUpVC for textfield delegate method
 extension AddChecklistToNewProjectPopUpVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         projectNameLabel.resignFirstResponder()

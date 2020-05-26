@@ -9,9 +9,12 @@
 
 import UIKit
 
-
+/// Class for ErrorAlert
 class ErrorAlert {
     
+    //MARK: - Methods
+    
+    /// Method for instatiate ErrorAlertViewController and present alert
     func alert(message: String) -> ErrorAlertViewController {
         let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: "ErrorAlertVC") as! ErrorAlertViewController

@@ -8,12 +8,21 @@
 
 import UIKit
 
+/// Class for AddCreditToNewProjectPopUpVC
 class AddCreditToNewProjectPopUpVC: UIViewController {
     
     //MARK: - Properties
+    
+    /// Instance of ErrorAlert for present alert
     private let errorAlert = ErrorAlert()
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Instance of Project
     private let project = Project()
+    
+    /// Instance of CreditRepository past from ViewController who present pop up
     var creditRepository: CreditRepository?
     
     //MARK: - Outlets
@@ -21,6 +30,8 @@ class AddCreditToNewProjectPopUpVC: UIViewController {
     
     
     //MARK: - Actions
+    
+    /// Action activated when tap on new project button for save the credit simulation in a new project
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let name = projectTextField.text,
             let creditRepo = creditRepository else {return}
@@ -34,10 +45,12 @@ class AddCreditToNewProjectPopUpVC: UIViewController {
         }
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
     
+    /// Action activated when tap on screen so that textfields resign first responder
     @IBAction func dismissKeyboard(_ sender: Any) {
         projectTextField.resignFirstResponder()
     }
@@ -45,6 +58,8 @@ class AddCreditToNewProjectPopUpVC: UIViewController {
 }
 
 //MARK: - Extension
+
+/// Extension of AddCreditToNewProjectPopUpVC for textfield delegate methods
 extension AddCreditToNewProjectPopUpVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         projectTextField.resignFirstResponder()

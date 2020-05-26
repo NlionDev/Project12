@@ -8,13 +8,20 @@
 
 import UIKit
 
+/// Class for ReplaceProjectChecklistViewController
 class ReplaceProjectChecklistViewController: UIViewController {
 
     //MARK: - Properties
+    
+    /// Property to store Project past from viewcontroller who present the pop up
     var selectedProject: Project?
+    
+    /// Property to store ChecklistRepository past from viewcontroller who present the pop up
     var checklistRepository: ChecklistRepository?
     
     //MARK: - Actions
+    
+    /// Action activated when tap on yes button for delete previous checklist and save new checklist to the selected project
     @IBAction func didTapOnYesButton(_ sender: Any) {
         guard let checklistRepository = checklistRepository,
             let realm = checklistRepository.realm,
@@ -33,6 +40,7 @@ class ReplaceProjectChecklistViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFromReplace.name), object: nil)
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }

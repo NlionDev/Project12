@@ -9,6 +9,8 @@
 import UIKit
 
 extension UISegmentedControl {
+    
+    /// Method for reset segmentedControl
     func clear() {
         self.selectedSegmentIndex = 0
     }

@@ -9,17 +9,26 @@
 import UIKit
 import RealmSwift
 
+/// Class for PhotoRepository
 class PhotoRepository {
     
     
     //MARK: - Properties
+    
+    /// Instance of Photo
     private var photo = Photo()
+    
+    /// Instance of Realm
     let realm = AppDelegate.realm
+    
+    /// Property for store saved photos
     lazy var myPhotos: Results<Photo> = {
         realm?.objects(Photo.self)}()!
     
     
     //MARK: - Methods
+    
+    /// Method for save photos
     func savePhoto(name: String, identifier: String) {
         guard let realm = realm else {return}
         realm.safeWrite {
@@ -29,6 +38,7 @@ class PhotoRepository {
         }
     }
     
+    /// Method for retrieve photos identifiers with project name
     func getPhotosIdentifiersWithProjectName(name: String) -> [String] {
         var identifiers = [String]()
         for photo in myPhotos {
@@ -41,6 +51,7 @@ class PhotoRepository {
         return identifiers
     }
     
+    /// Method for delete Photo with identifier and name
     func deletePhotoWithIdentifier(identifier: String, name: String) {
         guard let realm = realm else {return}
         let photoToDelete = realm.objects(Photo.self).filter("identifier = '\(identifier)' AND name = '\(name)'")
@@ -49,6 +60,7 @@ class PhotoRepository {
         }
     }
     
+    /// Method for check if a specific photo is unique
     func isUniquePhoto(name: String, identifier: String) -> Bool {
         var result = Bool()
         if let realm = realm {

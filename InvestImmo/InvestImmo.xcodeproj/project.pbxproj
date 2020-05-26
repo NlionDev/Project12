@@ -57,7 +57,6 @@
 		03378CB82459B99700482E02 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CB72459B99700482E02 /* UIViewExtension.swift */; };
 		03378CC12459BA0E00482E02 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CC02459BA0E00482E02 /* UIViewControllerExtension.swift */; };
 		03378CC32459BAC500482E02 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CC22459BAC500482E02 /* DoubleExtension.swift */; };
-		03378CC52459BAE100482E02 /* FormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CC42459BAE100482E02 /* FormatterExtension.swift */; };
 		03378CC72459BB1A00482E02 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CC62459BB1A00482E02 /* StringExtension.swift */; };
 		03378CC92459BB5E00482E02 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CC82459BB5E00482E02 /* DateExtension.swift */; };
 		03378CCB2459BB7A00482E02 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03378CCA2459BB7A00482E02 /* UITextFieldExtension.swift */; };
@@ -88,10 +87,10 @@
 		039AAE09243343AA009B23DC /* RentabilitySimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE08243343AA009B23DC /* RentabilitySimulation.swift */; };
 		039AAE1524338D76009B23DC /* SavedProjectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AAE1424338D76009B23DC /* SavedProjectsTableViewCell.swift */; };
 		039B5F3C246BE01F00BF59C9 /* SelectedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F3B246BE01F00BF59C9 /* SelectedPhotoViewController.swift */; };
-		039B5F3E246E984100BF59C9 /* UI HardCoding Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F3D246E984100BF59C9 /* UI HardCoding Values.swift */; };
-		039B5F40246E9D8900BF59C9 /* SavedProjectsHardCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F3F246E9D8900BF59C9 /* SavedProjectsHardCoding.swift */; };
-		039B5F42246EA6B900BF59C9 /* MapHardCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F41246EA6B900BF59C9 /* MapHardCoding.swift */; };
-		039B5F45247130E200BF59C9 /* PopUpHardCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F44247130E200BF59C9 /* PopUpHardCoding.swift */; };
+		039B5F3E246E984100BF59C9 /* UIReusableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F3D246E984100BF59C9 /* UIReusableData.swift */; };
+		039B5F40246E9D8900BF59C9 /* SavedProjectsReusableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F3F246E9D8900BF59C9 /* SavedProjectsReusableData.swift */; };
+		039B5F42246EA6B900BF59C9 /* MapReusableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F41246EA6B900BF59C9 /* MapReusableData.swift */; };
+		039B5F45247130E200BF59C9 /* PopUpReusableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B5F44247130E200BF59C9 /* PopUpReusableData.swift */; };
 		03A6B2A9242A89CF003F953E /* RentabilityCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2A8242A89CF003F953E /* RentabilityCalculator.swift */; };
 		03A6B2AB242BB34D003F953E /* CreditCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6B2AA242BB34D003F953E /* CreditCalculator.swift */; };
 		03C4F2192437765100479B64 /* DetailsSavedProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4F2182437765100479B64 /* DetailsSavedProjectsViewController.swift */; };
@@ -105,7 +104,7 @@
 		03C7264D2466F8F300EF69ED /* ProjectRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7264C2466F8F300EF69ED /* ProjectRepositoryTests.swift */; };
 		03C7264F2466FB6E00EF69ED /* PhotoRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7264E2466FB6E00EF69ED /* PhotoRepositoryTests.swift */; };
 		03C726512466FD6600EF69ED /* MapRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C726502466FD6600EF69ED /* MapRepositoryTests.swift */; };
-		03C726532469430500EF69ED /* SimulationsHardCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C726522469430500EF69ED /* SimulationsHardCoding.swift */; };
+		03C726532469430500EF69ED /* SimulationsReusableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C726522469430500EF69ED /* SimulationsReusableData.swift */; };
 		03D75CF12448ADD50072F7C4 /* AddRentabilityToNewProjectPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CF02448ADD50072F7C4 /* AddRentabilityToNewProjectPopUpVC.swift */; };
 		03D75CF32448AE290072F7C4 /* AddRentabilityToExistantProjectPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CF22448AE290072F7C4 /* AddRentabilityToExistantProjectPopUpVC.swift */; };
 		03D75CF52448C53D0072F7C4 /* CreditSimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CF42448C53D0072F7C4 /* CreditSimulation.swift */; };
@@ -114,7 +113,6 @@
 		03D75CFB2449A0560072F7C4 /* ChecklistDistrict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CFA2449A0560072F7C4 /* ChecklistDistrict.swift */; };
 		03D75CFD2449A0DF0072F7C4 /* ChecklistApartmentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CFC2449A0DF0072F7C4 /* ChecklistApartmentBlock.swift */; };
 		03D75CFF2449A1640072F7C4 /* ChecklistApartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D75CFE2449A1640072F7C4 /* ChecklistApartment.swift */; };
-		03DF51822431EB9F0040D97D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF51812431EB9F0040D97D /* InfoViewController.swift */; };
 		03E4A97F2423BE74002404C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A97E2423BE74002404C3 /* AppDelegate.swift */; };
 		03E4A9862423BE74002404C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E4A9842423BE74002404C3 /* Main.storyboard */; };
 		03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03E4A9872423BE74002404C3 /* Invest_Immo.xcdatamodeld */; };
@@ -213,7 +211,6 @@
 		03378CB72459B99700482E02 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		03378CC02459BA0E00482E02 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		03378CC22459BAC500482E02 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
-		03378CC42459BAE100482E02 /* FormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
 		03378CC62459BB1A00482E02 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		03378CC82459BB5E00482E02 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		03378CCA2459BB7A00482E02 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
@@ -244,10 +241,10 @@
 		039AAE08243343AA009B23DC /* RentabilitySimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilitySimulation.swift; sourceTree = "<group>"; };
 		039AAE1424338D76009B23DC /* SavedProjectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProjectsTableViewCell.swift; sourceTree = "<group>"; };
 		039B5F3B246BE01F00BF59C9 /* SelectedPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPhotoViewController.swift; sourceTree = "<group>"; };
-		039B5F3D246E984100BF59C9 /* UI HardCoding Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI HardCoding Values.swift"; sourceTree = "<group>"; };
-		039B5F3F246E9D8900BF59C9 /* SavedProjectsHardCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProjectsHardCoding.swift; sourceTree = "<group>"; };
-		039B5F41246EA6B900BF59C9 /* MapHardCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHardCoding.swift; sourceTree = "<group>"; };
-		039B5F44247130E200BF59C9 /* PopUpHardCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpHardCoding.swift; sourceTree = "<group>"; };
+		039B5F3D246E984100BF59C9 /* UIReusableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIReusableData.swift; sourceTree = "<group>"; };
+		039B5F3F246E9D8900BF59C9 /* SavedProjectsReusableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProjectsReusableData.swift; sourceTree = "<group>"; };
+		039B5F41246EA6B900BF59C9 /* MapReusableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapReusableData.swift; sourceTree = "<group>"; };
+		039B5F44247130E200BF59C9 /* PopUpReusableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpReusableData.swift; sourceTree = "<group>"; };
 		03A6B2A8242A89CF003F953E /* RentabilityCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentabilityCalculator.swift; sourceTree = "<group>"; };
 		03A6B2AA242BB34D003F953E /* CreditCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCalculator.swift; sourceTree = "<group>"; };
 		03C4F2182437765100479B64 /* DetailsSavedProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSavedProjectsViewController.swift; sourceTree = "<group>"; };
@@ -261,7 +258,7 @@
 		03C7264C2466F8F300EF69ED /* ProjectRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepositoryTests.swift; sourceTree = "<group>"; };
 		03C7264E2466FB6E00EF69ED /* PhotoRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepositoryTests.swift; sourceTree = "<group>"; };
 		03C726502466FD6600EF69ED /* MapRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRepositoryTests.swift; sourceTree = "<group>"; };
-		03C726522469430500EF69ED /* SimulationsHardCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationsHardCoding.swift; sourceTree = "<group>"; };
+		03C726522469430500EF69ED /* SimulationsReusableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationsReusableData.swift; sourceTree = "<group>"; };
 		03D75CF02448ADD50072F7C4 /* AddRentabilityToNewProjectPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRentabilityToNewProjectPopUpVC.swift; sourceTree = "<group>"; };
 		03D75CF22448AE290072F7C4 /* AddRentabilityToExistantProjectPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRentabilityToExistantProjectPopUpVC.swift; sourceTree = "<group>"; };
 		03D75CF42448C53D0072F7C4 /* CreditSimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditSimulation.swift; sourceTree = "<group>"; };
@@ -270,7 +267,6 @@
 		03D75CFA2449A0560072F7C4 /* ChecklistDistrict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistDistrict.swift; sourceTree = "<group>"; };
 		03D75CFC2449A0DF0072F7C4 /* ChecklistApartmentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistApartmentBlock.swift; sourceTree = "<group>"; };
 		03D75CFE2449A1640072F7C4 /* ChecklistApartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistApartment.swift; sourceTree = "<group>"; };
-		03DF51812431EB9F0040D97D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		03E4A97B2423BE74002404C3 /* InvestImmo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestImmo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E4A97E2423BE74002404C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03E4A9852423BE74002404C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -359,7 +355,7 @@
 			children = (
 				03378C682452EC8D00482E02 /* ProjectMapAnnotation.swift */,
 				03378C9D245831E000482E02 /* MapRepository.swift */,
-				039B5F41246EA6B900BF59C9 /* MapHardCoding.swift */,
+				039B5F41246EA6B900BF59C9 /* MapReusableData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -387,7 +383,7 @@
 				03378C6C2453155E00482E02 /* Checklist PopUp */,
 				03378C7C2453182A00482E02 /* SavedProjectsPopUp */,
 				03378C6D2453156800482E02 /* Map PopUp */,
-				039B5F43247130C800BF59C9 /* PopUpHardCoding */,
+				039B5F43247130C800BF59C9 /* PopUpReusableData */,
 			);
 			path = "Pop Up";
 			sourceTree = "<group>";
@@ -544,7 +540,7 @@
 				0312F32B244F8E60004DB0D7 /* CustomNavigationController.swift */,
 				03E4A9842423BE74002404C3 /* Main.storyboard */,
 				03E4A98C2423BE75002404C3 /* LaunchScreen.storyboard */,
-				039B5F3D246E984100BF59C9 /* UI HardCoding Values.swift */,
+				039B5F3D246E984100BF59C9 /* UIReusableData.swift */,
 			);
 			path = "UI Files";
 			sourceTree = "<group>";
@@ -554,7 +550,6 @@
 			children = (
 				03378CCE2459CAA100482E02 /* UISegmentedControl */,
 				03378CBF2459B9F300482E02 /* UIViewController */,
-				03378CBE2459B9E600482E02 /* Formatter */,
 				03378CBD2459B9D900482E02 /* Double */,
 				03378CBC2459B9D200482E02 /* String */,
 				03378CBB2459B9CB00482E02 /* Date */,
@@ -629,14 +624,6 @@
 				03378CC22459BAC500482E02 /* DoubleExtension.swift */,
 			);
 			path = Double;
-			sourceTree = "<group>";
-		};
-		03378CBE2459B9E600482E02 /* Formatter */ = {
-			isa = PBXGroup;
-			children = (
-				03378CC42459BAE100482E02 /* FormatterExtension.swift */,
-			);
-			path = Formatter;
 			sourceTree = "<group>";
 		};
 		03378CBF2459B9F300482E02 /* UIViewController */ = {
@@ -716,20 +703,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0365E7AF243E12FB00A97F0E /* Controller */ = {
+		039B5F43247130C800BF59C9 /* PopUpReusableData */ = {
 			isa = PBXGroup;
 			children = (
-				03DF51812431EB9F0040D97D /* InfoViewController.swift */,
+				039B5F44247130E200BF59C9 /* PopUpReusableData.swift */,
 			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		039B5F43247130C800BF59C9 /* PopUpHardCoding */ = {
-			isa = PBXGroup;
-			children = (
-				039B5F44247130E200BF59C9 /* PopUpHardCoding.swift */,
-			);
-			path = PopUpHardCoding;
+			path = PopUpReusableData;
 			sourceTree = "<group>";
 		};
 		03C7263E245FFBFF00EF69ED /* RentabilityTests */ = {
@@ -872,7 +851,7 @@
 			children = (
 				03378C9B2458305800482E02 /* ProjectRepository.swift */,
 				03378C9F245832A300482E02 /* PhotoRepository.swift */,
-				039B5F3F246E9D8900BF59C9 /* SavedProjectsHardCoding.swift */,
+				039B5F3F246E9D8900BF59C9 /* SavedProjectsReusableData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -928,7 +907,7 @@
 				03A6B2AA242BB34D003F953E /* CreditCalculator.swift */,
 				03E69898243B7BF0001E6A4C /* CreditRepository.swift */,
 				03827E1F2446F62D00285DF8 /* CreditEnums.swift */,
-				03C726522469430500EF69ED /* SimulationsHardCoding.swift */,
+				03C726522469430500EF69ED /* SimulationsReusableData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1012,7 +991,6 @@
 		03E698B0243C89DF001E6A4C /* Infos */ = {
 			isa = PBXGroup;
 			children = (
-				0365E7AF243E12FB00A97F0E /* Controller */,
 				0365E7AE243E12EF00A97F0E /* View */,
 			);
 			path = Infos;
@@ -1313,7 +1291,7 @@
 				03378C9A245821B000482E02 /* ReplaceAdressViewController.swift in Sources */,
 				03378CB82459B99700482E02 /* UIViewExtension.swift in Sources */,
 				03378CCD2459BB9900482E02 /* UITextViewExtension.swift in Sources */,
-				03C726532469430500EF69ED /* SimulationsHardCoding.swift in Sources */,
+				03C726532469430500EF69ED /* SimulationsReusableData.swift in Sources */,
 				03827E202446F62D00285DF8 /* CreditEnums.swift in Sources */,
 				03E6989C243B9532001E6A4C /* TextFieldWithoutSubtitleTableViewCell.swift in Sources */,
 				0365E7A4243CCBB400A97F0E /* ChecklistPickerTableViewCell.swift in Sources */,
@@ -1328,7 +1306,6 @@
 				03378C9224531E7C00482E02 /* MapPopUp.swift in Sources */,
 				03E4A9892423BE74002404C3 /* Invest_Immo.xcdatamodeld in Sources */,
 				0312F328244F4695004DB0D7 /* RentabilityResultsViewController.swift in Sources */,
-				03DF51822431EB9F0040D97D /* InfoViewController.swift in Sources */,
 				03D75CFF2449A1640072F7C4 /* ChecklistApartment.swift in Sources */,
 				0312F324244F4649004DB0D7 /* CreditResultsViewController.swift in Sources */,
 				0312F32C244F8E60004DB0D7 /* CustomNavigationController.swift in Sources */,
@@ -1336,7 +1313,6 @@
 				0312F32A244F5722004DB0D7 /* MenuBarSimulationCollectionViewCell.swift in Sources */,
 				03827E222446FC3200285DF8 /* ChecklistEnums.swift in Sources */,
 				039AAE1524338D76009B23DC /* SavedProjectsTableViewCell.swift in Sources */,
-				03378CC52459BAE100482E02 /* FormatterExtension.swift in Sources */,
 				03C4F22324387C1A00479B64 /* ExistantProjectAlertTableViewCell.swift in Sources */,
 				0312F303244C8AE2004DB0D7 /* DetailsSimulationTableViewCell.swift in Sources */,
 				03378CA0245832A300482E02 /* PhotoRepository.swift in Sources */,
@@ -1355,9 +1331,9 @@
 				0365E7A8243CCD0B00A97F0E /* DatePickerTableViewCell.swift in Sources */,
 				03C4F2192437765100479B64 /* DetailsSavedProjectsViewController.swift in Sources */,
 				03378CB52459B96200482E02 /* MKMapItemExtension.swift in Sources */,
-				039B5F40246E9D8900BF59C9 /* SavedProjectsHardCoding.swift in Sources */,
-				039B5F45247130E200BF59C9 /* PopUpHardCoding.swift in Sources */,
-				039B5F42246EA6B900BF59C9 /* MapHardCoding.swift in Sources */,
+				039B5F40246E9D8900BF59C9 /* SavedProjectsReusableData.swift in Sources */,
+				039B5F45247130E200BF59C9 /* PopUpReusableData.swift in Sources */,
+				039B5F42246EA6B900BF59C9 /* MapReusableData.swift in Sources */,
 				03D75CFB2449A0560072F7C4 /* ChecklistDistrict.swift in Sources */,
 				0312F326244F4686004DB0D7 /* RentabilitySimulationViewController.swift in Sources */,
 				03378CCB2459BB7A00482E02 /* UITextFieldExtension.swift in Sources */,
@@ -1374,7 +1350,7 @@
 				03E698A4243C605B001E6A4C /* StepperTableViewCell.swift in Sources */,
 				03D75CF32448AE290072F7C4 /* AddRentabilityToExistantProjectPopUpVC.swift in Sources */,
 				03E698B3243CA63D001E6A4C /* ResultTableViewCell.swift in Sources */,
-				039B5F3E246E984100BF59C9 /* UI HardCoding Values.swift in Sources */,
+				039B5F3E246E984100BF59C9 /* UIReusableData.swift in Sources */,
 				03E69885243B6BE8001E6A4C /* Alerts.swift in Sources */,
 				0375F6CB243A17F100BDD0D8 /* AddChecklistToNewProjectPopUpVC.swift in Sources */,
 				03E69892243B77D6001E6A4C /* TextFieldWithSubtitleTableViewCell.swift in Sources */,

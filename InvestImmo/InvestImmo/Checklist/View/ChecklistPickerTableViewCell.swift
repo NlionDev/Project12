@@ -8,20 +8,32 @@
 
 import UIKit
 
+/// Protocol for ChecklistPickerTableViewCellDelegate
 protocol ChecklistPickerTableViewCellDelegate: class {
     func checklistPickerTableViewCell(_ checklistPickerTableViewCell: ChecklistPickerTableViewCell, key: String, value: String, sectionKey: Int)
 }
 
+/// Class for ChecklistPickerTableViewCell
 class ChecklistPickerTableViewCell: UITableViewCell {
-
 
     //MARK: - Properties
     
+    /// Instance of ChecklistRepository
     private let checklistRepo = ChecklistRepository()
+    
+    /// Property for delegate
     weak var delegate: ChecklistPickerTableViewCellDelegate?
+    
+    /// Property to store selected value in pickerview
     private var selectedPickerData = String()
+    
+    /// Property to store an array to present in pickerview
     var pickerData = [String]()
+    
+    /// Property for stock title of cell who will be the key in data dictionary
     private var key = String()
+    
+    /// Property for store selected section to store data in data dictionary
     private var section = Int()
     
     
@@ -40,6 +52,8 @@ class ChecklistPickerTableViewCell: UITableViewCell {
     }
     
     //MARK: - Methods
+    
+    /// Method for select correct array to present in pickerview
     private func getCorrectPickerData(key: String) -> [String] {
         var data = [String]()
         if key == "Type de bien" {
@@ -58,12 +72,14 @@ class ChecklistPickerTableViewCell: UITableViewCell {
         return data
     }
     
+    /// Method for configure pickerview
     private func setupPickerView() {
-        cellPicker.setValue(UIColor(red: 91/255.0, green: 102/255.0, blue: 248/255.0, alpha: 1.0), forKeyPath: "textColor")
+        cellPicker.setValue(purple, forKeyPath: textColorKeyPath)
         let middleOfPicker = pickerData.count/2
         cellPicker.selectRow(middleOfPicker, inComponent: 0, animated: true)
     }
     
+    /// Method for configure cell with data
     func configure(title: String, sectionKey: Int) {
         section = sectionKey
         key = title
@@ -75,6 +91,9 @@ class ChecklistPickerTableViewCell: UITableViewCell {
     
 }
 
+//MARK: - Extension
+
+/// Extension of ChecklistPickerTableViewCell for PickerView delegate and datasource
 extension ChecklistPickerTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

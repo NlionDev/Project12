@@ -8,14 +8,25 @@
 
 import UIKit
 
+/// Class for RentabilityDataViewController
 class RentabilityDataViewController: UIViewController {
 
     
     //MARK: - Properties
+    
+    /// Array to store rentability simulation results to display
     private var results = [String]()
+    
+    /// Array to store rentability titles to display
     private var titles = [String]()
+    
+    /// Instance of RentabilityRepository
     private let rentabilityRepository = RentabilityRepository()
+    
+    /// Instance of RentabilitySimulation
     private var simulation = RentabilitySimulation()
+    
+    /// Property to store a selected Project past from SavedProjectsViewController
     var selectedProject: Project?
     
     //MARK: - Outlets
@@ -32,11 +43,14 @@ class RentabilityDataViewController: UIViewController {
     }
 
     //MARK: - Methods
+    
+    /// Method for register nib cells
     private func nibRegister() {
         let nibNameForDetailsSimulationCell = UINib(nibName: SavedProjectsCell.simulation.name, bundle: nil)
         rentabilityTableView.register(nibNameForDetailsSimulationCell, forCellReuseIdentifier: SavedProjectsCell.simulation.reuseIdentifier)
     }
 
+    /// Method for retrieve results and titles from saved rentability simulation with specific project name
     private func getResultsAndTitles() {
         titles = rentabilityRepository.allTitles
         if let projectName = selectedProject?.name {
@@ -45,6 +59,7 @@ class RentabilityDataViewController: UIViewController {
         }
     }
     
+    /// Method for configure page and hide or show tableview and label
     private func configurePage() {
         if results.count == 0 {
             rentabilityTableView.isHidden = true
@@ -58,6 +73,8 @@ class RentabilityDataViewController: UIViewController {
 
 
 //MARK: - Extension
+
+/// Extension of RentabilityDataViewController for tableview delegate and datasource methods
 extension RentabilityDataViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

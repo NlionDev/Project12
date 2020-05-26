@@ -6,7 +6,7 @@
 //  Copyright © 2020 Nicolas Lion. All rights reserved.
 //
 
-
+/// Enumeration of checklist cells type
 enum ChecklistCellType {
     case datePicker
     case textView
@@ -14,6 +14,7 @@ enum ChecklistCellType {
     case segment
     case pickerView
     
+    /// Cells names
     var name: String {
         switch self {
         case .datePicker:
@@ -29,6 +30,7 @@ enum ChecklistCellType {
         }
     }
     
+    /// Cells reuse identifiers
     var reuseIdentifier: String {
         switch self {
         case .datePicker:
@@ -45,6 +47,7 @@ enum ChecklistCellType {
     }
 }
 
+/// Enumeration for checklist items
 enum ChecklistItem {
     case visitDate
     case estateType
@@ -89,6 +92,7 @@ enum ChecklistItem {
     case parking
     case distinguishElements
     
+    /// Items titles
     var titles: String {
         switch self {
         case .visitDate:
@@ -178,6 +182,7 @@ enum ChecklistItem {
         }
     }
     
+    /// Items unit
     var unit: String {
         switch self {
         case .surfaceArea, .caveSurface:
@@ -189,6 +194,7 @@ enum ChecklistItem {
         }
     }
     
+    /// Items cell type
     var cellType: ChecklistCellType {
         switch self {
         case .visitDate:
@@ -207,12 +213,14 @@ enum ChecklistItem {
 
 typealias ChecklistSection = [[ChecklistItem]]
 
+/// Enumeration for cheklist section
 enum ChecklistSections {
     case general
     case district
     case apartmentBlock
     case apartment
     
+    /// Sections titles
     var title: String {
         switch self {
         case .general:
@@ -226,6 +234,7 @@ enum ChecklistSections {
         }
     }
     
+    /// Sections numbers
     var number: Int {
         switch self {
         case .general:

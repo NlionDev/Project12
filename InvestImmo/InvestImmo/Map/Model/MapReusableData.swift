@@ -9,14 +9,25 @@
 import Foundation
 
 //MARK: - Properties
+
+/// Waze begin of url
 let wazeBeginUrl = "waze://"
+
+/// Waze app url
 let wazeAppUrl = "waze://?ll=%f,%f&navigate=yes"
+
+/// Waze itunes url
 let wazeItunesUrl = "http://itunes.apple.com/us/app/id323229106"
+
+/// Identifier of Project Map Annoration
 let projectMapAnnotationIdentifier = "pma"
+
+/// Name of Map Notification
 let mapNotificationName = "ConfigureMapView"
 
 //MARK: - Enums
 
+/// Enumeration of map alert
 enum MapAlert {
     case waze
     case plan
@@ -25,6 +36,7 @@ enum MapAlert {
     case adressMissing
     case incorrectAdress
     
+    /// Map Alert messages
     var message: String {
         switch self {
         case .waze:

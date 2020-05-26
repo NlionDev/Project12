@@ -8,22 +8,41 @@
 
 import UIKit
 
+/// Class for AddAdressToExistantProjectVC
 class AddAdressToExistantProjectVC: UIViewController {
     
     //MARK: - Properties
+    
+    /// Instance of MapRepository
     private let mapRepository = MapRepository()
+    
+    /// Instance of MapNewProjectPopUp
     private let newProjectPopUp = MapNewProjectPopUp()
+    
+    /// Instance of ReplaceProjectAdressPopUp
     private let replaceProjectAdressPopUp = ReplaceProjectAdressPopUp()
+    
+    /// Property for store project selected by user
     private var selectedProject: Project?
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Property for store adress past from viewcontroller who present the pop up
     var adress: String?
+    
+    /// Property for store latitude past from viewcontroller who present the pop up
     var latitude: String?
+    
+    /// Property for store longitude past from viewcontroller who present the pop up
     var longitude: String?
     
     //MARK: - Outlets
     @IBOutlet weak private var existantProjectsTableView: UITableView!
     
     //MARK: - Actions
+    
+    /// Action activated  when tap on new project button for present new project pop up
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let adress = self.adress,
             let latitude = self.latitude,
@@ -33,12 +52,15 @@ class AddAdressToExistantProjectVC: UIViewController {
         self.present(alert, animated: true)
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
     
 
     //MARK: - Methods
+    
+    /// Method for check if the selected project already have map adress
     private func checkIfTheProjectAlreadyHaveSavedAdress(project: Project) -> Bool {
         var result = true
         if let realm = mapRepository.realm,
@@ -53,6 +75,7 @@ class AddAdressToExistantProjectVC: UIViewController {
         return result
     }
     
+    /// Method for dismiss viewController
     @objc private func hideAlertController() {
         self.dismiss(animated: true)
     }
@@ -61,6 +84,8 @@ class AddAdressToExistantProjectVC: UIViewController {
 
 
 //MARK: - Extension
+
+/// Extension of AddAdressToExistantProjectVC for tableview delegate and datasource methods
 extension AddAdressToExistantProjectVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

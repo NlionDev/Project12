@@ -8,6 +8,8 @@
 
 
 extension String {
+    
+    /// Property for transform String into Double
     var transformInDouble: Double {
         var number = 0.00
        let newString = self.replacingOccurrences(of: ",", with: ".")

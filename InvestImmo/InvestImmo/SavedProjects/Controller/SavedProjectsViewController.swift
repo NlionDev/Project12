@@ -9,11 +9,18 @@
 import UIKit
 import RealmSwift
 
+/// Class for SavedProjectsViewController
 class SavedProjectsViewController: UIViewController {
 
     //MARK: - Properties
+    
+    /// Instance of EmptyNewProjectPopUp for present pop up and save new project
     private let newProjectPopUp = EmptyNewProjectPopUp()
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Property for store a selected project
     private var selectedProject: Project?
     
     //MARK: - Outlets
@@ -42,6 +49,8 @@ class SavedProjectsViewController: UIViewController {
     }
     
     //MARK: - Actions
+    
+    /// Action activated when tap on new project button and present new project pop up
     @objc private func didTapOnNewProjectButton() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.configurePage), name: NSNotification.Name(rawValue: SavedProjectsNotification.projectsTableView.name), object: nil)
         let alert = newProjectPopUp.alert()
@@ -49,6 +58,8 @@ class SavedProjectsViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    /// Method for show or hide noDataLabel depend if myProject is empty or not
     private func showNoDataLabel() {
         if projectRepository.myProjects.isEmpty {
             savedProjectsTableView.isHidden = true
@@ -59,6 +70,7 @@ class SavedProjectsViewController: UIViewController {
         }
     }
     
+    /// Method for reload table view and configure page
     @objc private func configurePage() {
         savedProjectsTableView.reloadData()
         showNoDataLabel()
@@ -67,6 +79,8 @@ class SavedProjectsViewController: UIViewController {
 }
 
 //MARK: - Extension for TableView
+
+/// Extension of SavedProjectsViewController for TableView delegate and datasource methods
 extension SavedProjectsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

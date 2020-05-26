@@ -9,33 +9,33 @@
 import UIKit
 import RealmSwift
 
-class SimulationsViewController: UIViewController, UIScrollViewDelegate {
+/// ViewController who contain the PageViewController
+class SimulationsViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Left anchor constraint of horizontal bar in menu bar
     private var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
+    
+    ///Titles display in Menu bar
     private let menuBarItems = [MenuBarItems.credit.titles, MenuBarItems.rentability.titles]
+    
+    /// The PageViewController
     private var pageViewController: UIPageViewController!
+    
+    /// Array of ViewControllers contained in PageViewController
     private var viewControllers = [UIViewController]()
-    private var startOffset = CGFloat(0)
-    private var currentVCIndex = Int()
+
     
     //MARK: - Outlets
-
     @IBOutlet weak private var menuBar: UIView!
     @IBOutlet weak private var menuBarCollectionView: UICollectionView!
     
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL)
         setupMenuBarCollectionView()
         setupHorizontalBar()
-        for view in self.pageViewController.view.subviews {
-          if let scrollView = view as? UIScrollView {
-            scrollView.delegate = self
-          }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,6 +50,7 @@ class SimulationsViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: - Methods
 
+    /// Method for instanciate ViewControllers contained in PageViewController and append them in 'viewControllers' property
     private func getViewControllers() {
         let storyboard = UIStoryboard(name: SimulationsStoryboard.storyboard.identifiers, bundle: nil)
         let creditVC = storyboard.instantiateViewController(withIdentifier: SimulationsStoryboard.creditVC.identifiers) as! CreditSimulationViewController
@@ -58,11 +59,13 @@ class SimulationsViewController: UIViewController, UIScrollViewDelegate {
         viewControllers.append(rentabilityVC)
     }
     
+    /// Method for configure menu bar and select first item
     private func setupMenuBarCollectionView() {
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         menuBarCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
     }
 
+    /// Method for configure horizontal bar in menu bar
     private func setupHorizontalBar() {
         let horizontalBar = UIView()
         horizontalBar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -76,6 +79,7 @@ class SimulationsViewController: UIViewController, UIScrollViewDelegate {
         horizontalBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
     }
     
+    /// Method for instanciate, configure and return MenuBar cell
     private func getMenuBarCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         guard let menuBarCell = collectionView.dequeueReusableCell(withReuseIdentifier: SimulationsCells.menuBar.reuseIdentifier, for: indexPath) as? MenuBarSimulationCollectionViewCell else {return UICollectionViewCell()}
@@ -85,37 +89,24 @@ class SimulationsViewController: UIViewController, UIScrollViewDelegate {
         return cell
     }
     
+    /// Method for scroll PageViewController to a selected index
     private func scrollToMenuIndex(menuIndex: Int) {
         let nextVC = viewControllers[menuIndex]
         menuIndex == 0 ? pageViewController.setViewControllers([nextVC], direction: .reverse, animated: true, completion: nil) : pageViewController.setViewControllers([nextVC], direction: .forward, animated: true, completion: nil)
     }
     
+    /// Method for animate horizontal bar in Menu bar
     private func animateMenuBarSlide(index: Int, duration: TimeInterval) {
          let x = CGFloat(index) * menuBar.frame.width / 2
          horizontalBarLeftAnchorConstraint?.constant = x
          UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {self.menuBar.layoutIfNeeded()}, completion: nil)
      }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let index = Int(targetContentOffset.pointee.x / view.frame.width)
-        let indexPath = IndexPath(item: index, section: 0)
-        menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-    }
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        startOffset = scrollView.contentOffset.x
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let positionFromStartOfCurrentPage = abs(startOffset - scrollView.contentOffset.x)
-        horizontalBarLeftAnchorConstraint?.constant = positionFromStartOfCurrentPage / 2
-    }
-    
 
 }
 
 //MARK: - Extension for CollectionView
 
+/// Extension of SimulationsViewController for CollectionView Delegate and DataSource
 extension SimulationsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -149,6 +140,7 @@ extension SimulationsViewController: UICollectionViewDelegate, UICollectionViewD
 
 //MARK: - Extension for PageViewController 
 
+/// Extension of SimulationsViewController for PageViewController Delegate and DataSource
 extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -180,7 +172,6 @@ extension SimulationsViewController: UIPageViewControllerDelegate, UIPageViewCon
         if (completed && finished) {
             if let currentVC = pageViewController.viewControllers?.last,
                 let index = viewControllers.firstIndex(of: currentVC) {
-                currentVCIndex = index
                 let indexPath = IndexPath(item: index, section: 0)
                 self.menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
                 self.animateMenuBarSlide(index: index, duration: 0)

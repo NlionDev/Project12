@@ -9,16 +9,25 @@
 import UIKit
 import RealmSwift
 
+/// Class for MapRepository
 class MapRepository {
     
     
     //MARK: - Properties
+    
+    /// Instance of MapAdress
     private var mapAdress = MapAdress()
+    
+    /// Instance of Realm
     let realm = AppDelegate.realm
+    
+    /// Property to store saved map adress
     lazy var myAdresses: Results<MapAdress> = {
         realm?.objects(MapAdress.self)}()!
     
     //MARK: - Methods
+    
+    /// Method for save map adress in a new project
     func saveMapAdressWithNewProject(project: Project, name: String, adress: String, latitude: String, longitude: String) {
         guard let realm = realm else {return}
         project.name = name
@@ -32,6 +41,7 @@ class MapRepository {
          }
      }
      
+    /// Method for save map adress in an existant project
      func saveMapAdressInExistantProject(name: String, adress: String, latitude: String, longitude: String) {
         guard let realm = realm else {return}
          mapAdress.name = name
@@ -43,6 +53,7 @@ class MapRepository {
          }
      }
      
+    /// Method for retrieve map adress with a project name
      func getMapAdressWithProjectName(name: String) -> MapAdress {
          var adressToReturn = MapAdress()
          for adress in myAdresses {
@@ -53,6 +64,7 @@ class MapRepository {
          return adressToReturn
      }
     
+    /// Method for delete a specific map adress 
     func deleteProjectAdress(adressToDelete: Results<MapAdress>) {
         guard let realm = realm else {return}
         realm.safeWrite {

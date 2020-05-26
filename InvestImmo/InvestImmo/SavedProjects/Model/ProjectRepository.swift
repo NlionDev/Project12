@@ -9,16 +9,25 @@
 import UIKit
 import RealmSwift
 
+/// Class for ProjectRepository
 class ProjectRepository {
     
     //MARK: - Properties
+    
+    /// Instance of Realm
     let realm = AppDelegate.realm
+    
+    /// Instance of Project
     private var project = Project()
+    
+    /// Property for store saved projects
     lazy var myProjects: Results<Project> = {
         realm?.objects(Project.self)}()!
     
     
     //MARK: - Methods
+    
+    /// Method for save new project
     func saveEmptyNewProject(name: String) {
         guard let realm = realm else {return}
         project.name = name
@@ -27,6 +36,7 @@ class ProjectRepository {
         }
     }
     
+    /// Method for check if a project name is unique 
     func isMyProjectNameUnique(name: String) -> Bool {
         var result = Bool()
         if let realm = realm {

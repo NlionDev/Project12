@@ -8,16 +8,29 @@
 
 import UIKit
 
+/// Class for ReplaceAdressViewController
 class ReplaceAdressViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Instance of MapRepository
     private let mapRepository = MapRepository()
+    
+    /// Property for store project selected by user
     var selectedProject: Project?
+    
+    /// Property for store adress past from viewcontroller who present the pop up
     var adress: String?
+    
+    /// Property for store latitude past from viewcontroller who present the pop up
     var latitude: String?
+    
+    /// Property for store longitude past from viewcontroller who present the pop up
     var longitude: String?
 
     //MARK: - Actions
+    
+    /// Action activated when tap on yes button for delete previous map adress and save new map adress to the selected project
     @IBAction private func didTapOnYesButton(_ sender: Any) {
         guard let realm = mapRepository.realm,
             let project = selectedProject,
@@ -32,6 +45,7 @@ class ReplaceAdressViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: PopUpNotification.dismissFromReplace.name), object: nil)
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }

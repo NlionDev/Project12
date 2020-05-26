@@ -9,25 +9,30 @@
 import Foundation
 import UIKit
 
+/// Class for MenuBarCollectionViewCell
 class MenuBarCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
+    
+    /// Property for instantiate and setup menu bar icons
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "bankIcon")?.withRenderingMode(.alwaysTemplate)
-        iv.tintColor = UIColor(red: 55/255.0, green: 70/255.0, blue: 128/255.0, alpha: 1.0)
+        iv.tintColor = darkPurple
         return iv
     }()
     
+    /// Property for set icon color when is highlighted
     override var isHighlighted: Bool {
         didSet {
-            imageView.tintColor = isHighlighted ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : UIColor(red: 55/255.0, green: 70/255.0, blue: 128/255.0, alpha: 1.0)
+            imageView.tintColor = isHighlighted ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : darkPurple
         }
     }
     
+    /// Propertry for set icon color when is selected
     override var isSelected: Bool {
         didSet {
-            imageView.tintColor = isSelected ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : UIColor(red: 55/255.0, green: 70/255.0, blue: 128/255.0, alpha: 1.0)
+            imageView.tintColor = isSelected ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : darkPurple
         }
     }
     
@@ -39,11 +44,14 @@ class MenuBarCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Methods
+    
+    /// Method for configure cell with data
     func configure(image: UIImage) {
         imageView.image = image
         imageView.image = image.withRenderingMode(.alwaysTemplate)
     }
     
+    /// Method for configure cell subviews
     private func setupView() {
         addSubview(imageView)
         addConstraintsWithFormat(format: "H:[v0(25)]", views: imageView)

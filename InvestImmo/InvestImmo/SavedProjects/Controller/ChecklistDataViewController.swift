@@ -8,27 +8,44 @@
 
 import UIKit
 
+/// Class for ChecklistDataViewController
 class ChecklistDataViewController: UIViewController {
     
     
     //MARK: - Properties
+    
+    /// Two dimensionnal array for store saved checklist titles to display
     private var titles = [
         [String](),
         [String](),
         [String](),
         [String]()
     ]
+    
+    /// Two dimensionnal array for store saved checklist results to display
     private var results = [
         [String](),
         [String](),
         [String](),
         [String]()
     ]
+    
+    /// Instance of ChecklistRepository
     private var checklistRepository = ChecklistRepository()
+    
+    /// Instance of ChecklistGeneral
     private var checklistGeneral = ChecklistGeneral()
+    
+    /// Instance of ChecklistDistrict
     private var checklistDistrict = ChecklistDistrict()
+    
+    /// Instance of ChecklistApartmentBlock
     private var checklistApartmentBlock = ChecklistApartmentBlock()
+    
+    /// Instance of ChecklistApartment
     private var checklistApartment = ChecklistApartment()
+    
+    /// Property to store a selected Project past from SavedProjectsViewController
     var selectedProject: Project?
     
     //MARK: - Outlets
@@ -47,6 +64,8 @@ class ChecklistDataViewController: UIViewController {
     
 
 //MARK: - Methods
+    
+    /// Method for register nib cells
     private func nibRegister() {
         let nibNamForTextViewCell = UINib(nibName: SavedProjectsCell.textView.name, bundle: nil)
         checklistTableView.register(nibNamForTextViewCell, forCellReuseIdentifier: SavedProjectsCell.textView.reuseIdentifier)
@@ -54,6 +73,7 @@ class ChecklistDataViewController: UIViewController {
         checklistTableView.register(nibNameForDetailsSimulationCell, forCellReuseIdentifier: SavedProjectsCell.simulation.reuseIdentifier)
     }
     
+    /// Method for configure page and show or hide checklist table view and label
     private func configurePage() {
         if results[0].count == 0 {
             checklistTableView.isHidden = true
@@ -64,19 +84,22 @@ class ChecklistDataViewController: UIViewController {
         }
     }
     
+    /// Method for configure checklist tableview header
     private func setupTableViewHeader() -> UILabel {
         let sectionTitle = UILabel()
-        sectionTitle.backgroundColor = UIColor(red: Purple.red.colorValue, green: Purple.green.colorValue, blue: Purple.blue.colorValue, alpha: Purple.alpha.colorValue)
+        sectionTitle.backgroundColor = purple
         sectionTitle.font = UIFont(name: antipastoFont, size: sectionTitleFontSize)
         sectionTitle.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         sectionTitle.textAlignment = .center
         return sectionTitle
     }
     
+    /// Method for retrieve checklist titles
     private func getTitles() {
         titles = checklistRepository.allTitles
     }
     
+    /// Method for retrieve saved result from specific checklist with project name
     private func getResults() {
         if let projectName = selectedProject?.name {
         checklistGeneral = checklistRepository.getChecklistGeneralWithProjectName(name: projectName)
@@ -87,6 +110,7 @@ class ChecklistDataViewController: UIViewController {
         }
     }
     
+    /// Method for configure tableview with correct cells
     private func configureTableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let item = checklistRepository.sections[indexPath.section][indexPath.row]
         var cell = UITableViewCell()
@@ -105,6 +129,8 @@ class ChecklistDataViewController: UIViewController {
 }
 
 //MARK: - Extension
+
+/// Extension of ChecklistDataViewController for tableView delegate and datasource methods
 extension ChecklistDataViewController: UITableViewDataSource, UITableViewDelegate {
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

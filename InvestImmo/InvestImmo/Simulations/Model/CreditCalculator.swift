@@ -8,22 +8,38 @@
 
 import Foundation
 
+/// Class for Credit Calculator
 class CreditCalculator {
     
     //MARK: - Properties
+    
+    /// Dictionary to store credit data
     var creditData = [CreditItem.amountToFinance.titles: emptyString, CreditItem.duration.titles: emptyString, CreditItem.rate.titles: emptyString, CreditItem.insuranceRate.titles: emptyString, CreditItem.bookingFees.titles: emptyString]
+    
+    /// Property to store result of power calcul
     var powerResult = Double()
+    
+    /// Property to store mensuality withoyt insurance result
     var mensualityWithoutInsurance = Double()
+    
+    /// Property to store mensuality with insurance result
     var mensualityWithInsurance = Double()
+    
+    /// Property to store insurance cost result
     var insuranceCost = Double()
+    
+    /// Property to store interest cost result
     var interestCost = Double()
     
     //MARK: - Enum
+    
+    /// Enumeration for credit calculator error items
     enum CreditCalculatorError: Error {
         case amountToFinanceMissing
         case rateMissing
         case unknowError
         
+        /// Items message
         var message: String {
             switch self {
             case .amountToFinanceMissing:
@@ -37,6 +53,8 @@ class CreditCalculator {
     }
     
     //MARK: - Private Methods
+    
+    /// Method for calculate power
     private func getPowerResult() throws -> Double {
         var result = Double()
         if let rate = creditData[CreditItem.rate.titles],
@@ -55,6 +73,7 @@ class CreditCalculator {
         return result
     }
     
+    /// Method for calculate mensuality without insurance
     private func getMensualityWithoutInsurance() throws -> Double {
         do {
             powerResult = try getPowerResult()
@@ -74,6 +93,7 @@ class CreditCalculator {
         return mensuality
     }
     
+    /// Method for calculate mensuality without insurance
     private func getMensualityWithInsurance() throws -> Double {
         do {
             powerResult = try getPowerResult()
@@ -98,6 +118,7 @@ class CreditCalculator {
         return mensuality
     }
     
+    /// Method for calculate interest cost
     private func getInterestCost() throws -> Double {
         do {
             mensualityWithoutInsurance = try getMensualityWithoutInsurance()
@@ -114,6 +135,7 @@ class CreditCalculator {
         return interestCost
     }
     
+    /// Method for calculate insurance cost
     private func getInsuranceCost() throws -> Double {
         var insuranceCost = Double()
         if let insuranceRate = creditData[CreditItem.insuranceRate.titles],
@@ -137,6 +159,8 @@ class CreditCalculator {
     }
     
     //MARK: - Public Methods
+    
+    /// Method for calculate mensuality
     func getStringMensuality() throws -> String {
         do {
             mensualityWithoutInsurance = try getMensualityWithoutInsurance()
@@ -159,6 +183,7 @@ class CreditCalculator {
         return finalMensuality
     }
     
+    /// Method for calculate interest cost
     func getStringInterestCost() throws -> String {
         do {
             interestCost = try getInterestCost()
@@ -171,6 +196,7 @@ class CreditCalculator {
         return finalInterestCost
     }
     
+    /// Method for calculate insurance cost
     func getStringInsuranceCost() throws -> String {
         do {
             insuranceCost = try getInsuranceCost()
@@ -183,6 +209,7 @@ class CreditCalculator {
         return finalInsuranceCost
     }
     
+    /// Method for calculate total cost
     func getTotalCost() throws -> String {
         do {
             insuranceCost = try getInsuranceCost()

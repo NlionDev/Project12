@@ -8,17 +8,36 @@
 
 import UIKit
 
+/// Class for SelectedPhotoViewController
 class SelectedPhotoViewController: UIViewController {
 
     //MARK: - Properties
+    
+    /// Property for store collectionview item spacing value
     private var itemSpacing: CGFloat = 0
+    
+    /// property for store boolean value depends if menubar should be displayed or not
     private var isMenuBarDisplayed = false
+    
+    /// property for store boolean value for that a specific action is activated once
     private var onceOnly = false
+    
+    /// Property to store index of the current photo displayed
     private var currentIndex = Int()
+    
+    /// Instance of PhotoRepository
     private let photoRepository = PhotoRepository()
+    
+    /// Property to store a selected Project past from SavedProjectsViewController
     var project: Project?
+    
+    /// Dictionary of saved high quality photos past from SavedPhotoViewController
     var photos: [Int: UIImage]?
+    
+    /// IndexPath of selected photo past from SavedPhotoViewController
     var initialIndexPath: IndexPath?
+    
+    /// Dictionary of saved identifiers past from SavedPhotoViewController
     var identifiers: [Int: String]?
     
     //MARK: - Outlets
@@ -36,10 +55,12 @@ class SelectedPhotoViewController: UIViewController {
     
     //MARK: - Actions
     
+    /// Action activated when tap on back button
     @IBAction func didTapOnReturnButton(_ sender: Any) {
         dismiss(animated: true)
     }
     
+    /// Action activated when tap on delete button for delete selected photo
     @IBAction func didTapOnDeleteButton(_ sender: Any) {
         guard let identifiers = identifiers,
             let identifier = identifiers[currentIndex],
@@ -53,11 +74,14 @@ class SelectedPhotoViewController: UIViewController {
     
     
     //MARK: - Methods
+    
+    /// Method for register nib cells
     private func nibRegister() {
         let nibName = UINib(nibName: SavedProjectsCell.photo.name, bundle: nil)
         selectedPhotoCollectionView.register(nibName, forCellWithReuseIdentifier: SavedProjectsCell.photo.reuseIdentifier)
     }
 
+    /// Method for show or hide menu bar
     private func setupMenuBar() {
         if isMenuBarDisplayed {
             menuBar.isHidden = false
@@ -71,6 +95,8 @@ class SelectedPhotoViewController: UIViewController {
 }
 
 //MARK: - Extension
+
+/// Extension of SelectedPhotoViewController for collectionview delegate and datasource methods
 extension SelectedPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

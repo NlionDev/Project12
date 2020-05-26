@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// Class for EmptyNewProjectPopUp
 class EmptyNewProjectPopUp {
     
+    /// Method for instatiate CreateNewProjectViewController and present alert
     func alert() -> CreateNewProjectViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.savedProjects.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: newProjectVCIdentifier) as! CreateNewProjectViewController

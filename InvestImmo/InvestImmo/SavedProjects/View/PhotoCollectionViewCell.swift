@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Class for PhotoCollectionViewCell
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Outlets
@@ -21,6 +22,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Methods
+    
+    /// Method for configure cell with photo
     func configure(photo: UIImage) {
         photoImageView.image = photo
     }

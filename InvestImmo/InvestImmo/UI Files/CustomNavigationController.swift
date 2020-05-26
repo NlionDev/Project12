@@ -8,9 +8,12 @@
 
 import UIKit
 
+/// Class for CustomNavigationController
 class CustomNavigationController: UINavigationController {
 
     //MARK: - Properties
+    
+    /// Property for status bar style
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -22,6 +25,8 @@ class CustomNavigationController: UINavigationController {
     }
     
     //MARK: - Methods
+    
+    /// Method for configure navigation bar style
     private func setupStyle() {
         let attributes = [NSAttributedString.Key.font: UIFont(name: "Poetsen One", size: 30),
                           NSAttributedString.Key.foregroundColor: UIColor(ciColor: .white)]

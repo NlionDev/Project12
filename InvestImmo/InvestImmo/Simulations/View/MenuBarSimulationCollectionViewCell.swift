@@ -9,28 +9,33 @@
 import Foundation
 import UIKit
 
+/// Class for Menubar collection view
 class MenuBarSimulationCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
+    
+    /// Property for instantiate and setup title
     private let titleLabel: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Antipasto Pro", size: 20)
-        title.textColor = UIColor(red: 55/255.0, green: 70/255.0, blue: 128/255.0, alpha: 1.0)
+        title.font = UIFont(name: antipastoFont, size: menuBarFontSize)
+        title.textColor = darkPurple
         title.numberOfLines = 0
         title.textAlignment = .center
         return title
         
     }()
     
+    /// Property for set title color when is highlighted
     override var isHighlighted: Bool {
         didSet {
-            titleLabel.textColor = isHighlighted ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : UIColor(red: 55/255.0, green: 70/255.0, blue: 128/255.0, alpha: 1.0)
+            titleLabel.textColor = isHighlighted ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : darkPurple
         }
     }
     
+    /// Propertry for set title color when is selected
     override var isSelected: Bool {
         didSet {
-            titleLabel.textColor = isSelected ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : UIColor(red: 55/255.0, green: 70/255.0, blue: 128/255.0, alpha: 1.0)
+            titleLabel.textColor = isSelected ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : darkPurple
         }
     }
     
@@ -41,10 +46,13 @@ class MenuBarSimulationCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Methods
+    
+    /// Method for configure cell with title
     func configure(title: String) {
         titleLabel.text = title
     }
     
+    /// Method for configure cell subviews
     private func setupView() {
         addSubview(titleLabel)
         addConstraintsWithFormat(format: "H:[v0(150)]", views: titleLabel)

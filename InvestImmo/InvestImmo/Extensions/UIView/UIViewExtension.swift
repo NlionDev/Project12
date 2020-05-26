@@ -9,6 +9,8 @@
 import UIKit
 
 extension UIView {
+    
+    /// Method for add constraints programmatically
     func addConstraintsWithFormat(format: String, views: UIView...) {
         var viewsDict = [String: UIView]()
         for (index, view) in views.enumerated() {

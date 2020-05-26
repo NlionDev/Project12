@@ -10,24 +10,51 @@ import Foundation
 import UIKit
 import RealmSwift
 
+/// Class for Rentability Repository
 class RentabilityRepository {
     
     //MARK: - Properties
+    
+    /// Instance of Realm
     let realm = AppDelegate.realm
+    
+    /// Instance of RentabilitySimulation
     private var simulation = RentabilitySimulation()
+    
+    /// Property for stock saved rentability simulations
     lazy var mySavedRentabilitySimulations: Results<RentabilitySimulation> = {
         self.realm?.objects(RentabilitySimulation.self)}()!
+    
+    /// Array of rentability item titles
     let allTitles = [RentabilityItem.estatePrice.titles, RentabilityItem.worksCost.titles, RentabilityItem.notaryFees.titles, RentabilityItem.monthlyRent.titles, RentabilityItem.propertyTax.titles, RentabilityItem.maintenanceFees.titles, RentabilityItem.charges.titles, RentabilityItem.managementFees.titles, RentabilityItem.insurance.titles, RentabilityItem.creditCost.titles, RentabilityResultItem.grossYield.titles, RentabilityResultItem.netYield.titles, RentabilityResultItem.annualCashflow.titles, RentabilityResultItem.mensualCashflow.titles]
+    
+    /// Array of rentability items result titles
     let resultTitles = [RentabilityResultItem.grossYield.titles, RentabilityResultItem.netYield.titles, RentabilityResultItem.annualCashflow.titles, RentabilityResultItem.mensualCashflow.titles]
+    
+    /// Array of rentability all cells
     let cells: RentabilityCells = [RentabilityItem.estatePrice, RentabilityItem.worksCost, RentabilityItem.notaryFees, RentabilityItem.monthlyRent, RentabilityItem.propertyTax, RentabilityItem.maintenanceFees, RentabilityItem.charges, RentabilityItem.managementFees, RentabilityItem.insurance, RentabilityItem.creditCost]
+    
+    /// Array of rentability textfield without subtitle cells
     var rentaTextFieldWithoutSubtitleCells = [TextFieldWithoutSubtitleTableViewCell]()
+    
+    /// Array of rentability textfield with subtitle cells
     var rentaTextFieldWithSubtitleCells = [TextFieldWithSubtitleTableViewCell]()
+    
+    /// Array of rentability results
     var results = [String]()
+    
+    /// Array of rentabilty results without unit for positive check
     var resultsForPositiveCheck = [String]()
+    
+    /// Dictionary to store rentability data
     var rentabilityData = [RentabilityItem.estatePrice.titles: emptyString, RentabilityItem.worksCost.titles: emptyString, RentabilityItem.notaryFees.titles: emptyString, RentabilityItem.monthlyRent.titles: emptyString, RentabilityItem.propertyTax.titles: emptyString, RentabilityItem.maintenanceFees.titles: emptyString, RentabilityItem.charges.titles: emptyString, RentabilityItem.managementFees.titles: emptyString, RentabilityItem.insurance.titles: emptyString, RentabilityItem.creditCost.titles: emptyString]
+    
+    /// Dictionary to store rentability result data
     var rentabilityResultData = [RentabilityResultItem.grossYield.titles: emptyString, RentabilityResultItem.netYield.titles: emptyString, RentabilityResultItem.annualCashflow.titles: emptyString, RentabilityResultItem.mensualCashflow.titles: emptyString]
     
     //MARK: - Methods
+    
+    /// Method for save new rentability simulation
     func saveNewRentabilitySimulation(name: String, project: Project, rentaRepo: RentabilityRepository) {
         project.name = name
         simulation.name = name
@@ -52,6 +79,7 @@ class RentabilityRepository {
         }
     }
     
+    /// Method for save rentability simulation in an existant project
     func addRentabilitySimulationToExistantProject(project: Project, rentaRepo: RentabilityRepository) {
         simulation.name = project.name
         simulation.estatePrice = rentaRepo.rentabilityData[RentabilityItem.estatePrice.titles]
@@ -74,6 +102,7 @@ class RentabilityRepository {
         }
     }
     
+    /// Method for retrieve rentability simulation with project name
     func getRentabilitySimulationWithProjectName(name: String) -> RentabilitySimulation {
         var simulationToReturn = RentabilitySimulation()
         for simulation in mySavedRentabilitySimulations {
@@ -84,6 +113,7 @@ class RentabilityRepository {
         return simulationToReturn
     }
     
+    /// Method for delete rentabilty simulation
     func deleteRentabilitySimulation(rentabilityToDelete: Results<RentabilitySimulation>) {
         guard let realm = realm else {return}
         realm.safeWrite {
@@ -91,6 +121,7 @@ class RentabilityRepository {
         }
     }
     
+    /// Method for retrieve data from a specific rentability simulation
     func getSavedRentabilitySimulationResultsData(simulation: RentabilitySimulation) -> [String] {
         var results = [String]()
         if let estatePrice = simulation.estatePrice,

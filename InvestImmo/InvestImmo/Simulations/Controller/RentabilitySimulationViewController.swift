@@ -8,14 +8,19 @@
 
 import UIKit
 
+/// ViewController for make a rentability simulation
 class RentabilitySimulationViewController: UIViewController {
     
-    
     //MARK: - Properties
+    
+    /// Instance of RentabilityCalculator for calculation
     private let rentabilityCalculator = RentabilityCalculator()
-    private var lastRentaCell = TextFieldWithSubtitleTableViewCell()
+    
+    /// Instance of ErrorAlert for present error
     private let errorAlert = ErrorAlert()
-    let rentabilityRepository = RentabilityRepository()
+    
+    /// Instance of RentabilityRepository
+    private let rentabilityRepository = RentabilityRepository()
     
     //MARK: - Outlets
     @IBOutlet weak private var rentabilityTableView: UITableView!
@@ -43,13 +48,12 @@ class RentabilitySimulationViewController: UIViewController {
     
     //MARK: - Actions
     
+    /// Action activated when tap on calculate button and get rentability simulation results
     @IBAction private func didTapOnCalculButton(_ sender: Any) {
-        if let rentaLastTextField = lastRentaCell.cellTextField {
-            rentaLastTextField.resignFirstResponder()
-            getRentabilityResults()
-        }
+        getRentabilityResults()
     }
     
+    /// Action activated when tap on screen so that all textfield resign first responder
     @IBAction private func dismissKeyboard(_ sender: Any) {
         for cell in rentabilityRepository.rentaTextFieldWithoutSubtitleCells {
             cell.cellTextField.resignFirstResponder()
@@ -60,7 +64,9 @@ class RentabilitySimulationViewController: UIViewController {
     }
     
     //MARK: - Methods
-        @objc private func adjustViewForKeyboard(notification: Notification) {
+    
+    /// Method for keyboard management and move up textfield when editing
+    @objc private func adjustViewForKeyboard(notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
@@ -79,6 +85,7 @@ class RentabilitySimulationViewController: UIViewController {
         rentabilityTableView.scrollIndicatorInsets =  rentabilityTableView.contentInset
     }
     
+    /// Method for register rentability simulation cell
     private func nibRegister() {
         let nibNameForCellWithSubtitle = UINib(nibName: SimulationsCells.textFieldWithSubtitle.name, bundle: nil)
         rentabilityTableView.register(nibNameForCellWithSubtitle, forCellReuseIdentifier: SimulationsCells.textFieldWithSubtitle.reuseIdentifier)
@@ -86,6 +93,7 @@ class RentabilitySimulationViewController: UIViewController {
         rentabilityTableView.register(nibNameForCellWithoutSubtitle, forCellReuseIdentifier: SimulationsCells.textFieldWithoutSubtitle.reuseIdentifier)
     }
     
+    /// Method for get rentability simulation results
     private func getRentabilityResults() {
         rentabilityCalculator.rentabilityData = rentabilityRepository.rentabilityData
         rentabilityRepository.results.removeAll()
@@ -110,6 +118,7 @@ class RentabilitySimulationViewController: UIViewController {
         }
     }
     
+    /// Method for instantiate, configure and return correct cell
     private func getCorrectCell(tableView: UITableView, indexPath : IndexPath) -> UITableViewCell {
         let item = rentabilityRepository.cells[indexPath.row]
         switch item.cellType {
@@ -122,13 +131,13 @@ class RentabilitySimulationViewController: UIViewController {
         case .textFieldWithSubtitles:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.textFieldWithSubtitle.reuseIdentifier, for: indexPath) as? TextFieldWithSubtitleTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, subtitle: item.subtitles)
-            lastRentaCell = cell
             rentabilityRepository.rentaTextFieldWithSubtitleCells.append(cell)
             cell.delegate = self
             return cell
         }
     }
     
+    /// Method for display a specific error
     private func displayRentabilityError(_ error: RentabilityCalculator.RentabilityCalculatorError) {
         switch error {
         case .estatePriceMissing:
@@ -155,6 +164,8 @@ class RentabilitySimulationViewController: UIViewController {
 }
 
 //MARK: - Extension for TableView
+
+/// Extension of RentabilitySimulationViewController for TableView Delegate and DataSource
 extension RentabilitySimulationViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -167,6 +178,8 @@ extension RentabilitySimulationViewController: UITableViewDataSource, UITableVie
 }
 
 //MARK: - TextFieldTableViewCellDelegate
+
+/// Extension of RentabilitySimulationViewController for implement TextFieldTableViewCellDelegate methods
 extension RentabilitySimulationViewController: TextFieldTableViewCellDelegate {
     func textFieldTableViewCell(key: String, value: String) {
         rentabilityRepository.rentabilityData[key] = value

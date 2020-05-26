@@ -8,17 +8,23 @@
 
 import UIKit
 
+/// Protocol for DatePickerTableViewCellDelegate
 protocol DatePickerTableViewCellDelegate: class {
     func datePickerTableViewCell(_ datePickerTableViewCell: DatePickerTableViewCell, key: String, value: String, sectionKey: Int)
 }
 
+/// Class for DatePickerTableViewCell
 class DatePickerTableViewCell: UITableViewCell {
-    
     
     //MARK: - Properties
     
+    /// Property for delegate
     weak var delegate: DatePickerTableViewCellDelegate?
+    
+    /// Property for stock title of cell who will be the key in data dictionary
     private var key = String()
+    
+    /// Property for store selected section to store data in data dictionary
     private var section = Int()
     
     //MARK: - Outlets
@@ -35,7 +41,7 @@ class DatePickerTableViewCell: UITableViewCell {
     }
     //MARK: - Actions
     
-    
+    /// Action activated when date in pickerview was changed for retrieve selected date
     @IBAction func didChangeDate(_ sender: Any) {
         let newValue = cellDatePicker.date.transformIntoString
         delegate?.datePickerTableViewCell(self, key: key, value: newValue, sectionKey: section)
@@ -43,6 +49,7 @@ class DatePickerTableViewCell: UITableViewCell {
     
     //MARK: - Methods
     
+    /// Method for configure cell with data
     func configure(title: String, sectionKey: Int) {
         key = title
         section = sectionKey

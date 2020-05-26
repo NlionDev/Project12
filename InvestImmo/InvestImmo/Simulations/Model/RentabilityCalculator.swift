@@ -8,16 +8,29 @@
 
 import Foundation
 
+/// Class for rentability calculator
 class RentabilityCalculator {
     
     //MARK: - Properties
+    
+    /// Property for stock rentability data
     var rentabilityData = [RentabilityItem.estatePrice.titles: emptyString, RentabilityItem.worksCost.titles: emptyString, RentabilityItem.notaryFees.titles: emptyString, RentabilityItem.monthlyRent.titles: emptyString, RentabilityItem.propertyTax.titles: emptyString, RentabilityItem.maintenanceFees.titles: emptyString, RentabilityItem.charges.titles: emptyString, RentabilityItem.managementFees.titles: emptyString, RentabilityItem.insurance.titles: emptyString, RentabilityItem.creditCost.titles: emptyString]
+    
+    /// Property for stock annual rent result
     var annualRent = Double()
+    
+    /// Property for stock annual total charges result
     var annualTotalCharges = Double()
+    
+    /// Propertry for stock annual management fees result
     var annualManagementFeesAmount = Double()
+    
+    /// Property for stock total to finance result
     var totalToFinance = Double()
     
     //MARK: - Enum
+    
+    /// Enumeration for rentability error items
     enum RentabilityCalculatorError: Error {
         case estatePriceMissing
         case notaryFeesMissing
@@ -26,6 +39,7 @@ class RentabilityCalculator {
         case chargesMissing
         case unknowError
         
+        /// Items message
         var message: String {
             switch self {
             case .estatePriceMissing:
@@ -45,6 +59,8 @@ class RentabilityCalculator {
     }
     
     //MARK: - Private Methods
+    
+    /// Method for calculate annual rent
     private func getAnnualRent() throws -> Double {
         var annualRent = Double()
         if let monthlyRent = rentabilityData[RentabilityItem.monthlyRent.titles] {
@@ -58,6 +74,7 @@ class RentabilityCalculator {
         return annualRent
     }
     
+    /// Method for calculate annual management fees amount
     private func getAnnualManagementFeesAmount() -> Double {
         var annualManagementFeesAmount = Double()
         if let managementFees = rentabilityData[RentabilityItem.managementFees.titles],
@@ -74,6 +91,7 @@ class RentabilityCalculator {
         return annualManagementFeesAmount
     }
     
+    /// Method for calculate annual insurance cost
     private func getAnnualInsuranceCost() -> Double {
         var annualInsuranceCost = Double()
         if let insurance = rentabilityData[RentabilityItem.insurance.titles] {
@@ -87,6 +105,7 @@ class RentabilityCalculator {
         return annualInsuranceCost
     }
     
+    /// Method for calculate annual credit cost
     private func getAnnualCreditCost() -> Double {
         var annualCreditCost = Double()
         if let creditCost = rentabilityData[RentabilityItem.creditCost.titles] {
@@ -100,6 +119,7 @@ class RentabilityCalculator {
         return annualCreditCost
     }
     
+    /// Method for calculate total to finance amount
     private func getTotalToFinance() throws -> Double {
         var totalToFinance = Double()
         if let worksPrice = rentabilityData[RentabilityItem.worksCost.titles],
@@ -125,6 +145,7 @@ class RentabilityCalculator {
         return totalToFinance
     }
     
+    /// Method for calculate annual total charges cost
     private func getAnnualTotalCharges() throws -> Double {
         var totalCharges = Double()
         if let maintenanceFees = rentabilityData[RentabilityItem.maintenanceFees.titles],
@@ -153,6 +174,8 @@ class RentabilityCalculator {
     }
     
     //MARK: - Public Methods
+    
+    /// Method for calculate gross yield
     func getGrossYield() throws -> String {
         do {
             annualRent = try getAnnualRent()
@@ -167,6 +190,7 @@ class RentabilityCalculator {
         return finalGrossYield
     }
     
+    /// Method for calculate net yield
     func getNetYield() throws -> String {
         do {
             annualRent = try getAnnualRent()
@@ -182,6 +206,7 @@ class RentabilityCalculator {
         return finalNetYield
     }
     
+    /// Method for calculate annual cashflow
     func getAnnualCashflow() throws -> String {
         do {
             annualRent = try getAnnualRent()
@@ -197,6 +222,7 @@ class RentabilityCalculator {
         return finalAnnualCashflow
     }
     
+    /// Method for calculate mensual cashflow
     func getMensualCashflow() throws -> String {
         do {
             annualRent = try getAnnualRent()

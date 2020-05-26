@@ -8,11 +8,13 @@
 
 import Foundation
 
+/// Enumeration of rentabilty cells type
 enum RentabilityCellType {
     case textFieldWithSubtitles
     case textFieldWithoutSubtitles
 }
 
+/// Enumeration of rentability items
 enum RentabilityItem {
     case estatePrice
     case worksCost
@@ -25,6 +27,7 @@ enum RentabilityItem {
     case insurance
     case creditCost
     
+    /// Items titles
     var titles: String {
         switch self {
         case .estatePrice:
@@ -50,6 +53,7 @@ enum RentabilityItem {
         }
     }
     
+    /// Items subtitles
     var subtitles: String {
         switch self {
         case .monthlyRent:
@@ -69,6 +73,7 @@ enum RentabilityItem {
         }
     }
     
+    /// Items unit
     var unit: String {
         switch self {
         case .managementFees:
@@ -78,6 +83,7 @@ enum RentabilityItem {
         }
     }
     
+    /// Items cell type
     var cellType: RentabilityCellType {
         switch self {
         case .estatePrice, .worksCost, .notaryFees, .managementFees:
@@ -90,12 +96,14 @@ enum RentabilityItem {
 
 typealias RentabilityCells = [RentabilityItem]
 
+/// Enumeration of rentability result items
 enum RentabilityResultItem {
     case grossYield
     case netYield
     case annualCashflow
     case mensualCashflow
     
+    /// Items titles
     var titles: String {
         switch self {
         case .grossYield:
@@ -109,6 +117,7 @@ enum RentabilityResultItem {
         }
     }
     
+    /// Items index
     var index: Int {
         switch self {
         case .grossYield:

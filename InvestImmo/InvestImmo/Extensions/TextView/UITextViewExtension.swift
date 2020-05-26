@@ -9,6 +9,8 @@
 import UIKit
 
 extension UITextView {
+    
+    /// Method for delete text from textview
     func clear() {
         self.text = ""
     }

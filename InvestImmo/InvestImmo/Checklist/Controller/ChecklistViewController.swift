@@ -9,14 +9,22 @@
 import UIKit
 import RealmSwift
 
+/// Class for checklist ViewController
 class ChecklistViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Instance of ExistantProjectPopUp for present pop up and save checklist in an existant project
     private let existantProjectPopUp = ChecklistExistantProjectPopUp()
+    
+    /// Instance of newProjectPopUp for present pop up and save checklist in new project
     private let newProjectPopUp = ChecklistNewProjectPopUp()
+    
+    /// Instance of ChecklistRepository
     private let checklistRepository = ChecklistRepository()
-    private var lastCell = TextViewTableViewCell()
     
     //MARK: - Outlets
     @IBOutlet weak var checklistTableView: UITableView!
@@ -34,10 +42,9 @@ class ChecklistViewController: UIViewController {
     }
     
     //MARK: - Actions
+    
+    /// Action activated when tap on save button for save checklist in a new or an existant project
     @IBAction func didTapOnSaveButton(_ sender: Any) {
-        if let lastTextView = lastCell.cellTextView {
-            lastTextView.resignFirstResponder()
-        }
         if projectRepository.myProjects.isEmpty {
             let alertVC = newProjectPopUp.alert(checklist: checklistRepository)
             present(alertVC, animated: true)
@@ -47,6 +54,7 @@ class ChecklistViewController: UIViewController {
         }
     }
     
+    /// Action activated when tap on screen so that all textfield and textview resign first responder
     @IBAction func dismissKeyboard(_ sender: Any) {
         for cell in checklistRepository.textFieldCells {
             cell.cellTextField.resignFirstResponder()
@@ -57,6 +65,8 @@ class ChecklistViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    /// Method for keyboard management and move up textfield and textview when editing
     @objc private func adjustViewForKeyboard(notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
@@ -76,6 +86,7 @@ class ChecklistViewController: UIViewController {
         checklistTableView.scrollIndicatorInsets = checklistTableView.contentInset
     }
     
+    /// Method for register checklist cells
     private func nibRegister() {
         let nibNameForDatePickerCell = UINib(nibName: ChecklistCellType.datePicker.name, bundle: nil)
         checklistTableView.register(nibNameForDatePickerCell, forCellReuseIdentifier: ChecklistCellType.datePicker.reuseIdentifier)
@@ -89,15 +100,17 @@ class ChecklistViewController: UIViewController {
         checklistTableView.register(nibNameForTextViewCell, forCellReuseIdentifier: ChecklistCellType.textView.reuseIdentifier)
     }
     
+    /// Method for configure tableView header
     private func setupTableViewHeader() -> UILabel {
         let sectionTitle = UILabel()
-        sectionTitle.backgroundColor = UIColor(red: Purple.red.colorValue, green: Purple.green.colorValue, blue: Purple.blue.colorValue, alpha: Purple.alpha.colorValue)
+        sectionTitle.backgroundColor = purple
         sectionTitle.font = UIFont(name: antipastoFont, size: sectionTitleFontSize)
         sectionTitle.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         sectionTitle.textAlignment = .center
         return sectionTitle
     }
     
+    /// Method for configure checklist table view with correct cells
     private func configureTableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let item = checklistRepository.sections[indexPath.section][indexPath.row]
         switch item.cellType {
@@ -111,7 +124,6 @@ class ChecklistViewController: UIViewController {
             guard let textViewCell = tableView.dequeueReusableCell(withIdentifier: ChecklistCellType.textView.reuseIdentifier, for: indexPath) as? TextViewTableViewCell else {return UITableViewCell()}
             textViewCell.configure(title: item.titles, sectionKey: indexPath.section)
             textViewCell.delegate = self
-            lastCell = textViewCell
             textViewCell.cellTextView.clear()
             checklistRepository.textViewCells.append(textViewCell)
             return textViewCell
@@ -140,6 +152,8 @@ class ChecklistViewController: UIViewController {
 }
 
 //MARK: - Extensions for TableView
+
+/// Extension of ChecklistViewController for tableview delegate and datasource
 extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -174,6 +188,8 @@ extension ChecklistViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - TextViewTableViewCellDelegate
+
+/// Extension of ChecklistViewController for implement methods of TextViewTableViewCellDelegate
 extension ChecklistViewController: TextViewTableViewCellDelegate {
     
     func textViewTableViewCell(_ textViewTableViewCell: TextViewTableViewCell, key: String, value: String, sectionKey: Int) {
@@ -182,6 +198,8 @@ extension ChecklistViewController: TextViewTableViewCellDelegate {
 }
 
 //MARK: - ChecklistTextFieldTableViewCellDelegate
+
+/// Extension of ChecklistViewController for implement methods of ChecklistTextFieldTableViewCellDelegate
 extension ChecklistViewController: ChecklistTextFieldTableViewCellDelegate {
     
     func checklistTextFieldTableViewCell(_ checklistTextFieldTableViewCell: ChecklistTextFieldTableViewCell, key: String, value: String, sectionKey: Int) {
@@ -190,6 +208,8 @@ extension ChecklistViewController: ChecklistTextFieldTableViewCellDelegate {
 }
 
 //MARK: - ChecklistPickerTableViewCellDelegate
+
+/// Extension of ChecklistViewController for implement methods of ChecklistPickerTableViewCellDelegate
 extension ChecklistViewController: ChecklistPickerTableViewCellDelegate {
     func checklistPickerTableViewCell(_ checklistPickerTableViewCell: ChecklistPickerTableViewCell, key: String, value: String, sectionKey: Int) {
         checklistRepository.checklistData[sectionKey][key] = value
@@ -197,6 +217,8 @@ extension ChecklistViewController: ChecklistPickerTableViewCellDelegate {
 }
 
 //MARK: - DatePickerTableViewCellDelegate
+
+/// Extension of ChecklistViewController for implement methods of DatePickerTableViewCellDelegate
 extension ChecklistViewController: DatePickerTableViewCellDelegate {
     func datePickerTableViewCell(_ datePickerTableViewCell: DatePickerTableViewCell, key: String, value: String, sectionKey: Int) {
         checklistRepository.checklistData[sectionKey][key] = value
@@ -204,6 +226,8 @@ extension ChecklistViewController: DatePickerTableViewCellDelegate {
 }
 
 //MARK: - SegmentTableViewCellDelegate
+
+/// Extension of ChecklistViewController for implement methods of SegmentTableViewCellDelegate
 extension ChecklistViewController: SegmentTableViewCellDelegate {
     func segmentTableViewCell(_ segmentTableViewCell: SegmentTableViewCell, key: String, value: String, sectionKey: Int) {
         checklistRepository.checklistData[sectionKey][key] = value

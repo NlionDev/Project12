@@ -8,16 +8,26 @@
 
 import UIKit
 
+/// Protocol for PickerViewTableViewCellDelegate
 protocol PickerViewTableViewCellDelegate: class {
     func pickerViewTableViewCell(_ pickerViewTableViewCell: PickerViewTableViewCell, key: String, value: Int)
 }
 
+/// Class for PickerView cell
 class PickerViewTableViewCell: UITableViewCell {
 
     //MARK: - Properties
+    
+    /// Instance of CreditRepository
     private let creditRepo = CreditRepository()
+    
+    /// Property for stock title of cell who will be the key in data dictionary
     private var key = String()
+    
+    /// Property for stock selected index for pickerview
     var selectedPickerData = Int()
+    
+    /// Property for delegate
     weak var delegate: PickerViewTableViewCellDelegate?
  
     //MARK: - Outlets
@@ -34,13 +44,16 @@ class PickerViewTableViewCell: UITableViewCell {
     }
     
     //MARK: - Methods
+    
+    /// Method for configure the PickerView
     private func setupDurationPickerView() {
-        durationPicker.setValue(UIColor(red: 91/255.0, green: 102/255.0, blue: 248/255.0, alpha: 1.0), forKeyPath: "textColor")
+        durationPicker.setValue(purple, forKeyPath: textColorKeyPath)
         let middleOfPicker = creditRepo.creditDuration.count/2
         durationPicker.selectRow(middleOfPicker, inComponent: 0, animated: true)
         selectedPickerData = middleOfPicker
     }
     
+    /// Method for configure the cell with data
     func configure(title: String, subtitle: String) {
         key = title
         titleLabel.text = title
@@ -49,6 +62,9 @@ class PickerViewTableViewCell: UITableViewCell {
     
 }
 
+//MARK: - Extension
+
+/// Extension of PickerViewTableViewCell for PickerView Delegate and DataSource
 extension PickerViewTableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

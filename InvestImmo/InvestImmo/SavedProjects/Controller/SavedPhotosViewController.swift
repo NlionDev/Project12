@@ -10,17 +10,36 @@ import UIKit
 import Photos
 import AssetsLibrary
 
+/// Class for SavedPhotosViewController
 class SavedPhotosViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Property for store collection view item spacing value
     private let itemSpacing: CGFloat = 1
+    
+    /// Array for store retrieved saved photo identifiers
     private var identifiers = [String]()
+    
+    /// Dictionary for store retrieved degraded photo with a specific key
     private var degradedPhotos = [Int: UIImage]()
+    
+    /// Dictionary for store retrieved high quality photo with a specific key
     private var photosDictionary = [Int: UIImage]()
+    
+    /// Dictionary for store retrieved photo identifiers with a specific key
     private var identifiersDictionary = [Int: String]()
+    
+    /// Instance of PhotoRepository
     private let photoRepository = PhotoRepository()
+    
+    /// Property for store selected photo indexpath
     private var selectedPhotoIndexPath = IndexPath()
+    
+    /// Property to store option key of PHFetchOptions
     private let optionKey = "creationDate"
+    
+    /// Property to store a selected Project past from SavedProjectsViewController
     var selectedProject: Project?
 
     //MARK: - Outlets
@@ -60,11 +79,14 @@ class SavedPhotosViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    /// Method for register nib cells
     private func nibRegister() {
         let nibName = UINib(nibName: SavedProjectsCell.photo.name, bundle: nil)
         galleryCollectionView.register(nibName, forCellWithReuseIdentifier: SavedProjectsCell.photo.reuseIdentifier)
     }
     
+    /// Method for retrieve saved identifiers with a specific project name
     private func getIdentifiers() {
         identifiers.removeAll()
         if let name = selectedProject?.name {
@@ -73,6 +95,7 @@ class SavedPhotosViewController: UIViewController {
         configurePage()
     }
     
+    /// Method for configure page and show or hide collectionview, label and activity indicator
     private func configurePage() {
         if identifiers.count != 0 {
             galleryCollectionView.isHidden = false
@@ -86,6 +109,7 @@ class SavedPhotosViewController: UIViewController {
         
     }
     
+    /// Method for retrieve saved photos by using identifiers and store them in dictionaries
     private func getImages() {
         degradedPhotos.removeAll()
         photosDictionary.removeAll()
@@ -120,6 +144,8 @@ class SavedPhotosViewController: UIViewController {
 }
 
 //MARK: - Extension
+
+/// Extension of SavedPhotosViewController for collectionView delegate and datasource methods
 extension SavedPhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

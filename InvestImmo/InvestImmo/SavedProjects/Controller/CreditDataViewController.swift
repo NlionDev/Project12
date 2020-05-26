@@ -8,13 +8,24 @@
 
 import UIKit
 
+/// Class for CreditDataViewController
 class CreditDataViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Array to store credit simulation results to display
     private var results = [String]()
+    
+    /// Array to store credit simulation titles to display
     private var titles = [String]()
+    
+    /// Instance of CreditRepository
     private var creditRepository = CreditRepository()
+    
+    /// Instance of CreditSimulation
     private var simulation = CreditSimulation()
+    
+    /// Property to store a selected Project past from SavedProjectsViewController
     var selectedProject: Project?
     
     //MARK: - Outlets
@@ -31,11 +42,14 @@ class CreditDataViewController: UIViewController {
     }
     
 //MARK: - Methods
+    
+    /// Method for register nib cells
     private func nibRegister() {
         let nibNameForDetailsSimulationCell = UINib(nibName: SavedProjectsCell.simulation.name, bundle: nil)
         credtiTableView.register(nibNameForDetailsSimulationCell, forCellReuseIdentifier: SavedProjectsCell.simulation.reuseIdentifier)
     }
     
+    /// Method for retrieve results and titles from saved Credit simulation with specific project name
     private func getResultsAndTitles() {
         titles = creditRepository.allTitles
         if let projectName = selectedProject?.name {
@@ -44,6 +58,7 @@ class CreditDataViewController: UIViewController {
         }
     }
     
+    /// Method for configure page and hide or show tableview and label
     private func configurePage() {
         if results.count == 0 {
             credtiTableView.isHidden = true
@@ -56,6 +71,8 @@ class CreditDataViewController: UIViewController {
 }
 
 //MARK: - Extension
+
+/// Extension of CreditDataViewController for tableview delegate and datasource
 extension CreditDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return creditRepository.allTitles.count

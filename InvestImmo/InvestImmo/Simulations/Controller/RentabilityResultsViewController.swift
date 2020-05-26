@@ -8,13 +8,24 @@
 
 import UIKit
 
+/// ViewController for present result of Credit Simulation
 class RentabilityResultsViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Insrance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Instance of RentabilityExistantprojectPopUp for present pop up and save  rentability simulation to an existant project
     private let rentabilityExistantProjectPopUp = RentabilityExistantProjectPopUp()
+    
+    /// Instance of RentabilityNewprojectPopUp for present pop up and save new rentability simulation
     private let rentabilityNewProjectPopUp = RentabilityNewProjectPopUp()
+    
+    /// Instance of RentabilityCalculator past from RentabilitySimulationViewController
     var rentabilityCalculator: RentabilityCalculator?
+    
+    /// Instance of RentabilityRepository past from RentabilitySimulationViewController
     var rentabilityRepository: RentabilityRepository?
     
     //MARK: - Outlets
@@ -27,6 +38,8 @@ class RentabilityResultsViewController: UIViewController {
     }
     
     //MARK: - Actions
+    
+    /// Action activated when tap on save button for save the rentability Simlulation
     @IBAction private func didTapOnSaveButton(_ sender: Any) {
         guard let rentabilityRepository = rentabilityRepository else {return}
         let alert =  projectRepository.myProjects.isEmpty ? rentabilityNewProjectPopUp.alert(rentability: rentabilityRepository) : rentabilityExistantProjectPopUp.alert(rentability: rentabilityRepository)
@@ -35,6 +48,7 @@ class RentabilityResultsViewController: UIViewController {
     
     //MARK: - Methods
     
+    /// Method for register rentability result cell
     private func nibRegister() {
         let nibName = UINib(nibName: SimulationsCells.result.name, bundle: nil)
         rentabilityResultsTableView.register(nibName, forCellReuseIdentifier: SimulationsCells.result.reuseIdentifier)
@@ -44,6 +58,7 @@ class RentabilityResultsViewController: UIViewController {
 
 //MARK: - Extension
 
+/// Extension of RentabilityResultsViewController for TableView Delegate and DataSource
 extension RentabilityResultsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

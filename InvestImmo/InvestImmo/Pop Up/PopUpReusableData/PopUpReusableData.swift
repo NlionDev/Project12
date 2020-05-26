@@ -9,11 +9,19 @@
 import Foundation
 
 //MARK: - Properties
+
+/// Identifier of existant project cell
 let existantProjectCellIdentifier = "ExistantProjectAlertCell"
+
+/// Identifier of new project alert viewcontroller
 let newProjectVCIdentifier = "EmptyNewProjectAlertVC"
+
+/// Property for store comma
 let commaString = ", "
 
 //MARK: - Enum
+
+/// Enumeration of pop up alert
 enum PopUpAlertMessage {
     case projectAlreadyExist
     case projectNameMissing
@@ -21,6 +29,7 @@ enum PopUpAlertMessage {
     case postalCodeMissing
     case cityMissing
     
+    /// Pop up messages
     var message: String {
         switch self {
         case .projectAlreadyExist:
@@ -36,6 +45,8 @@ enum PopUpAlertMessage {
         }
     }
 }
+
+///Enumeration of pop up notification
 enum PopUpNotification {
     case dismissFromPrevious
     case dismissFromReplace
@@ -43,6 +54,7 @@ enum PopUpNotification {
     case configureMapView
     case dismissFisrtAlert
     
+    /// Notification names
     var name: String {
         switch self {
         case .dismissFromPrevious:
@@ -59,6 +71,7 @@ enum PopUpNotification {
     }
 }
 
+/// Enumeration of simulations viewcontroller
 enum SimulationsVC {
     case rentabilityNewProject
     case rentabilityExistantProject
@@ -67,6 +80,7 @@ enum SimulationsVC {
     case creditExistantProject
     case creditReplaceProject
     
+    /// ViewControllers identifiers
     var identifier: String {
         switch self {
         case .rentabilityNewProject:
@@ -85,11 +99,13 @@ enum SimulationsVC {
     }
 }
 
+/// Enumeration of checklist viewControllers
 enum ChecklistVC {
     case checklistNewProject
     case checklistExistantProject
     case checklistReplaceProject
     
+    /// ViewControllers identifiers
     var identifier: String {
         switch self {
         case .checklistNewProject:
@@ -102,12 +118,14 @@ enum ChecklistVC {
     }
 }
 
+/// Enumeration of Map ViewControllers
 enum MapVC {
     case mapNewProject
     case mapExistantProject
     case mapReplaceProject
     case mapSearchAdress
     
+    /// ViewControllers Identifiers
     var identifier: String {
         switch self {
         case .mapNewProject:
@@ -122,12 +140,14 @@ enum MapVC {
     }
 }
 
+/// Enumeration of Storyboard
 enum StoryboardIdentifier {
     case simulations
     case checklist
     case savedProjects
     case map
     
+    /// Storyboard identifiers
     var identifier: String {
         switch self {
         case .simulations:

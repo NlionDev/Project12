@@ -10,52 +10,96 @@ import Foundation
 import UIKit
 import RealmSwift
 
+/// Class for ChecklistRepository
 class ChecklistRepository {
     
     //MARK: Properties
+    
+    /// Instance of Realm
     let realm = AppDelegate.realm
+    
+    /// Instance of ChecklistGeneral
     private var checklistGeneral = ChecklistGeneral()
+    
+    /// Instance of ChecklistDistrict
     private var checklistDistrict = ChecklistDistrict()
+    
+    /// Instance of ChecklistApartmentBlock
     private var checklistApartmentBlock = ChecklistApartmentBlock()
+    
+    /// Instance of ChecklistApartment
     private var checklistApartment = ChecklistApartment()
+    
+    /// Property to store saved ChecklistGeneral
     lazy var myChecklistGeneral: Results<ChecklistGeneral> = {
         realm?.objects(ChecklistGeneral.self)}()!
+    
+    /// Property to store saved ChecklistDistrict
     lazy var myChecklistDistrict: Results<ChecklistDistrict> = {
         realm?.objects(ChecklistDistrict.self)}()!
+    
+    /// Property to store saved ChecklistApartmentBlock
     lazy var myChecklistApartmentBlock: Results<ChecklistApartmentBlock> = {
         realm?.objects(ChecklistApartmentBlock.self)}()!
+    
+    /// Property to store saved ChecklistApartment
     lazy var myChecklistApartment: Results<ChecklistApartment> = {
         realm?.objects(ChecklistApartment.self)}()!
     
+    /// Dictionary for Checklist Items
     let sections: ChecklistSection = [
         [ChecklistItem.visitDate, ChecklistItem.estateType, ChecklistItem.surfaceArea],
         [ChecklistItem.problem, ChecklistItem.advantage, ChecklistItem.transports, ChecklistItem.easyPark],
         [ChecklistItem.yearOfConstruction, ChecklistItem.numberOfLots, ChecklistItem.internet, ChecklistItem.syndicate, ChecklistItem.facade, ChecklistItem.roof, ChecklistItem.communalAreas],
         [ChecklistItem.dpe, ChecklistItem.light, ChecklistItem.dualAspect, ChecklistItem.vmc, ChecklistItem.humidity, ChecklistItem.heightUnderCeiling, ChecklistItem.planeness, ChecklistItem.insulation, ChecklistItem.soundInsulation, ChecklistItem.direction, ChecklistItem.bedroomView, ChecklistItem.lifeRoomView, ChecklistItem.heatingSystem, ChecklistItem.heatingType, ChecklistItem.electricity, ChecklistItem.electricityMeters, ChecklistItem.toilet, ChecklistItem.bathroom, ChecklistItem.plumbingQuality, ChecklistItem.groundQuality, ChecklistItem.wallQuality, ChecklistItem.shutters, ChecklistItem.doubleGlazing, ChecklistItem.reconfiguration, ChecklistItem.cave, ChecklistItem.caveSurface, ChecklistItem.parking, ChecklistItem.distinguishElements]
     ]
+    
+    /// Dictionary for store checklist data
     var checklistData = [
         [ChecklistItem.visitDate.titles: emptyString, ChecklistItem.estateType.titles: emptyString, ChecklistItem.surfaceArea.titles: emptyString],
         [ChecklistItem.problem.titles: emptyString, ChecklistItem.advantage.titles: emptyString, ChecklistItem.transports.titles: emptyString, ChecklistItem.easyPark.titles: emptyString],
         [ChecklistItem.yearOfConstruction.titles: emptyString, ChecklistItem.numberOfLots.titles: emptyString, ChecklistItem.internet.titles: emptyString, ChecklistItem.syndicate.titles: emptyString, ChecklistItem.facade.titles: emptyString, ChecklistItem.roof.titles: emptyString, ChecklistItem.communalAreas.titles: emptyString],
         [ChecklistItem.dpe.titles: emptyString, ChecklistItem.light.titles: emptyString, ChecklistItem.dualAspect.titles: emptyString, ChecklistItem.vmc.titles: emptyString, ChecklistItem.humidity.titles: emptyString, ChecklistItem.heightUnderCeiling.titles: emptyString, ChecklistItem.planeness.titles: emptyString, ChecklistItem.insulation.titles: emptyString, ChecklistItem.soundInsulation.titles: emptyString, ChecklistItem.direction.titles: emptyString, ChecklistItem.bedroomView.titles: emptyString, ChecklistItem.lifeRoomView.titles: emptyString, ChecklistItem.heatingSystem.titles: emptyString, ChecklistItem.heatingType.titles: emptyString, ChecklistItem.electricity.titles: emptyString, ChecklistItem.electricityMeters.titles: emptyString, ChecklistItem.toilet.titles: emptyString, ChecklistItem.bathroom.titles: emptyString, ChecklistItem.plumbingQuality.titles: emptyString, ChecklistItem.groundQuality.titles: emptyString, ChecklistItem.wallQuality.titles: emptyString, ChecklistItem.shutters.titles: emptyString, ChecklistItem.doubleGlazing.titles: emptyString, ChecklistItem.reconfiguration.titles: emptyString, ChecklistItem.cave.titles: emptyString, ChecklistItem.caveSurface.titles: emptyString, ChecklistItem.parking.titles: emptyString, ChecklistItem.distinguishElements.titles: emptyString]
     ]
+    
+    /// Dictionary for store all checklist items titles
     let allTitles = [
         [ChecklistItem.visitDate.titles, ChecklistItem.estateType.titles, ChecklistItem.surfaceArea.titles],
             [ChecklistItem.problem.titles, ChecklistItem.advantage.titles, ChecklistItem.transports.titles, ChecklistItem.easyPark.titles],
             [ChecklistItem.yearOfConstruction.titles, ChecklistItem.numberOfLots.titles, ChecklistItem.internet.titles, ChecklistItem.syndicate.titles, ChecklistItem.facade.titles, ChecklistItem.roof.titles, ChecklistItem.communalAreas.titles],
             [ChecklistItem.dpe.titles, ChecklistItem.light.titles, ChecklistItem.dualAspect.titles, ChecklistItem.vmc.titles, ChecklistItem.humidity.titles, ChecklistItem.heightUnderCeiling.titles, ChecklistItem.planeness.titles, ChecklistItem.insulation.titles, ChecklistItem.soundInsulation.titles, ChecklistItem.direction.titles, ChecklistItem.bedroomView.titles, ChecklistItem.lifeRoomView.titles, ChecklistItem.heatingSystem.titles, ChecklistItem.heatingType.titles, ChecklistItem.electricity.titles, ChecklistItem.electricityMeters.titles, ChecklistItem.toilet.titles, ChecklistItem.bathroom.titles, ChecklistItem.plumbingQuality.titles, ChecklistItem.groundQuality.titles, ChecklistItem.wallQuality.titles, ChecklistItem.shutters.titles, ChecklistItem.doubleGlazing.titles, ChecklistItem.reconfiguration.titles, ChecklistItem.cave.titles, ChecklistItem.caveSurface.titles, ChecklistItem.parking.titles, ChecklistItem.distinguishElements.titles]
         ]
+    
+    /// Array for store checklist pickercells
     var pickerCells = [ChecklistPickerTableViewCell]()
+    
+    /// Array for store checklist textfield cells
     var textFieldCells = [ChecklistTextFieldTableViewCell]()
+    
+    /// Array for store checklist textview cells
     var textViewCells = [TextViewTableViewCell]()
+    
+    /// Array for store data to present in estate type pickerview
     let estateTypeForPicker = ["Studio", "T2", "T3", "T4", "T5", "Maison de village", "Villa", "Immeuble"]
+    
+    /// Array for store data to present in quality pickerview
     let qualityForPicker = ["Trés mauvais", "Mauvais", "Bon", "Trés bon", "Non concerné"]
+    
+    /// Array for store data to present in dpe pickerview
     let dpeForPicker = ["A", "B", "C", "D", "E", "F", "G"]
+    
+    /// Array for store data to present in direction pickerview
     let directionForPicker = ["Sud-Est", "Sud", "Sud-Ouest", "Ouest", "Nord-Ouest", "Nord", "Nord-Est", "Est"]
+    
+    /// Array for store data to present in roomview pickerview
     let roomViewForPicker = ["Rue", "Cour", "Non concerné"]
+    
+    /// Array for store data to present in heatingsystem pickerview
     let heatingSystemForPicker = ["Electrique", "A gaz", "Au fioul", "A bois", "Solaire"]
     
     //MARK: - Public Methods
+    
+    /// Method for save checklist general data in a new project
     func saveNewChecklistGeneral(name: String, project: Project, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         project.name = name
@@ -69,6 +113,7 @@ class ChecklistRepository {
         }
     }
     
+    /// Method for save checklist general data in an existant project
     func saveChecklistGeneralToExistantProject(project: Project, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         checklistGeneral.name = project.name
@@ -80,6 +125,7 @@ class ChecklistRepository {
         }
     }
     
+    /// Method for save checklist district data
     func saveChecklistDistrict(name: String, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         checklistDistrict.name = name
@@ -92,6 +138,7 @@ class ChecklistRepository {
         }
     }
     
+    /// Method for save checklist apartment block data
     func saveChecklistApartmentBlock(name: String, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         checklistApartmentBlock.name = name
@@ -107,6 +154,7 @@ class ChecklistRepository {
         }
     }
     
+    /// Method for save checklist apartment data
     func saveChecklistApartment(name: String, checklistRepo: ChecklistRepository) {
         guard let realm = realm else {return}
         checklistApartment.name = name
@@ -143,6 +191,7 @@ class ChecklistRepository {
         }
     }
     
+    /// Method for retrieve checklist general with project name
     func getChecklistGeneralWithProjectName(name: String) -> ChecklistGeneral {
         var checklistToReturn = ChecklistGeneral()
         for checklist in myChecklistGeneral {
@@ -153,6 +202,7 @@ class ChecklistRepository {
         return checklistToReturn
     }
     
+    /// Method for retrieve checklist district with project name
     func getChecklistDistrictWithProjectName(name: String) -> ChecklistDistrict {
         var checklistToReturn = ChecklistDistrict()
         for checklist in myChecklistDistrict {
@@ -163,6 +213,7 @@ class ChecklistRepository {
         return checklistToReturn
     }
     
+    /// Method for retrieve checklist apartment block with project name
     func getChecklistApartmentBlocklWithProjectName(name: String) -> ChecklistApartmentBlock {
         var checklistToReturn = ChecklistApartmentBlock()
         for checklist in myChecklistApartmentBlock {
@@ -173,6 +224,7 @@ class ChecklistRepository {
         return checklistToReturn
     }
     
+    /// Method for retrieve checklist apartment with project name
     func getChecklistApartmentWithProjectName(name: String) -> ChecklistApartment {
         var checklistToReturn = ChecklistApartment()
         for checklist in myChecklistApartment {
@@ -183,6 +235,7 @@ class ChecklistRepository {
         return checklistToReturn
     }
 
+    /// Method for retrieve data from specific checklist
     func getSavedChecklistData(general: ChecklistGeneral, district: ChecklistDistrict, block: ChecklistApartmentBlock, apartment: ChecklistApartment) -> [[String]] {
         var results = [[String]]()
         results.append(getSavedChecklistGeneralData(checklist: general))
@@ -192,6 +245,7 @@ class ChecklistRepository {
         return results
     }
     
+    /// Method for delete specific checklist
     func deleteChecklist(checklistGeneralToDelete: Results<ChecklistGeneral>, checklistDistrictToDelete: Results<ChecklistDistrict>, checklistApartmentBlockToDelete: Results<ChecklistApartmentBlock>, checklistApartmentToDelete: Results<ChecklistApartment>) {
         guard let realm = realm else {return}
         realm.safeWrite {
@@ -203,6 +257,8 @@ class ChecklistRepository {
     }
     
     //MARK: - Private Methods
+    
+    /// Method for retrieve data of specific checklist general
     private func getSavedChecklistGeneralData(checklist: ChecklistGeneral) -> [String] {
         var results = [String]()
         if let visitDate = checklist.visitDate,
@@ -215,6 +271,7 @@ class ChecklistRepository {
         return results
     }
     
+    /// Method for retrieve data of specific checklist district
     private func getSavedChecklistDistrictData(checklist: ChecklistDistrict) -> [String] {
         var results = [String]()
         if let problem = checklist.problem,
@@ -229,6 +286,7 @@ class ChecklistRepository {
         return results
     }
     
+    /// Method for retrieve data of specific checklist apartment block
     private func getSavedChecklistApartmentBlockData(checklist: ChecklistApartmentBlock) -> [String] {
         var results = [String]()
         if let construction = checklist.yearOfConstruction,
@@ -249,6 +307,7 @@ class ChecklistRepository {
         return results
     }
     
+    /// Method for retrieve data of specific checklist apartment
     private func getSavedChecklistApartmentData(checklist: ChecklistApartment) -> [String] {
         var results = [String]()
         if let dpe = checklist.dpe,

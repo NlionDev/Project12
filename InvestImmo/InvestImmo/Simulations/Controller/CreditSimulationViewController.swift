@@ -8,14 +8,19 @@
 
 import UIKit
 
+/// ViewController for make a Credit Simulation
 class CreditSimulationViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Instance of ErrorAlert for present error
     private let errorAlert = ErrorAlert()
+    
+    /// Instance of CreditCalculator for calculation
     private let creditCalculator = CreditCalculator()
-    private var lastCreditCell = TextFieldWithoutSubtitleTableViewCell()
-    private var activeTextField: UITextField?
-    let creditRepository = CreditRepository()
+    
+    /// Insrance of CreditRepository
+    private let creditRepository = CreditRepository()
     
     //MARK: - Outlets
     @IBOutlet weak private var creditSimulationTableView: UITableView!
@@ -42,13 +47,12 @@ class CreditSimulationViewController: UIViewController {
     
     //MARK: - Actions
     
+    /// Action activated when tap on calcul button for get credit simulation results
     @IBAction private func didTapOnCalculButton(_ sender: Any) {
-        if let creditLastTextField = lastCreditCell.cellTextField {
-            creditLastTextField.resignFirstResponder()
-            getCreditResults()
-        }
+        getCreditResults()
     }
     
+    /// Action activated when tap on screen so that all textfield resign first responder
     @IBAction private func dismissKeyboard(_ sender: Any) {
         for cell in creditRepository.creditStepperCells {
             cell.cellTextField.resignFirstResponder()
@@ -59,6 +63,8 @@ class CreditSimulationViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
+    /// Method for keyboard management and move up textfield when editing
     @objc private func adjustViewForKeyboard(notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
@@ -78,6 +84,7 @@ class CreditSimulationViewController: UIViewController {
         creditSimulationTableView.scrollIndicatorInsets = creditSimulationTableView.contentInset
     }
     
+    /// Method for register credit simulation cells
     private func nibRegister() {
         let nibNameForCellWithoutSubtitle = UINib(nibName: SimulationsCells.textFieldWithoutSubtitle.name, bundle: nil)
         creditSimulationTableView.register(nibNameForCellWithoutSubtitle, forCellReuseIdentifier: SimulationsCells.textFieldWithoutSubtitle.reuseIdentifier)
@@ -87,6 +94,7 @@ class CreditSimulationViewController: UIViewController {
         creditSimulationTableView.register(nibNameForStepperCell, forCellReuseIdentifier: SimulationsCells.stepper.reuseIdentifier)
     }
     
+    /// Method for get credit simulation results
     private func getCreditResults() {
         creditCalculator.creditData = creditRepository.creditData
         creditRepository.results.removeAll()
@@ -108,6 +116,7 @@ class CreditSimulationViewController: UIViewController {
         
     }
     
+    /// Method for instantiate, configure and return correct cell
     private func getCorrectCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let item = creditRepository.cells[indexPath.row]
         switch item.cellType {
@@ -115,7 +124,6 @@ class CreditSimulationViewController: UIViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SimulationsCells.textFieldWithoutSubtitle.reuseIdentifier, for: indexPath) as? TextFieldWithoutSubtitleTableViewCell else {return UITableViewCell()}
             cell.configure(title: item.titles, unit: item.unit)
             cell.delegate = self
-            lastCreditCell = cell
             creditRepository.creditTextFieldCells.append(cell)
             return cell
         case .pickerView:
@@ -133,6 +141,7 @@ class CreditSimulationViewController: UIViewController {
         }
     }
     
+    /// Method for display a specific error
     private func displayCreditError(_ error: CreditCalculator.CreditCalculatorError) {
         switch error {
         case .amountToFinanceMissing:
@@ -150,6 +159,8 @@ class CreditSimulationViewController: UIViewController {
 }
 
 //MARK: - Extension for TableView
+
+/// Extension of CreditSimulationViewController for TableView Delegate and DataSource
 extension CreditSimulationViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -162,6 +173,8 @@ extension CreditSimulationViewController: UITableViewDataSource, UITableViewDele
 }
 
 //MARK: - PickerViewTableViewCellDelegate
+
+/// Extension of CreditSimulationViewController for implement PickerViewTableViewCellDelegate methods
 extension CreditSimulationViewController: PickerViewTableViewCellDelegate {
     func pickerViewTableViewCell(_ pickerViewTableViewCell: PickerViewTableViewCell, key: String, value: Int) {
         let stringValue = String(value)
@@ -170,6 +183,8 @@ extension CreditSimulationViewController: PickerViewTableViewCellDelegate {
 }
 
 //MARK: - TextFieldTableViewCellDelegate
+
+/// Extension of CreditSimulationViewController for implement TextFieldTableViewCellDelegate methods
 extension CreditSimulationViewController: TextFieldTableViewCellDelegate {
     func textFieldTableViewCell(key: String, value: String) {
         creditRepository.creditData[key] = value

@@ -8,17 +8,24 @@
 
 import UIKit
 
+/// Protocol for ChecklistTextFieldTableViewCellDelegate
 protocol ChecklistTextFieldTableViewCellDelegate: class {
     func checklistTextFieldTableViewCell(_ checklistTextFieldTableViewCell: ChecklistTextFieldTableViewCell, key: String, value: String, sectionKey: Int)
 }
 
+/// Class for ChecklistTextFieldTableViewCell
 class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
 
 
     //MARK: - Properties
     
+    /// Property for delegate
     weak var delegate: ChecklistTextFieldTableViewCellDelegate?
+    
+    /// Property for stock title of cell who will be the key in data dictionary
     private var key = String()
+    
+    /// Property for store selected section to store data in data dictionary
     private var section = Int()
     
     //MARK: - Outlets
@@ -36,6 +43,7 @@ class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     //MARK: - Methods
     
+    /// Method for configure cell with data
     func configure(title: String, unit: String, sectionKey: Int) {
         key = title
         section = sectionKey
@@ -43,6 +51,7 @@ class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         unitLabel.text = unit
     }
     
+    /// Method called when textfield should end editing and retrieve textfield data
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let text = cellTextField.text {
         delegate?.checklistTextFieldTableViewCell(self, key: key, value: text, sectionKey: section)
@@ -50,6 +59,7 @@ class ChecklistTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     
+    /// Method called when user tap on keyboard return button and textfield resign first responder
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cellTextField.resignFirstResponder()
         return true

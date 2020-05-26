@@ -9,14 +9,13 @@
 import Foundation
 
 extension Double {
+    
+    /// Property for truncate number after comma if the number after comma is zero
     var clean: String {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
     }
     
-    var formattedWithSeparator: String {
-        return Formatter.withSeparator.string(for: self) ?? ""
-    }
-    
+    /// Property for truncate number with two numbers after comma
     var formatIntoStringWithTwoNumbersAfterPoint: String {
         return String(format: "%.02f", self)
         

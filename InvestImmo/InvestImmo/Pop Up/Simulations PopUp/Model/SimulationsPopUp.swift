@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// Class for RentabilityNewProjectPopUp
 class RentabilityNewProjectPopUp {
     
+    /// Method for instatiate AddRentabilityToNewProjectPopUpVC and present alert
     func alert(rentability: RentabilityRepository) -> AddRentabilityToNewProjectPopUpVC {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.simulations.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: SimulationsVC.rentabilityNewProject.identifier) as! AddRentabilityToNewProjectPopUpVC
@@ -18,8 +20,10 @@ class RentabilityNewProjectPopUp {
     }
 }
 
+/// Class for RentabilityExistantProjectPopUp
 class RentabilityExistantProjectPopUp {
     
+    /// Method for instatiate AddRentabilityToExistantProjectPopUpVC and present alert
     func alert(rentability: RentabilityRepository) -> AddRentabilityToExistantProjectPopUpVC {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.simulations.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: SimulationsVC.rentabilityExistantProject.identifier) as! AddRentabilityToExistantProjectPopUpVC
@@ -28,8 +32,10 @@ class RentabilityExistantProjectPopUp {
     }
 }
 
+/// Class for ReplaceRentabilityPopUp
 class ReplaceRentabilityPopUp {
     
+    /// Method for instatiate ReplaceRentabilityViewController and present alert
     func alert(project: Project, rentability: RentabilityRepository) -> ReplaceRentabilityViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.simulations.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: SimulationsVC.rentabilityReplaceProject.identifier) as! ReplaceRentabilityViewController
@@ -39,8 +45,10 @@ class ReplaceRentabilityPopUp {
     }
 }
 
+/// Class for CreditNewProjectPopUp
 class CreditNewProjectPopUp {
     
+    /// Method for instatiate AddCreditToNewProjectPopUpVC and present alert
     func alert(credit: CreditRepository) -> AddCreditToNewProjectPopUpVC {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.simulations.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: SimulationsVC.creditNewProject.identifier) as! AddCreditToNewProjectPopUpVC
@@ -49,8 +57,10 @@ class CreditNewProjectPopUp {
     }
 }
 
+/// Class for CreditExistantProjectPopUp
 class CreditExistantProjectPopUp {
     
+    /// Method for instatiate AddCreditToExistantProjectPopUpVC and present alert
     func alert(credit: CreditRepository) -> AddCreditToExistantProjectPopUpVC {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.simulations.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: SimulationsVC.creditExistantProject.identifier) as! AddCreditToExistantProjectPopUpVC
@@ -59,8 +69,10 @@ class CreditExistantProjectPopUp {
     }
 }
 
+/// Class for ReplaceCreditPopUp
 class ReplaceCreditPopUp {
     
+    /// Method for instatiate ReplaceCreditViewController and present alert
     func alert(project: Project, credit: CreditRepository) -> ReplaceCreditViewController {
         let storyboard = UIStoryboard(name: StoryboardIdentifier.simulations.identifier, bundle: .main)
         let alertVC = storyboard.instantiateViewController(withIdentifier: SimulationsVC.creditReplaceProject.identifier) as! ReplaceCreditViewController

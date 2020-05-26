@@ -9,12 +9,15 @@
 import Foundation
 import UIKit
 
+/// Class for SavedProjectsTableViewCell
 class SavedProjectsTableViewCell: UITableViewCell {
     
     //MARK: - Outlets
     @IBOutlet weak private var name: UILabel!
     
     //MARK: - Methods
+    
+    /// Method for configure cell with project name
     func configure(projectName: String) {
         name.text = projectName
     }

@@ -18,34 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var realm = Realm.safeInit()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        //Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "testDatabase"
-        
-//        autoreleasepool {
-//            guard let realmURL = Realm.Configuration.defaultConfiguration.fileURL else {
-//                return
-//            }
-//            let realmURLs = [
-//                realmURL,
-//                realmURL.appendingPathExtension("lock"),
-//                realmURL.appendingPathExtension("note"),
-//                realmURL.appendingPathExtension("management"),
-//                realmURL.appendingPathExtension("log_a"),
-//                realmURL.appendingPathExtension("log_b")
-//            ]
-//            for URL in realmURLs {
-//                do {
-//                    try FileManager.default.removeItem(at: URL)
-//                } catch let error {
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        }
-
-//        let realm = try! Realm()
-//        try! realm.write {
-//            realm.deleteAll()
-//        }
+    
         return true
     }
 

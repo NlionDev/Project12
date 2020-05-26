@@ -8,9 +8,12 @@
 
 import UIKit
 
+/// Class for ErrorAlertViewController
 class ErrorAlertViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Property for store alert message
     var message: String?
     
     //MARK: - Outlets
@@ -25,6 +28,8 @@ class ErrorAlertViewController: UIViewController {
     }
 
     //MARK: - Actions
+    
+    /// Action activated when tap on ok Button for dismiss alert
     @IBAction func didTapOnOKButton(_ sender: Any) {
         dismiss(animated: true)
     }

@@ -10,23 +10,54 @@ import UIKit
 import MapKit
 import CoreLocation
 
+/// Class for MapViewController
 class MapViewController: UIViewController {
     
     //MARK: - Properties
+    
+    /// Instance of ErrorAlert
     private let errorAlert = ErrorAlert()
+    
+    /// Instance of MapSearchAdressPopUp for present pop up and search an adress
     private let searchAdressPopUp = MapSearchAdressPopUp()
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Instance of MapRepository
     private let mapRepository = MapRepository()
+    
+    /// Instance of MapExistantProjectPopUp for present pop up and save adress to an existant project
     private let mapExistantProject = MapExistantProjectPopUp()
+    
+    /// Instance of MapNewProjectPopUp for present pop up and save adress in a new project
     private let mapNewProject = MapNewProjectPopUp()
+    
+    /// Array for store saved map Annotations
     private var annotations = [MKAnnotation]()
+    
+    /// Property for store searched adress
     private var searchedAdress = String()
+    
+    /// Property for store searched adress latitude
     private var searchResultLatitude = String()
+    
+    /// Property for store searched adress longitude
     private var searchResultLongitude = String()
+    
+    /// Property for store latitude of France for init Map
     private var latitudeInit: Double = 46.227638
+    
+    /// Property for store longitude of France for init Map
     private var longitudeInit: Double = 2.213749
+    
+    /// Instance of CLGeocoder
     private let geoCoder = CLGeocoder()
+    
+    /// Instance of CLLocationManager
     private let locationManager = CLLocationManager()
+    
+    /// Property for store coordinate of France for init Map
     private var coordinateInit: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitudeInit, longitude: longitudeInit)}
     
@@ -42,7 +73,10 @@ class MapViewController: UIViewController {
         setupMap(coordinate: coordinateInit, spanLatitude: 10, spanLongitude: 10)
         configureMapViewAnnotations()
     }
+    
+    //MARK: - Actions
 
+    /// Action activated when change segmentMapType value and change Map looks
     @IBAction private func didChangeMapType(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -56,15 +90,18 @@ class MapViewController: UIViewController {
         }
     }
     
+    /// Action activated when tap on myPosition Button for get and show user position
     @IBAction private func didTapOnMyPositionButton(_ sender: Any) {
         getPosition()
     }
 
+    /// Action activated when tap on search adress button for present pop up of search adress
     @IBAction private func didTapOnSearchAdressButton(_ sender: Any) {
         let popUp = searchAdressPopUp.alert(delegate: self)
         present(popUp, animated: true)
     }
     
+    /// Action activated when tap on save adress button for save the searched adress
     @IBAction private func didTapOnAddAdressButton(_ sender: Any) {
         NotificationCenter.default.addObserver(self, selector: #selector(self.configureMapViewAnnotations), name: NSNotification.Name(rawValue: mapNotificationName), object: nil)
         if searchedAdress == "" {
@@ -72,7 +109,6 @@ class MapViewController: UIViewController {
             present(alert, animated: true)
         } else {
             if projectRepository.myProjects.count == 0 {
-               
                 let popUp = mapNewProject.alert(adress: searchedAdress, latitude: searchResultLatitude, longitude: searchResultLongitude)
                 present(popUp, animated: true)
             } else {
@@ -84,11 +120,13 @@ class MapViewController: UIViewController {
     
     //MARK: - Methods
     
+    /// Method for configure annotations on map
     @objc private func configureMapViewAnnotations() {
         mapView.removeAnnotations(annotations)
         addSomeAnnotations()
     }
     
+    /// Method for add annotions from retrieved project adress
     private func addSomeAnnotations() {
         for mapAdress in mapRepository.myAdresses {
             guard let name = mapAdress.name,
@@ -103,6 +141,7 @@ class MapViewController: UIViewController {
         mapView.addAnnotations(annotations)
     }
     
+    /// Method for check if the app is allow to access to user location
     private func getAuthorizationAndDisplayUserLocation() {
         switch CLLocationManager.authorizationStatus() {
         case .denied, .restricted:
@@ -120,6 +159,7 @@ class MapViewController: UIViewController {
         }
     }
     
+    /// Method for configure map view
     private func setupMap(coordinate: CLLocationCoordinate2D, spanLatitude: Double, spanLongitude: Double) {
         mapView.setCenter(coordinate, animated: true)
         let span = MKCoordinateSpan(latitudeDelta: spanLatitude, longitudeDelta: spanLongitude)
@@ -127,6 +167,7 @@ class MapViewController: UIViewController {
         mapView.setRegion(region, animated: true)
     }
     
+    /// Method for get user location and show his position
     private func getPosition() {
         guard let position = locationManager.location?.coordinate else {return}
         if locationManager.location != nil {
@@ -139,6 +180,8 @@ class MapViewController: UIViewController {
 
 
 //MARK: - Extension
+
+/// Extension of MapViewController for mapview and locationmanager delegate methods
 extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

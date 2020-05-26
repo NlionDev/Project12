@@ -8,21 +8,35 @@
 
 import UIKit
 
+/// Class for AddRentabilityToExistantProjectPopUpVC
 class AddRentabilityToExistantProjectPopUpVC: UIViewController {
-
     
     //MARK: - Properties
+    
+    /// Instance of ErrorAlert for present alert
     private let errorAlert = ErrorAlert()
+    
+    /// Instance of RentabilityNewProjectPopUp for present pop up
     private let rentaNewProjectAlert = RentabilityNewProjectPopUp()
+    
+    /// Instance of ReplaceRentabilityPopUp for present pop up
     private let replaceRentabilityPopUp = ReplaceRentabilityPopUp()
+    
+    /// Instance of ProjectRepository
     private let projectRepository = ProjectRepository()
+    
+    /// Property for store project selected by user
     private var selectedProject: Project?
+    
+    /// Instance of RentabilityRepository past from viewcontroller who present the pop up
     var rentabilityRepository: RentabilityRepository?
     
     //MARK: - Outlets
     @IBOutlet weak private var alertTableView: UITableView!
     
     //MARK: - Actions
+    
+    /// Action activated  when tap on new project button for present new project pop up
     @IBAction private func didTapOnNewProjectButton(_ sender: Any) {
         guard let rentaRepo = rentabilityRepository else {return}
         dismiss(animated: true, completion: {
@@ -32,11 +46,14 @@ class AddRentabilityToExistantProjectPopUpVC: UIViewController {
         })
     }
     
+    /// Action activated when tap on cancel button for dismiss pop up
     @IBAction private func didTapOnCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
     
     //MARK: - Methods
+    
+    /// Method for check if the selected project already have rentability simulation
     private func checkIfTheProjectAlreadyHaveSavedRentabilitySimulation(project: Project) -> Bool {
         var result = true
         if let rentabilityRepository = rentabilityRepository,
@@ -52,12 +69,15 @@ class AddRentabilityToExistantProjectPopUpVC: UIViewController {
         return result
     }
     
+    /// Method for dismiss viewController
     @objc private func hideAlertController() {
         self.dismiss(animated: true)
     }
 }
 
 //MARK: - Extension
+
+/// Extension of AddRentabilityToExistantProjectPopUpVC for tableview delegate and datasource methods
 extension AddRentabilityToExistantProjectPopUpVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

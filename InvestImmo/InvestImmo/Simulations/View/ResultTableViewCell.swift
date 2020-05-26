@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Class for Result table view cell
 class ResultTableViewCell: UITableViewCell {
 
 
@@ -16,16 +17,19 @@ class ResultTableViewCell: UITableViewCell {
     @IBOutlet weak private var resultLabel: UILabel!
     
     //MARK: - Methods
+    
+    /// Method for configure cell with rentability data
     func configureForRenta(title: String, result: String, isPositive: Bool) {
         titleLabel.text = title
         resultLabel.text = result
         if isPositive {
-            resultLabel.textColor = UIColor(red: 33/255.0, green: 227/255.0, blue: 40/255.0, alpha: 1.0)
+            resultLabel.textColor = green
         } else {
-            resultLabel.textColor = UIColor(red: 227/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1.0)
+            resultLabel.textColor = red
         }
     }
     
+    /// Method for configure cell with credit data
     func configureForCredit(title: String, result: String) {
         titleLabel.text = title
         resultLabel.text = result

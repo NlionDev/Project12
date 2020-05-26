@@ -10,17 +10,36 @@ import UIKit
 import Photos
 import AssetsLibrary
 
+/// Class for DetailsSavedProjectsViewController who contain PageViewController
 class DetailsSavedProjectsViewController: UIViewController {
 
     //MARK: - Properties
+    
+    /// Left anchor constraint of horizontal bar in menu bar
     private var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
+    
+    /// Array of images display in Menu bar
     private let menuBarItems = [UIImage(named: MenuBarItemsNames.euro.name), UIImage(named: MenuBarItemsNames.ratio.name), UIImage(named: MenuBarItemsNames.checklist.name), UIImage(named: MenuBarItemsNames.gallery.name), UIImage(named: MenuBarItemsNames.map.name)]
+    
+    /// PageViewController who display different ViewControllers
     private var pageViewController: UIPageViewController!
+    
+    /// Array of ViewControllers displayed in PageViewController
     private var viewControllers = [UIViewController]()
+    
+    /// Instance of ErrorAlert for present error
     private let errorAlert = ErrorAlert()
+    
+    /// Instance of PhotoRepository
     private let photoRepository = PhotoRepository()
+    
+    /// Property for store index of the current ViewController displayed
     private var currentIndex = 0
+    
+    /// Instance of UIImagePickerController
     private let imagePicker = UIImagePickerController()
+    
+    /// Property to store a selected Project past from SavedProjectsViewController
     var selectedProject: Project?
     
     //MARK: - Outlets
@@ -50,11 +69,15 @@ class DetailsSavedProjectsViewController: UIViewController {
     }
     
     //MARK: - Actions
+    
+    /// Action activated when tap on add photo button and check if the app is allow to pick photo from user library
     @objc private func didTapOnAddPhotoButton() {
         checkIfUserIsAllowToPickPhotoFromLibrary()
     }
     
     //MARK: - Methods
+    
+    /// Method for instanciate ViewControllers contained in PageViewController and append them in 'viewControllers' property
     private func getViewControllers() {
         let storyboard = UIStoryboard(name: savedProjectsStoryboardIdentifier, bundle: nil)
         let creditDataVC = storyboard.instantiateViewController(withIdentifier: SavedProjectsVC.credit.identifier) as! CreditDataViewController
@@ -74,11 +97,13 @@ class DetailsSavedProjectsViewController: UIViewController {
         viewControllers.append(mapVC)
     }
     
+    /// Method for configure menu bar and select first item
     private func setupMenuBarCollectionView() {
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         menuBarCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
     }
     
+    /// Method for configure horizontal bar in menu bar
     private func setupHorizontalBar() {
         let horizontalBar = UIView()
         horizontalBar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -92,6 +117,7 @@ class DetailsSavedProjectsViewController: UIViewController {
         horizontalBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
     }
     
+    /// Method for scroll PageViewController to a selected index
     private func scrollToMenuIndex(menuIndex: Int) {
         let nextVC = viewControllers[menuIndex]
         currentIndex < menuIndex ? pageViewController.setViewControllers([nextVC], direction: .forward, animated: true, completion: nil) : pageViewController.setViewControllers([nextVC], direction: .reverse, animated: true, completion: nil)
@@ -99,6 +125,7 @@ class DetailsSavedProjectsViewController: UIViewController {
         configureNavBarRightButton()
     }
     
+    /// Method for instanciate, configure and return MenuBar cell
     private func getMenuBarCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         guard let menuBarCell = collectionView.dequeueReusableCell(withReuseIdentifier: SavedProjectsCell.menuBar.reuseIdentifier, for: indexPath) as? MenuBarCollectionViewCell else {return UICollectionViewCell()}
@@ -109,16 +136,20 @@ class DetailsSavedProjectsViewController: UIViewController {
         return cell
     }
     
+    /// Method for animate horizontal bar in Menu bar
     private func animateMenuBarSlide(index: Int, duration: TimeInterval) {
         let x = CGFloat(index) * menuBar.frame.width / 5
         horizontalBarLeftAnchorConstraint?.constant = x
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {self.menuBar.layoutIfNeeded()}, completion: nil)
     }
     
+    /// Method for show or hide add photo button depends of current index
     private func configureNavBarRightButton() {
         currentIndex == 3 ? setupNavBarRightButton(image: #imageLiteral(resourceName: "cameraIcon"), action: #selector(didTapOnAddPhotoButton)) : hideNavBarRightButton()
     }
     
+    
+    /// Method for check if the app is allow to pick photo from user library
     private func checkIfUserIsAllowToPickPhotoFromLibrary() {
         let status = PHPhotoLibrary.authorizationStatus()
         if (status == PHAuthorizationStatus.denied || status == PHAuthorizationStatus.notDetermined) {
@@ -135,6 +166,7 @@ class DetailsSavedProjectsViewController: UIViewController {
         }
     }
     
+    /// Method for pick photo from user library
     private func pickPhotoFromLibrary() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
         let imagePicker = UIImagePickerController()
@@ -145,6 +177,8 @@ class DetailsSavedProjectsViewController: UIViewController {
     }
 }
 //MARK: - Extension for CollectionView
+
+/// Extension of DetailsSavedProjectsViewController for collectionview delegate and datasource methods
 extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -177,6 +211,8 @@ extension DetailsSavedProjectsViewController: UICollectionViewDelegate, UICollec
 }
 
 //MARK: - Extension for PageViewController
+
+/// Extension of DetailsSavedProjectsViewController for pageviewcontroller delegate and datasource methods
 extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -219,6 +255,8 @@ extension DetailsSavedProjectsViewController: UIPageViewControllerDelegate, UIPa
 }
 
 //MARK: - Extension for ImagePickerController
+
+/// Extension of DetailsSavedProjectsViewController for UIImagePickerControllerDelegate and UINavigationControllerDelegate
 extension DetailsSavedProjectsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
